@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\UI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C0461DD2-A4BE-4EB7-BC99-1AD9BCBF44E5}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\campo\\newcarpeta\\be\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0ECEEBC-0EF8-432B-BBFB-A5D567A9B87B}|..\\BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\campo\\newcarpeta\\bll\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77F5C36E-AEA0-46CB-86A3-2F1F020B8E49}|..\\DAL\\DAL.csproj|c:\\users\\navegador\\desktop\\campo\\newcarpeta\\dal\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\navegador\\desktop\\campo\\newcarpeta\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\BE\\Form1.cs",
+              "RelativeDocumentMoniker": "..\\BE\\Form1.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\BE\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\BE\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T23:34:23.068Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\BLL\\Form1.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\Form1.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\BLL\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\BLL\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T23:34:10.323Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Form1.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Form1.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\DAL\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T23:34:01.66Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\UI\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\UI\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T23:33:39.526Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
