@@ -138,5 +138,20 @@ namespace DAL
                 return false;
             }
         }
+
+        public void Dispose()
+        {
+            if (transaction != null)
+            {
+                transaction.Dispose();
+                transaction = null;
+            }
+            if (conexion != null)
+            {
+                conexion.Dispose();
+                conexion = null;
+            }
+            GC.SuppressFinalize(this);
+        }
     }
 }

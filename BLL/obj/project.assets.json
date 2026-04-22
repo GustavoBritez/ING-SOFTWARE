@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\BLL\\BLL.csproj",
+      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Proyecto\\Test\\BLL\\BLL.csproj",
       "projectName": "BLL",
-      "projectPath": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\BLL\\BLL.csproj",
+      "projectPath": "C:\\Users\\Navegador\\Desktop\\Proyecto\\Test\\BLL\\BLL.csproj",
       "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\BLL\\obj\\",
+      "outputPath": "C:\\Users\\Navegador\\Desktop\\Proyecto\\Test\\BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
