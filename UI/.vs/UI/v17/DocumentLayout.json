@@ -75,73 +75,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProfesionalBE.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\ProfesionalBE.cs",
-              "RelativeDocumentMoniker": "..\\BE\\ProfesionalBE.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\ProfesionalBE.cs",
-              "RelativeToolTip": "..\\BE\\ProfesionalBE.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T23:05:47.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PacienteBE.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\PacienteBE.cs",
-              "RelativeDocumentMoniker": "..\\BE\\PacienteBE.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\PacienteBE.cs",
-              "RelativeToolTip": "..\\BE\\PacienteBE.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T23:21:14.702Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DAL.csproj",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\DAL.csproj",
-              "RelativeDocumentMoniker": "..\\DAL\\DAL.csproj",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\DAL.csproj",
-              "RelativeToolTip": "..\\DAL\\DAL.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-24T22:36:46.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MedicoBE.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\MedicoBE.cs",
-              "RelativeDocumentMoniker": "..\\BE\\MedicoBE.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\MedicoBE.cs",
-              "RelativeToolTip": "..\\BE\\MedicoBE.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T22:48:12.337Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NutricionistaBE.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\NutricionistaBE.cs",
-              "RelativeDocumentMoniker": "..\\BE\\NutricionistaBE.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\NutricionistaBE.cs",
-              "RelativeToolTip": "..\\BE\\NutricionistaBE.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T23:21:17.362Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -157,6 +92,70 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProfesionalBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\ProfesionalBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\ProfesionalBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\ProfesionalBE.cs",
+              "RelativeToolTip": "..\\BE\\ProfesionalBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:05:47.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PacienteBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\PacienteBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\PacienteBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\PacienteBE.cs",
+              "RelativeToolTip": "..\\BE\\PacienteBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:21:14.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DAL.csproj",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\DAL.csproj",
+              "RelativeDocumentMoniker": "..\\DAL\\DAL.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\DAL.csproj",
+              "RelativeToolTip": "..\\DAL\\DAL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-24T22:36:46.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MedicoBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\MedicoBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\MedicoBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\MedicoBE.cs",
+              "RelativeToolTip": "..\\BE\\MedicoBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T22:48:12.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NutricionistaBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\NutricionistaBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\NutricionistaBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\NutricionistaBE.cs",
+              "RelativeToolTip": "..\\BE\\NutricionistaBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:21:17.362Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "UsuarioBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\UsuarioBE.cs",
@@ -165,8 +164,7 @@
               "RelativeToolTip": "..\\BE\\UsuarioBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T23:29:52.27Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T23:29:52.27Z"
             },
             {
               "$type": "Document",
@@ -178,8 +176,7 @@
               "RelativeToolTip": "..\\BE\\Recordatorio24HsBE.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAAAA0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T23:01:36.953Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T23:01:36.953Z"
             },
             {
               "$type": "Document",
@@ -191,8 +188,7 @@
               "RelativeToolTip": "..\\BE\\FrecuenciaConsumoBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T22:48:00.83Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T22:48:00.83Z"
             },
             {
               "$type": "Document",
@@ -204,8 +200,7 @@
               "RelativeToolTip": "..\\BE\\AnalisisBioquimicoBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T22:47:58.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T22:47:58.56Z"
             },
             {
               "$type": "Document",
@@ -217,8 +212,7 @@
               "RelativeToolTip": "..\\BE\\SessionManagerBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T23:29:51.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T23:29:51.772Z"
             },
             {
               "$type": "Document",
@@ -230,8 +224,7 @@
               "RelativeToolTip": "..\\BE\\RegistroAntropometricoBE.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T23:29:50.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T23:29:50.413Z"
             },
             {
               "$type": "Document",
@@ -243,8 +236,7 @@
               "RelativeToolTip": "..\\BE\\AnamnesisBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T22:48:10.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T22:48:10.41Z"
             },
             {
               "$type": "Document",
@@ -256,8 +248,7 @@
               "RelativeToolTip": "..\\BE\\HistoriaClinicaBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T22:48:06.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T22:48:06.219Z"
             },
             {
               "$type": "Document",
@@ -269,8 +260,7 @@
               "RelativeToolTip": "..\\BE\\BE.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-24T22:36:42.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T22:36:42.104Z"
             },
             {
               "$type": "Document",
@@ -282,8 +272,7 @@
               "RelativeToolTip": "..\\BLL\\BLL.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-24T22:36:44.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T22:36:44.814Z"
             },
             {
               "$type": "Document",
@@ -309,10 +298,6 @@
               "WhenOpened": "2026-04-20T23:37:33.957Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 15,
               "Title": "UI.csproj",
@@ -322,8 +307,7 @@
               "RelativeToolTip": "UI.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-24T22:36:51.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T22:36:51.945Z"
             },
             {
               "$type": "Document",
