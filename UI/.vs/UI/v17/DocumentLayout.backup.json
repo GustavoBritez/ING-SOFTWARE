@@ -1,16 +1,71 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\UI\\",
+  "WorkspaceRootPath": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\UI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{978DCD01-17CC-49DE-A655-80D7C1EECD6E}|..\\DAL\\DAL.csproj|c:\\users\\navegador\\desktop\\campo\\newcarpeta\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{978DCD01-17CC-49DE-A655-80D7C1EECD6E}|..\\DAL\\DAL.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{978DCD01-17CC-49DE-A655-80D7C1EECD6E}|..\\DAL\\DAL.csproj|c:\\users\\navegador\\desktop\\campo\\newcarpeta\\dal\\dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\medicobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\UI\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\nutricionistabe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{978DCD01-17CC-49DE-A655-80D7C1EECD6E}|..\\DAL\\DAL.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\dal\\dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\profesionalbe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\pacientebe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\usuariobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\recordatorio24hsbe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\frecuenciaconsumobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\analisisbioquimicobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\sessionmanagerbe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\registroantropometricobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\anamnesisbe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\historiaclinicabe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D44EF64-B269-4038-A47C-49BD6C678D8E}|..\\BE\\BE.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\be\\be.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\ui\\ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F00346A-55B7-4DF4-8643-93EB91FBA2F4}|..\\BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\pep\\srd\\bll\\bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Navegador\\Desktop\\PEP\\srd\\UI\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Navegador\\Desktop\\Proyecto\\Test\\DAL\\Conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\DAL.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,33 +75,238 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DAL",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
+              "DocumentIndex": 4,
+              "Title": "ProfesionalBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\ProfesionalBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\ProfesionalBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\ProfesionalBE.cs",
+              "RelativeToolTip": "..\\BE\\ProfesionalBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:05:47.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PacienteBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\PacienteBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\PacienteBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\PacienteBE.cs",
+              "RelativeToolTip": "..\\BE\\PacienteBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:21:14.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DAL.csproj",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\DAL.csproj",
               "RelativeDocumentMoniker": "..\\DAL\\DAL.csproj",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\DAL.csproj",
               "RelativeToolTip": "..\\DAL\\DAL.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-20T23:37:33.957Z",
+              "WhenOpened": "2026-04-24T22:36:46.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MedicoBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\MedicoBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\MedicoBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\MedicoBE.cs",
+              "RelativeToolTip": "..\\BE\\MedicoBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T22:48:12.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NutricionistaBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\NutricionistaBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\NutricionistaBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\NutricionistaBE.cs",
+              "RelativeToolTip": "..\\BE\\NutricionistaBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:21:17.362Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Conexion.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\Conexion.cs",
               "RelativeDocumentMoniker": "..\\DAL\\Conexion.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Conexion.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\Conexion.cs",
               "RelativeToolTip": "..\\DAL\\Conexion.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAowGkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T23:37:52.731Z",
+              "WhenOpened": "2026-04-24T21:08:08.535Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UsuarioBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\UsuarioBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\UsuarioBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\UsuarioBE.cs",
+              "RelativeToolTip": "..\\BE\\UsuarioBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:29:52.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Recordatorio24HsBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\Recordatorio24HsBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\Recordatorio24HsBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\Recordatorio24HsBE.cs",
+              "RelativeToolTip": "..\\BE\\Recordatorio24HsBE.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAA0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:01:36.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FrecuenciaConsumoBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\FrecuenciaConsumoBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\FrecuenciaConsumoBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\FrecuenciaConsumoBE.cs",
+              "RelativeToolTip": "..\\BE\\FrecuenciaConsumoBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T22:48:00.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AnalisisBioquimicoBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\AnalisisBioquimicoBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\AnalisisBioquimicoBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\AnalisisBioquimicoBE.cs",
+              "RelativeToolTip": "..\\BE\\AnalisisBioquimicoBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T22:47:58.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SessionManagerBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\SessionManagerBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\SessionManagerBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\SessionManagerBE.cs",
+              "RelativeToolTip": "..\\BE\\SessionManagerBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:29:51.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RegistroAntropometricoBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\RegistroAntropometricoBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\RegistroAntropometricoBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\RegistroAntropometricoBE.cs",
+              "RelativeToolTip": "..\\BE\\RegistroAntropometricoBE.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T23:29:50.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AnamnesisBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\AnamnesisBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\AnamnesisBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\AnamnesisBE.cs",
+              "RelativeToolTip": "..\\BE\\AnamnesisBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T22:48:10.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HistoriaClinicaBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\HistoriaClinicaBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\HistoriaClinicaBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\HistoriaClinicaBE.cs",
+              "RelativeToolTip": "..\\BE\\HistoriaClinicaBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T22:48:06.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BE.csproj",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\BE.csproj",
+              "RelativeDocumentMoniker": "..\\BE\\BE.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\BE.csproj",
+              "RelativeToolTip": "..\\BE\\BE.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-24T22:36:42.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BLL.csproj",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BLL\\BLL.csproj",
+              "RelativeDocumentMoniker": "..\\BLL\\BLL.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BLL\\BLL.csproj",
+              "RelativeToolTip": "..\\BLL\\BLL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-24T22:36:44.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Proyecto\\Test\\DAL\\Conexion.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Proyecto\\Test\\DAL\\Conexion.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Proyecto\\Test\\DAL\\Conexion.cs",
+              "RelativeToolTip": "..\\..\\..\\Proyecto\\Test\\DAL\\Conexion.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T21:27:57.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DAL.csproj",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
+              "RelativeDocumentMoniker": "..\\..\\..\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
+              "RelativeToolTip": "..\\..\\..\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-20T23:37:33.957Z"
             },
             {
               "$type": "Bookmark",
@@ -54,15 +314,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 15,
+              "Title": "UI.csproj",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\UI\\UI.csproj",
+              "RelativeDocumentMoniker": "UI.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\UI\\UI.csproj",
+              "RelativeToolTip": "UI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-24T22:36:51.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Conexion.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Campo\\NewCarpeta\\DAL\\Conexion.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Conexion.cs",
+              "RelativeToolTip": "..\\..\\..\\Campo\\NewCarpeta\\DAL\\Conexion.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T23:37:52.731Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\UI\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\UI\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\UI\\Form1.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\UI\\Form1.cs [Dise\u00F1o]",
               "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T23:33:39.526Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-04-20T23:33:39.526Z"
             }
           ]
         }
