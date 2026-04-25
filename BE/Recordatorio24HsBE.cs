@@ -19,10 +19,9 @@ namespace BE
         {
         }
 
-        public Recordatorio24HsBE(string detalleComidas, string totalCaloriasEstimadas, string desayuno, string almuerzo, string merienda, string cena, string colaciones, int cantidadVasosAgua, bool realizoActividadFisica, bool suplementosVitaminas, string observacionesPaciente)
+        public Recordatorio24HsBE(string desayuno, string almuerzo, string merienda, string cena, string colaciones, int cantidadVasosAgua, bool realizoActividadFisica, bool suplementosVitaminas )
         {
-            DetalleComidas = detalleComidas;
-            TotalCaloriasEstimadas = totalCaloriasEstimadas;
+
             Desayuno = desayuno;
             Almuerzo = almuerzo;
             Merienda = merienda;
@@ -31,11 +30,8 @@ namespace BE
             CantidadVasosAgua = cantidadVasosAgua;
             RealizoActividadFisica = realizoActividadFisica;
             SuplementosVitaminas = suplementosVitaminas;
-            ObservacionesPaciente = observacionesPaciente;
         }
 
-        public string DetalleComidas { get; set; }
-        public string TotalCaloriasEstimadas { get; set; }
 
         // Se ingresan datos " Milanesa con pure ", " 2 medialunas con cafe con leche ", " 1 yogur con frutas ".
         public string Desayuno { get; set; }
@@ -48,6 +44,5 @@ namespace BE
         public bool RealizoActividadFisica { get; set; }
         public bool SuplementosVitaminas { get; set; }
        
-        public string ObservacionesPaciente { get; set; }
     }
 }
