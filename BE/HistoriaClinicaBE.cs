@@ -14,7 +14,9 @@ namespace BE
 
 
         public Recordatorio24HsBE Recordatorio24Hs { get; set; }
-        public 
+        public RegistroAntropometricoBE RegistroAntropometrico { get; set; }
+        public FrecuenciaConsumoBE FrecuenciaConsumo { get; set; }
+        public AnalisisBioquimicoBE AnalisisBioquimico { get; set; }    
 
         // ID de la Historia Clinica, se autogenera al crearla preferiblemente AUTOINCREMENT en la base de datos
         public int ID { get; set; }
