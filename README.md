@@ -3,7 +3,8 @@
 
 
 - Buscar Hashing Generico con Bcryp  
-- Realizar Login basico 
+- Realizar Login basico
+- Singleton
 - Crear base de datos relacional en SqlServer 
 - Crear CRUD con validaciones necesarias para SqlTransacction
 - Actualizar la BE con el nuevo Diagrama de Clases
