@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\ING\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\Services\\Services.csproj",
+      "projectPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\ING\\Services\\Services.csproj",
       "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\Services\\obj\\",
+      "outputPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\ING\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

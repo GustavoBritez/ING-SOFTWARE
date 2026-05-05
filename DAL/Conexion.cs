@@ -11,7 +11,7 @@ namespace DAL
     internal class Conexion : IDisposable
     {
 
-        private const string _cadenaConexion = "code";
+        private const string _cadenaConexion = "Data Source=.;Initial Catalog=TestHash;Integrated Security=True;Trust Server Certificate=True";
         private const int time= 30;
         private SqlConnection conexion;
         private SqlTransaction transaction;

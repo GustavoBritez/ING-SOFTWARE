@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XpXinqXopbI=",
+  "dgSpecHash": "FXZJnzgbyTg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\ING\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Navegador\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",
     "C:\\Users\\Navegador\\.nuget\\packages\\microsoft.data.sqlclient\\7.0.0\\microsoft.data.sqlclient.7.0.0.nupkg.sha512",
