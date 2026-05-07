@@ -2,7 +2,7 @@
 
 
 
-- Buscar Hashing Generico con Bcryp  
+- Buscar Hashing Generico con Bcryp ( INTEGRADO FALTA PROBAR ) 
 - Realizar Login basico
 - Singleton
 - Crear base de datos relacional en SqlServer 
