@@ -3,7 +3,7 @@
 
 
 - Buscar Hashing Generico con Bcryp ( INTEGRADO FALTA PROBAR ) 
-- Realizar Login basico
+- Realizar Login basico ( INTEGRADO FALTA PROBAR ) 
 - Singleton
 - Crear base de datos relacional en SqlServer 
 - Crear CRUD con validaciones necesarias para SqlTransacction
