@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "DAL/1.0.0": {
         "dependencies": {
+          "BE": "1.0.0",
           "Microsoft.Data.SqlClient": "7.0.0"
         },
         "runtime": {
@@ -342,6 +343,14 @@
             "fileVersion": "9.0.1326.6317"
           }
         }
+      },
+      "BE/1.0.0": {
+        "runtime": {
+          "BE.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -511,6 +520,11 @@
       "sha512": "sha512-t8S9IDpjJKsLpLkeBdW8cWtcPyYqrGu93Dej1RO6WwuL/lkFSqWlan3rMJfortqz1mRIh+sys2AFsSA6jWJ3Jg==",
       "path": "system.security.cryptography.protecteddata/9.0.13",
       "hashPath": "system.security.cryptography.protecteddata.9.0.13.nupkg.sha512"
+    },
+    "BE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

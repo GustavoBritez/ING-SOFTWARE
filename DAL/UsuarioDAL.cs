@@ -8,6 +8,10 @@ namespace DAL
 {
     public class UsuarioDAL
     {
+
+        private readonly string columnUsuario = "USUARIO";
+        private readonly string columnPassword = "PASS";
+
         enum CRUD
         {
             CREATE = 1,
@@ -23,25 +27,32 @@ namespace DAL
             SqlParameter[] parameter = new SqlParameter[]
             {
                 new SqlParameter("@OP", CRUD.CREATE),
-                new SqlParameter("@USUARIO", User.Email) { SqlValue = User.Email},
-                new SqlParameter("@PASS", User.Password) { SqlValue = User.Password}
+                new SqlParameter(columnUsuario, User.Email) { SqlValue = User.Email},
+                new SqlParameter(columnPassword, User.Password) { SqlValue = User.Password}
             };
 
             conexion.Escribir("SP_CRUD_USUARIO", parameter);
 
         }
 
-        public void IniciarSesion(UsuarioBE User)
+        public UsuarioBE IniciarSesion(UsuarioBE User)
         {
             SqlParameter[] parameter = new SqlParameter[]
             {
                 new SqlParameter("@OP", CRUD.READ),
-                new SqlParameter("@USUARIO", User.Email) { SqlValue = User.Email},
-                new SqlParameter("@PASS", User.Password) { SqlValue = User.Password}
+                new SqlParameter(columnUsuario, User.Email) { SqlValue = User.Email},
+                new SqlParameter(columnPassword, User.Password) { SqlValue = User.Password}
             };
 
             DataTable dt = conexion.Leer("SP_CRUD_USUARIO", parameter);
 
+            UsuarioBE user = new UsuarioBE
+            {
+                Email = dt.Rows[0][columnUsuario].ToString(),
+                Password = dt.Rows[0][columnPassword].ToString()
+            };
+
+            return user;
         }
     }
 }

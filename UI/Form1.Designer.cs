@@ -31,11 +31,12 @@
             button1 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(371, 160);
+            button1.Location = new Point(284, 151);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -57,11 +58,22 @@
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 2;
             // 
+            // button2
+            // 
+            button2.Location = new Point(432, 151);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 3;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(button1);
@@ -76,5 +88,6 @@
         private Button button1;
         private TextBox textBox1;
         private TextBox textBox2;
+        private Button button2;
     }
 }
