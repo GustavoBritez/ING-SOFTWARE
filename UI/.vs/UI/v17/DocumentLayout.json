@@ -112,7 +112,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -125,18 +125,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Conexion.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAowGgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-08T01:39:46.448Z"
             },
             {
               "$type": "Document",
@@ -194,10 +182,22 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\UI\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAowCoAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAowCIAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-08T01:37:29.346Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Navegador\\Desktop\\RE\\ING\\DAL\\Conexion.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAowGgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-08T01:39:46.448Z"
             },
             {
               "$type": "Document",
