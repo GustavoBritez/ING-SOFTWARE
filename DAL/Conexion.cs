@@ -138,7 +138,7 @@ namespace DAL
                 return false;
             }
         }
-
+            /// Elimina recursos no administrados
         public void Dispose()
         {
             if (transaction != null)
