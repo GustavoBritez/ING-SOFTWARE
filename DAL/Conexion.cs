@@ -68,7 +68,7 @@ namespace DAL
             }
         }
 
-        public DataTable Leer()
+        public DataTable Leer( string query )
         {
             DataTable dtResultados = new DataTable();
 
@@ -104,7 +104,7 @@ namespace DAL
             }
         }
 
-        public bool Escribir()
+        public bool Escribir( string squery )
         {
             try
             {
