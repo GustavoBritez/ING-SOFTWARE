@@ -3,10 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\Observer_Console_Medium\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28B05A02-D37B-430E-A111-C4F0326FD2BB}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\clone\\patrones\\dal\\periodistadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4EFA75AB-0271-48F2-9D7E-E48337CB388F}|..\\Service\\Service.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\clone\\patrones\\service\\servicebusqueda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4EFA75AB-0271-48F2-9D7E-E48337CB388F}|..\\Service\\Service.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\clone\\patrones\\service\\servicebusqueda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28B05A02-D37B-430E-A111-C4F0326FD2BB}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\clone\\patrones\\dal\\periodistadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0FF1D733-DBF0-41F0-B47A-1A8D559E23ED}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\clone\\patrones\\bll\\reporterobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,8 +66,7 @@
               "RelativeToolTip": "..\\BLL\\PeriodistaBLL.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAACsAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T14:25:48.883Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:25:48.883Z"
             },
             {
               "$type": "Document",
@@ -79,18 +78,17 @@
               "RelativeToolTip": "..\\BLL\\ReporteroBLL.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T14:27:50.102Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:27:50.102Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ServiceBusqueda.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\Service\\ServiceBusqueda.cs",
               "RelativeDocumentMoniker": "..\\Service\\ServiceBusqueda.cs",
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\Service\\ServiceBusqueda.cs",
               "RelativeToolTip": "..\\Service\\ServiceBusqueda.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-19T14:26:15.605Z",
               "EditorCaption": ""
@@ -105,12 +103,11 @@
               "RelativeToolTip": "..\\DAL\\ReporteroDAL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T14:27:58.057Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:27:58.057Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PeriodistaDAL.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\DAL\\PeriodistaDAL.cs",
               "RelativeDocumentMoniker": "..\\DAL\\PeriodistaDAL.cs",
@@ -131,8 +128,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T14:24:03.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:24:03.851Z"
             },
             {
               "$type": "Document",
@@ -144,8 +140,7 @@
               "RelativeToolTip": "..\\BE\\ReporteroBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T14:27:25.926Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:27:25.926Z"
             },
             {
               "$type": "Document",
@@ -157,34 +152,31 @@
               "RelativeToolTip": "..\\BE\\PeriodistaBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T14:25:39.817Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:25:39.817Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Observer_Console_Medium",
+              "Title": "Observer_Console_Medium.csproj",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\Observer_Console_Medium\\Observer_Console_Medium.csproj",
               "RelativeDocumentMoniker": "Observer_Console_Medium.csproj",
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\Observer_Console_Medium\\Observer_Console_Medium.csproj",
               "RelativeToolTip": "Observer_Console_Medium.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-19T14:39:39.941Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:39:39.941Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "Service",
+              "Title": "Service.csproj",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\Service\\Service.csproj",
               "RelativeDocumentMoniker": "..\\Service\\Service.csproj",
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\Service\\Service.csproj",
               "RelativeToolTip": "..\\Service\\Service.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-19T14:28:00.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T14:28:00.694Z"
             }
           ]
         }
