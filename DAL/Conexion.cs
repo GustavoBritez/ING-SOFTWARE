@@ -68,7 +68,7 @@ namespace DAL
             }
         }
 
-        public DataTable Leer(string nombreSP, params SqlParameter[] parametros)
+        public DataTable Leer()
         {
             DataTable dtResultados = new DataTable();
 
@@ -104,7 +104,7 @@ namespace DAL
             }
         }
 
-        public bool Escribir(string nombreSP, params SqlParameter[] parametros)
+        public bool Escribir()
         {
             try
             {
