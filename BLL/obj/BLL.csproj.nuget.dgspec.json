@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BLL\\BLL.csproj": {}
+    "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\BE.csproj": {
+    "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\BE.csproj",
+        "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj",
         "projectName": "BE",
-        "projectPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\BE.csproj",
-        "packagesPath": "C:\\Users\\Laboratorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\obj\\",
+        "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj",
+        "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Laboratorio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,11 +26,12 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\Navegador\\SQLClient": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -41,11 +46,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "imports": [
             "net461",
@@ -63,21 +67,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BLL\\BLL.csproj": {
+    "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\Laboratorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BLL\\obj\\",
+        "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Laboratorio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,18 +93,19 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\Navegador\\SQLClient": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\BE.csproj"
+              "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj"
               },
-              "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\DAL\\DAL.csproj"
+              "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj"
               }
             }
           }
@@ -111,11 +120,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "BCrypt.Net-Next": {
@@ -139,21 +147,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\DAL\\DAL.csproj": {
+    "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\Laboratorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\DAL\\obj\\",
+        "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Laboratorio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -161,15 +173,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\Navegador\\SQLClient": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\BE\\BE.csproj"
+              "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj"
               }
             }
           }
@@ -184,11 +197,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.Data.SqlClient": {
@@ -212,7 +224,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
