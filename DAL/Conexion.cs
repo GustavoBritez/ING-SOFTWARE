@@ -8,22 +8,17 @@ using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer;
 namespace DAL
 {
-    internal class Conexion : IDisposable
+    internal class Conexion
     {
 
-        private const string _cadenaConexion = "Data Source=.;Initial Catalog=TEST;Integrated Security=True;Trust Server Certificate=True";
+        private const string _cadenaConexion = "Data Source=.;Initial Catalog = ING; Integrated Security = True; Trust Server Certificate=True";
         private const int time= 30;
         private SqlConnection conexion;
-        private SqlTransaction transaction;
 
-        /// <summary>
-        /// Constructor - Inicializamos la conexion
-        /// </summary>
 
         public Conexion()
         {
             conexion = new SqlConnection(_cadenaConexion);
-            transaction = null;
         }
 
         public bool AbrirConexion()
@@ -45,10 +40,6 @@ namespace DAL
             
         }
 
-        /// <summary>
-        /// Cierra la conexion a la base de datos
-        /// </summary
-    
         public bool CerrarConexion()
         {
             try
@@ -68,35 +59,28 @@ namespace DAL
             }
         }
 
-        public DataTable Leer( string query )
+        public void ExecuteNonQuery(string stringQuery, params SqlParameter[] parametros)
         {
-            DataTable dtResultados = new DataTable();
-
             try
             {
                 AbrirConexion();
-                using (SqlCommand comando = new SqlCommand(nombreSP, conexion))
+                using (SqlCommand comando = new SqlCommand(stringQuery, conexion))
                 {
-                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.CommandType = CommandType.Text;
                     comando.CommandTimeout = time;
-
+                    
                     if (parametros != null && parametros.Length > 0)
                     {
                         comando.Parameters.AddRange(parametros);
                     }
-                    using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
-                    {
-                        adaptador.Fill(dtResultados);
-                    }
+                    
+                    comando.ExecuteNonQuery();
+                    Console.WriteLine("Comando ejecutado exitosamente.");
                 }
-                Console.WriteLine($"Procedimiento almacenado '{nombreSP}' ejecutado exitosamente.");
-                return dtResultados;
-
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error al ejecutar el procedimiento almacenado: {ex.Message}");
-                return dtResultados;
+                Console.WriteLine($"Error al ejecutar el comando: {ex.Message}");
             }
             finally
             {
@@ -104,54 +88,40 @@ namespace DAL
             }
         }
 
-        public bool Escribir( string squery )
+        public DataTable ExecuteReader(string stringQuery, params SqlParameter[] parametros)
         {
+            DataTable dtResultados = new DataTable();
+
             try
             {
                 AbrirConexion();
-                using (SqlCommand comando = new SqlCommand(nombreSP, conexion))
+                using (SqlCommand comando = new SqlCommand(stringQuery, conexion))
                 {
-                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.CommandType = CommandType.Text;
                     comando.CommandTimeout = time;
+                    
                     if (parametros != null && parametros.Length > 0)
                     {
                         comando.Parameters.AddRange(parametros);
                     }
-
-                    int filasAfectadas = comando.ExecuteNonQuery();
-
-                    if (filasAfectadas > 0)
+                    
+                    using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
                     {
-                        Console.WriteLine($"Escritura Exitosa");
-                        return true;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"No se afectaron filas, verifique los datos ingresados.");
-                        return false;
+                        adaptador.Fill(dtResultados);
                     }
                 }
+                Console.WriteLine("Consulta ejecutada exitosamente.");
+                return dtResultados;
             }
-            catch( SqlException ex )
+            catch (SqlException ex)
             {
-                Console.WriteLine($"Error al ejecutar el procedimiento almacenado: {ex.Message}");
-                return false;
+                Console.WriteLine($"Error al ejecutar la consulta: {ex.Message}");
+                return dtResultados;
             }
-        }
-            /// Elimina recursos no administrados
-        public void Dispose()
-        {
-            if (transaction != null)
+            finally
             {
-                transaction.Dispose();
-                transaction = null;
+                CerrarConexion();
             }
-            if (conexion != null)
-            {
-                conexion.Dispose();
-                conexion = null;
-            }
-            GC.SuppressFinalize(this);
         }
     }
 }

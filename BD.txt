@@ -1,0 +1,18 @@
+-- Crear la base de datos ING
+CREATE DATABASE ING;
+GO
+USE INGSOFT;
+GO
+
+-- Crear tabla Usuarios
+CREATE TABLE Usuarios
+(
+    DNI INT NOT NULL PRIMARY KEY,
+    NombreDeUsuario VARCHAR(50) NOT NULL,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellido VARCHAR(50) NOT NULL,
+    Contraseña VARCHAR(255) NOT NULL,
+    Rol VARCHAR(50) NOT NULL,
+    Bloqueado BIT NOT NULL DEFAULT 0  -- 0 = Desbloqueado, 1 = Bloqueado
+);
+GO
