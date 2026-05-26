@@ -1,0 +1,121 @@
+{
+  "version": 4,
+  "targets": {
+    "net9.0": {
+      "BE/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/BE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BE.dll": {}
+        }
+      },
+      "BLL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "BE": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BLL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BLL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BE/1.0.0": {
+      "type": "project",
+      "path": "../BE/BE.csproj",
+      "msbuildProject": "../BE/BE.csproj"
+    },
+    "BLL/1.0.0": {
+      "type": "project",
+      "path": "../BLL/BLL.csproj",
+      "msbuildProject": "../BLL/BLL.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "BE >= 1.0.0",
+      "BLL >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Laboratorio\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "c:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\Patrones\\Observer\\Ejercicio_1\\Service\\Service.csproj",
+      "projectName": "Service",
+      "projectPath": "c:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\Patrones\\Observer\\Ejercicio_1\\Service\\Service.csproj",
+      "packagesPath": "C:\\Users\\Laboratorio\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\Patrones\\Observer\\Ejercicio_1\\Service\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Laboratorio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "framework": "net9.0",
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "c:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\Patrones\\Observer\\Ejercicio_1\\BE\\BE.csproj": {
+              "projectPath": "c:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\Patrones\\Observer\\Ejercicio_1\\BE\\BE.csproj"
+            },
+            "c:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\Patrones\\Observer\\Ejercicio_1\\BLL\\BLL.csproj": {
+              "projectPath": "c:\\Users\\Laboratorio\\Desktop\\ING\\SOFT\\Patrones\\Observer\\Ejercicio_1\\BLL\\BLL.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.300"
+    },
+    "frameworks": {
+      "net9.0": {
+        "framework": "net9.0",
+        "targetAlias": "net9.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

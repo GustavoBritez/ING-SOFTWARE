@@ -1,0 +1,329 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|c:\\users\\navegador\\source\\repos\\consola\\consola\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|solutionrelative:consola\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|c:\\users\\navegador\\source\\repos\\consola\\consola\\consola.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|solutionrelative:consola\\consola.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|c:\\users\\navegador\\source\\repos\\consola\\bll\\bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|solutionrelative:bll\\bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|c:\\users\\navegador\\source\\repos\\consola\\consola\\consola.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|solutionrelative:consola\\consola.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|c:\\users\\navegador\\source\\repos\\consola\\consola\\singleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97DF692C-BE07-40AE-A218-569FEF510184}|Consola\\Consola.csproj|solutionrelative:consola\\singleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F41213F3-463C-49D2-B570-4BA9CB19D615}|DAL\\DAL.csproj|c:\\users\\navegador\\source\\repos\\consola\\dal\\empleadodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F41213F3-463C-49D2-B570-4BA9CB19D615}|DAL\\DAL.csproj|solutionrelative:dal\\empleadodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|c:\\users\\navegador\\source\\repos\\consola\\bll\\jefeareabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|solutionrelative:bll\\jefeareabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CFD5C75-F22C-42BA-AA3D-44502D3D2138}|Service\\Service.csproj|c:\\users\\navegador\\source\\repos\\consola\\service\\factorymethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2CFD5C75-F22C-42BA-AA3D-44502D3D2138}|Service\\Service.csproj|solutionrelative:service\\factorymethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|c:\\users\\navegador\\source\\repos\\consola\\bll\\cajerobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|solutionrelative:bll\\cajerobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|c:\\users\\navegador\\source\\repos\\consola\\be\\cajerobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|solutionrelative:be\\cajerobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|c:\\users\\navegador\\source\\repos\\consola\\be\\empleadobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|solutionrelative:be\\empleadobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|c:\\users\\navegador\\source\\repos\\consola\\be\\gerentebe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|solutionrelative:be\\gerentebe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|c:\\users\\navegador\\source\\repos\\consola\\be\\jefeareabe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|solutionrelative:be\\jefeareabe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|c:\\users\\navegador\\source\\repos\\consola\\bll\\operativobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|solutionrelative:bll\\operativobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|c:\\users\\navegador\\source\\repos\\consola\\bll\\gerentebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|solutionrelative:bll\\gerentebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|c:\\users\\navegador\\source\\repos\\consola\\bll\\empleadobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8927581B-7734-4CFE-9321-30973868B414}|BLL\\BLL.csproj|solutionrelative:bll\\empleadobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2CFD5C75-F22C-42BA-AA3D-44502D3D2138}|Service\\Service.csproj|c:\\users\\navegador\\source\\repos\\consola\\service\\service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2CFD5C75-F22C-42BA-AA3D-44502D3D2138}|Service\\Service.csproj|solutionrelative:service\\service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|c:\\users\\navegador\\source\\repos\\consola\\be\\operativobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA1625A0-21A4-4922-9C5F-9FB55244DDA0}|BE\\BE.csproj|solutionrelative:be\\operativobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Consola",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Consola.csproj",
+              "RelativeDocumentMoniker": "Consola\\Consola.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Consola.csproj",
+              "RelativeToolTip": "Consola\\Consola.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-22T01:26:33.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Singleton.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Singleton.cs",
+              "RelativeDocumentMoniker": "Consola\\Singleton.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Singleton.cs",
+              "RelativeToolTip": "Consola\\Singleton.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAowFkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T00:00:38.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Program.cs",
+              "RelativeDocumentMoniker": "Consola\\Program.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Program.cs",
+              "RelativeToolTip": "Consola\\Program.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAowEQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:21:40.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmpleadoDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\EmpleadoDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\EmpleadoDAL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\EmpleadoDAL.cs",
+              "RelativeToolTip": "DAL\\EmpleadoDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T22:40:29.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EmpleadoBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\EmpleadoBE.cs",
+              "RelativeDocumentMoniker": "BE\\EmpleadoBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\EmpleadoBE.cs",
+              "RelativeToolTip": "BE\\EmpleadoBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:45:38.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CajeroBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\CajeroBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\CajeroBLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\CajeroBLL.cs",
+              "RelativeToolTip": "BLL\\CajeroBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:32:00.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Consola",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Consola.csproj",
+              "RelativeDocumentMoniker": "Consola\\Consola.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\Consola\\Consola.csproj",
+              "RelativeToolTip": "Consola\\Consola.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-21T20:26:50.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BLL",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\BLL.csproj",
+              "RelativeDocumentMoniker": "BLL\\BLL.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\BLL.csproj",
+              "RelativeToolTip": "BLL\\BLL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-21T21:24:45.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "JefeAreaBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\JefeAreaBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\JefeAreaBLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\JefeAreaBLL.cs",
+              "RelativeToolTip": "BLL\\JefeAreaBLL.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwBQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T21:09:01.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CajeroBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\CajeroBE.cs",
+              "RelativeDocumentMoniker": "BE\\CajeroBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\CajeroBE.cs",
+              "RelativeToolTip": "BE\\CajeroBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:44:42.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FactoryMethod.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\FactoryMethod.cs",
+              "RelativeDocumentMoniker": "Service\\FactoryMethod.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\FactoryMethod.cs",
+              "RelativeToolTip": "Service\\FactoryMethod.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:37:31.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GerenteBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\GerenteBE.cs",
+              "RelativeDocumentMoniker": "BE\\GerenteBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\GerenteBE.cs",
+              "RelativeToolTip": "BE\\GerenteBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:44:06.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "JefeAreaBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\JefeAreaBE.cs",
+              "RelativeDocumentMoniker": "BE\\JefeAreaBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\JefeAreaBE.cs",
+              "RelativeToolTip": "BE\\JefeAreaBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:44:25.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "OperativoBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\OperativoBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\OperativoBLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\OperativoBLL.cs",
+              "RelativeToolTip": "BLL\\OperativoBLL.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T21:09:17.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GerenteBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\GerenteBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\GerenteBLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\GerenteBLL.cs",
+              "RelativeToolTip": "BLL\\GerenteBLL.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAwBQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T21:08:47.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EmpleadoBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\EmpleadoBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\EmpleadoBLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\EmpleadoBLL.cs",
+              "RelativeToolTip": "BLL\\EmpleadoBLL.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAwBQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T21:08:15.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Service",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\Service.csproj",
+              "RelativeDocumentMoniker": "Service\\Service.csproj",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\Service.csproj",
+              "RelativeToolTip": "Service\\Service.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-21T21:09:31.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "OperativoBE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\OperativoBE.cs",
+              "RelativeDocumentMoniker": "BE\\OperativoBE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\OperativoBE.cs",
+              "RelativeToolTip": "BE\\OperativoBE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:43:56.219Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
