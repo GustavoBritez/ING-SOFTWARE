@@ -1,10 +1,8 @@
--- Crear la base de datos ING
 CREATE DATABASE ING;
 GO
-USE INGSOFT;
+USE ING;
 GO
 
--- Crear tabla Usuarios
 CREATE TABLE Usuarios
 (
     DNI INT NOT NULL PRIMARY KEY,
@@ -13,6 +11,23 @@ CREATE TABLE Usuarios
     Apellido VARCHAR(50) NOT NULL,
     Contraseña VARCHAR(255) NOT NULL,
     Rol VARCHAR(50) NOT NULL,
-    Bloqueado BIT NOT NULL DEFAULT 0  -- 0 = Desbloqueado, 1 = Bloqueado
+    Bloqueado BIT NOT NULL DEFAULT 0  
 );
+GO
+
+
+CREATE TABLE Bitacora (
+    Id_Event INT IDENTITY(1,1) NOT NULL,
+    
+    Dni INT NOT NULL,
+    Modulo VARCHAR(100) NOT NULL,
+    Criticidad INT NOT NULL,
+    Descripcion VARCHAR(MAX) NOT NULL,
+    Fecha DATETIME2(7) NOT NULL,
+    CONSTRAINT PK_Bitacora PRIMARY KEY CLUSTERED (Id_Event ASC)
+);
+GO
+
+CREATE NONCLUSTERED INDEX IX_Bitacora_Fecha_Dni 
+ON Bitacora (Fecha DESC, Dni);
 GO
