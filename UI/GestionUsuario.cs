@@ -33,10 +33,10 @@ namespace UI
             try
             {
 
-                if (!ValidarCampos())
+                /*if (!ValidarCampos())
                 {
                     return;
-                }
+                }*/
 
 
                 string _dni = txtDni.Text;
@@ -44,7 +44,7 @@ namespace UI
                 string apellido = txtApellido.Text.Trim();
                 string nombreDeUsuario = txtNombreUsuario.Text.Trim();
 
-                if (int.TryParse(_dni, out int dni))
+                if (!int.TryParse(_dni, out int dni))
                 {
                     if (dni < 90000000)
                     {
@@ -52,7 +52,7 @@ namespace UI
                     }
                 }
 
-                string contraseña = $"{txtNombre.Text}+{txtDni.Text}";
+                string contraseña = $"{txtNombre.Text}{txtDni.Text}";
                 string rol = cmbRol.SelectedItem?.ToString() ?? "Usuario";
                 bool bloqueado = rbEstadoInactivo.Checked == false;
 

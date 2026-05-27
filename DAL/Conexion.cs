@@ -37,7 +37,6 @@ namespace DAL
             {
                 throw new Exception($"Error al abrir la conexión: {ex.Message}");
             }
-            
         }
 
         public bool CerrarConexion()

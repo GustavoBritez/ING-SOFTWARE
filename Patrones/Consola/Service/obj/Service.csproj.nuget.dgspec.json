@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\Service.csproj": {}
+    "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\Service\\Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj": {
+    "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj",
+        "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj",
         "projectName": "BE",
-        "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj",
-        "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\obj\\",
+        "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj",
+        "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,8 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\Navegador\\SQLClient": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -67,24 +65,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\BLL.csproj": {
+    "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\obj\\",
+        "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -93,19 +91,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\Navegador\\SQLClient": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj"
+              "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj"
               },
-              "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\DAL.csproj"
+              "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\DAL.csproj"
               }
             }
           }
@@ -141,24 +137,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\DAL.csproj": {
+    "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\obj\\",
+        "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -167,16 +163,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\Navegador\\SQLClient": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj"
+              "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj"
               }
             }
           }
@@ -212,24 +206,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\Service.csproj": {
+    "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\Service\\obj\\",
+        "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -238,22 +232,20 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\Navegador\\SQLClient": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BE\\BE.csproj"
+              "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BE\\BE.csproj"
               },
-              "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\BLL\\BLL.csproj"
+              "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\source\\repos\\Consola\\DAL\\DAL.csproj"
+              "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Consola\\DAL\\DAL.csproj"
               }
             }
           }
@@ -289,7 +281,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

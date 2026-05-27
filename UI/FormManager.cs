@@ -8,6 +8,7 @@ namespace UI
         private static Presentacion _presentacion;
         private static Form1 _form1;
         private static GestionUsuario _gestionUsuario;
+        private static Bitacora _bitacora;
 
         public static Presentacion ObtenerPresentacion()
         {
@@ -34,6 +35,15 @@ namespace UI
                 _gestionUsuario = new GestionUsuario();
             }
             return _gestionUsuario;
+        }
+
+        public static Bitacora ObtenerBitacora()
+        {
+            if ( _bitacora == null || _bitacora.IsDisposed)
+            {
+                _bitacora = new Bitacora();
+            }
+            return _bitacora;
         }
 
         public static void Navegar(Form formularioActual, Form formularioDestino)

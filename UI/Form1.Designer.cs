@@ -120,6 +120,7 @@
             btnReportes.Text = "📊 Reportes y Gráficos";
             btnReportes.TextAlign = ContentAlignment.MiddleLeft;
             btnReportes.UseVisualStyleBackColor = false;
+            btnReportes.Click += btnReportes_Click;
             // 
             // btnSeguimiento
             // 

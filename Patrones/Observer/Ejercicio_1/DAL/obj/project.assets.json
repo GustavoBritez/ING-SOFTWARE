@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Observer\\Ejercicio_1\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\DAL\\DAL.csproj",
+      "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Observer\\Ejercicio_1\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\CLONE\\Patrones\\DAL\\obj\\",
+      "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Patrones\\Observer\\Ejercicio_1\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -29,7 +29,8 @@ namespace UI
             {
                 string nombreDeUsuario = txtUsuario.Text;
                 string contraseña = txtPassword.Text;
-
+                ///Admin
+                ///41236101
                 if (string.IsNullOrWhiteSpace(nombreDeUsuario) || string.IsNullOrWhiteSpace(contraseña))
                 {
                     return;
@@ -45,7 +46,7 @@ namespace UI
                     UsuarioBE usar = _UsuarioBLL.ObtenerUsuario(nombreDeUsuario);
 
                     ServicesSessionManager.Instancia.Login(usar);
-                    
+                    FormManager.Navegar(this, FormManager.ObtenerForm1());
                 }
                 else
                 {
@@ -59,8 +60,6 @@ namespace UI
             finally
             {
                 LimpiarCampos();
-                FormManager.Navegar(this, FormManager.ObtenerForm1());
-
             }
         }
         private void LimpiarCampos()

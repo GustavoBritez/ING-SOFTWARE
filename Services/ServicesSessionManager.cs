@@ -14,11 +14,6 @@ namespace Services
 
         private UsuarioBE usuarioActivo;
 
-        private ServicesSessionManager()
-        {
-
-            usuarioActivo = null;
-        }
 
         public static ServicesSessionManager Instancia
         {
@@ -56,7 +51,7 @@ namespace Services
         {
             try
             {
-                if (newUsuario is null)
+                if (newUsuario is not null)
                 {
                     usuarioActivo = newUsuario;
                     return true;

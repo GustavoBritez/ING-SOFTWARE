@@ -23,7 +23,7 @@ namespace DAL
 
             try
             {
-                string query = $@"SELECT Criticidad, Descripcion, DNI, Fecha, Id_Evento, Modulo
+                string query = $@"SELECT Criticidad, Descripcion, Dni, Fecha, Id_Event, Modulo
                                   FROM {TABLA_BITACORA}
                                   WHERE Fecha BETWEEN @desde AND @hasta
                                   ORDER BY Fecha DESC";
@@ -41,7 +41,7 @@ namespace DAL
                     eventos.Add(new BitacoraBE(
                         criticidad: (int)row["Criticidad"],
                         descripcion: row["Descripcion"].ToString(),
-                        dni: (int)row["DNI"],
+                        dni: (int)row["Dni"],
                         fecha: (DateTime)row["Fecha"],
                         modulo: row["Modulo"].ToString()
                     ));
@@ -60,7 +60,7 @@ namespace DAL
         {
             try
             {
-                string query = $@"INSERT INTO {TABLA_BITACORA} (Criticidad, Descripcion, DNI, Fecha, Modulo)
+                string query = $@"INSERT INTO {TABLA_BITACORA} (Criticidad, Descripcion, Dni, Fecha, Modulo)
                                   VALUES (@criticidad, @descripcion, @dni, @fecha, @modulo)";
 
                 SqlParameter[] parametros = new SqlParameter[]
@@ -87,7 +87,7 @@ namespace DAL
 
             try
             {
-                string query = $@"SELECT Criticidad, Descripcion, DNI, Fecha, Id_Evento, Modulo
+                string query = $@"SELECT Criticidad, Descripcion, Dni, Fecha, Id_Event, Modulo
                                   FROM {TABLA_BITACORA}
                                   ORDER BY Fecha DESC";
 
@@ -98,7 +98,7 @@ namespace DAL
                     eventos.Add(new BitacoraBE(
                         criticidad: (int)row["Criticidad"],
                         descripcion: row["Descripcion"].ToString(),
-                        dni: (int)row["DNI"],
+                        dni: (int)row["Dni"],
                         fecha: (DateTime)row["Fecha"],
                         modulo: row["Modulo"].ToString()
                     ));
