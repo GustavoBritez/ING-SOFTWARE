@@ -29,28 +29,61 @@ namespace UI
             {
                 string nombreDeUsuario = txtUsuario.Text;
                 string contraseña = txtPassword.Text;
-                ///Admin
-                ///41236101
+
                 if (string.IsNullOrWhiteSpace(nombreDeUsuario) || string.IsNullOrWhiteSpace(contraseña))
                 {
+                    MessageBox.Show("Por favor, ingrese usuario y contraseña.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                // Verificar si el usuario existe y está bloqueado antes de intentar login
+                UsuarioBE usuarioVerificacion = usuarioBLL.ObtenerUsuario(nombreDeUsuario);
+                bool usuarioExisteYEstaBloqueado = usuarioVerificacion != null && usuarioVerificacion._Bloqueado;
 
                 bool loginExitoso = usuarioBLL.Login(nombreDeUsuario, contraseña);
 
                 if (loginExitoso)
                 {
-                    MessageBox.Show($"Logeado con exito");
-                    UsuarioBLL _UsuarioBLL = new();
-
-                    UsuarioBE usar = _UsuarioBLL.ObtenerUsuario(nombreDeUsuario);
-
-                    ServicesSessionManager.Instancia.Login(usar);
+                    MessageBox.Show($"¡Logeado con éxito!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UsuarioBE usuario = usuarioBLL.ObtenerUsuario(nombreDeUsuario);
+                    ServicesSessionManager.Instancia.Login(usuario);
                     FormManager.Navegar(this, FormManager.ObtenerForm1());
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.", "Login Fallido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Si el usuario existe y está bloqueado, mostrar mensaje diferenciado
+                    if (usuarioExisteYEstaBloqueado)
+                    {
+                        int intentosFallidos = usuarioBLL.ObtenerIntentosFallidos(nombreDeUsuario);
+
+                        if (intentosFallidos >= 3)
+                        {
+                            MessageBox.Show($"Su cuenta ha sido bloqueada por 3 intentos fallidos de inicio de sesión.\nContacte al administrador para desbloquearla.",
+                                "Cuenta Bloqueada por Intentos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"La cuenta del usuario '{nombreDeUsuario}' ha sido bloqueada.\nContacte al administrador para desbloquearla.",
+                                "Cuenta Bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Contraseña incorrecta
+                        int intentosFallidos = usuarioBLL.ObtenerIntentosFallidos(nombreDeUsuario);
+                        int intentosRestantes = 3 - intentosFallidos;
+
+                        if (intentosRestantes > 0)
+                        {
+                            MessageBox.Show($"Usuario o contraseña incorrectos.\nIntentos restantes: {intentosRestantes}/3",
+                                "Login Fallido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Su cuenta ha sido bloqueada por 3 intentos fallidos.\nContacte al administrador para desbloquearla.",
+                                "Cuenta Bloqueada por Intentos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)

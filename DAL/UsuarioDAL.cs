@@ -138,7 +138,7 @@ namespace DAL
                     dt.Rows[0]["NombreDeUsuario"].ToString(),
                     dt.Rows[0]["Contraseña"].ToString(),
                     dt.Rows[0]["Rol"].ToString(),
-                    Convert.ToInt32(dt.Rows[0]["Bloqueado"]) == 1 // 1 = Bloqueado, 0 = Desbloqueado
+                    Convert.ToBoolean(dt.Rows[0]["Bloqueado"])
                 );
 
                 return usuario;
@@ -189,7 +189,39 @@ namespace DAL
                 throw;
             }
         }
+        public void CambioEstado(UsuarioBE usuario)
+        {
+            try
+            {
+                string query = $@"UPDATE {TABLA_USUARIOS} 
+                                  SET Bloqueado = @bloqueado 
+                                  WHERE DNI = @dni";
 
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@bloqueado", usuario._Bloqueado),
+                    new SqlParameter("@dni", usuario._Dni)
+                };
+
+                conexion.ExecuteNonQuery(query, parametros);
+
+                BitacoraDAL bitacoraDAL = new();
+                bitacoraDAL.GuardarBitacora(new BitacoraBE(
+                    criticidad: 1,
+                    descripcion: $"Cambio de estado de '{usuario._NombreDeUsuario}'",
+                    dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
+                    fecha: DateTime.Now,
+                    modulo: Modulo
+                ));
+
+                Console.WriteLine($"Usuario {usuario._NombreDeUsuario} Cambio de estado exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al cambiar de estado, usuario: {ex.Message}");
+                throw;
+            }
+        }
         public List<UsuarioBE> ListaUsuarios()
         {
             List<UsuarioBE> usuarios = new List<UsuarioBE>();

@@ -145,11 +145,6 @@ namespace UI
             FormManager.Navegar(this, FormManager.ObtenerForm1());
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void GestionUsuario_Load(object sender, EventArgs e)
         {
             GestionUsuarios_Load(sender, e);
@@ -197,7 +192,7 @@ namespace UI
                 dgvUsuarios.Columns["_Rol"].HeaderText = "Rol";
             }
 
-            if (dgvUsuarios.Columns.Contains("Bloqueado"))
+            if (dgvUsuarios.Columns.Contains("_Bloqueado"))
             {
                 dgvUsuarios.Columns["_Bloqueado"].HeaderText = "Estado";
             }
@@ -207,7 +202,6 @@ namespace UI
         {
             try
             {
-                // Validar que se haya seleccionado exactamente una fila
                 if (dgvUsuarios.SelectedRows.Count != 1)
                 {
                     MessageBox.Show("Error: Seleccione una fila para Modificar", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -224,7 +218,6 @@ namespace UI
 
                 MessageBox.Show($"Usted está a punto de modificar los datos del usuario '{usuarioSeleccionado._NombreDeUsuario}'", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Actualizar solo los campos que se hayan completado
                 if (!string.IsNullOrWhiteSpace(txtNombre.Text))
                     usuarioSeleccionado._Nombre = txtNombre.Text.Trim();
 
@@ -237,7 +230,6 @@ namespace UI
                 if (cmbRol.SelectedItem != null)
                     usuarioSeleccionado._Rol = cmbRol.SelectedItem.ToString();
 
-                // Preguntar si desea cambiar contraseña
                 DialogResult result = MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar Contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
@@ -245,8 +237,6 @@ namespace UI
                     if (!string.IsNullOrWhiteSpace(nuevaContraseña))
                         usuarioSeleccionado._Contraseña = nuevaContraseña;
                 }
-
-                usuarioSeleccionado._Bloqueado = rbEstadoInactivo.Checked;
 
                 usuarioBLL.ModificarUsuario(usuarioSeleccionado);
 
@@ -256,6 +246,39 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: Modificaciones no aplicadas. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GestionUsuarios_Load(sender, e);
+            }
+        }
+
+        private void btnDesbloquear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvUsuarios.SelectedRows.Count != 1)
+                {
+                    MessageBox.Show("Error: Seleccione una fila para Modificar", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                UsuarioBE usuarioSeleccionado = dgvUsuarios.SelectedRows[0].DataBoundItem as UsuarioBE;
+
+                if (usuarioSeleccionado is null)
+                {
+                    MessageBox.Show("Error: No se pudo seleccionar un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                usuarioBLL.CambiarEstado(usuarioSeleccionado);
+
+                string nuevoEstado = usuarioSeleccionado._Bloqueado ? "bloqueado" : "desbloqueado";
+                MessageBox.Show($"Usuario '{usuarioSeleccionado._NombreDeUsuario}' {nuevoEstado} correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: No se pudo cambiar el estado del usuario. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

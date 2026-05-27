@@ -94,7 +94,7 @@
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Desbloquear";
             btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
+            btnEliminar.Click += btnDesbloquear_Click;
             // 
             // btnModificar
             // 
