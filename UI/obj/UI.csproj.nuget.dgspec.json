@@ -106,6 +106,9 @@
               },
               "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj": {
                 "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj"
+              },
+              "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj"
               }
             }
           }
@@ -183,6 +186,9 @@
             "projectReferences": {
               "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj": {
                 "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj"
+              },
+              "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj"
               }
             }
           }
@@ -260,9 +266,6 @@
             "projectReferences": {
               "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj": {
                 "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj"
-              },
-              "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj"
               }
             }
           }
@@ -332,9 +335,6 @@
           "net9.0-windows7.0": {
             "targetAlias": "net9.0-windows",
             "projectReferences": {
-              "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj"
-              },
               "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj": {
                 "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj"
               },

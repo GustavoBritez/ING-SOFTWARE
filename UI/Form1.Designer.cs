@@ -39,18 +39,8 @@
             panelTop = new Panel();
             lblTitulo = new Label();
             panelContenedor = new Panel();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            checkBox1 = new CheckBox();
-            button2 = new Button();
-            button1 = new Button();
-            textBox6 = new TextBox();
             panelMenu.SuspendLayout();
             panelTop.SuspendLayout();
-            panelContenedor.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -83,6 +73,7 @@
             btnLogout.Text = "🚪 Cerrar Sesión";
             btnLogout.TextAlign = ContentAlignment.MiddleLeft;
             btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnAyuda
             // 
@@ -195,92 +186,11 @@
             // panelContenedor
             // 
             panelContenedor.BackColor = Color.FromArgb(225, 240, 228);
-            panelContenedor.Controls.Add(textBox6);
-            panelContenedor.Controls.Add(textBox5);
-            panelContenedor.Controls.Add(textBox4);
-            panelContenedor.Controls.Add(textBox3);
-            panelContenedor.Controls.Add(textBox2);
-            panelContenedor.Controls.Add(textBox1);
-            panelContenedor.Controls.Add(checkBox1);
-            panelContenedor.Controls.Add(button2);
-            panelContenedor.Controls.Add(button1);
             panelContenedor.Dock = DockStyle.Fill;
             panelContenedor.Location = new Point(240, 60);
             panelContenedor.Name = "panelContenedor";
             panelContenedor.Size = new Size(960, 640);
             panelContenedor.TabIndex = 2;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(254, 263);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(100, 23);
-            textBox5.TabIndex = 10;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(254, 226);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 23);
-            textBox4.TabIndex = 9;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(254, 197);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 8;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(254, 160);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 7;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(254, 130);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 6;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(215, 342);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(83, 19);
-            checkBox1.TabIndex = 5;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(441, 129);
-            button2.Name = "button2";
-            button2.Size = new Size(109, 23);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(112, 130);
-            button1.Name = "button1";
-            button1.Size = new Size(109, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(254, 303);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(100, 23);
-            textBox6.TabIndex = 11;
             // 
             // Form1
             // 
@@ -300,8 +210,6 @@
             panelMenu.PerformLayout();
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
-            panelContenedor.ResumeLayout(false);
-            panelContenedor.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -319,14 +227,5 @@
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnAyuda;
         private System.Windows.Forms.Button btnLogout;
-        private CheckBox checkBox1;
-        private Button button2;
-        private Button button1;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private TextBox textBox6;
     }
 }

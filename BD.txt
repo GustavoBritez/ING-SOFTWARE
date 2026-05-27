@@ -31,3 +31,13 @@ GO
 CREATE NONCLUSTERED INDEX IX_Bitacora_Fecha_Dni 
 ON Bitacora (Fecha DESC, Dni);
 GO
+
+
+--- Agregamos FK DNI a Bitacora
+USE ING;
+GO
+
+ALTER TABLE Bitacora
+ADD CONSTRAINT FK_Bitacora_Usuarios 
+FOREIGN KEY (Dni) REFERENCES Usuarios(DNI);
+GO

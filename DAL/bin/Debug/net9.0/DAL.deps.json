@@ -9,7 +9,8 @@
       "DAL/1.0.0": {
         "dependencies": {
           "BE": "1.0.0",
-          "Microsoft.Data.SqlClient": "7.0.0"
+          "Microsoft.Data.SqlClient": "7.0.0",
+          "Services": "1.0.0"
         },
         "runtime": {
           "DAL.dll": {}
@@ -351,6 +352,17 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Services/1.0.0": {
+        "dependencies": {
+          "BE": "1.0.0"
+        },
+        "runtime": {
+          "Services.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -522,6 +534,11 @@
       "hashPath": "system.security.cryptography.protecteddata.9.0.13.nupkg.sha512"
     },
     "BE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

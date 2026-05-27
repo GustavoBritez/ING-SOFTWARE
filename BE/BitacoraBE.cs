@@ -9,13 +9,14 @@ namespace BE
         private int Id_Evento;
         private string Modulo;
 
-        public BitacoraBE(int criticidad, string descripcion, int dni, DateTime fecha, int id_Evento, string modulo)
+        // Constructor sobrecargado sin id_Evento (para inserciones donde el ID es autoincremental)
+        public BitacoraBE(int criticidad, string descripcion, int dni, DateTime fecha, string modulo)
         {
             Criticidad = criticidad;
             Descripcion = descripcion;
             Dni = dni;
             Fecha = fecha;
-            Id_Evento = id_Evento;
+            Id_Evento = 0; // no lo toquen dejenlo asi se arregla en la BD
             Modulo = modulo;
         }
 

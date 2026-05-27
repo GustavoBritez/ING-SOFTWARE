@@ -1,5 +1,5 @@
-using DAL;
 using BE;
+using Services;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
@@ -29,14 +29,41 @@ namespace DAL
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
+
+                // Registrar en bitácora
+                BitacoraDAL bitacoraDAL = new();
+                bitacoraDAL.GuardarBitacora(new BitacoraBE(
+                    criticidad: 1,
+                    descripcion: $"Creación de usuario '{usuario._NombreDeUsuario}'",
+                    dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
+                    fecha: DateTime.Now,
+                    modulo: "UsuarioDAL"
+                ));
+
                 Console.WriteLine($"Usuario {usuario._NombreDeUsuario} registrado exitosamente.");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al registrar usuario: {ex.Message}");
+                
+                // Registrar el error en bitácora
+                try
+                {
+                    BitacoraDAL bitacoraDAL = new();
+                    bitacoraDAL.GuardarBitacora(new BitacoraBE(
+                        criticidad: 3, // Criticidad alta por error
+                        descripcion: $"Error al crear usuario '{usuario._NombreDeUsuario}': {ex.Message}",
+                        dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
+                        fecha: DateTime.Now,
+                        modulo: "UsuarioDAL"
+                    ));
+                }
+                catch { /* Si falla la bitácora, no interrumpimos el flujo de error */ }
+
                 throw;
             }
         }
+
 
         /// <summary>
         /// Obtiene un usuario por su NombreDeUsuario (usado para login)

@@ -1,15 +1,21 @@
+using BE;
+using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
 namespace DAL
 {
-    using BE;
-    using Microsoft.Data.SqlClient;
-    using System;
-    using System.Collections.Generic;
+
 
     public class BitacoraDAL
     {
-        private readonly Conexion conexion = new();
+        private readonly Conexion conexion;
         private const string TABLA_BITACORA = "Bitacora"; /// Nombre de la TABLA Bitacora en la BD - SQL Server 2019 NO PROBE EN 2020
-        private const string TABLA_USUARIOS = "Usuarios"; /// Nombre de la TABLA usuarios en la BD - SQL Server 2019 NO PROBE EN 2020
+
+        public BitacoraDAL()
+        {
+            conexion = new();
+        }
 
         public List<BitacoraBE> FiltrarBitacora(DateTime desde, DateTime hasta)
         {
@@ -28,21 +34,18 @@ namespace DAL
                     new SqlParameter("@hasta", hasta)
                 };
 
-                var reader = conexion.ExecuteReader(query, parametros);
+                DataTable dt = conexion.ExecuteReader(query, parametros);
 
-                while (reader.Read())
+                foreach (DataRow row in dt.Rows)
                 {
                     eventos.Add(new BitacoraBE(
-                        criticidad: (int)reader["Criticidad"],
-                        descripcion: reader["Descripcion"].ToString(),
-                        dni: (int)reader["DNI"],
-                        fecha: (DateTime)reader["Fecha"],
-                        id_Evento: (int)reader["Id_Evento"],
-                        modulo: reader["Modulo"].ToString()
+                        criticidad: (int)row["Criticidad"],
+                        descripcion: row["Descripcion"].ToString(),
+                        dni: (int)row["DNI"],
+                        fecha: (DateTime)row["Fecha"],
+                        modulo: row["Modulo"].ToString()
                     ));
                 }
-
-                reader.Close();
             }
             catch (Exception ex)
             {
@@ -57,8 +60,8 @@ namespace DAL
         {
             try
             {
-                string query = $@"INSERT INTO {TABLA_BITACORA} (Criticidad, Descripcion, DNI, Fecha, Id_Evento, Modulo)
-                                  VALUES (@criticidad, @descripcion, @dni, @fecha, @idEvento, @modulo)";
+                string query = $@"INSERT INTO {TABLA_BITACORA} (Criticidad, Descripcion, DNI, Fecha, Modulo)
+                                  VALUES (@criticidad, @descripcion, @dni, @fecha, @modulo)";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
@@ -66,7 +69,6 @@ namespace DAL
                     new SqlParameter("@descripcion", newBitacora._Descripcion),
                     new SqlParameter("@dni", newBitacora._Dni),
                     new SqlParameter("@fecha", newBitacora._Fecha),
-                    new SqlParameter("@idEvento", newBitacora._Id_Evento),
                     new SqlParameter("@modulo", newBitacora._Modulo)
                 };
 
@@ -89,21 +91,18 @@ namespace DAL
                                   FROM {TABLA_BITACORA}
                                   ORDER BY Fecha DESC";
 
-                var reader = conexion.ExecuteReader(query, null);
+                DataTable dt = conexion.ExecuteReader(query, null);
 
-                while (reader.Read())
+                foreach (DataRow row in dt.Rows)
                 {
                     eventos.Add(new BitacoraBE(
-                        criticidad: (int)reader["Criticidad"],
-                        descripcion: reader["Descripcion"].ToString(),
-                        dni: (int)reader["DNI"],
-                        fecha: (DateTime)reader["Fecha"],
-                        id_Evento: (int)reader["Id_Evento"],
-                        modulo: reader["Modulo"].ToString()
+                        criticidad: (int)row["Criticidad"],
+                        descripcion: row["Descripcion"].ToString(),
+                        dni: (int)row["DNI"],
+                        fecha: (DateTime)row["Fecha"],
+                        modulo: row["Modulo"].ToString()
                     ));
                 }
-
-                reader.Close();
             }
             catch (Exception ex)
             {

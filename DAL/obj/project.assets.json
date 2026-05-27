@@ -471,6 +471,19 @@
         "runtime": {
           "bin/placeholder/BE.dll": {}
         }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "BE": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
       }
     }
   },
@@ -1185,12 +1198,18 @@
       "type": "project",
       "path": "../BE/BE.csproj",
       "msbuildProject": "../BE/BE.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "BE >= 1.0.0",
-      "Microsoft.Data.SqlClient >= 7.0.0"
+      "Microsoft.Data.SqlClient >= 7.0.0",
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1229,6 +1248,9 @@
           "projectReferences": {
             "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj": {
               "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BE.csproj"
+            },
+            "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj"
             }
           }
         }

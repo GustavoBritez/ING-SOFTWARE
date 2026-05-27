@@ -6,7 +6,12 @@ namespace BLL
 {
     public class UsuarioBLL
     {
-        private UsuarioDAL usuarioDAL = new UsuarioDAL();
+        private UsuarioDAL usuarioDAL;
+
+        public UsuarioBLL()
+        {
+            usuarioDAL = new UsuarioDAL();
+        }
 
         public void CrearUsuario(UsuarioBE usuario)
         {
@@ -20,7 +25,7 @@ namespace BLL
 
                 usuario._Contraseña = BCrypt.Net.BCrypt.HashPassword(usuario._Contraseña);
 
-                // Llamar a la DAL para insertar
+                // DAL se encarga de registrar la bitácora directamente
                 usuarioDAL.CrearUsuario(usuario);
             }
             catch (Exception ex)
@@ -82,11 +87,11 @@ namespace BLL
             }
         }
 
-        public UsuarioBE ObtenerUsuario(int dni)
+        public UsuarioBE ObtenerUsuario(string nombreDeUsuario)
         {
             try
             {
-                return usuarioDAL.ObtenerUsuario(Convert.ToString(dni));
+                return usuarioDAL.ObtenerUsuario(Convert.ToString(nombreDeUsuario));
             }
             catch (Exception ex)
             {
@@ -94,6 +99,19 @@ namespace BLL
                 return null;
             }
         }
+
+        /*public UsuarioBE ObtenerUsuarioParaSesion(string nombreDeUsuario)
+        {
+            try
+            {
+                return usuarioDAL.ObtenerUsuario(nombreDeUsuario);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener usuario para sesión: {ex.Message}");
+                return null;
+            }
+        }*/
 
 
         //Entra un UsuarioBE con todos los cambios necesarios, incluido el DNI (que no se puede modificar)

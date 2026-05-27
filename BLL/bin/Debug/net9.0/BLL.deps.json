@@ -10,7 +10,8 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.2.0",
           "BE": "1.0.0",
-          "DAL": "1.0.0"
+          "DAL": "1.0.0",
+          "Services": "1.0.0"
         },
         "runtime": {
           "BLL.dll": {}
@@ -364,10 +365,22 @@
       "DAL/1.0.0": {
         "dependencies": {
           "BE": "1.0.0",
-          "Microsoft.Data.SqlClient": "7.0.0"
+          "Microsoft.Data.SqlClient": "7.0.0",
+          "Services": "1.0.0"
         },
         "runtime": {
           "DAL.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Services/1.0.0": {
+        "dependencies": {
+          "BE": "1.0.0"
+        },
+        "runtime": {
+          "Services.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -555,6 +568,11 @@
       "sha512": ""
     },
     "DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

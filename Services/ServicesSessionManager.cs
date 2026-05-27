@@ -1,7 +1,4 @@
 using BE;
-using BLL;
-using DAL;
-
 namespace Services
 {
     /// <summary>
@@ -13,13 +10,12 @@ namespace Services
     {
         private static ServicesSessionManager _instancia;
         private static readonly object _lock = new object();
-        private readonly UsuarioBLL usuarioBLL; 
-
+        
         private UsuarioBE usuarioActivo;
 
         private ServicesSessionManager()
         {
-            usuarioBLL = new UsuarioBLL();
+
             usuarioActivo = null;
         }
 
@@ -41,33 +37,25 @@ namespace Services
             }
         }
 
-        public bool Login(string nombreDeUsuario, string contraseña)
+        public UsuarioBE ObtenerUsuarioActivo()
+        {
+            return usuarioActivo;
+        }
+
+        public bool Login(UsuarioBE newUsuario)
         {
             try
             {
-                // Verificar si ya hay una sesión activa
-                if (usuarioActivo != null && usuarioActivo._NombreDeUsuario == nombreDeUsuario)
+
+                if ( usuarioActivo is null )
                 {
-                    return false;
-                }
-
-
-                // Validar credenciales usando BLL
-                bool credencialesValidas = usuarioBLL.Login(nombreDeUsuario, contraseña);
-
-                if (credencialesValidas)
-                {
-                    // Si es válido, obtener el usuario completo y guardarlo en sesión
-                    UsuarioDAL usuarioDAL = new UsuarioDAL();
-                    usuarioActivo = usuarioDAL.ObtenerUsuario(nombreDeUsuario);
-                    
-                    return true;
+                    usuarioActivo = newUsuario;
                 }
                 else
                 {
-                    usuarioActivo = null;
                     return false;
                 }
+                    return true;
             }
             catch (Exception ex)
             {
