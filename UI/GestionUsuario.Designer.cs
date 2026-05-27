@@ -92,8 +92,9 @@
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(128, 40);
             btnEliminar.TabIndex = 1;
-            btnEliminar.Text = "Eliminar";
+            btnEliminar.Text = "Desbloquear";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
@@ -105,6 +106,7 @@
             btnModificar.TabIndex = 2;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnCrear
             // 
@@ -330,6 +332,7 @@
             Name = "GestionUsuario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestión de Usuarios";
+            Load += GestionUsuario_Load;
             panelLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             gbFiltrar.ResumeLayout(false);

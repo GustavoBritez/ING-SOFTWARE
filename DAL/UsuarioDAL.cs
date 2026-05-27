@@ -9,6 +9,7 @@ namespace DAL
     {
         private readonly Conexion conexion = new();
         private const string TABLA_USUARIOS = "Usuarios"; /// Nombre de la TABLA usuarios en la BD - SQL Server 2019 NO PROBE EN 2020
+        private readonly string Modulo = "UsuarioDAL";
 
         public void CrearUsuario(UsuarioBE usuario)
         {
@@ -37,7 +38,7 @@ namespace DAL
                     descripcion: $"Creación de usuario '{usuario._NombreDeUsuario}'",
                     dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
                     fecha: DateTime.Now,
-                    modulo: "UsuarioDAL"
+                    modulo: Modulo
                 ));
 
                 Console.WriteLine($"Usuario {usuario._NombreDeUsuario} registrado exitosamente.");
@@ -45,7 +46,7 @@ namespace DAL
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al registrar usuario: {ex.Message}");
-                
+
                 // Registrar el error en bitácora
                 try
                 {
@@ -55,7 +56,7 @@ namespace DAL
                         descripcion: $"Error al crear usuario '{usuario._NombreDeUsuario}': {ex.Message}",
                         dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
                         fecha: DateTime.Now,
-                        modulo: "UsuarioDAL"
+                        modulo: Modulo
                     ));
                 }
                 catch { /* Si falla la bitácora, no interrumpimos el flujo de error */ }
@@ -97,7 +98,7 @@ namespace DAL
                     dt.Rows[0]["NombreDeUsuario"].ToString(),
                     dt.Rows[0]["Contraseña"].ToString(),
                     dt.Rows[0]["Rol"].ToString(),
-                    Convert.ToInt32(dt.Rows[0]["Bloqueado"]) == 1 // 1 = Bloqueado, 0 = Desbloqueado
+                    Convert.ToBoolean(dt.Rows[0]["Bloqueado"])
                 );
 
                 return usuarioEncontrado;
@@ -109,6 +110,7 @@ namespace DAL
             }
         }
 
+        // No lo use aun jsjjsjs pero bueno
         public UsuarioBE BuscarUsuario(int dni)
         {
             try
@@ -153,7 +155,7 @@ namespace DAL
             try
             {
                 string query = $@"UPDATE {TABLA_USUARIOS} 
-                                  SET Nombre = @nombre, Apellido = @apellido, Contraseña = @contraseña, 
+                                  SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
                                       Rol = @rol, Bloqueado = @bloqueado 
                                   WHERE DNI = @dni";
 
@@ -163,11 +165,22 @@ namespace DAL
                     new SqlParameter("@apellido", usuario._Apellido),
                     new SqlParameter("@contraseña", usuario._Contraseña),
                     new SqlParameter("@rol", usuario._Rol),
+                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
                     new SqlParameter("@dni", usuario._Dni)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
+
+                BitacoraDAL bitacoraDAL = new();
+                bitacoraDAL.GuardarBitacora(new BitacoraBE(
+                    criticidad: 1,
+                    descripcion: $"Modificacion de usuario '{usuario._NombreDeUsuario}'",
+                    dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
+                    fecha: DateTime.Now,
+                    modulo: Modulo
+                ));
+
                 Console.WriteLine($"Usuario {usuario._NombreDeUsuario} modificado exitosamente.");
             }
             catch (Exception ex)
@@ -198,7 +211,7 @@ namespace DAL
                         row["NombreDeUsuario"].ToString(),
                         row["Contraseña"].ToString(),
                         row["Rol"].ToString(),
-                        Convert.ToInt32(row["Bloqueado"]) == 1 // 1 = Bloqueado, 0 = Desbloqueado
+                        Convert.ToBoolean(row["Bloqueado"])
                     );
 
                     usuarios.Add(usuario);

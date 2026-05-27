@@ -13,6 +13,14 @@ namespace BLL
             usuarioDAL = new UsuarioDAL();
         }
 
+        public void BuscarUsuario()
+        {
+
+        }
+        public void CambiarEstado()
+        {
+
+        }
         public void CrearUsuario(UsuarioBE usuario)
         {
             try
@@ -34,7 +42,18 @@ namespace BLL
                 throw;
             }
         }
-
+        public List<UsuarioBE> ListarUsuarios()
+        {
+            try
+            {
+                return usuarioDAL.ListaUsuarios();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en ListarUsuarios: {ex.Message}");
+                return new List<UsuarioBE>();
+            }
+        }
         /// <summary>
         /// Login: Valida NombreDeUsuario y Contraseña plana
         /// Flujo:
@@ -64,7 +83,7 @@ namespace BLL
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' está bloqueado.");
                     return false;
                 }
-
+                // Validamos la contraseña no es necesario volver a validar con un metodo
                 // 3. Comparar contraseña plana (ingresada) vs contraseña hasheada (en BD)
                 // BCrypt.Verify(contraseña_plana, contraseña_hash_bd) devuelve true si coinciden
                 bool contraseñaValida = BCrypt.Net.BCrypt.Verify(contraseñaPlana, usuarioEnBD._Contraseña);
@@ -86,35 +105,11 @@ namespace BLL
                 return false;
             }
         }
-
-        public UsuarioBE ObtenerUsuario(string nombreDeUsuario)
+        public void LogOut(UsuarioBE usuario)
         {
-            try
-            {
-                return usuarioDAL.ObtenerUsuario(Convert.ToString(nombreDeUsuario));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en ObtenerUsuario: {ex.Message}");
-                return null;
-            }
+
         }
-
-        /*public UsuarioBE ObtenerUsuarioParaSesion(string nombreDeUsuario)
-        {
-            try
-            {
-                return usuarioDAL.ObtenerUsuario(nombreDeUsuario);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al obtener usuario para sesión: {ex.Message}");
-                return null;
-            }
-        }*/
-
-
-        //Entra un UsuarioBE con todos los cambios necesarios, incluido el DNI (que no se puede modificar)
+        // ModificarUsuario -> Entra un UsuarioBE con todos los cambios necesarios, incluido el DNI (que no se puede modificar)
         //Hasheamos la contraseña y llamamos a la DAL para subir estos cambios
         public void ModificarUsuario(UsuarioBE usuario)
         {
@@ -133,18 +128,31 @@ namespace BLL
                 throw;
             }
         }
-
-        public List<UsuarioBE> ListarUsuarios()
+        //No comprendo el UsuariosActivos, ya que no tenemos un campo en UsuarioBE que diaga "Activo" 
+        //Pero capaz con Activo nos referimos a un usuario Activado diferente de uno Desactivado
+        //Lo hago asi.
+        public List<UsuarioBE> usuariosActivos()
+        {
+            List<UsuarioBE> test = new();
+            return test;
+        }
+        public UsuarioBE ObtenerUsuario(string nombreDeUsuario)
         {
             try
             {
-                return usuarioDAL.ListaUsuarios();
+                return usuarioDAL.ObtenerUsuario(Convert.ToString(nombreDeUsuario));
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en ListarUsuarios: {ex.Message}");
-                return new List<UsuarioBE>();
+                Console.WriteLine($"Error en ObtenerUsuario: {ex.Message}");
+                return null;
             }
         }
+
+        //Eliminen el ValidarDNI no es necesario
+        //Eliminen el Validar contraseaña no es necesario ya validamos en Login();
+
+
+
     }
 }

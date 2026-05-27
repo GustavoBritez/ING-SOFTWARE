@@ -3,6 +3,39 @@
   "WorkspaceRootPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\dal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\bll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06C096CE-AE09-321A-1FF3-1F3C28B66B20}|..\\BE\\BE.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\be\\usuariobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\gestionusuario.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,18 +44,10 @@
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:formmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\bll\\bitacorabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\dal\\bitacoradal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\bitacora.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,20 +58,8 @@
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\services\\servicessessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -55,21 +68,11 @@
       "AbsoluteMoniker": "D:0:0:{06C096CE-AE09-321A-1FF3-1F3C28B66B20}|..\\BE\\BE.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\be\\bitacorabe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\gestionusuario.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{06C096CE-AE09-321A-1FF3-1F3C28B66B20}|..\\BE\\BE.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\be\\usuarioactual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{06C096CE-AE09-321A-1FF3-1F3C28B66B20}|..\\BE\\BE.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\be\\usuariobe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\dal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta (2)\\ing\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -182,7 +185,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -198,41 +201,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "GestionUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.cs",
               "RelativeDocumentMoniker": "GestionUsuario.cs",
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.cs",
               "RelativeToolTip": "GestionUsuario.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAtwI0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANgAAAAAAAAAAAAAwOAAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-27T01:19:04.335Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BitacoraDAL.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\BitacoraDAL.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\BitacoraDAL.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\BitacoraDAL.cs",
-              "RelativeToolTip": "..\\DAL\\BitacoraDAL.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAAwGAAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:14:33.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Bitacora.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.Designer.cs",
-              "RelativeDocumentMoniker": "Bitacora.Designer.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.Designer.cs",
-              "RelativeToolTip": "Bitacora.Designer.cs",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAAAMoAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:16:49.47Z",
               "EditorCaption": ""
             },
             {
@@ -244,12 +221,110 @@
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.cs [Dise\u00F1o]",
               "RelativeToolTip": "Bitacora.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:16:46.763Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-05-27T04:16:46.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Bitacora.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.cs",
+              "RelativeDocumentMoniker": "Bitacora.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.cs",
+              "RelativeToolTip": "Bitacora.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAAB4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:31:54.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsuarioBE.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BE\\UsuarioBE.cs",
+              "RelativeDocumentMoniker": "..\\BE\\UsuarioBE.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BE\\UsuarioBE.cs",
+              "RelativeToolTip": "..\\BE\\UsuarioBE.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAwBYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:15:04.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BLL\\UsuarioBLL.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\UsuarioBLL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BLL\\UsuarioBLL.cs",
+              "RelativeToolTip": "..\\BLL\\UsuarioBLL.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAAwHoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T13:11:10.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\UsuarioDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\UsuarioDAL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\UsuarioDAL.cs*",
+              "RelativeToolTip": "..\\DAL\\UsuarioDAL.cs*",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAAwJYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T03:38:16.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GestionUsuario.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.cs",
+              "RelativeDocumentMoniker": "GestionUsuario.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.cs [Design]",
+              "RelativeToolTip": "GestionUsuario.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T01:18:05.131Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Presentacion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Presentacion.cs",
+              "RelativeDocumentMoniker": "Presentacion.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Presentacion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Presentacion.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T23:37:17.967Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "GestionUsuario.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.Designer.cs",
+              "RelativeDocumentMoniker": "GestionUsuario.Designer.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.Designer.cs",
+              "RelativeToolTip": "GestionUsuario.Designer.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAAAF4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T01:18:07.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:15:25.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Presentacion.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Presentacion.cs",
               "RelativeDocumentMoniker": "Presentacion.cs",
@@ -257,25 +332,35 @@
               "RelativeToolTip": "Presentacion.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAAwBYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T23:37:20.235Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T23:37:20.235Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "Bitacora.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.Designer.cs",
+              "RelativeDocumentMoniker": "Bitacora.Designer.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.Designer.cs",
+              "RelativeToolTip": "Bitacora.Designer.cs",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAAAMoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:15:25.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T04:16:49.47Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
+              "Title": "BitacoraDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\BitacoraDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\BitacoraDAL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\BitacoraDAL.cs",
+              "RelativeToolTip": "..\\DAL\\BitacoraDAL.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAAwGAAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-27T04:14:33.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "FormManager.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\FormManager.cs",
               "RelativeDocumentMoniker": "FormManager.cs",
@@ -283,12 +368,11 @@
               "RelativeToolTip": "FormManager.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAADsAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T01:51:06.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T01:51:06.556Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "BitacoraBLL.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BLL\\BitacoraBLL.cs",
               "RelativeDocumentMoniker": "..\\BLL\\BitacoraBLL.cs",
@@ -296,61 +380,22 @@
               "RelativeToolTip": "..\\BLL\\BitacoraBLL.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAADUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T03:49:09.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T03:49:09.864Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Bitacora.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.cs",
-              "RelativeDocumentMoniker": "Bitacora.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Bitacora.cs",
-              "RelativeToolTip": "Bitacora.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAACAAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:31:54.362Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Form1.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.cs [Dise\u00F1o]",
               "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T23:33:39.526Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-04-20T23:33:39.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Presentacion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Presentacion.cs",
-              "RelativeDocumentMoniker": "Presentacion.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Presentacion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Presentacion.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T23:37:17.967Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GestionUsuario.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.cs",
-              "RelativeDocumentMoniker": "GestionUsuario.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.cs [Dise\u00F1o]",
-              "RelativeToolTip": "GestionUsuario.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T01:18:05.131Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "ServicesSessionManager.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\Services\\ServicesSessionManager.cs",
               "RelativeDocumentMoniker": "..\\Services\\ServicesSessionManager.cs",
@@ -358,12 +403,11 @@
               "RelativeToolTip": "..\\Services\\ServicesSessionManager.cs",
               "ViewState": "AgIAADcAAAAAAAAAAAAAwEUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T03:51:48.636Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T03:51:48.636Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "BitacoraBE.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BE\\BitacoraBE.cs",
               "RelativeDocumentMoniker": "..\\BE\\BitacoraBE.cs",
@@ -371,12 +415,11 @@
               "RelativeToolTip": "..\\BE\\BitacoraBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:18:42.712Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T04:18:42.712Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "UsuarioActual.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BE\\UsuarioActual.cs",
               "RelativeDocumentMoniker": "..\\BE\\UsuarioActual.cs",
@@ -384,38 +427,11 @@
               "RelativeToolTip": "..\\BE\\UsuarioActual.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:15:04.941Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T04:15:04.941Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "GestionUsuario.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.Designer.cs",
-              "RelativeDocumentMoniker": "GestionUsuario.Designer.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\GestionUsuario.Designer.cs",
-              "RelativeToolTip": "GestionUsuario.Designer.cs",
-              "ViewState": "AgIAAHABAAAAAAAAAAAAAHABAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T01:18:07.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UsuarioBE.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BE\\UsuarioBE.cs",
-              "RelativeDocumentMoniker": "..\\BE\\UsuarioBE.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\BE\\UsuarioBE.cs",
-              "RelativeToolTip": "..\\BE\\UsuarioBE.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T04:15:04.268Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -423,25 +439,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T00:52:10.271Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T00:52:10.271Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "UsuarioDAL.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\UsuarioDAL.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\UsuarioDAL.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\UsuarioDAL.cs",
-              "RelativeToolTip": "..\\DAL\\UsuarioDAL.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAwEAAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T03:38:16.608Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Conexion.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\DAL\\Conexion.cs",
               "RelativeDocumentMoniker": "..\\DAL\\Conexion.cs",
@@ -449,12 +451,11 @@
               "RelativeToolTip": "..\\DAL\\Conexion.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAAQwFcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-27T03:29:25.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T03:29:25.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "UsuarioDAL.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\UsuarioDAL.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\DAL\\UsuarioDAL.cs",
@@ -466,7 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "Conexion.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\Conexion.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\DAL\\Conexion.cs",
@@ -478,7 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "BitacoraDAL.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\BitacoraDAL.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\DAL\\BitacoraDAL.cs",
@@ -490,7 +491,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "ServicesSessionManager.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\ServicesSessionManager.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\Services\\ServicesSessionManager.cs",
@@ -502,7 +503,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
@@ -510,12 +511,11 @@
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAmwBYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-18T00:17:27.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-18T00:17:27.173Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Presentacion.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Presentacion.Designer.cs",
               "RelativeDocumentMoniker": "Presentacion.Designer.cs",
@@ -523,12 +523,11 @@
               "RelativeToolTip": "Presentacion.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T23:37:30.743Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T23:37:30.743Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "BLL.csproj",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj",
@@ -540,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "Services.csproj",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj",
@@ -552,7 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "UsuarioBLL.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\UsuarioBLL.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BLL\\UsuarioBLL.cs",
@@ -564,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "BitacoraBLL.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BitacoraBLL.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BLL\\BitacoraBLL.cs",
@@ -576,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "UsuarioBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\UsuarioBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BE\\UsuarioBE.cs",
@@ -588,7 +587,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "UsuarioActual.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\UsuarioActual.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BE\\UsuarioActual.cs",
@@ -600,7 +599,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "BitacoraBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BE\\BitacoraBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BE\\BitacoraBE.cs",
@@ -612,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "DAL.csproj",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\DAL\\DAL.csproj",
@@ -624,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "UI.csproj",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\UI.csproj",
               "RelativeDocumentMoniker": "UI.csproj",
@@ -636,19 +635,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Form1.resx",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.resx",
               "RelativeDocumentMoniker": "Form1.resx",
               "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\ING\\UI\\Form1.resx",
               "RelativeToolTip": "Form1.resx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2026-05-26T23:37:44.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T23:37:44.189Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "IContextoSeguridad.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\IContextoSeguridad.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BLL\\IContextoSeguridad.cs",
@@ -659,7 +657,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "ContextoSeguridad.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\ContextoSeguridad.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Test\\ING\\BLL\\ContextoSeguridad.cs",
@@ -670,7 +668,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "UsuarioBLL.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\ING\\BLL\\UsuarioBLL.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Nueva carpeta\\ING\\BLL\\UsuarioBLL.cs",
@@ -681,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "UsuarioBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\UsuarioBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\UsuarioBE.cs",
@@ -692,7 +690,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "Recordatorio24HsBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\Recordatorio24HsBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\Recordatorio24HsBE.cs",
@@ -703,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "FrecuenciaConsumoBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\FrecuenciaConsumoBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\FrecuenciaConsumoBE.cs",
@@ -714,7 +712,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "AnalisisBioquimicoBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\AnalisisBioquimicoBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\AnalisisBioquimicoBE.cs",
@@ -725,7 +723,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "SessionManagerBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\SessionManagerBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\SessionManagerBE.cs",
@@ -736,7 +734,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "RegistroAntropometricoBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\RegistroAntropometricoBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\RegistroAntropometricoBE.cs",
@@ -747,7 +745,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "AnamnesisBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\AnamnesisBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\AnamnesisBE.cs",
@@ -758,7 +756,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "HistoriaClinicaBE.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\HistoriaClinicaBE.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\HistoriaClinicaBE.cs",
@@ -769,7 +767,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "BE.csproj",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BE\\BE.csproj",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BE\\BE.csproj",
@@ -780,7 +778,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "BLL.csproj",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\PEP\\srd\\BLL\\BLL.csproj",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\PEP\\srd\\BLL\\BLL.csproj",
@@ -791,7 +789,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "Conexion.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Proyecto\\Test\\DAL\\Conexion.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Proyecto\\Test\\DAL\\Conexion.cs",
@@ -802,7 +800,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "DAL.csproj",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\DAL.csproj",
@@ -813,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "Conexion.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Conexion.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Navegador\\Desktop\\Campo\\NewCarpeta\\DAL\\Conexion.cs",

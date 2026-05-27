@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BE;
 using BLL;
+using Microsoft.VisualBasic;
 using Services;
 
 namespace UI
@@ -26,6 +27,7 @@ namespace UI
             cmbRol.Items.Add("Recepcionista");
             cmbRol.Items.Add("Medico");
             cmbRol.Items.Add("Nutricionista");
+            cmbRol.SelectedIndex = 0;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -141,6 +143,124 @@ namespace UI
         {
 
             FormManager.Navegar(this, FormManager.ObtenerForm1());
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GestionUsuario_Load(object sender, EventArgs e)
+        {
+            GestionUsuarios_Load(sender, e);
+        }
+        public void GestionUsuarios_Load(object sender, EventArgs e)
+        {
+            dgvUsuarios.DataSource = null;
+            dgvUsuarios.DataSource = usuarioBLL.ListarUsuarios();
+
+            // Configurar el DataGridView como read-only y selección de fila completa
+            dgvUsuarios.ReadOnly = true;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsuarios.MultiSelect = false;
+            dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Ocultar la columna de Contraseña
+            if (dgvUsuarios.Columns.Contains("_Contraseña"))
+            {
+                dgvUsuarios.Columns["_Contraseña"].Visible = false;
+            }
+
+            // Configurar encabezados y propiedades de las columnas
+            if (dgvUsuarios.Columns.Contains("_Dni"))
+            {
+                dgvUsuarios.Columns["_Dni"].HeaderText = "DNI";
+            }
+
+            if (dgvUsuarios.Columns.Contains("_Nombre"))
+            {
+                dgvUsuarios.Columns["_Nombre"].HeaderText = "Nombre";
+            }
+
+            if (dgvUsuarios.Columns.Contains("_Apellido"))
+            {
+                dgvUsuarios.Columns["_Apellido"].HeaderText = "Apellido";
+            }
+
+            if (dgvUsuarios.Columns.Contains("_NombreDeUsuario"))
+            {
+                dgvUsuarios.Columns["_NombreDeUsuario"].HeaderText = "Nombre de Usuario";
+            }
+
+            if (dgvUsuarios.Columns.Contains("_Rol"))
+            {
+                dgvUsuarios.Columns["_Rol"].HeaderText = "Rol";
+            }
+
+            if (dgvUsuarios.Columns.Contains("Bloqueado"))
+            {
+                dgvUsuarios.Columns["_Bloqueado"].HeaderText = "Estado";
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validar que se haya seleccionado exactamente una fila
+                if (dgvUsuarios.SelectedRows.Count != 1)
+                {
+                    MessageBox.Show("Error: Seleccione una fila para Modificar", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                UsuarioBE usuarioSeleccionado = dgvUsuarios.SelectedRows[0].DataBoundItem as UsuarioBE;
+
+                if (usuarioSeleccionado is null)
+                {
+                    MessageBox.Show("Error: No se pudo seleccionar un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                MessageBox.Show($"Usted está a punto de modificar los datos del usuario '{usuarioSeleccionado._NombreDeUsuario}'", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Actualizar solo los campos que se hayan completado
+                if (!string.IsNullOrWhiteSpace(txtNombre.Text))
+                    usuarioSeleccionado._Nombre = txtNombre.Text.Trim();
+
+                if (!string.IsNullOrWhiteSpace(txtApellido.Text))
+                    usuarioSeleccionado._Apellido = txtApellido.Text.Trim();
+
+                if (!string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
+                    usuarioSeleccionado._NombreDeUsuario = txtNombreUsuario.Text.Trim();
+
+                if (cmbRol.SelectedItem != null)
+                    usuarioSeleccionado._Rol = cmbRol.SelectedItem.ToString();
+
+                // Preguntar si desea cambiar contraseña
+                DialogResult result = MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar Contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    string nuevaContraseña = Interaction.InputBox("Ingrese nueva contraseña:", "Nueva Contraseña");
+                    if (!string.IsNullOrWhiteSpace(nuevaContraseña))
+                        usuarioSeleccionado._Contraseña = nuevaContraseña;
+                }
+
+                usuarioSeleccionado._Bloqueado = rbEstadoInactivo.Checked;
+
+                usuarioBLL.ModificarUsuario(usuarioSeleccionado);
+
+                MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: Modificaciones no aplicadas. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GestionUsuarios_Load(sender, e);
+            }
         }
     }
 }
