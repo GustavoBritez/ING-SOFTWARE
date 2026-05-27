@@ -59,10 +59,8 @@ namespace UI
             finally
             {
                 LimpiarCampos();
-                this.Hide();
+                FormManager.Navegar(this, FormManager.ObtenerForm1());
 
-                Form1 newForm = new();
-                newForm.Show();
             }
         }
         private void LimpiarCampos()

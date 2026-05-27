@@ -104,6 +104,7 @@
             btnUsuarios.Text = "👤 Gestión de Usuarios";
             btnUsuarios.TextAlign = ContentAlignment.MiddleLeft;
             btnUsuarios.UseVisualStyleBackColor = false;
+            btnUsuarios.Click += btnUsuarios_Click;
             // 
             // btnReportes
             // 

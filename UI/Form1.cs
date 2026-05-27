@@ -26,7 +26,7 @@ namespace UI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -40,9 +40,16 @@ namespace UI
 
             ServicesSessionManager.Instancia.Logout();
 
-            MessageBox.Show("Cerrar sesion exitoso");
+            MessageBox.Show("Cerrar sesión exitoso");
 
 
+            FormManager.Navegar(this, FormManager.ObtenerPresentacion());
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+
+            FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
         }
     }
 }

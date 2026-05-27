@@ -1,4 +1,5 @@
 using BE;
+
 namespace Services
 {
     /// <summary>
@@ -10,7 +11,7 @@ namespace Services
     {
         private static ServicesSessionManager _instancia;
         private static readonly object _lock = new object();
-        
+
         private UsuarioBE usuarioActivo;
 
         private ServicesSessionManager()
@@ -42,20 +43,29 @@ namespace Services
             return usuarioActivo;
         }
 
+        public int ObtenerDniUsuarioActual()
+        {
+            if (usuarioActivo != null)
+            {
+                return usuarioActivo._Dni;
+            }
+            return 0; // Retorna 0 si no hay usuario activo
+        }
+
         public bool Login(UsuarioBE newUsuario)
         {
             try
             {
-
-                if ( usuarioActivo is null )
+                if (newUsuario is null)
                 {
                     usuarioActivo = newUsuario;
+                    return true;
                 }
                 else
                 {
+                    usuarioActivo = null;
                     return false;
                 }
-                    return true;
             }
             catch (Exception ex)
             {

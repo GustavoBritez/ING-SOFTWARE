@@ -206,3 +206,4 @@ C:\Users\Navegador\Desktop\Test\ING\UI\obj\Debug\net9.0-windows\refint\UI.dll
 C:\Users\Navegador\Desktop\Test\ING\UI\obj\Debug\net9.0-windows\UI.pdb
 C:\Users\Navegador\Desktop\Test\ING\UI\obj\Debug\net9.0-windows\UI.genruntimeconfig.cache
 C:\Users\Navegador\Desktop\Test\ING\UI\obj\Debug\net9.0-windows\ref\UI.dll
+C:\Users\Navegador\Desktop\Test\ING\UI\obj\Debug\net9.0-windows\UI.GestionUsuario.resources
