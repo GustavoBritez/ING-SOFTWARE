@@ -28,7 +28,7 @@ namespace BLL
             try
             {
                 // Invertir el estado actual
-                usuario._Bloqueado = !usuario._Bloqueado;
+                usuario._Estado = !usuario._Estado;
                 usuarioDAL.CambioEstado(usuario);
             }
             catch (Exception ex)

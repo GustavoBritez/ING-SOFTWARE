@@ -1,4 +1,7 @@
-﻿namespace UI
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace UI
 {
     partial class GestionUsuario
     {
@@ -28,321 +31,386 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelLateral = new Panel();
-            btnActDesact = new Button();
-            btnEliminar = new Button();
-            btnModificar = new Button();
-            btnCrear = new Button();
-            dgvUsuarios = new DataGridView();
-            lblTitulo = new Label();
-            gbFiltrar = new GroupBox();
-            rbMostrarInactivos = new RadioButton();
-            rbMostrarActivos = new RadioButton();
-            gbDetalles = new GroupBox();
-            gbEstadoInterno = new GroupBox();
-            rbEstadoInactivo = new RadioButton();
-            rbEstadoActivo = new RadioButton();
-            txtNombreUsuario = new TextBox();
-            lblNombreUsuario = new Label();
-            cmbRol = new ComboBox();
-            lblRol = new Label();
-            txtApellido = new TextBox();
-            lblApellido = new Label();
-            txtNombre = new TextBox();
-            lblNombre = new Label();
-            txtDni = new TextBox();
-            lblDni = new Label();
-            btnSalir = new Button();
-            panelLateral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
-            gbFiltrar.SuspendLayout();
-            gbDetalles.SuspendLayout();
-            gbEstadoInterno.SuspendLayout();
-            SuspendLayout();
+            this.panelLateral = new System.Windows.Forms.Panel();
+            this.btnCambiarContrasena = new System.Windows.Forms.Button();
+            this.btnActDesact = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnCrear = new System.Windows.Forms.Button();
+            this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.gbFiltrar = new System.Windows.Forms.GroupBox();
+            this.rbMostrarInactivos = new System.Windows.Forms.RadioButton();
+            this.rbMostrarActivos = new System.Windows.Forms.RadioButton();
+            this.gbDetalles = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.CKB_Desactivar = new System.Windows.Forms.CheckBox();
+            this.CKB_Activar = new System.Windows.Forms.CheckBox();
+            this.txtNombreUsuario = new System.Windows.Forms.TextBox();
+            this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
+            this.lblRol = new System.Windows.Forms.Label();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.lblApellido = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.txtDni = new System.Windows.Forms.TextBox();
+            this.lblDni = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
+
+            this.panelLateral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
+            this.gbFiltrar.SuspendLayout();
+            this.gbDetalles.SuspendLayout();
+            this.SuspendLayout();
+
             // 
             // panelLateral
             // 
-            panelLateral.BackColor = Color.FromArgb(143, 188, 153);
-            panelLateral.BorderStyle = BorderStyle.FixedSingle;
-            panelLateral.Controls.Add(btnActDesact);
-            panelLateral.Controls.Add(btnEliminar);
-            panelLateral.Controls.Add(btnModificar);
-            panelLateral.Controls.Add(btnCrear);
-            panelLateral.Location = new Point(12, 60);
-            panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(160, 240);
-            panelLateral.TabIndex = 4;
+            this.panelLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(188)))), ((int)(((byte)(153)))));
+            this.panelLateral.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLateral.Controls.Add(this.btnCambiarContrasena);
+            this.panelLateral.Controls.Add(this.btnActDesact);
+            this.panelLateral.Controls.Add(this.btnEliminar);
+            this.panelLateral.Controls.Add(this.btnModificar);
+            this.panelLateral.Controls.Add(this.btnCrear);
+            this.panelLateral.Location = new System.Drawing.Point(12, 60);
+            this.panelLateral.Name = "panelLateral";
+            this.panelLateral.Size = new System.Drawing.Size(160, 302);
+            this.panelLateral.TabIndex = 4;
+
+            // 
+            // btnCambiarContrasena
+            // 
+            this.btnCambiarContrasena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnCambiarContrasena.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCambiarContrasena.Location = new System.Drawing.Point(15, 236);
+            this.btnCambiarContrasena.Name = "btnCambiarContrasena";
+            this.btnCambiarContrasena.Size = new System.Drawing.Size(128, 46);
+            this.btnCambiarContrasena.TabIndex = 4;
+            this.btnCambiarContrasena.Text = "Cambiar Contraseña";
+            this.btnCambiarContrasena.UseVisualStyleBackColor = false;
+            this.btnCambiarContrasena.Click += new System.EventHandler(this.btnCambiarContrasena_Click);
+
             // 
             // btnActDesact
             // 
-            btnActDesact.BackColor = Color.FromArgb(225, 225, 225);
-            btnActDesact.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnActDesact.Location = new Point(15, 180);
-            btnActDesact.Name = "btnActDesact";
-            btnActDesact.Size = new Size(128, 40);
-            btnActDesact.TabIndex = 0;
-            btnActDesact.Text = "Act/Desact";
-            btnActDesact.UseVisualStyleBackColor = false;
+            this.btnActDesact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnActDesact.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnActDesact.Location = new System.Drawing.Point(15, 180);
+            this.btnActDesact.Name = "btnActDesact";
+            this.btnActDesact.Size = new System.Drawing.Size(128, 40);
+            this.btnActDesact.TabIndex = 0;
+            this.btnActDesact.Text = "Act/Desact";
+            this.btnActDesact.UseVisualStyleBackColor = false;
+            this.btnActDesact.Click += new System.EventHandler(this.btnActDesact_Click);
+
             // 
             // btnEliminar
             // 
-            btnEliminar.BackColor = Color.FromArgb(225, 225, 225);
-            btnEliminar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnEliminar.Location = new Point(15, 125);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(128, 40);
-            btnEliminar.TabIndex = 1;
-            btnEliminar.Text = "Desbloquear";
-            btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnDesbloquear_Click;
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnEliminar.Location = new System.Drawing.Point(15, 125);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(128, 40);
+            this.btnEliminar.TabIndex = 1;
+            this.btnEliminar.Text = "Desbloquear";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnDesbloquear_Click);
+
             // 
             // btnModificar
             // 
-            btnModificar.BackColor = Color.FromArgb(225, 225, 225);
-            btnModificar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnModificar.Location = new Point(15, 70);
-            btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(128, 40);
-            btnModificar.TabIndex = 2;
-            btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = false;
-            btnModificar.Click += btnModificar_Click;
+            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnModificar.Location = new System.Drawing.Point(15, 70);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(128, 40);
+            this.btnModificar.TabIndex = 2;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+
             // 
             // btnCrear
             // 
-            btnCrear.BackColor = Color.FromArgb(225, 225, 225);
-            btnCrear.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnCrear.Location = new Point(15, 15);
-            btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(128, 40);
-            btnCrear.TabIndex = 3;
-            btnCrear.Text = "Crear";
-            btnCrear.UseVisualStyleBackColor = false;
-            btnCrear.Click += btnCrear_Click;
+            this.btnCrear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnCrear.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCrear.Location = new System.Drawing.Point(15, 15);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(128, 40);
+            this.btnCrear.TabIndex = 3;
+            this.btnCrear.Text = "Crear";
+            this.btnCrear.UseVisualStyleBackColor = false;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
+
             // 
             // dgvUsuarios
             // 
-            dgvUsuarios.BackgroundColor = Color.White;
-            dgvUsuarios.BorderStyle = BorderStyle.None;
-            dgvUsuarios.Location = new Point(185, 60);
-            dgvUsuarios.Name = "dgvUsuarios";
-            dgvUsuarios.Size = new Size(753, 335);
-            dgvUsuarios.TabIndex = 3;
+            this.dgvUsuarios.BackgroundColor = System.Drawing.Color.White;
+            this.dgvUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvUsuarios.Location = new System.Drawing.Point(185, 60);
+            this.dgvUsuarios.Name = "dgvUsuarios";
+            this.dgvUsuarios.Size = new System.Drawing.Size(753, 335);
+            this.dgvUsuarios.TabIndex = 3;
+
             // 
             // lblTitulo
             // 
-            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.FromArgb(46, 94, 67);
-            lblTitulo.Location = new Point(12, 9);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(926, 40);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "👤 Gestión de Usuarios";
-            lblTitulo.TextAlign = ContentAlignment.TopCenter;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(94)))), ((int)(((byte)(67)))));
+            this.lblTitulo.Location = new System.Drawing.Point(12, 9);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(926, 40);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "👤 Gestión de Usuarios";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+
             // 
             // gbFiltrar
             // 
-            gbFiltrar.Controls.Add(rbMostrarInactivos);
-            gbFiltrar.Controls.Add(rbMostrarActivos);
-            gbFiltrar.FlatStyle = FlatStyle.Flat;
-            gbFiltrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            gbFiltrar.Location = new Point(245, 410);
-            gbFiltrar.Name = "gbFiltrar";
-            gbFiltrar.Size = new Size(200, 85);
-            gbFiltrar.TabIndex = 2;
-            gbFiltrar.TabStop = false;
-            gbFiltrar.Text = "Filtrar Usuarios";
+            this.gbFiltrar.Controls.Add(this.rbMostrarInactivos);
+            this.gbFiltrar.Controls.Add(this.rbMostrarActivos);
+            this.gbFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbFiltrar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.gbFiltrar.Location = new System.Drawing.Point(245, 410);
+            this.gbFiltrar.Name = "gbFiltrar";
+            this.gbFiltrar.Size = new System.Drawing.Size(200, 85);
+            this.gbFiltrar.TabIndex = 2;
+            this.gbFiltrar.TabStop = false;
+            this.gbFiltrar.Text = "Filtrar Usuarios";
+
             // 
             // rbMostrarInactivos
             // 
-            rbMostrarInactivos.Location = new Point(15, 50);
-            rbMostrarInactivos.Name = "rbMostrarInactivos";
-            rbMostrarInactivos.Size = new Size(150, 20);
-            rbMostrarInactivos.TabIndex = 0;
-            rbMostrarInactivos.Text = "Mostrar Inactivos";
+            this.rbMostrarInactivos.Location = new System.Drawing.Point(15, 50);
+            this.rbMostrarInactivos.Name = "rbMostrarInactivos";
+            this.rbMostrarInactivos.Size = new System.Drawing.Size(150, 20);
+            this.rbMostrarInactivos.TabIndex = 0;
+            this.rbMostrarInactivos.Text = "Mostrar Inactivos";
+
             // 
             // rbMostrarActivos
             // 
-            rbMostrarActivos.Checked = true;
-            rbMostrarActivos.Location = new Point(15, 25);
-            rbMostrarActivos.Name = "rbMostrarActivos";
-            rbMostrarActivos.Size = new Size(150, 20);
-            rbMostrarActivos.TabIndex = 1;
-            rbMostrarActivos.TabStop = true;
-            rbMostrarActivos.Text = "Mostrar Activos";
+            this.rbMostrarActivos.Checked = true;
+            this.rbMostrarActivos.Location = new System.Drawing.Point(15, 25);
+            this.rbMostrarActivos.Name = "rbMostrarActivos";
+            this.rbMostrarActivos.Size = new System.Drawing.Size(150, 20);
+            this.rbMostrarActivos.TabIndex = 1;
+            this.rbMostrarActivos.TabStop = true;
+            this.rbMostrarActivos.Text = "Mostrar Activos";
+
             // 
             // gbDetalles
             // 
-            gbDetalles.BackColor = Color.FromArgb(180, 180, 180);
-            gbDetalles.Controls.Add(gbEstadoInterno);
-            gbDetalles.Controls.Add(txtNombreUsuario);
-            gbDetalles.Controls.Add(lblNombreUsuario);
-            gbDetalles.Controls.Add(cmbRol);
-            gbDetalles.Controls.Add(lblRol);
-            gbDetalles.Controls.Add(txtApellido);
-            gbDetalles.Controls.Add(lblApellido);
-            gbDetalles.Controls.Add(txtNombre);
-            gbDetalles.Controls.Add(lblNombre);
-            gbDetalles.Controls.Add(txtDni);
-            gbDetalles.Controls.Add(lblDni);
-            gbDetalles.FlatStyle = FlatStyle.Flat;
-            gbDetalles.Location = new Point(495, 410);
-            gbDetalles.Name = "gbDetalles";
-            gbDetalles.Size = new Size(443, 135);
-            gbDetalles.TabIndex = 1;
-            gbDetalles.TabStop = false;
+            this.gbDetalles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.gbDetalles.Controls.Add(this.btnCancelar);
+            this.gbDetalles.Controls.Add(this.btnAceptar);
+            this.gbDetalles.Controls.Add(this.CKB_Desactivar);
+            this.gbDetalles.Controls.Add(this.CKB_Activar);
+            this.gbDetalles.Controls.Add(this.txtNombreUsuario);
+            this.gbDetalles.Controls.Add(this.lblNombreUsuario);
+            this.gbDetalles.Controls.Add(this.cmbRol);
+            this.gbDetalles.Controls.Add(this.lblRol);
+            this.gbDetalles.Controls.Add(this.txtApellido);
+            this.gbDetalles.Controls.Add(this.lblApellido);
+            this.gbDetalles.Controls.Add(this.txtNombre);
+            this.gbDetalles.Controls.Add(this.lblNombre);
+            this.gbDetalles.Controls.Add(this.txtDni);
+            this.gbDetalles.Controls.Add(this.lblDni);
+            this.gbDetalles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbDetalles.Location = new System.Drawing.Point(495, 410);
+            this.gbDetalles.Name = "gbDetalles";
+            this.gbDetalles.Size = new System.Drawing.Size(443, 135);
+            this.gbDetalles.TabIndex = 1;
+            this.gbDetalles.TabStop = false;
+
             // 
-            // gbEstadoInterno
+            // btnCancelar
             // 
-            gbEstadoInterno.Controls.Add(rbEstadoInactivo);
-            gbEstadoInterno.Controls.Add(rbEstadoActivo);
-            gbEstadoInterno.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            gbEstadoInterno.Location = new Point(240, 70);
-            gbEstadoInterno.Name = "gbEstadoInterno";
-            gbEstadoInterno.Size = new Size(190, 55);
-            gbEstadoInterno.TabIndex = 0;
-            gbEstadoInterno.TabStop = false;
-            gbEstadoInterno.Text = "Estado";
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnCancelar.Location = new System.Drawing.Point(333, 102);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(80, 25);
+            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+
             // 
-            // rbEstadoInactivo
+            // btnAceptar
             // 
-            rbEstadoInactivo.Location = new Point(95, 22);
-            rbEstadoInactivo.Name = "rbEstadoInactivo";
-            rbEstadoInactivo.Size = new Size(80, 20);
-            rbEstadoInactivo.TabIndex = 0;
-            rbEstadoInactivo.Text = "Inactivo";
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(200)))), ((int)(((byte)(100)))));
+            this.btnAceptar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAceptar.Location = new System.Drawing.Point(245, 102);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(80, 25);
+            this.btnAceptar.TabIndex = 13;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = false;
+            this.btnAceptar.Enabled = false;
+            this.btnAceptar.Visible = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+
             // 
-            // rbEstadoActivo
+            // CKB_Desactivar
             // 
-            rbEstadoActivo.Checked = true;
-            rbEstadoActivo.Location = new Point(15, 22);
-            rbEstadoActivo.Name = "rbEstadoActivo";
-            rbEstadoActivo.Size = new Size(70, 20);
-            rbEstadoActivo.TabIndex = 1;
-            rbEstadoActivo.TabStop = true;
-            rbEstadoActivo.Text = "Activo";
+            this.CKB_Desactivar.AutoSize = true;
+            this.CKB_Desactivar.Location = new System.Drawing.Point(245, 75);
+            this.CKB_Desactivar.Name = "CKB_Desactivar";
+            this.CKB_Desactivar.Size = new System.Drawing.Size(80, 19);
+            this.CKB_Desactivar.TabIndex = 12;
+            this.CKB_Desactivar.Text = "Desactivar";
+            this.CKB_Desactivar.UseVisualStyleBackColor = true;
+
+            // 
+            // CKB_Activar
+            // 
+            this.CKB_Activar.AutoSize = true;
+            this.CKB_Activar.Location = new System.Drawing.Point(333, 75);
+            this.CKB_Activar.Name = "CKB_Activar";
+            this.CKB_Activar.Size = new System.Drawing.Size(63, 19);
+            this.CKB_Activar.TabIndex = 11;
+            this.CKB_Activar.Text = "Activar";
+            this.CKB_Activar.UseVisualStyleBackColor = true;
+
             // 
             // txtNombreUsuario
             // 
-            txtNombreUsuario.Location = new Point(315, 42);
-            txtNombreUsuario.Name = "txtNombreUsuario";
-            txtNombreUsuario.Size = new Size(115, 23);
-            txtNombreUsuario.TabIndex = 1;
+            this.txtNombreUsuario.Location = new System.Drawing.Point(315, 42);
+            this.txtNombreUsuario.Name = "txtNombreUsuario";
+            this.txtNombreUsuario.Size = new System.Drawing.Size(115, 23);
+            this.txtNombreUsuario.TabIndex = 1;
+
             // 
             // lblNombreUsuario
             // 
-            lblNombreUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNombreUsuario.Location = new Point(210, 45);
-            lblNombreUsuario.Name = "lblNombreUsuario";
-            lblNombreUsuario.Size = new Size(100, 20);
-            lblNombreUsuario.TabIndex = 2;
-            lblNombreUsuario.Text = "NombreUsuario";
-            lblNombreUsuario.TextAlign = ContentAlignment.TopRight;
+            this.lblNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblNombreUsuario.Location = new System.Drawing.Point(210, 45);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(100, 20);
+            this.lblNombreUsuario.TabIndex = 2;
+            this.lblNombreUsuario.Text = "NombreUsuario";
+            this.lblNombreUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
+
             // 
             // cmbRol
             // 
-            cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbRol.Location = new Point(315, 12);
-            cmbRol.Name = "cmbRol";
-            cmbRol.Size = new Size(115, 23);
-            cmbRol.TabIndex = 3;
+            this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRol.Location = new System.Drawing.Point(315, 12);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.Size = new System.Drawing.Size(115, 23);
+            this.cmbRol.TabIndex = 3;
+
             // 
             // lblRol
             // 
-            lblRol.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRol.Location = new Point(220, 15);
-            lblRol.Name = "lblRol";
-            lblRol.Size = new Size(90, 20);
-            lblRol.TabIndex = 4;
-            lblRol.Text = "Rol";
-            lblRol.TextAlign = ContentAlignment.TopRight;
+            this.lblRol.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblRol.Location = new System.Drawing.Point(220, 15);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(90, 20);
+            this.lblRol.TabIndex = 4;
+            this.lblRol.Text = "Rol";
+            this.lblRol.TextAlign = System.Drawing.ContentAlignment.TopRight;
+
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(75, 72);
-            txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(130, 23);
-            txtApellido.TabIndex = 5;
+            this.txtApellido.Location = new System.Drawing.Point(75, 72);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(130, 23);
+            this.txtApellido.TabIndex = 5;
+
             // 
             // lblApellido
             // 
-            lblApellido.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblApellido.Location = new Point(10, 75);
-            lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(60, 20);
-            lblApellido.TabIndex = 6;
-            lblApellido.Text = "Apellido";
+            this.lblApellido.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblApellido.Location = new System.Drawing.Point(10, 75);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(60, 20);
+            this.lblApellido.TabIndex = 6;
+            this.lblApellido.Text = "Apellido";
+
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(75, 42);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(130, 23);
-            txtNombre.TabIndex = 7;
+            this.txtNombre.Location = new System.Drawing.Point(75, 42);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(130, 23);
+            this.txtNombre.TabIndex = 7;
+
             // 
             // lblNombre
             // 
-            lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNombre.Location = new Point(10, 45);
-            lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(60, 20);
-            lblNombre.TabIndex = 8;
-            lblNombre.Text = "Nombre";
+            this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblNombre.Location = new System.Drawing.Point(10, 45);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(60, 20);
+            this.lblNombre.TabIndex = 8;
+            this.lblNombre.Text = "Nombre";
+
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(75, 12);
-            txtDni.Name = "txtDni";
-            txtDni.Size = new Size(130, 23);
-            txtDni.TabIndex = 9;
+            this.txtDni.Location = new System.Drawing.Point(75, 12);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(130, 23);
+            this.txtDni.TabIndex = 9;
+
             // 
             // lblDni
             // 
-            lblDni.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblDni.Location = new Point(10, 15);
-            lblDni.Name = "lblDni";
-            lblDni.Size = new Size(60, 20);
-            lblDni.TabIndex = 10;
-            lblDni.Text = "DNI";
+            this.lblDni.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblDni.Location = new System.Drawing.Point(10, 15);
+            this.lblDni.Name = "lblDni";
+            this.lblDni.Size = new System.Drawing.Size(60, 20);
+            this.lblDni.TabIndex = 10;
+            this.lblDni.Text = "DNI";
+
             // 
             // btnSalir
             // 
-            btnSalir.BackColor = Color.FromArgb(255, 120, 120);
-            btnSalir.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnSalir.ForeColor = Color.Black;
-            btnSalir.Location = new Point(12, 505);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(115, 40);
-            btnSalir.TabIndex = 0;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = false;
-            btnSalir.Click += btnSalir_Click;
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSalir.ForeColor = System.Drawing.Color.Black;
+            this.btnSalir.Location = new System.Drawing.Point(12, 505);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(115, 40);
+            this.btnSalir.TabIndex = 0;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+
             // 
             // GestionUsuario
             // 
-            BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(950, 560);
-            Controls.Add(btnSalir);
-            Controls.Add(gbDetalles);
-            Controls.Add(gbFiltrar);
-            Controls.Add(dgvUsuarios);
-            Controls.Add(panelLateral);
-            Controls.Add(lblTitulo);
-            Font = new Font("Segoe UI", 9F);
-            Name = "GestionUsuario";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Gestión de Usuarios";
-            Load += GestionUsuario_Load;
-            panelLateral.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
-            gbFiltrar.ResumeLayout(false);
-            gbDetalles.ResumeLayout(false);
-            gbDetalles.PerformLayout();
-            gbEstadoInterno.ResumeLayout(false);
-            ResumeLayout(false);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(237)))), ((int)(((byte)(223)))));
+            this.ClientSize = new System.Drawing.Size(950, 560);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.gbDetalles);
+            this.Controls.Add(this.gbFiltrar);
+            this.Controls.Add(this.dgvUsuarios);
+            this.Controls.Add(this.panelLateral);
+            this.Controls.Add(this.lblTitulo);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Name = "GestionUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Gestión de Usuarios";
+            this.Load += new System.EventHandler(this.GestionUsuario_Load);
+            this.panelLateral.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
+            this.gbFiltrar.ResumeLayout(false);
+            this.gbDetalles.ResumeLayout(false);
+            this.gbDetalles.PerformLayout();
+            this.ResumeLayout(false);
         }
+
         #endregion
-        // Declaración de variables de control necesarias en la clase del Form
+
         private System.Windows.Forms.Panel panelLateral;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.Button btnModificar;
@@ -364,9 +432,11 @@
         private System.Windows.Forms.ComboBox cmbRol;
         private System.Windows.Forms.Label lblNombreUsuario;
         private System.Windows.Forms.TextBox txtNombreUsuario;
-        private System.Windows.Forms.GroupBox gbEstadoInterno;
-        private System.Windows.Forms.RadioButton rbEstadoActivo;
-        private System.Windows.Forms.RadioButton rbEstadoInactivo;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnCambiarContrasena;
+        private System.Windows.Forms.CheckBox CKB_Desactivar;
+        private System.Windows.Forms.CheckBox CKB_Activar;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

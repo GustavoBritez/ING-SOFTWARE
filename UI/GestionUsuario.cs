@@ -17,6 +17,8 @@ namespace UI
     public partial class GestionUsuario : Form
     {
         private UsuarioBLL usuarioBLL = new UsuarioBLL();
+        private string _modoActual = ""; 
+        private UsuarioBE _usuarioEnModificacion = null;
 
         public GestionUsuario()
         {
@@ -28,18 +30,151 @@ namespace UI
             cmbRol.Items.Add("Medico");
             cmbRol.Items.Add("Nutricionista");
             cmbRol.SelectedIndex = 0;
+
+
+            dgvUsuarios.SelectionChanged += DgvUsuarios_SelectionChanged;
+        }
+
+        private void DgvUsuarios_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvUsuarios.SelectedRows.Count == 1)
+            {
+                UsuarioBE usuarioSeleccionado = dgvUsuarios.SelectedRows[0].DataBoundItem as UsuarioBE;
+                if (usuarioSeleccionado != null)
+                {
+                    CargarCamposDelUsuario(usuarioSeleccionado);
+                    
+
+                    if (_modoActual == "CambiarContrasena")
+                    {
+                        CambiarContrasenaDelUsuario(usuarioSeleccionado);
+                    }
+                }
+            }
+        }
+
+        private void CargarCamposDelUsuario(UsuarioBE usuario)
+        {
+            txtDni.Text = usuario._Dni.ToString();
+            txtNombre.Text = usuario._Nombre;
+            txtApellido.Text = usuario._Apellido;
+            cmbRol.SelectedItem = usuario._Rol;
+            txtNombreUsuario.Text = usuario._NombreDeUsuario;
+            CKB_Desactivar.Checked = !usuario._Estado;
+            CKB_Activar.Checked = usuario._Estado;
+        }
+
+        private void CambiarContrasenaDelUsuario(UsuarioBE usuario)
+        {
+            try
+            {
+                string nuevaContraseña = Interaction.InputBox(
+                    "Ingrese la nueva contraseña (mínimo 3 caracteres):",
+                    "Cambiar Contraseña"
+                );
+
+                if (string.IsNullOrWhiteSpace(nuevaContraseña))
+                {
+                    MessageBox.Show("Operación cancelada.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RestablecerModoCambiarContrasena();
+                    return;
+                }
+
+                if (nuevaContraseña.Length < 3)
+                {
+                    MessageBox.Show("La contraseña debe tener al menos 3 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    RestablecerModoCambiarContrasena();
+                    return;
+                }
+
+                usuario._Contraseña = nuevaContraseña;
+                usuarioBLL.ModificarUsuario(usuario);
+
+                MessageBox.Show($"Contraseña del usuario '{usuario._NombreDeUsuario}' cambiada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RestablecerModoCambiarContrasena();
+                GestionUsuarios_Load(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cambiar contraseña: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RestablecerModoCambiarContrasena();
+            }
+        }
+
+        private void RestablecerModoCambiarContrasena()
+        {
+            _modoActual = "";
+            dgvUsuarios.ClearSelection();
+            LimpiarCampos();
+            
+
+            btnCrear.Enabled = true;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+            btnActDesact.Enabled = true;
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            _modoActual = "Crear";
+            HabilitarModoCrear();
+        }
+
+        private void HabilitarModoCrear()
+        {
+
+            dgvUsuarios.ClearSelection();
+            
+
+            LimpiarCampos();
+            
+
+            txtDni.Enabled = true;
+            txtNombre.Enabled = true;
+            txtApellido.Enabled = true;
+            cmbRol.Enabled = true;
+            txtNombreUsuario.Enabled = true;
+            
+
+            CKB_Desactivar.Enabled = false;
+            CKB_Activar.Enabled = false;
+            
+
+            btnAceptar.Visible = true;
+            btnAceptar.Enabled = true;
+            btnCancelar.Visible = true;
+            btnCancelar.Enabled = true;
+            
+
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnActDesact.Enabled = false;
+            btnCambiarContrasena.Enabled = false;
+            
+
+            txtDni.Focus();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (_modoActual == "Crear")
+            {
+                CrearUsuario();
+            }
+            else if (_modoActual == "Modificar")
+            {
+                ModificarUsuario();
+            }
+        }
+
+        private void CrearUsuario()
+        {
             try
             {
-
-                /*if (!ValidarCampos())
+                if (!ValidarCamposCrear())
                 {
                     return;
-                }*/
-
+                }
 
                 string _dni = txtDni.Text;
                 string nombre = txtNombre.Text.Trim();
@@ -48,16 +183,18 @@ namespace UI
 
                 if (!int.TryParse(_dni, out int dni))
                 {
-                    if (dni < 90000000)
-                    {
-                        MessageBox.Show("Error, el DNI debe ser entero y con 8 digitos");
-                    }
+                    MessageBox.Show("Error, el DNI debe ser entero y con 8 dígitos");
+                    return;
+                }
+
+                if (dni < 10000000)
+                {
+                    MessageBox.Show("Error, el DNI debe tener 8 dígitos");
+                    return;
                 }
 
                 string contraseña = $"{txtNombre.Text}{txtDni.Text}";
                 string rol = cmbRol.SelectedItem?.ToString() ?? "Usuario";
-                bool bloqueado = rbEstadoInactivo.Checked == false;
-
 
                 UsuarioBE nuevoUsuario = new UsuarioBE(
                     nombre: nombre,
@@ -66,9 +203,9 @@ namespace UI
                     nombreDeUsuario: nombreDeUsuario,
                     contraseña: contraseña,
                     rol: rol,
-                    bloqueado: bloqueado
+                    bloqueado: true,
+                    estado: true
                 );
-
 
                 usuarioBLL.CrearUsuario(nuevoUsuario);
 
@@ -79,7 +216,8 @@ namespace UI
                     MessageBoxIcon.Information
                 );
 
-                LimpiarCampos();
+                CancelarOperacion();
+                GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
@@ -92,8 +230,7 @@ namespace UI
             }
         }
 
-
-        private bool ValidarCampos()
+        private bool ValidarCamposCrear()
         {
             if (string.IsNullOrWhiteSpace(txtDni.Text))
             {
@@ -128,6 +265,41 @@ namespace UI
             return true;
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            CancelarOperacion();
+        }
+
+        private void CancelarOperacion()
+        {
+            _modoActual = "";
+            _usuarioEnModificacion = null;
+            
+
+            LimpiarCampos();
+            
+
+            btnAceptar.Visible = false;
+            btnAceptar.Enabled = false;
+            btnCancelar.Visible = false;
+            btnCancelar.Enabled = false;
+            
+            btnCrear.Enabled = true;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+            btnActDesact.Enabled = true;
+            btnCambiarContrasena.Enabled = true;
+            
+
+            txtDni.Enabled = false;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            cmbRol.Enabled = false;
+            txtNombreUsuario.Enabled = false;
+            CKB_Desactivar.Enabled = false;
+            CKB_Activar.Enabled = false;
+        }
+
         private void LimpiarCampos()
         {
             txtDni.Clear();
@@ -135,38 +307,53 @@ namespace UI
             txtApellido.Clear();
             txtNombreUsuario.Clear();
             cmbRol.SelectedIndex = -1;
-            rbEstadoActivo.Checked = true;
-            rbEstadoInactivo.Checked = false;
+            CKB_Desactivar.Checked = false;
+            CKB_Activar.Checked = false;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-
             FormManager.Navegar(this, FormManager.ObtenerForm1());
         }
 
         private void GestionUsuario_Load(object sender, EventArgs e)
         {
+
+            txtDni.Enabled = false;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            cmbRol.Enabled = false;
+            txtNombreUsuario.Enabled = false;
+            CKB_Desactivar.Enabled = false;
+            CKB_Activar.Enabled = false;
+            
+
+            btnAceptar.Visible = false;
+            btnAceptar.Enabled = false;
+            btnCancelar.Visible = false;
+            btnCancelar.Enabled = false;
+            
             GestionUsuarios_Load(sender, e);
         }
+
         public void GestionUsuarios_Load(object sender, EventArgs e)
         {
             dgvUsuarios.DataSource = null;
             dgvUsuarios.DataSource = usuarioBLL.ListarUsuarios();
 
-            // Configurar el DataGridView como read-only y selección de fila completa
+
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.MultiSelect = false;
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ocultar la columna de Contraseña
+
             if (dgvUsuarios.Columns.Contains("_Contraseña"))
             {
                 dgvUsuarios.Columns["_Contraseña"].Visible = false;
             }
 
-            // Configurar encabezados y propiedades de las columnas
+
             if (dgvUsuarios.Columns.Contains("_Dni"))
             {
                 dgvUsuarios.Columns["_Dni"].HeaderText = "DNI";
@@ -194,7 +381,12 @@ namespace UI
 
             if (dgvUsuarios.Columns.Contains("_Bloqueado"))
             {
-                dgvUsuarios.Columns["_Bloqueado"].HeaderText = "Estado";
+                dgvUsuarios.Columns["_Bloqueado"].HeaderText = "Bloqueado";
+            }
+
+            if (dgvUsuarios.Columns.Contains("_Estado"))
+            {
+                dgvUsuarios.Columns["_Estado"].HeaderText = "Estado";
             }
         }
 
@@ -216,44 +408,110 @@ namespace UI
                     return;
                 }
 
-                MessageBox.Show($"Usted está a punto de modificar los datos del usuario '{usuarioSeleccionado._NombreDeUsuario}'", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _modoActual = "Modificar";
+                _usuarioEnModificacion = usuarioSeleccionado;
+                HabilitarModoModificar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                if (!string.IsNullOrWhiteSpace(txtNombre.Text))
-                    usuarioSeleccionado._Nombre = txtNombre.Text.Trim();
+        private void HabilitarModoModificar()
+        {
+            txtDni.Enabled = false; // DNI no se puede editar
+            txtNombre.Enabled = true;
+            txtApellido.Enabled = true;
+            cmbRol.Enabled = true;
+            txtNombreUsuario.Enabled = true;
+            
 
-                if (!string.IsNullOrWhiteSpace(txtApellido.Text))
-                    usuarioSeleccionado._Apellido = txtApellido.Text.Trim();
+            CKB_Desactivar.Enabled = false;
+            CKB_Activar.Enabled = false;
+            
 
-                if (!string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
-                    usuarioSeleccionado._NombreDeUsuario = txtNombreUsuario.Text.Trim();
+            btnAceptar.Visible = true;
+            btnAceptar.Enabled = true;
+            btnCancelar.Visible = true;
+            btnCancelar.Enabled = true;
+            
 
-                if (cmbRol.SelectedItem != null)
-                    usuarioSeleccionado._Rol = cmbRol.SelectedItem.ToString();
+            btnCrear.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnActDesact.Enabled = false;
+            btnCambiarContrasena.Enabled = false;
+        }
 
-                DialogResult result = MessageBox.Show("¿Desea cambiar la contraseña?", "Cambiar Contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+        private void ModificarUsuario()
+        {
+            try
+            {
+                if (_usuarioEnModificacion is null)
                 {
-                    string nuevaContraseña = Interaction.InputBox("Ingrese nueva contraseña:", "Nueva Contraseña");
-                    if (!string.IsNullOrWhiteSpace(nuevaContraseña))
-                        usuarioSeleccionado._Contraseña = nuevaContraseña;
+                    MessageBox.Show("Error: No hay usuario en modificación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                usuarioBLL.ModificarUsuario(usuarioSeleccionado);
+
+                if (!string.IsNullOrWhiteSpace(txtNombre.Text))
+                    _usuarioEnModificacion._Nombre = txtNombre.Text.Trim();
+
+                if (!string.IsNullOrWhiteSpace(txtApellido.Text))
+                    _usuarioEnModificacion._Apellido = txtApellido.Text.Trim();
+
+                if (!string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
+                    _usuarioEnModificacion._NombreDeUsuario = txtNombreUsuario.Text.Trim();
+
+                if (cmbRol.SelectedItem != null)
+                    _usuarioEnModificacion._Rol = cmbRol.SelectedItem.ToString();
+
+                usuarioBLL.ModificarUsuario(_usuarioEnModificacion);
 
                 MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
+                CancelarOperacion();
+                GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: Modificaciones no aplicadas. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                GestionUsuarios_Load(sender, e);
-            }
         }
 
         private void btnDesbloquear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvUsuarios.SelectedRows.Count != 1)
+                {
+                    MessageBox.Show("Error: Seleccione una fila para desbloquear/bloquear", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                UsuarioBE usuarioSeleccionado = dgvUsuarios.SelectedRows[0].DataBoundItem as UsuarioBE;
+
+                if (usuarioSeleccionado is null)
+                {
+                    MessageBox.Show("Error: No se pudo seleccionar un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Cambiar estado de bloqueo
+                usuarioSeleccionado._Bloqueado = !usuarioSeleccionado._Bloqueado;
+                usuarioBLL.ModificarUsuario(usuarioSeleccionado);
+
+                string nuevoEstado = usuarioSeleccionado._Bloqueado ? "bloqueado" : "desbloqueado";
+                MessageBox.Show($"Usuario '{usuarioSeleccionado._NombreDeUsuario}' {nuevoEstado} correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                GestionUsuarios_Load(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: No se pudo cambiar el estado del usuario. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnActDesact_Click(object sender, EventArgs e)
         {
             try
             {
@@ -283,6 +541,29 @@ namespace UI
             finally
             {
                 GestionUsuarios_Load(sender, e);
+            }
+        }
+
+        private void btnCambiarContrasena_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _modoActual = "CambiarContrasena";
+                
+
+                MessageBox.Show("Seleccione un usuario de la grilla", "Seleccionar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                dgvUsuarios.ClearSelection();
+                
+                btnCrear.Enabled = false;
+                btnModificar.Enabled = false;
+                btnEliminar.Enabled = false;
+                btnActDesact.Enabled = false;
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

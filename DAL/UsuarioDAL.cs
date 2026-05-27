@@ -15,8 +15,8 @@ namespace DAL
         {
             try
             {
-                string query = $@"INSERT INTO {TABLA_USUARIOS} (DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado) 
-                                  VALUES (@dni, @nombreDeUsuario, @nombre, @apellido, @contraseña, @rol, @bloqueado)";
+                string query = $@"INSERT INTO {TABLA_USUARIOS} (DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado) 
+                                  VALUES (@dni, @nombreDeUsuario, @nombre, @apellido, @contraseña, @rol, @bloqueado, @estado)";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
@@ -26,7 +26,8 @@ namespace DAL
                     new SqlParameter("@apellido", usuario._Apellido),
                     new SqlParameter("@contraseña", usuario._Contraseña),
                     new SqlParameter("@rol", usuario._Rol),
-                    new SqlParameter("@bloqueado", usuario._Bloqueado)
+                    new SqlParameter("@bloqueado", usuario._Bloqueado),
+                    new SqlParameter("@estado", usuario._Estado)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -74,7 +75,7 @@ namespace DAL
         {
             try
             {
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado 
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado
                                   FROM {TABLA_USUARIOS} 
                                   WHERE NombreDeUsuario = @nombreDeUsuario";
 
@@ -93,12 +94,13 @@ namespace DAL
                 // En modo conectado como ven tenemos los datos del  UN usuario en un datatable y se lo ponemos a un UsuarioBE para devolverlo a la BLL
                 UsuarioBE usuarioEncontrado = new UsuarioBE(
                     dt.Rows[0]["Nombre"].ToString(),
-                    dt.Rows[0]["Apellido"].ToString(),// Ven aqui usamos dt.rows[0] por que siempre se devuelve UN usuario.
+                    dt.Rows[0]["Apellido"].ToString(),
                     Convert.ToInt32(dt.Rows[0]["DNI"]),
                     dt.Rows[0]["NombreDeUsuario"].ToString(),
                     dt.Rows[0]["Contraseña"].ToString(),
                     dt.Rows[0]["Rol"].ToString(),
-                    Convert.ToBoolean(dt.Rows[0]["Bloqueado"])
+                    Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
+                    Convert.ToBoolean(dt.Rows[0]["Estado"])
                 );
 
                 return usuarioEncontrado;
@@ -110,12 +112,11 @@ namespace DAL
             }
         }
 
-        // No lo use aun jsjjsjs pero bueno
         public UsuarioBE BuscarUsuario(int dni)
         {
             try
             {
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado 
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado 
                                   FROM {TABLA_USUARIOS} 
                                   WHERE DNI = @dni";
 
@@ -138,7 +139,8 @@ namespace DAL
                     dt.Rows[0]["NombreDeUsuario"].ToString(),
                     dt.Rows[0]["Contraseña"].ToString(),
                     dt.Rows[0]["Rol"].ToString(),
-                    Convert.ToBoolean(dt.Rows[0]["Bloqueado"])
+                    Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
+                    Convert.ToBoolean(dt.Rows[0]["Estado"])
                 );
 
                 return usuario;
@@ -156,7 +158,7 @@ namespace DAL
             {
                 string query = $@"UPDATE {TABLA_USUARIOS} 
                                   SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                                      Rol = @rol, Bloqueado = @bloqueado 
+                                      Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
                                   WHERE DNI = @dni";
 
                 SqlParameter[] parametros = new SqlParameter[]
@@ -167,7 +169,8 @@ namespace DAL
                     new SqlParameter("@rol", usuario._Rol),
                     new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
-                    new SqlParameter("@dni", usuario._Dni)
+                    new SqlParameter("@dni", usuario._Dni),
+                    new SqlParameter("@estado", usuario._Estado)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -189,17 +192,18 @@ namespace DAL
                 throw;
             }
         }
+
         public void CambioEstado(UsuarioBE usuario)
         {
             try
             {
                 string query = $@"UPDATE {TABLA_USUARIOS} 
-                                  SET Bloqueado = @bloqueado 
+                                  SET Estado = @estado
                                   WHERE DNI = @dni";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                    new SqlParameter("@bloqueado", usuario._Bloqueado),
+                    new SqlParameter("@estado", usuario._Estado),
                     new SqlParameter("@dni", usuario._Dni)
                 };
 
@@ -209,7 +213,7 @@ namespace DAL
                 bitacoraDAL.GuardarBitacora(new BitacoraBE(
                     criticidad: 1,
                     descripcion: $"Cambio de estado de '{usuario._NombreDeUsuario}'",
-                    dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
+                    dni: 41236101,
                     fecha: DateTime.Now,
                     modulo: Modulo
                 ));
@@ -222,13 +226,14 @@ namespace DAL
                 throw;
             }
         }
+
         public List<UsuarioBE> ListaUsuarios()
         {
             List<UsuarioBE> usuarios = new List<UsuarioBE>();
 
             try
             {
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado 
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado
                                   FROM {TABLA_USUARIOS} 
                                   ORDER BY NombreDeUsuario";
 
@@ -243,7 +248,8 @@ namespace DAL
                         row["NombreDeUsuario"].ToString(),
                         row["Contraseña"].ToString(),
                         row["Rol"].ToString(),
-                        Convert.ToBoolean(row["Bloqueado"])
+                        Convert.ToBoolean(row["Bloqueado"]),
+                        Convert.ToBoolean(row["Estado"])
                     );
 
                     usuarios.Add(usuario);
