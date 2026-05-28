@@ -82,7 +82,7 @@ namespace UI
                 UsuarioBE usuarioSeleccionado = dgvUsuarios.SelectedRows[0].DataBoundItem as UsuarioBE;
                 if (usuarioSeleccionado != null)
                 {
-                    CargarCamposDelUsuario(usuarioSeleccionado);
+                    CargarCamposDelUsuario(usuarioSeleccionado); // Cheken que atualizo los txt
                     
 
                     if (_modoActual == "CambiarContrasena")
@@ -570,7 +570,7 @@ namespace UI
 
                 usuarioBLL.CambiarEstado(usuarioSeleccionado);
 
-                string nuevoEstado = usuarioSeleccionado._Bloqueado ? "bloqueado" : "desbloqueado";
+                string nuevoEstado = usuarioSeleccionado._Estado ? "activado" : "desactivado";
                 MessageBox.Show($"Usuario '{usuarioSeleccionado._NombreDeUsuario}' {nuevoEstado} correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            btnChangePass = new Button();
+            btnLogin = new Button();
             btnLogout = new Button();
             btnAyuda = new Button();
             btnUsuarios = new Button();
@@ -39,8 +41,6 @@
             panelTop = new Panel();
             lblTitulo = new Label();
             panelContenedor = new Panel();
-            btnLogin = new Button();
-            btnChangePass = new Button();
             panelMenu.SuspendLayout();
             panelTop.SuspendLayout();
             SuspendLayout();
@@ -62,6 +62,36 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(240, 700);
             panelMenu.TabIndex = 0;
+            // 
+            // btnChangePass
+            // 
+            btnChangePass.BackColor = Color.FromArgb(78, 122, 84);
+            btnChangePass.FlatStyle = FlatStyle.Flat;
+            btnChangePass.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnChangePass.ForeColor = Color.Transparent;
+            btnChangePass.Location = new Point(0, 564);
+            btnChangePass.Margin = new Padding(2);
+            btnChangePass.Name = "btnChangePass";
+            btnChangePass.Size = new Size(240, 38);
+            btnChangePass.TabIndex = 8;
+            btnChangePass.Text = "Cambiar Contraseña";
+            btnChangePass.UseVisualStyleBackColor = false;
+            btnChangePass.Click += btnChangePass_Click;
+            // 
+            // btnLogin
+            // 
+            btnLogin.BackColor = Color.FromArgb(78, 122, 84);
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnLogin.ForeColor = Color.White;
+            btnLogin.Location = new Point(0, 606);
+            btnLogin.Margin = new Padding(2);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(240, 38);
+            btnLogin.TabIndex = 7;
+            btnLogin.Text = "Iniciar Sesión";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnLogout
             // 
@@ -197,35 +227,6 @@
             panelContenedor.Name = "panelContenedor";
             panelContenedor.Size = new Size(960, 640);
             panelContenedor.TabIndex = 2;
-            // 
-            // btnLogin
-            // 
-            btnLogin.BackColor = Color.FromArgb(78, 122, 84);
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(0, 606);
-            btnLogin.Margin = new Padding(2);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(240, 38);
-            btnLogin.TabIndex = 7;
-            btnLogin.Text = "Iniciar Sesión";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
-            // 
-            // btnChangePass
-            // 
-            btnChangePass.BackColor = Color.FromArgb(78, 122, 84);
-            btnChangePass.FlatStyle = FlatStyle.Flat;
-            btnChangePass.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnChangePass.ForeColor = Color.Transparent;
-            btnChangePass.Location = new Point(0, 564);
-            btnChangePass.Margin = new Padding(2);
-            btnChangePass.Name = "btnChangePass";
-            btnChangePass.Size = new Size(240, 38);
-            btnChangePass.TabIndex = 8;
-            btnChangePass.Text = "Cambiar Contraseña";
-            btnChangePass.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 

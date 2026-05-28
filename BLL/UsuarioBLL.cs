@@ -134,7 +134,8 @@ namespace BLL
                     if (intentosActuales >= 3)
                     {
                         usuarioEnBD._Bloqueado = true;
-                        usuarioDAL.CambioEstado(usuarioEnBD);
+                        // Usar el método de BLL para modificar el usuario (actualiza Bloqueado en BD y registra bitácora)
+                        ModificarUsuario(usuarioEnBD);
                         Console.WriteLine($"Cuenta de usuario '{nombreDeUsuario}' bloqueada por 3 intentos fallidos.");
                     }
 
@@ -190,7 +191,8 @@ namespace BLL
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(usuario._Contraseña))
+                // Evitar hashear nuevamente si la contraseña ya está hasheada en la BD (las hashes de BCrypt empiezan por "$2")
+                if (!string.IsNullOrWhiteSpace(usuario._Contraseña) && !usuario._Contraseña.StartsWith("$2"))
                 {
                     usuario._Contraseña = BCrypt.Net.BCrypt.HashPassword(usuario._Contraseña);
                 }
