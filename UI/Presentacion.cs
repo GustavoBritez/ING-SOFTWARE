@@ -36,8 +36,11 @@ namespace UI
                     return;
                 }
 
+                // Normalizar el nombre de usuario para consistencia
+                string nombreNormalizado = nombreDeUsuario.ToLower();
+
                 // Verificar si el usuario existe y está bloqueado antes de intentar login
-                UsuarioBE usuarioVerificacion = usuarioBLL.ObtenerUsuario(nombreDeUsuario);
+                UsuarioBE usuarioVerificacion = usuarioBLL.ObtenerUsuario(nombreNormalizado);
                 bool usuarioExisteYEstaBloqueado = usuarioVerificacion != null && usuarioVerificacion._Bloqueado;
 
                 bool loginExitoso = usuarioBLL.Login(nombreDeUsuario, contraseña);
@@ -45,7 +48,7 @@ namespace UI
                 if (loginExitoso)
                 {
                     MessageBox.Show($"¡Logeado con éxito!", "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    UsuarioBE usuario = usuarioBLL.ObtenerUsuario(nombreDeUsuario);
+                    UsuarioBE usuario = usuarioBLL.ObtenerUsuario(nombreNormalizado);
                     ServicesSessionManager.Instancia.Login(usuario);
                     FormManager.Navegar(this, FormManager.ObtenerForm1());
                 }
@@ -69,7 +72,6 @@ namespace UI
                     }
                     else
                     {
-                        // Contraseña incorrecta
                         int intentosFallidos = usuarioBLL.ObtenerIntentosFallidos(nombreDeUsuario);
                         int intentosRestantes = 3 - intentosFallidos;
 

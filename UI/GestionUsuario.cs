@@ -31,8 +31,48 @@ namespace UI
             cmbRol.Items.Add("Nutricionista");
             cmbRol.SelectedIndex = 0;
 
-
+            GestionUsuarios_Load(null, null);
             dgvUsuarios.SelectionChanged += DgvUsuarios_SelectionChanged;
+            
+            // Agregar event handlers para los RadioButtons de filtro
+            rbMostrarActivos.CheckedChanged += RbMostrar_CheckedChanged;
+            rbMostrarInactivos.CheckedChanged += RbMostrar_CheckedChanged;
+        }
+
+        private void RbMostrar_CheckedChanged(object sender, EventArgs e)
+        {
+            AplicarFiltroEstado();
+        }
+
+        private void AplicarFiltroEstado()
+        {
+            try
+            {
+                List<UsuarioBE> todosusuarios = usuarioBLL.ListarUsuarios();
+                List<UsuarioBE> usuariosFiltrados;
+
+                if (rbMostrarActivos.Checked)
+                {
+                    usuariosFiltrados = todosusuarios.Where(u => u._Estado == true).ToList();
+                }
+                else if (rbMostrarInactivos.Checked)
+                {
+                    usuariosFiltrados = todosusuarios.Where(u => u._Estado == false).ToList();
+                }
+                else
+                {
+                    usuariosFiltrados = todosusuarios;
+                }
+
+                dgvUsuarios.DataSource = null;
+                dgvUsuarios.DataSource = usuariosFiltrados;
+
+                ConfigurarColumnasDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar usuarios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void DgvUsuarios_SelectionChanged(object sender, EventArgs e)
@@ -193,7 +233,7 @@ namespace UI
                     return;
                 }
 
-                string contraseña = $"{txtNombre.Text}{txtDni.Text}";
+                string contraseña = $"{nombre}{_dni}";  // Usar nombre y _dni ya validados/trimmed
                 string rol = cmbRol.SelectedItem?.ToString() ?? "Usuario";
 
                 UsuarioBE nuevoUsuario = new UsuarioBE(
@@ -203,7 +243,7 @@ namespace UI
                     nombreDeUsuario: nombreDeUsuario,
                     contraseña: contraseña,
                     rol: rol,
-                    bloqueado: true,
+                    bloqueado: false,  // Cambiar a false - el usuario debe poder loguearse
                     estado: true
                 );
 
@@ -338,21 +378,20 @@ namespace UI
 
         public void GestionUsuarios_Load(object sender, EventArgs e)
         {
-            dgvUsuarios.DataSource = null;
-            dgvUsuarios.DataSource = usuarioBLL.ListarUsuarios();
+            AplicarFiltroEstado();
+        }
 
-
+        private void ConfigurarColumnasDataGridView()
+        {
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.MultiSelect = false;
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-
             if (dgvUsuarios.Columns.Contains("_Contraseña"))
             {
                 dgvUsuarios.Columns["_Contraseña"].Visible = false;
             }
-
 
             if (dgvUsuarios.Columns.Contains("_Dni"))
             {

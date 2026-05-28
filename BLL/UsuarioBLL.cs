@@ -90,7 +90,8 @@ namespace BLL
                 // Normalizar el nombre de usuario a minúsculas para evitar problemas de case-sensitivity
                 string nombreNormalizado = nombreDeUsuario.ToLower();
 
-                UsuarioBE usuarioEnBD = usuarioDAL.ObtenerUsuario(nombreDeUsuario);
+                // Usar el nombre normalizado para obtener el usuario de la BD
+                UsuarioBE usuarioEnBD = usuarioDAL.ObtenerUsuario(nombreNormalizado);
 
                 if (usuarioEnBD == null)
                 {
@@ -206,11 +207,6 @@ namespace BLL
                 return null;
             }
         }
-
-        //Eliminen el ValidarDNI no es necesario
-        //Eliminen el Validar contraseaña no es necesario ya validamos en Login();
-
-
 
     }
 }
