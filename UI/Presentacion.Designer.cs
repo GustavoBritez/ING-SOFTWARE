@@ -34,7 +34,8 @@
             lblSubtitulo = new Label();
             lblTitulo = new Label();
             panelLogin = new Panel();
-            btnLogin = new Button();
+            btnCancelar = new Button();
+            btnIngresar = new Button();
             txtPassword = new TextBox();
             txtUsuario = new TextBox();
             lblPassword = new Label();
@@ -51,7 +52,7 @@
             panelIzquierdo.Controls.Add(lblTitulo);
             panelIzquierdo.Dock = DockStyle.Left;
             panelIzquierdo.Location = new Point(0, 0);
-            panelIzquierdo.Margin = new Padding(2, 2, 2, 2);
+            panelIzquierdo.Margin = new Padding(2);
             panelIzquierdo.Name = "panelIzquierdo";
             panelIzquierdo.Size = new Size(233, 375);
             panelIzquierdo.TabIndex = 0;
@@ -83,7 +84,8 @@
             // panelLogin
             // 
             panelLogin.BackColor = Color.FromArgb(226, 234, 226);
-            panelLogin.Controls.Add(btnLogin);
+            panelLogin.Controls.Add(btnCancelar);
+            panelLogin.Controls.Add(btnIngresar);
             panelLogin.Controls.Add(txtPassword);
             panelLogin.Controls.Add(txtUsuario);
             panelLogin.Controls.Add(lblPassword);
@@ -91,32 +93,47 @@
             panelLogin.Controls.Add(lblLogin);
             panelLogin.Dock = DockStyle.Fill;
             panelLogin.Location = new Point(233, 0);
-            panelLogin.Margin = new Padding(2, 2, 2, 2);
+            panelLogin.Margin = new Padding(2);
             panelLogin.Name = "panelLogin";
             panelLogin.Size = new Size(389, 375);
             panelLogin.TabIndex = 1;
             // 
-            // btnLogin
+            // btnCancelar
             // 
-            btnLogin.BackColor = Color.FromArgb(78, 122, 84);
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(109, 289);
-            btnLogin.Margin = new Padding(2, 2, 2, 2);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(140, 38);
-            btnLogin.TabIndex = 5;
-            btnLogin.Text = "Iniciar Sesión";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
+            btnCancelar.BackColor = Color.FromArgb(78, 122, 84);
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(202, 291);
+            btnCancelar.Margin = new Padding(2);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(140, 38);
+            btnCancelar.TabIndex = 6;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnIngresar
+            // 
+            btnIngresar.BackColor = Color.FromArgb(78, 122, 84);
+            btnIngresar.FlatStyle = FlatStyle.Flat;
+            btnIngresar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnIngresar.ForeColor = Color.White;
+            btnIngresar.Location = new Point(58, 291);
+            btnIngresar.Margin = new Padding(2);
+            btnIngresar.Name = "btnIngresar";
+            btnIngresar.Size = new Size(140, 38);
+            btnIngresar.TabIndex = 5;
+            btnIngresar.Text = "Ingresar";
+            btnIngresar.UseVisualStyleBackColor = false;
+            btnIngresar.Click += btnIngresar_Click;
             // 
             // txtPassword
             // 
             txtPassword.BorderStyle = BorderStyle.FixedSingle;
             txtPassword.Font = new Font("Segoe UI", 11F);
             txtPassword.Location = new Point(58, 221);
-            txtPassword.Margin = new Padding(2, 2, 2, 2);
+            txtPassword.Margin = new Padding(2);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(257, 27);
@@ -127,7 +144,7 @@
             txtUsuario.BorderStyle = BorderStyle.FixedSingle;
             txtUsuario.Font = new Font("Segoe UI", 11F);
             txtUsuario.Location = new Point(58, 154);
-            txtUsuario.Margin = new Padding(2, 2, 2, 2);
+            txtUsuario.Margin = new Padding(2);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(257, 27);
             txtUsuario.TabIndex = 3;
@@ -175,8 +192,8 @@
             ClientSize = new Size(622, 375);
             Controls.Add(panelLogin);
             Controls.Add(panelIzquierdo);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(2, 2, 2, 2);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2);
             MaximizeBox = false;
             Name = "Presentacion";
             StartPosition = FormStartPosition.CenterScreen;
@@ -199,7 +216,8 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnIngresar;
+        private Button btnCancelar;
     }
 }
 #endregion

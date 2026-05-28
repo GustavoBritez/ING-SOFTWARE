@@ -56,5 +56,10 @@ namespace UI
         {
             FormManager.Navegar(this, FormManager.ObtenerBitacora());
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            FormManager.Navegar(this, FormManager.ObtenerPresentacion());
+        }
     }
 }
