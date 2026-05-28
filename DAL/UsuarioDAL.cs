@@ -157,9 +157,9 @@ namespace DAL
             try
             {
                 string query = $@"UPDATE {TABLA_USUARIOS} 
-                                  SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                                      Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
-                                  WHERE DNI = @dni";
+                          SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
+                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
+                          WHERE DNI = @dni";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
@@ -175,13 +175,39 @@ namespace DAL
 
                 conexion.ExecuteNonQuery(query, parametros);
 
+                var usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+
+                int dniParaBitacora;
+                string descripcionParaBitacora;
+
+                if (usuarioActivo != null)
+                {
+                    dniParaBitacora = usuarioActivo._Dni;
+                    descripcionParaBitacora = $"Modificación de usuario '{usuario._NombreDeUsuario}' por el administrador.";
+                }
+                else
+                {
+                    dniParaBitacora = usuario._Dni;
+
+
+                    if (usuario._Bloqueado)
+                    {
+                        descripcionParaBitacora = $"Login fallido: El usuario '{usuario._NombreDeUsuario}' superó los intentos permitidos y bloqueó la cuenta.";
+                    }
+                    else
+                    {
+                        descripcionParaBitacora = $"Modificación automática del sistema sobre el usuario '{usuario._NombreDeUsuario}'.";
+                    }
+                }
+
                 BitacoraDAL bitacoraDAL = new();
                 bitacoraDAL.GuardarBitacora(new BitacoraBE(
-                    criticidad: 1,
-                    descripcion: $"Modificacion de usuario '{usuario._NombreDeUsuario}'",
-                    dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
+                    criticidad: usuarioActivo != null ? 3 : 1,
+                    descripcion: descripcionParaBitacora,
+                    dni: dniParaBitacora, 
                     fecha: DateTime.Now,
-                    modulo: Modulo
+                    id_evento: usuario._Bloqueado ? 102 : 101, 
+                    modulo: "UsuarioDAL"
                 ));
 
                 Console.WriteLine($"Usuario {usuario._NombreDeUsuario} modificado exitosamente.");

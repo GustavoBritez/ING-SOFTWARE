@@ -43,7 +43,8 @@ namespace DAL
                         descripcion: row["Descripcion"].ToString(),
                         dni: (int)row["Dni"],
                         fecha: (DateTime)row["Fecha"],
-                        modulo: row["Modulo"].ToString()
+                        modulo: row["Modulo"].ToString(),
+                        id_evento: (int)row["Id_Event"]
                     ));
                 }
             }
@@ -100,7 +101,8 @@ namespace DAL
                         descripcion: row["Descripcion"].ToString(),
                         dni: (int)row["Dni"],
                         fecha: (DateTime)row["Fecha"],
-                        modulo: row["Modulo"].ToString()
+                        modulo: row["Modulo"].ToString(),
+                        id_evento: (int)row["Id_Event"]
                     ));
                 }
             }

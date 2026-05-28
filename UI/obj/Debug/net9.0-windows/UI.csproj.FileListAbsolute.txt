@@ -32,6 +32,10 @@ C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Microso
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Microsoft.SqlServer.Server.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\PdfSharpCore.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\ICSharpCode.SharpZipLib.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\SixLabors.Fonts.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\SixLabors.ImageSharp.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\cs\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\de\Microsoft.Data.SqlClient.resources.dll
@@ -46,6 +50,7 @@ C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\ru\Micr
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\tr\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\de\PdfSharpCore.resources.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\runtimes\unix\lib\net9.0\Microsoft.Data.SqlClient.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\runtimes\win\lib\net9.0\Microsoft.Data.SqlClient.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll

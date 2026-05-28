@@ -9,7 +9,7 @@ namespace BLL
         private UsuarioDAL usuarioDAL;
 
         // Diccionario estático para guardar intentos fallidos en memoria
-        private static Dictionary<string, int> intentosFallidos = new Dictionary<string, int>();
+        public Dictionary<string, int> intentosFallidos = new Dictionary<string, int>();
 
         public UsuarioBLL()
         {
@@ -21,13 +21,12 @@ namespace BLL
 
         }
         /// <summary>
-        /// Este metodo lo usaremos para cambiar el estado de un usuario si esta Desbloqueado a Bloqueado
+        /// Este metodo lo usaremos para cambiar el estado de un usuario si esta Activo o Inactivo
         /// </summary>
         public void CambiarEstado(UsuarioBE usuario)
         {
             try
             {
-                // Invertir el estado actual
                 usuario._Estado = !usuario._Estado;
                 usuarioDAL.CambioEstado(usuario);
             }
@@ -49,7 +48,6 @@ namespace BLL
 
                 usuario._Contraseña = BCrypt.Net.BCrypt.HashPassword(usuario._Contraseña);
 
-                // DAL se encarga de registrar la bitácora directamente
                 usuarioDAL.CrearUsuario(usuario);
             }
             catch (Exception ex)
@@ -87,10 +85,11 @@ namespace BLL
                     return false;
                 }
 
-                // Normalizar el nombre de usuario a minúsculas para evitar problemas de case-sensitivity
+                // Normalizar el nombre de usuario a minusculas para evitar problemas
                 string nombreNormalizado = nombreDeUsuario.ToLower();
 
                 // Usar el nombre normalizado para obtener el usuario de la BD
+                // SQL normaliza todo
                 UsuarioBE usuarioEnBD = usuarioDAL.ObtenerUsuario(nombreNormalizado);
 
                 if (usuarioEnBD == null)
@@ -150,7 +149,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// Obtiene el número de intentos fallidos de un usuario
+        /// Obtiene el numero de intentos fallidos de un usuario
         /// </summary>
         public int ObtenerIntentosFallidos(string nombreDeUsuario)
         {
@@ -163,9 +162,27 @@ namespace BLL
             }
             return 0;
         }
+        /// <summary>
+        /// LogOut: Cierra la sesión del usuario actual
+        /// Integra con el SessionManager para limpiar la sesión
+        /// </summary>
         public void LogOut(UsuarioBE usuario)
         {
+            try
+            {
+                if (usuario != null)
+                {
 
+                    Console.WriteLine($"Usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni}) ha cerrado sesión.");
+                    
+                    Services.ServicesSessionManager.Instancia.Logout();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en LogOut: {ex.Message}");
+                throw;
+            }
         }
         // ModificarUsuario -> Entra un UsuarioBE con todos los cambios necesarios, incluido el DNI (que no se puede modificar)
         //Hasheamos la contraseña y llamamos a la DAL para subir estos cambios
@@ -186,10 +203,6 @@ namespace BLL
                 throw;
             }
         }
-        //No comprendo el UsuariosActivos, ya que no tenemos un campo en UsuarioBE que diaga "Activo" 
-        //Pero capaz con Activo nos referimos a un usuario Activado diferente de uno Desactivado
-        //Lo hago asi, igualmente es un cagada por que si esta bloqueado que diferencia hay de un desactivado ?
-        // sera que el bloqueo es para un intento de 3 veces faillidos al logear ?
         public List<UsuarioBE> usuariosActivos()
         {
             List<UsuarioBE> test = new();

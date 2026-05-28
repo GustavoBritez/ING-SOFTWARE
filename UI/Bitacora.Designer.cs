@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panelLateral = new Panel();
             btnExportar = new Button();
             btnLimpiarFiltros = new Button();
@@ -42,9 +42,13 @@
             dtpDesde = new DateTimePicker();
             lblDesde = new Label();
             btnSalir = new Button();
+            groupBox1 = new GroupBox();
+            label2 = new Label();
+            cmbCriticidad = new ComboBox();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             gbFiltrosFecha.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // panelLateral
@@ -80,6 +84,7 @@
             btnLimpiarFiltros.TabIndex = 2;
             btnLimpiarFiltros.Text = "Limpiar";
             btnLimpiarFiltros.UseVisualStyleBackColor = false;
+            btnLimpiarFiltros.Click += btnLimpiarFiltros_Click;
             // 
             // btnAplicarFiltro
             // 
@@ -97,24 +102,24 @@
             dgvBitacora.BackgroundColor = Color.White;
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvBitacora.ColumnHeadersHeight = 30;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(180, 210, 190);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(180, 210, 190);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle4;
             dgvBitacora.EnableHeadersVisualStyles = false;
             dgvBitacora.GridColor = Color.FromArgb(200, 220, 205);
             dgvBitacora.Location = new Point(185, 60);
@@ -147,7 +152,7 @@
             gbFiltrosFecha.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             gbFiltrosFecha.Location = new Point(185, 410);
             gbFiltrosFecha.Name = "gbFiltrosFecha";
-            gbFiltrosFecha.Size = new Size(753, 85);
+            gbFiltrosFecha.Size = new Size(753, 63);
             gbFiltrosFecha.TabIndex = 1;
             gbFiltrosFecha.TabStop = false;
             gbFiltrosFecha.Text = "Filtrar por Rango de Fechas";
@@ -201,10 +206,42 @@
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.BackColor = Color.FromArgb(180, 180, 180);
+            groupBox1.Controls.Add(cmbCriticidad);
+            groupBox1.Controls.Add(label2);
+            groupBox1.FlatStyle = FlatStyle.Flat;
+            groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            groupBox1.Location = new Point(185, 479);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(314, 69);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Filtrar por Criticidad";
+            // 
+            // label2
+            // 
+            label2.Location = new Point(110, 38);
+            label2.Name = "label2";
+            label2.Size = new Size(64, 20);
+            label2.TabIndex = 4;
+            label2.Text = "Criticidad";
+            label2.TextAlign = ContentAlignment.TopRight;
+            // 
+            // cmbCriticidad
+            // 
+            cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCriticidad.Location = new Point(180, 35);
+            cmbCriticidad.Name = "cmbCriticidad";
+            cmbCriticidad.Size = new Size(115, 23);
+            cmbCriticidad.TabIndex = 5;
+            // 
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);
             ClientSize = new Size(950, 560);
+            Controls.Add(groupBox1);
             Controls.Add(btnSalir);
             Controls.Add(gbFiltrosFecha);
             Controls.Add(dgvBitacora);
@@ -218,6 +255,7 @@
             panelLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             gbFiltrosFecha.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -235,5 +273,8 @@
         private System.Windows.Forms.Label lblHasta;
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.Button btnSalir;
+        private GroupBox groupBox1;
+        private Label label2;
+        private ComboBox cmbCriticidad;
     }
 }
