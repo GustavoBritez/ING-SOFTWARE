@@ -94,3 +94,19 @@ C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\Services\obj\Debug\net9.0\Servic
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\Services\obj\Debug\net9.0\refint\Services.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\Services\obj\Debug\net9.0\Services.pdb
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\Services\obj\Debug\net9.0\ref\Services.dll
+D:\descargas\CItti\Services\bin\Debug\net9.0\Services.deps.json
+D:\descargas\CItti\Services\bin\Debug\net9.0\Services.dll
+D:\descargas\CItti\Services\bin\Debug\net9.0\Services.pdb
+D:\descargas\CItti\Services\bin\Debug\net9.0\BE.dll
+D:\descargas\CItti\Services\bin\Debug\net9.0\BE.pdb
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.csproj.AssemblyReference.cache
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.AssemblyInfoInputs.cache
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.AssemblyInfo.cs
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.csproj.CoreCompileInputs.cache
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.sourcelink.json
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.csproj.Up2Date
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.dll
+D:\descargas\CItti\Services\obj\Debug\net9.0\refint\Services.dll
+D:\descargas\CItti\Services\obj\Debug\net9.0\Services.pdb
+D:\descargas\CItti\Services\obj\Debug\net9.0\ref\Services.dll

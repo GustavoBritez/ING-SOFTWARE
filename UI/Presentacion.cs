@@ -78,6 +78,7 @@ namespace UI
 
                     // Navegar al formulario principal
                     FormManager.Navegar(this, FormManager.ObtenerForm1());
+                    
                 }
                 else
                 {

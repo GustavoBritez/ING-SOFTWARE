@@ -25,6 +25,7 @@ namespace UI
             {
                 _form1 = new Form1();
             }
+            
             return _form1;
         }
 
@@ -57,7 +58,9 @@ namespace UI
 
                 if (formularioDestino != null && !formularioDestino.IsDisposed)
                 {
+
                     formularioDestino.Show();
+                   
                 }
             }
             catch (Exception ex)

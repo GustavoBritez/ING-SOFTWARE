@@ -151,3 +151,21 @@ C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\DAL\obj\Debug\net9.0\DAL.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\DAL\obj\Debug\net9.0\refint\DAL.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\DAL\obj\Debug\net9.0\DAL.pdb
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\DAL\obj\Debug\net9.0\ref\DAL.dll
+D:\descargas\CItti\DAL\bin\Debug\net9.0\DAL.deps.json
+D:\descargas\CItti\DAL\bin\Debug\net9.0\DAL.dll
+D:\descargas\CItti\DAL\bin\Debug\net9.0\DAL.pdb
+D:\descargas\CItti\DAL\bin\Debug\net9.0\BE.dll
+D:\descargas\CItti\DAL\bin\Debug\net9.0\Services.dll
+D:\descargas\CItti\DAL\bin\Debug\net9.0\BE.pdb
+D:\descargas\CItti\DAL\bin\Debug\net9.0\Services.pdb
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.csproj.AssemblyReference.cache
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.AssemblyInfoInputs.cache
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.AssemblyInfo.cs
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.csproj.CoreCompileInputs.cache
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.sourcelink.json
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.csproj.Up2Date
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.dll
+D:\descargas\CItti\DAL\obj\Debug\net9.0\refint\DAL.dll
+D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.pdb
+D:\descargas\CItti\DAL\obj\Debug\net9.0\ref\DAL.dll

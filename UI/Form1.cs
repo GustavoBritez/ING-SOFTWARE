@@ -13,18 +13,23 @@ namespace UI
         public Form1()
         {
             InitializeComponent();
+
             this.Load += (s, e) => Form1_Load();
             this.Shown += (s, e) => Form1_Shown();
+            this.VisibleChanged += (s, e) => Form1_VisibleChanged();
         }
+        
+
 
         private void Form1_Load()
         {
-            ActualizarDisponibilidadBotones();
+            
         }
 
         private void Form1_Shown()
         {
-            ActualizarDisponibilidadBotones();
+
+            
         }
         private void ActualizarDisponibilidadBotones()
         {
@@ -33,59 +38,43 @@ namespace UI
                 UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
                 bool tieneSession = usuarioActivo != null;
 
-                if ( usuarioActivo is not null )
-                {
-                    btnLogin.Enabled = true;
-
-                    btnTurnos.Enabled = !tieneSession;
-                    btnLogout.Enabled = !tieneSession;
-                    btnChangePass.Enabled = !tieneSession;
-                    btnChangePass.Visible = !tieneSession; 
-                    btnLogout.Enabled = tieneSession;
-
-                    btnReportes.Enabled = false;
-                    btnUsuarios.Enabled = false;
-                    bool esAdmin = usuarioActivo._Rol == "Administrador";
-                   
-                }
-                else
-                {
-                    bool esAdmin = false;
-
-                    btnLogin.Enabled = true;
-
-                    btnTurnos.Enabled = !tieneSession;
-                    btnLogout.Enabled = !tieneSession;
-                    btnChangePass.Enabled = !tieneSession;
-                    btnChangePass.Visible = !tieneSession;
-                    btnLogout.Enabled = tieneSession;
-
-                    btnReportes.Enabled = esAdmin;
-                    btnUsuarios.Enabled = esAdmin;
-                }
-
+                // Deshabilitar todos los botones excepto btnLogin si no hay sesión
+                
+                btnTurnos.Enabled = tieneSession;
+                btnLogout.Enabled = tieneSession;
+                btnChangePass.Enabled = tieneSession;
+                btnChangePass.Visible = tieneSession;
+                btnReportes.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
+                btnUsuarios.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
             }
             catch
             {
-                btnLogin.Enabled = true;
+                // Si hay error, asumir que no hay sesión
+                
                 btnTurnos.Enabled = false;
                 btnLogout.Enabled = false;
                 btnChangePass.Enabled = false;
                 btnChangePass.Visible = false;
                 btnReportes.Enabled = false;
                 btnUsuarios.Enabled = false;
+               
             }
+
+            btnLogin.Enabled = true;
+
         }
+
+        private void Form1_VisibleChanged()
+        {
+            ActualizarDisponibilidadBotones();
+        }
+
 
         private void btnTurnos_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void LimpiarCampos()
-        {
-
-        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -111,6 +100,7 @@ namespace UI
             {
                 MessageBox.Show($"Error al cerrar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
@@ -188,7 +178,7 @@ namespace UI
                 UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
 
                 string hashnuevaPass = servicioB.HashearContraseña(nuevaPass);
-                
+
                 // Validar que no sea igual a la contraseña anterior
                 if (string.CompareOrdinal(usuario._Contraseña, hashnuevaPass) == 0)
                 {
@@ -201,7 +191,7 @@ namespace UI
 
                 usuario._Contraseña = hashnuevaPass;
                 usuarioBLL.CambiarContraseña(usuario);
-                
+
                 // Registrar en bitácora
                 string descripcion = $"Cambio de contraseña realizado por el usuario '{usuario._NombreDeUsuario}'";
                 bitacoraBLL.RegistrarEvento(2, descripcion, usuario._Dni, "Form1");
@@ -240,5 +230,7 @@ namespace UI
             txtRepPass.Text = "";
             ChangePassPanel.Visible = false;
         }
+
+        
     }
 }

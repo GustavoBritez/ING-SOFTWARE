@@ -115,11 +115,9 @@ namespace BLL
                     return false;
                 }
 
-                // Normalizar el nombre de usuario a minusculas para evitar problemas
+                
                 string nombreNormalizado = nombreDeUsuario.ToLower();
 
-                // Usar el nombre normalizado para obtener el usuario de la BD
-                // SQL normaliza todo
                 UsuarioBE usuarioEnBD = usuarioDAL.ObtenerUsuario(nombreNormalizado);
 
                 if (usuarioEnBD == null)
@@ -134,7 +132,7 @@ namespace BLL
                     return false;
                 }
 
-                // Validar contraseña
+                
                 bool contraseñaValida = BCrypt.Net.BCrypt.Verify(contraseñaPlana, usuarioEnBD._Contraseña);
 
                 if (contraseñaValida)
@@ -164,11 +162,11 @@ namespace BLL
 
                     Console.WriteLine($"Error: Contraseña incorrecta para usuario '{nombreDeUsuario}'. Intentos: {intentosActuales}/3");
 
-                    // Si llega a 3 intentos, bloquear la cuenta
+                   
                     if (intentosActuales >= 3)
                     {
                         usuarioEnBD._Bloqueado = true;
-                        // Usar el método de BLL para modificar el usuario (actualiza Bloqueado en BD y registra bitácora)
+                        
                         ModificarUsuario(usuarioEnBD);
                         Console.WriteLine($"Cuenta de usuario '{nombreDeUsuario}' bloqueada por 3 intentos fallidos.");
                         

@@ -118,3 +118,23 @@ C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\BLL\obj\Debug\net9.0\BLL.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\BLL\obj\Debug\net9.0\refint\BLL.dll
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\BLL\obj\Debug\net9.0\BLL.pdb
 C:\Users\Navegador\Desktop\Nueva carpeta\Shalom\BLL\obj\Debug\net9.0\ref\BLL.dll
+D:\descargas\CItti\BLL\bin\Debug\net9.0\BLL.deps.json
+D:\descargas\CItti\BLL\bin\Debug\net9.0\BLL.dll
+D:\descargas\CItti\BLL\bin\Debug\net9.0\BLL.pdb
+D:\descargas\CItti\BLL\bin\Debug\net9.0\BE.dll
+D:\descargas\CItti\BLL\bin\Debug\net9.0\DAL.dll
+D:\descargas\CItti\BLL\bin\Debug\net9.0\Services.dll
+D:\descargas\CItti\BLL\bin\Debug\net9.0\BE.pdb
+D:\descargas\CItti\BLL\bin\Debug\net9.0\DAL.pdb
+D:\descargas\CItti\BLL\bin\Debug\net9.0\Services.pdb
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.csproj.AssemblyReference.cache
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.AssemblyInfoInputs.cache
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.AssemblyInfo.cs
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.csproj.CoreCompileInputs.cache
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.sourcelink.json
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.csproj.Up2Date
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.dll
+D:\descargas\CItti\BLL\obj\Debug\net9.0\refint\BLL.dll
+D:\descargas\CItti\BLL\obj\Debug\net9.0\BLL.pdb
+D:\descargas\CItti\BLL\obj\Debug\net9.0\ref\BLL.dll
