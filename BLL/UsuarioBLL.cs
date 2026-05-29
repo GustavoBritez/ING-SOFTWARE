@@ -3,19 +3,21 @@ using DAL;
 using Microsoft.Data.SqlClient;
 using Services;
 using System.Net;
+using Services;
 
 namespace BLL
 {
     public class UsuarioBLL
     {
         private UsuarioDAL usuarioDAL;
-
+        private ServicioBcrypt Bcryp;
         // Diccionario estático para guardar intentos fallidos en memoria
         public Dictionary<string, int> intentosFallidos = new Dictionary<string, int>();
 
         public UsuarioBLL()
         {
             usuarioDAL = new UsuarioDAL();
+            Bcryp = new ServicioBcrypt();
         }
         /// <summary>
         /// Este metodo lo usaremos para cambiar el estado de un usuario si esta Activo o Inactivo
@@ -29,7 +31,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Estado cambiado a {usuario._Estado}";
-                bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
             }
             catch (Exception ex)
             {
@@ -37,7 +39,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"No se cambio el estado";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
                 throw;
             }
         }
@@ -50,7 +52,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Contraseña cambiada correctamente";
-                bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
             }
             catch( Exception ex)
             {
@@ -58,7 +60,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Error al cambiar la contraseña";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
                 throw;
             }
         }
@@ -73,13 +75,13 @@ namespace BLL
                     throw new ArgumentException("El usuario y la contraseña no pueden estar vacíos.");
                 }
 
-                usuario._Contraseña = BCrypt.Net.BCrypt.HashPassword(usuario._Contraseña);
+                usuario._Contraseña = Bcryp.HashearContraseña(usuario._Contraseña);
 
                 usuarioDAL.CrearUsuario(usuario);
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Creación de nuevo usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni}, Rol: {usuario._Rol})";
-                bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
 
             }
             catch (Exception ex)
@@ -88,7 +90,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Fallo al crearse el usuario";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
                 throw;
             }
         }
@@ -133,7 +135,7 @@ namespace BLL
                 }
 
                 
-                bool contraseñaValida = BCrypt.Net.BCrypt.Verify(contraseñaPlana, usuarioEnBD._Contraseña);
+                bool contraseñaValida = Bcryp.ValidarContraseña(contraseñaPlana, usuarioEnBD._Contraseña);
 
                 if (contraseñaValida)
                 {
@@ -146,7 +148,7 @@ namespace BLL
                     BitacoraBLL bitacoraBLL = new();
                     int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                     string descripcion = $" Inicio de Sesion";
-                    bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+                    bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
                     return true;
                 }
                 else
@@ -214,7 +216,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $" Cierre de Sesion Exitoso";
-                bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
             }
             catch (Exception ex)
             {
@@ -222,7 +224,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $" Cierre de Sesion de {usuario._NombreDeUsuario} FALLIDO ";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
                 throw;
             }
         }
@@ -234,13 +236,14 @@ namespace BLL
                 // Evitar hashear nuevamente si la contraseña ya está hasheada en la BD (las hashes de BCrypt empiezan por "$2")
                 if (!string.IsNullOrWhiteSpace(usuario._Contraseña) && !usuario._Contraseña.StartsWith("$2"))
                 {
-                    usuario._Contraseña = BCrypt.Net.BCrypt.HashPassword(usuario._Contraseña);
+                    usuario._Contraseña = Bcryp.HashearContraseña(usuario._Contraseña);
                 }
 
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $" Modificar Usuario -> {usuario._NombreDeUsuario} Exitoso ";
-                bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+                
+                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
 
                 usuarioDAL.ModificarUsuario(usuario);
             }
@@ -250,7 +253,7 @@ namespace BLL
 
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $" Modificar Usuario fallido";
+                string descripcion = $" Error al modificar usuario";
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
                 throw;
             }
@@ -285,7 +288,7 @@ namespace BLL
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $" Desbloquear usuario Fallido";
-                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
             }
         }
     }

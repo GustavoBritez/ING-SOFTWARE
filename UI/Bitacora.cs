@@ -24,8 +24,18 @@ namespace UI
         public Bitacora()
         {
             InitializeComponent();
+            this.VisibleChanged += (s, e) => Bitacora_VisibleChanged();
         }
-
+        
+        private void Bitacora_VisibleChanged()
+        {
+            // Solo actualizamos si el formulario se volvió a poner visible
+            if (this.Visible)
+            {
+                _bitacoraCompleta = _bitacoraBLL.VerEventos();
+                CargarBitacora(_bitacoraCompleta);
+            }
+        }
         private void btnSalir_Click(object? sender, EventArgs e)
         {
             FormManager.Navegar(this, FormManager.ObtenerForm1());
@@ -34,7 +44,6 @@ namespace UI
         private void Bitacora_Load(object? sender, EventArgs e)
         {
             GestionBitacora_Load(sender, e);
-
         }
 
         private void GestionBitacora_Load(object? sender, EventArgs e)

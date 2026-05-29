@@ -1269,19 +1269,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\leanw\\.nuget\\packages\\": {}
+    "C:\\Users\\Danie\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\descargas\\CItti\\BLL\\BLL.csproj",
+      "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BLL\\BLL.csproj",
       "projectName": "BLL",
-      "projectPath": "D:\\descargas\\CItti\\BLL\\BLL.csproj",
-      "packagesPath": "C:\\Users\\leanw\\.nuget\\packages\\",
-      "outputPath": "D:\\descargas\\CItti\\BLL\\obj\\",
+      "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BLL\\BLL.csproj",
+      "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BLL\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\leanw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1295,14 +1300,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\descargas\\CItti\\BE\\BE.csproj": {
-              "projectPath": "D:\\descargas\\CItti\\BE\\BE.csproj"
+            "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BE\\BE.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BE\\BE.csproj"
             },
-            "D:\\descargas\\CItti\\DAL\\DAL.csproj": {
-              "projectPath": "D:\\descargas\\CItti\\DAL\\DAL.csproj"
+            "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\DAL\\DAL.csproj"
             },
-            "D:\\descargas\\CItti\\Services\\Services.csproj": {
-              "projectPath": "D:\\descargas\\CItti\\Services\\Services.csproj"
+            "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\Services\\Services.csproj"
             }
           }
         }
@@ -1344,7 +1349,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

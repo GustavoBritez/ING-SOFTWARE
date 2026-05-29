@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Ya+yvc+2m4E=",
+  "dgSpecHash": "S7+rfdFFMxM=",
   "success": true,
-  "projectFilePath": "D:\\descargas\\CItti\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\Services\\Services.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\leanw\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512"
+    "C:\\Users\\Danie\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512"
   ],
   "logs": []
 }

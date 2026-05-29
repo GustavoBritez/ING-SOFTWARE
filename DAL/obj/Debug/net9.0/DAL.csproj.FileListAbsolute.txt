@@ -169,3 +169,21 @@ D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.dll
 D:\descargas\CItti\DAL\obj\Debug\net9.0\refint\DAL.dll
 D:\descargas\CItti\DAL\obj\Debug\net9.0\DAL.pdb
 D:\descargas\CItti\DAL\obj\Debug\net9.0\ref\DAL.dll
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\bin\Debug\net9.0\DAL.deps.json
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\bin\Debug\net9.0\DAL.dll
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\bin\Debug\net9.0\DAL.pdb
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\bin\Debug\net9.0\BE.dll
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\bin\Debug\net9.0\Services.dll
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\bin\Debug\net9.0\BE.pdb
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\bin\Debug\net9.0\Services.pdb
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.AssemblyInfo.cs
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.sourcelink.json
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.csproj.Up2Date
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.dll
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\refint\DAL.dll
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\DAL.pdb
+C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\DAL\obj\Debug\net9.0\ref\DAL.dll

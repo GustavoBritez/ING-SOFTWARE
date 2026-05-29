@@ -160,7 +160,7 @@
             btnReportes.Name = "btnReportes";
             btnReportes.Size = new Size(215, 45);
             btnReportes.TabIndex = 3;
-            btnReportes.Text = "📊 Reportes y Gráficos";
+            btnReportes.Text = "📊 Bitacora";
             btnReportes.TextAlign = ContentAlignment.MiddleLeft;
             btnReportes.UseVisualStyleBackColor = false;
             btnReportes.Click += btnReportes_Click;

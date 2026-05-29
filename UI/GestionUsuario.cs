@@ -576,7 +576,13 @@ namespace UI
                     return;
                 }
 
-                bool estabaBloqueado = usuarioSeleccionado._Bloqueado;
+                //bool estabaBloqueado = usuarioSeleccionado._Bloqueado;
+
+                if ( usuarioSeleccionado._Bloqueado == false)
+                {
+                    MessageBox.Show("Error: El Usuario no esta bloqueado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 usuarioSeleccionado._Bloqueado = !usuarioSeleccionado._Bloqueado;
                 usuarioBLL.Desbloquear(usuarioSeleccionado);
 

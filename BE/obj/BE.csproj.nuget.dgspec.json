@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\descargas\\CItti\\BE\\BE.csproj": {}
+    "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BE\\BE.csproj": {}
   },
   "projects": {
-    "D:\\descargas\\CItti\\BE\\BE.csproj": {
+    "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BE\\BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\descargas\\CItti\\BE\\BE.csproj",
+        "projectUniqueName": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BE\\BE.csproj",
         "projectName": "BE",
-        "projectPath": "D:\\descargas\\CItti\\BE\\BE.csproj",
-        "packagesPath": "C:\\Users\\leanw\\.nuget\\packages\\",
-        "outputPath": "D:\\descargas\\CItti\\BE\\obj\\",
+        "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BE\\BE.csproj",
+        "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta (2)\\PP\\BE\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\leanw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
