@@ -41,8 +41,17 @@
             panelTop = new Panel();
             lblTitulo = new Label();
             panelContenedor = new Panel();
+            ChangePassPanel = new Panel();
+            btnCancelar = new Button();
+            btnAceptar = new Button();
+            txtRepPass = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            txtNewPass = new TextBox();
             panelMenu.SuspendLayout();
             panelTop.SuspendLayout();
+            panelContenedor.SuspendLayout();
+            ChangePassPanel.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -222,11 +231,93 @@
             // panelContenedor
             // 
             panelContenedor.BackColor = Color.FromArgb(225, 240, 228);
+            panelContenedor.Controls.Add(ChangePassPanel);
             panelContenedor.Dock = DockStyle.Fill;
             panelContenedor.Location = new Point(240, 60);
             panelContenedor.Name = "panelContenedor";
             panelContenedor.Size = new Size(960, 640);
             panelContenedor.TabIndex = 2;
+            // 
+            // ChangePassPanel
+            // 
+            ChangePassPanel.BackColor = Color.FromArgb(76, 124, 89);
+            ChangePassPanel.Controls.Add(btnCancelar);
+            ChangePassPanel.Controls.Add(btnAceptar);
+            ChangePassPanel.Controls.Add(txtRepPass);
+            ChangePassPanel.Controls.Add(label3);
+            ChangePassPanel.Controls.Add(label2);
+            ChangePassPanel.Controls.Add(txtNewPass);
+            ChangePassPanel.Location = new Point(35, 240);
+            ChangePassPanel.Name = "ChangePassPanel";
+            ChangePassPanel.Size = new Size(388, 193);
+            ChangePassPanel.TabIndex = 0;
+            ChangePassPanel.Visible = false;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.Red;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.Transparent;
+            btnCancelar.Location = new Point(197, 127);
+            btnCancelar.Margin = new Padding(2);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(123, 38);
+            btnCancelar.TabIndex = 10;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnAceptar
+            // 
+            btnAceptar.BackColor = Color.FromArgb(76, 124, 99);
+            btnAceptar.FlatStyle = FlatStyle.Flat;
+            btnAceptar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnAceptar.ForeColor = Color.Transparent;
+            btnAceptar.Location = new Point(39, 127);
+            btnAceptar.Margin = new Padding(2);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(123, 38);
+            btnAceptar.TabIndex = 9;
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click;
+            // 
+            // txtRepPass
+            // 
+            txtRepPass.Location = new Point(39, 99);
+            txtRepPass.Name = "txtRepPass";
+            txtRepPass.Size = new Size(100, 23);
+            txtRepPass.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(157, 91);
+            label3.Name = "label3";
+            label3.Size = new Size(193, 28);
+            label3.TabIndex = 4;
+            label3.Text = "Repetir Contraseña";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(157, 41);
+            label2.Name = "label2";
+            label2.Size = new Size(185, 28);
+            label2.TabIndex = 3;
+            label2.Text = "Nueva Contraseña";
+            // 
+            // txtNewPass
+            // 
+            txtNewPass.Location = new Point(39, 41);
+            txtNewPass.Name = "txtNewPass";
+            txtNewPass.Size = new Size(100, 23);
+            txtNewPass.TabIndex = 1;
             // 
             // Form1
             // 
@@ -246,6 +337,9 @@
             panelMenu.PerformLayout();
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
+            panelContenedor.ResumeLayout(false);
+            ChangePassPanel.ResumeLayout(false);
+            ChangePassPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -265,5 +359,12 @@
         private System.Windows.Forms.Button btnLogout;
         private Button btnChangePass;
         private Button btnLogin;
+        private Panel ChangePassPanel;
+        private Button btnCancelar;
+        private Button btnAceptar;
+        private TextBox txtRepPass;
+        private Label label3;
+        private Label label2;
+        private TextBox txtNewPass;
     }
 }

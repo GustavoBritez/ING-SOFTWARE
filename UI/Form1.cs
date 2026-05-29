@@ -8,7 +8,7 @@ namespace UI
     public partial class Form1 : Form
     {
         private readonly UsuarioBLL usuarioBLL = new UsuarioBLL();
-
+        private readonly ServicioBcrypt servicioB = new();
         public Form1()
         {
             InitializeComponent();
@@ -124,7 +124,66 @@ namespace UI
 
         private void btnChangePass_Click(object sender, EventArgs e)
         {
+            ChangePassPanel.Visible = !ChangePassPanel.Visible;
 
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nuevaPass = txtNewPass.Text;
+                string repPass = txtNewPass.Text;
+
+                if ( string.IsNullOrEmpty(txtNewPass.Text) || string.IsNullOrEmpty(txtRepPass.Text))
+                {
+                    MessageBox.Show("Los campos estan vacios",
+                    "Cambiar Contraseña",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Si son completamente iguales
+                if (string.CompareOrdinal(nuevaPass, repPass) != 1)
+                {
+                    UsuarioBE Usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+
+                    string hashnuevaPass = servicioB.HashearContraseña(nuevaPass);
+                    // Las contraseñas no son iguales entramos al if
+                    if (string.CompareOrdinal(Usuario._Contraseña, hashnuevaPass) != 0)
+                    {
+
+
+                        Usuario._Contraseña = hashnuevaPass;
+                        usuarioBLL.CambiarContraseña(Usuario);
+                        MessageBox.Show("Contraseña cambiada exitosamente",
+                        "Cambiar Contraseña",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error : Tu contraseña es igual, no se cambio",
+                           "Cambiar Contraseña",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+                    }
+                }
+            }
+            finally
+            {
+                txtNewPass.Text = "";
+                txtRepPass.Text = "";
+                ChangePassPanel.Visible = !ChangePassPanel.Visible;
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtNewPass.Text = "";
+            txtRepPass.Text = "";
+            ChangePassPanel.Visible = false;
         }
     }
 }

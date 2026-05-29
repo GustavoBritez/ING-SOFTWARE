@@ -15,11 +15,6 @@ namespace BLL
         {
             usuarioDAL = new UsuarioDAL();
         }
-
-        public void BuscarUsuario()
-        {
-
-        }
         /// <summary>
         /// Este metodo lo usaremos para cambiar el estado de un usuario si esta Activo o Inactivo
         /// </summary>
@@ -33,6 +28,18 @@ namespace BLL
             catch (Exception ex)
             {
                 Console.WriteLine($"Error en CambiarEstado: {ex.Message}");
+                throw;
+            }
+        }
+        public void CambiarContraseña(UsuarioBE usuario)
+        {
+            try
+            {
+                usuarioDAL.CambiarContraseña(usuario);
+            }
+            catch( Exception ex)
+            {
+                Console.WriteLine($"Error en Cambiar contraseña: {ex.Message}");
                 throw;
             }
         }
@@ -204,11 +211,6 @@ namespace BLL
                 Console.WriteLine($"Error en ModificarUsuario: {ex.Message}");
                 throw;
             }
-        }
-        public List<UsuarioBE> usuariosActivos()
-        {
-            List<UsuarioBE> test = new();
-            return test;
         }
         public UsuarioBE ObtenerUsuario(string nombreDeUsuario)
         {

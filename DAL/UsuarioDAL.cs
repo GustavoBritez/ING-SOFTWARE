@@ -10,7 +10,6 @@ namespace DAL
         private readonly Conexion conexion = new();
         private const string TABLA_USUARIOS = "Usuarios"; /// Nombre de la TABLA usuarios en la BD - SQL Server 2019 NO PROBE EN 2020
         private readonly string Modulo = "UsuarioDAL";
-
         public void CrearUsuario(UsuarioBE usuario)
         {
             try
@@ -65,7 +64,63 @@ namespace DAL
                 throw;
             }
         }
+        public void CambiarContraseña(UsuarioBE usuario)
+        {
 
+            try
+            {
+                string query = $@"UPDATE {TABLA_USUARIOS} 
+                          SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
+                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
+                          WHERE DNI = @dni";
+
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@nombre", usuario._Nombre),
+                    new SqlParameter("@apellido", usuario._Apellido),
+                    new SqlParameter("@contraseña", usuario._Contraseña),
+                    new SqlParameter("@rol", usuario._Rol),
+                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
+                    new SqlParameter("@bloqueado", usuario._Bloqueado),
+                    new SqlParameter("@dni", usuario._Dni),
+                    new SqlParameter("@estado", usuario._Estado)
+                };
+
+                conexion.ExecuteNonQuery(query, parametros);
+
+                BitacoraBE bit = new BitacoraBE()
+                {
+                    _Criticidad = 5,
+                    _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
+                    _Descripcion = $"Se cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
+                    _Modulo = "Cambiar Contraseña",
+                    _Fecha = DateTime.Now
+                };
+
+                BitacoraDAL bitacoraDAL = new();
+
+                bitacoraDAL.GuardarBitacora(bit);
+            }
+            catch (Exception ex)
+            {
+
+
+                BitacoraBE bit = new BitacoraBE()
+                {
+                    _Criticidad = 2,
+                    _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
+                    _Descripcion = $"No cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
+                    _Modulo = "Cambiar Contraseña",
+                    _Fecha = DateTime.Now
+                };
+
+                BitacoraDAL bitacoraDAL = new();
+
+                bitacoraDAL.GuardarBitacora(bit);
+                Console.WriteLine("ERROR:  No se cambio la contraseña ");
+            }
+            
+        }
 
         /// <summary>
         /// Obtiene un usuario por su NombreDeUsuario (usado para login)

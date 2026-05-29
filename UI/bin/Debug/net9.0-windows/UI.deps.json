@@ -383,6 +383,7 @@
       },
       "Services/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.2.0",
           "BE": "1.0.0"
         },
         "runtime": {

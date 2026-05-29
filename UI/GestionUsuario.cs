@@ -189,7 +189,7 @@ namespace UI
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
             btnActDesact.Enabled = false;
-            btnCambiarContrasena.Enabled = false;
+            //btnCambiarContrasena.Enabled = false;
             
 
             txtDni.Focus();
@@ -328,7 +328,7 @@ namespace UI
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
             btnActDesact.Enabled = true;
-            btnCambiarContrasena.Enabled = true;
+            //btnCambiarContrasena.Enabled = true;
             
 
             txtDni.Enabled = false;
@@ -479,7 +479,7 @@ namespace UI
             btnCrear.Enabled = false;
             btnEliminar.Enabled = false;
             btnActDesact.Enabled = false;
-            btnCambiarContrasena.Enabled = false;
+            //btnCambiarContrasena.Enabled = false;
         }
 
         private void ModificarUsuario()
