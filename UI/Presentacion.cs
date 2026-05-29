@@ -33,6 +33,14 @@ namespace UI
         {
             try
             {
+
+                if (ServicesSessionManager.Instancia.ObtenerUsuarioActivo() != null)
+                {
+                    MessageBox.Show("Ya hay una sesion iniciada", "Sesion activa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    FormManager.Navegar(this, FormManager.ObtenerForm1());
+                    return;
+                }
+
                 string nombre = txtUsuario.Text?.Trim();
                 string contraseña = txtPassword.Text ?? string.Empty;
 
@@ -43,7 +51,7 @@ namespace UI
                 }
 
                 // Obtener usuario desde la BLL
-                UsuarioBE usuario = usuarioBLL.ObtenerUsuario(nombre);
+                UsuarioBE usuario = usuarioBLL.BuscarUsuario(nombre);
 
                 if (usuario == null)
                 {
@@ -63,11 +71,8 @@ namespace UI
                 if (loginOK)
                 {
                     // Obtener usuario actualizado desde BD y establecer sesión
-                    UsuarioBE usuarioActivo = usuarioBLL.ObtenerUsuario(nombre);
+                    UsuarioBE usuarioActivo = usuarioBLL.BuscarUsuario(nombre);
                     ServicesSessionManager.Instancia.Login(usuarioActivo);
-
-                    // Limpiar intentos fallidos en memoria (requisito)
-                    usuarioBLL.intentosFallidos.Clear();
 
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -77,7 +82,7 @@ namespace UI
                 else
                 {
                     // Si el login falló, comprobar si la cuenta fue bloqueada después del intento
-                    UsuarioBE usuarioDespues = usuarioBLL.ObtenerUsuario(nombre);
+                    UsuarioBE usuarioDespues = usuarioBLL.BuscarUsuario(nombre);
                     if (usuarioDespues != null && usuarioDespues._Bloqueado)
                     {
                         MessageBox.Show("Cuenta bloqueada por 3 intentos fallidos.", "Cuenta bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Stop);

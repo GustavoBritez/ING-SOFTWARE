@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hb2B5RZj1nM=",
+  "dgSpecHash": "boAAvXyyGvg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\Shalmon\\ING\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\Shalom\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Navegador\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512"
   ],

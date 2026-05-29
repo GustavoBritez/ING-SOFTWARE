@@ -8,11 +8,13 @@ namespace UI
     public partial class Form1 : Form
     {
         private readonly UsuarioBLL usuarioBLL = new UsuarioBLL();
+        private readonly BitacoraBLL bitacoraBLL = new BitacoraBLL();
         private readonly ServicioBcrypt servicioB = new();
         public Form1()
         {
             InitializeComponent();
             this.Load += (s, e) => Form1_Load();
+            this.Shown += (s, e) => Form1_Shown();
         }
 
         private void Form1_Load()
@@ -20,6 +22,10 @@ namespace UI
             ActualizarDisponibilidadBotones();
         }
 
+        private void Form1_Shown()
+        {
+            ActualizarDisponibilidadBotones();
+        }
         private void ActualizarDisponibilidadBotones()
         {
             try
@@ -27,18 +33,40 @@ namespace UI
                 UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
                 bool tieneSession = usuarioActivo != null;
 
-                // Deshabilitar todos los botones excepto btnLogin si no hay sesión
-                btnLogin.Enabled = !tieneSession;
-                btnTurnos.Enabled = tieneSession;
-                btnLogout.Enabled = tieneSession;
-                btnChangePass.Enabled = tieneSession;
-                btnChangePass.Visible = tieneSession;
-                btnReportes.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
-                btnUsuarios.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
+                if ( usuarioActivo is not null )
+                {
+                    btnLogin.Enabled = true;
+
+                    btnTurnos.Enabled = !tieneSession;
+                    btnLogout.Enabled = !tieneSession;
+                    btnChangePass.Enabled = !tieneSession;
+                    btnChangePass.Visible = !tieneSession; 
+                    btnLogout.Enabled = tieneSession;
+
+                    btnReportes.Enabled = false;
+                    btnUsuarios.Enabled = false;
+                    bool esAdmin = usuarioActivo._Rol == "Administrador";
+                   
+                }
+                else
+                {
+                    bool esAdmin = false;
+
+                    btnLogin.Enabled = true;
+
+                    btnTurnos.Enabled = !tieneSession;
+                    btnLogout.Enabled = !tieneSession;
+                    btnChangePass.Enabled = !tieneSession;
+                    btnChangePass.Visible = !tieneSession;
+                    btnLogout.Enabled = tieneSession;
+
+                    btnReportes.Enabled = esAdmin;
+                    btnUsuarios.Enabled = esAdmin;
+                }
+
             }
             catch
             {
-                // Si hay error, asumir que no hay sesión
                 btnLogin.Enabled = true;
                 btnTurnos.Enabled = false;
                 btnLogout.Enabled = false;
@@ -71,14 +99,18 @@ namespace UI
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            UsuarioBE usuarioActual = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-
-            ServicesSessionManager.Instancia.Logout();
-
-            MessageBox.Show("Cerrar sesión exitoso");
-
-            ActualizarDisponibilidadBotones();
-            FormManager.Navegar(this, FormManager.ObtenerPresentacion());
+            try
+            {
+                UsuarioBE usuarioActual = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+                usuarioBLL.LogOut(usuarioActual);
+                MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ActualizarDisponibilidadBotones();
+                FormManager.Navegar(this, FormManager.ObtenerPresentacion());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cerrar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
@@ -133,9 +165,9 @@ namespace UI
             try
             {
                 string nuevaPass = txtNewPass.Text;
-                string repPass = txtNewPass.Text;
+                string repPass = txtRepPass.Text;
 
-                if ( string.IsNullOrEmpty(txtNewPass.Text) || string.IsNullOrEmpty(txtRepPass.Text))
+                if (string.IsNullOrEmpty(txtNewPass.Text) || string.IsNullOrEmpty(txtRepPass.Text))
                 {
                     MessageBox.Show("Los campos estan vacios",
                     "Cambiar Contraseña",
@@ -143,39 +175,62 @@ namespace UI
                     MessageBoxIcon.Error);
                     return;
                 }
-
-                // Si son completamente iguales
-                if (string.CompareOrdinal(nuevaPass, repPass) != 1)
+                // Validar que las contraseñas coincidan
+                if (nuevaPass != repPass)
                 {
-                    UsuarioBE Usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-
-                    string hashnuevaPass = servicioB.HashearContraseña(nuevaPass);
-                    // Las contraseñas no son iguales entramos al if
-                    if (string.CompareOrdinal(Usuario._Contraseña, hashnuevaPass) != 0)
-                    {
-
-
-                        Usuario._Contraseña = hashnuevaPass;
-                        usuarioBLL.CambiarContraseña(Usuario);
-                        MessageBox.Show("Contraseña cambiada exitosamente",
-                        "Cambiar Contraseña",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error : Tu contraseña es igual, no se cambio",
-                           "Cambiar Contraseña",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Las contraseñas no coinciden",
+                       "Cambiar Contraseña",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                    return;
                 }
+
+                UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+
+                string hashnuevaPass = servicioB.HashearContraseña(nuevaPass);
+                
+                // Validar que no sea igual a la contraseña anterior
+                if (string.CompareOrdinal(usuario._Contraseña, hashnuevaPass) == 0)
+                {
+                    MessageBox.Show("Error: Tu contraseña es igual, no se cambio",
+                       "Cambiar Contraseña",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                    return;
+                }
+
+                usuario._Contraseña = hashnuevaPass;
+                usuarioBLL.CambiarContraseña(usuario);
+                
+                // Registrar en bitácora
+                string descripcion = $"Cambio de contraseña realizado por el usuario '{usuario._NombreDeUsuario}'";
+                bitacoraBLL.RegistrarEvento(2, descripcion, usuario._Dni, "Form1");
+
+                MessageBox.Show("Contraseña cambiada exitosamente",
+                "Cambiar Contraseña",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Registrar error en bitácora
+                UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+                if (usuario != null)
+                {
+                    string descripcion = $"Error al cambiar contraseña: {ex.Message}";
+                    bitacoraBLL.RegistrarEvento(3, descripcion, usuario._Dni, "Form1");
+                }
+
+                MessageBox.Show($"Error: {ex.Message}",
+                   "Cambiar Contraseña",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
             }
             finally
             {
                 txtNewPass.Text = "";
                 txtRepPass.Text = "";
-                ChangePassPanel.Visible = !ChangePassPanel.Visible;
+                ChangePassPanel.Visible = false;
             }
         }
 

@@ -27,19 +27,6 @@ namespace BLL
             }
         }
 
-        public void RegistrarEvento(BitacoraBE newBitacora)
-        {
-            try
-            {
-                _bitacoraDAL.GuardarBitacora(newBitacora);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al registrar evento: {ex.Message}");
-                throw;
-            }
-        }
-
         public List<BitacoraBE> VerEventos()
         {
             try
@@ -50,6 +37,25 @@ namespace BLL
             {
                 Console.WriteLine($"Error al obtener eventos: {ex.Message}");
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// Registra un evento de bitácora sin lanzar excepciones
+        /// Útil para operaciones de UI donde queremos registrar incluso si fallan
+        /// </summary>
+        public bool RegistrarEvento(int criticidad, string descripcion, int dni, string modulo)
+        {
+            try
+            {
+                BitacoraBE evento = new BitacoraBE(criticidad, descripcion, dni, DateTime.Now, modulo);
+                _bitacoraDAL.GuardarBitacora(evento);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al registrar evento en bitácora: {ex.Message}");
+                return false;
             }
         }
     }

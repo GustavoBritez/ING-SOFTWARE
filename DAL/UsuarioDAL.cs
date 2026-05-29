@@ -31,39 +31,14 @@ namespace DAL
 
                 conexion.ExecuteNonQuery(query, parametros);
 
-                // Registrar en bitácora
-                BitacoraDAL bitacoraDAL = new();
-                bitacoraDAL.GuardarBitacora(new BitacoraBE(
-                    criticidad: 1,
-                    descripcion: $"Creación de usuario '{usuario._NombreDeUsuario}'",
-                    dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
-                    fecha: DateTime.Now,
-                    modulo: Modulo
-                ));
-
                 Console.WriteLine($"Usuario {usuario._NombreDeUsuario} registrado exitosamente.");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al registrar usuario: {ex.Message}");
-
-                // Registrar el error en bitácora
-                try
-                {
-                    BitacoraDAL bitacoraDAL = new();
-                    bitacoraDAL.GuardarBitacora(new BitacoraBE(
-                        criticidad: 3, // Criticidad alta por error
-                        descripcion: $"Error al crear usuario '{usuario._NombreDeUsuario}': {ex.Message}",
-                        dni: ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni,
-                        fecha: DateTime.Now,
-                        modulo: Modulo
-                    ));
-                }
-                catch { /* Si falla la bitácora, no interrumpimos el flujo de error */ }
-
-                throw;
             }
         }
+
         public void CambiarContraseña(UsuarioBE usuario)
         {
 
@@ -122,10 +97,6 @@ namespace DAL
             
         }
 
-        /// <summary>
-        /// Obtiene un usuario por su NombreDeUsuario (usado para login)
-        /// Devuelve el usuario con su contraseña HASHEADA de la BD
-        /// </summary>
         public UsuarioBE ObtenerUsuario(string nombreDeUsuario)
         {
             try
@@ -255,16 +226,6 @@ namespace DAL
                     }
                 }
 
-                BitacoraDAL bitacoraDAL = new();
-                bitacoraDAL.GuardarBitacora(new BitacoraBE(
-                    criticidad: usuarioActivo != null ? 3 : 1,
-                    descripcion: descripcionParaBitacora,
-                    dni: dniParaBitacora, 
-                    fecha: DateTime.Now,
-                    id_evento: usuario._Bloqueado ? 102 : 101, 
-                    modulo: "UsuarioDAL"
-                ));
-
                 Console.WriteLine($"Usuario {usuario._NombreDeUsuario} modificado exitosamente.");
             }
             catch (Exception ex)
@@ -289,15 +250,6 @@ namespace DAL
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
-
-                BitacoraDAL bitacoraDAL = new();
-                bitacoraDAL.GuardarBitacora(new BitacoraBE(
-                    criticidad: 1,
-                    descripcion: $"Cambio de estado de '{usuario._NombreDeUsuario}'",
-                    dni: 41236101,
-                    fecha: DateTime.Now,
-                    modulo: Modulo
-                ));
 
                 Console.WriteLine($"Usuario {usuario._NombreDeUsuario} Cambio de estado exitosamente.");
             }
@@ -344,6 +296,28 @@ namespace DAL
                 Console.WriteLine($"Error al listar usuarios: {ex.Message}");
                 return usuarios;
             }
+        }
+
+        public void Desbloquear(UsuarioBE usuario)
+        {
+            string query = $@"UPDATE {TABLA_USUARIOS} 
+                          SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
+                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
+                          WHERE DNI = @dni";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                    new SqlParameter("@nombre", usuario._Nombre),
+                    new SqlParameter("@apellido", usuario._Apellido),
+                    new SqlParameter("@contraseña", usuario._Contraseña),
+                    new SqlParameter("@rol", usuario._Rol),
+                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
+                    new SqlParameter("@bloqueado", usuario._Bloqueado),
+                    new SqlParameter("@dni", usuario._Dni),
+                    new SqlParameter("@estado", usuario._Estado)
+            };
+
+            conexion.ExecuteNonQuery(query, parametros);
         }
     }
 }
