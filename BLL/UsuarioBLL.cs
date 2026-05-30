@@ -200,6 +200,8 @@ namespace BLL
             return 0;
         }
 
+
+        /// Solucionado : Movi el orden en que ocurren las cosas
         public void LogOut(UsuarioBE usuario)
         {
             try
@@ -209,14 +211,18 @@ namespace BLL
                     Console.WriteLine($"Usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni}) ha cerrado sesión.");
                 }
 
-                Services.ServicesSessionManager.Instancia.Logout();
-                
                 intentosFallidos.Clear();
 
                 BitacoraBLL bitacoraBLL = new();
+
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+
                 string descripcion = $" Cierre de Sesion Exitoso";
+
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+
+                /// Lo ultimo que hacemos es tocar la instancia 
+                Services.ServicesSessionManager.Instancia.Logout();
             }
             catch (Exception ex)
             {

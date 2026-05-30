@@ -57,6 +57,7 @@ namespace UI
             txtDni = new TextBox();
             lblDni = new Label();
             btnSalir = new Button();
+            rbMostrarTodos = new RadioButton();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             gbFiltrar.SuspendLayout();
@@ -146,13 +147,14 @@ namespace UI
             // 
             // gbFiltrar
             // 
+            gbFiltrar.Controls.Add(rbMostrarTodos);
             gbFiltrar.Controls.Add(rbMostrarInactivos);
             gbFiltrar.Controls.Add(rbMostrarActivos);
             gbFiltrar.FlatStyle = FlatStyle.Flat;
             gbFiltrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             gbFiltrar.Location = new Point(245, 410);
             gbFiltrar.Name = "gbFiltrar";
-            gbFiltrar.Size = new Size(200, 85);
+            gbFiltrar.Size = new Size(200, 114);
             gbFiltrar.TabIndex = 2;
             gbFiltrar.TabStop = false;
             gbFiltrar.Text = "Filtrar Usuarios";
@@ -343,6 +345,15 @@ namespace UI
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
+            // rbMostrarTodos
+            // 
+            rbMostrarTodos.ForeColor = Color.Red;
+            rbMostrarTodos.Location = new Point(15, 75);
+            rbMostrarTodos.Name = "rbMostrarTodos";
+            rbMostrarTodos.Size = new Size(150, 20);
+            rbMostrarTodos.TabIndex = 5;
+            rbMostrarTodos.Text = "Mostrar Todos";
+            // 
             // GestionUsuario
             // 
             BackColor = Color.FromArgb(218, 237, 223);
@@ -394,5 +405,6 @@ namespace UI
         private System.Windows.Forms.CheckBox CKB_Activar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private RadioButton rbMostrarTodos;
     }
 }

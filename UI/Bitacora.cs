@@ -26,7 +26,7 @@ namespace UI
             InitializeComponent();
             this.VisibleChanged += (s, e) => Bitacora_VisibleChanged();
         }
-        
+
         private void Bitacora_VisibleChanged()
         {
             // Solo actualizamos si el formulario se volvió a poner visible
@@ -327,10 +327,10 @@ namespace UI
                 {
 
                     gfx.DrawRectangle(new XSolidBrush(colorEncabezado), xPosColumna, yPos, anchos[i], 15);
-                    
+
                     gfx.DrawString(encabezados[i], fontEncabezado, new XSolidBrush(colorTextoEncabezado),
                         new XRect(xPosColumna, yPos, anchos[i], 15), XStringFormats.CenterLeft);
-                    
+
                     xPosColumna += anchos[i];
                 }
                 yPos += 20;
@@ -371,11 +371,11 @@ namespace UI
                         {
                             // Línea separadora
                             gfx.DrawRectangle(XPens.LightGray, xPosColumna, yPos, anchos[i], 15);
-                            
+
                             // Texto de datos
                             gfx.DrawString(datos[i], fontDatos, new XSolidBrush(colorTexto),
                                 new XRect(xPosColumna + 2, yPos, anchos[i] - 2, 15), XStringFormats.CenterLeft);
-                            
+
                             xPosColumna += anchos[i];
                         }
                         yPos += 15;
@@ -383,7 +383,7 @@ namespace UI
                 }
 
                 yPos = page.Height - margenInf - 10;
-                gfx.DrawString($"Exportado el: {DateTime.Now:dd/MM/yyyy HH:mm:ss} | Total de registros: {(dgvBitacora.DataSource is List<BitacoraBE> list ? list.Count : 0)}", 
+                gfx.DrawString($"Exportado el: {DateTime.Now:dd/MM/yyyy HH:mm:ss} | Total de registros: {(dgvBitacora.DataSource is List<BitacoraBE> list ? list.Count : 0)}",
                     fontPie, XBrushes.Gray, new XRect(margenIzq, yPos, anchoUtil, 10), XStringFormats.BottomLeft);
 
                 // Guardar documento
