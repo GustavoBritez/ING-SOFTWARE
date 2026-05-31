@@ -69,28 +69,39 @@ namespace BLL
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(usuario._NombreDeUsuario) ||
-                    string.IsNullOrWhiteSpace(usuario._Contraseña))
+
+                if (string.IsNullOrWhiteSpace(usuario._NombreDeUsuario) || string.IsNullOrWhiteSpace(usuario._Contraseña))
                 {
-                    throw new ArgumentException("El usuario y la contraseña no pueden estar vacíos.");
+                    throw new ArgumentException("El usuario o contraseña no pueden estar vacíos.");
+                }
+
+
+                UsuarioBE userExistente = usuarioDAL.ObtenerUsuario(usuario._NombreDeUsuario);
+                if (userExistente != null)
+                {
+                    throw new InvalidOperationException($"El nombre de usuario '{usuario._NombreDeUsuario}' ya existe.");
+                }
+                if (userExistente._Dni!= usuario._Dni)
+                {
+                    throw new InvalidOperationException($"El DNI '{usuario._Dni}' ya está registrado con otro usuario.");
                 }
 
                 usuario._Contraseña = Bcryp.HashearContraseña(usuario._Contraseña);
-
                 usuarioDAL.CrearUsuario(usuario);
-                BitacoraBLL bitacoraBLL = new();
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Creación de nuevo usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni}, Rol: {usuario._Rol})";
-                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
 
+                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                string descripcion = $"Creación de Usuario Exitosa: '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
+                new BitacoraBLL().RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en CrearUsuario: {ex.Message}");
-                BitacoraBLL bitacoraBLL = new();
+                // Al usar un "throw" seco, conservamos el mensaje exacto 
+                // y permitimos que viaje limpio hasta el catch de la UI.
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Fallo al crearse el usuario";
-                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
+                string descripcion = $"ERROR: Creación de Usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
+                new BitacoraBLL().RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+
+                Console.WriteLine($"Error al CrearUsuario: {ex.Message}");
                 throw;
             }
         }
@@ -112,25 +123,31 @@ namespace BLL
         {
             try
             {
+
+                ///Entramos y validamos nulos, no mandamos mensaje de error simplemente no hacemos nada
                 if (string.IsNullOrWhiteSpace(nombreDeUsuario) || string.IsNullOrWhiteSpace(contraseñaPlana))
                 {
                     return false;
                 }
-
-                
+                /// Normalizamos el nombre, da igual que metan una minuscula o mayuscula
                 string nombreNormalizado = nombreDeUsuario.ToLower();
 
+                /// Esto en realidad es aldope porq ue la BD normaliza los datos siempre usando SQL
+                /// Podriamos sacarlo es indiferente.
                 UsuarioBE usuarioEnBD = usuarioDAL.ObtenerUsuario(nombreNormalizado);
 
+                // validacion de user null
                 if (usuarioEnBD == null)
                 {
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' no existe");
+                    // Consideramos que no tiene sentido guardar el intento fallido en bitacora
                     return false;
                 }
 
                 if (usuarioEnBD._Bloqueado)
                 {
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' está bloqueado.");
+
                     return false;
                 }
 
@@ -139,7 +156,6 @@ namespace BLL
 
                 if (contraseñaValida)
                 {
-                    // Login exitoso: reiniciar contador
                     if (intentosFallidos.ContainsKey(nombreNormalizado))
                     {
                         intentosFallidos[nombreNormalizado] = 0;
@@ -157,7 +173,6 @@ namespace BLL
                 }
                 else
                 {
-                    // Contraseña incorrecta: incrementar intentos
                     if (!intentosFallidos.ContainsKey(nombreNormalizado))
                     {
                         intentosFallidos[nombreNormalizado] = 0;

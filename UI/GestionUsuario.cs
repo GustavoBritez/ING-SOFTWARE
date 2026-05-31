@@ -243,7 +243,7 @@ namespace UI
                     MessageBox.Show("Error, el DNI debe tener 8 dígitos");
                     return;
                 }
-
+                // Aseguramos el nombre + dni 
                 string contraseña = $"{nombre}{_dni}";
                 string rol = cmbRol.SelectedItem?.ToString() ?? "Usuario";
 
@@ -257,13 +257,8 @@ namespace UI
                     bloqueado: true,
                     estado: true
                 );
-
+                // Testear crear dos usuarios con mismo nombre de usuario y luego con mismo dni
                 usuarioBLL.CrearUsuario(nuevoUsuario);
-
-                // Registrar en bitácora
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Creación de nuevo usuario '{nombreDeUsuario}' (DNI: {dni}, Rol: {rol})";
-                bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
 
                 MessageBox.Show(
                     $"Usuario '{nombreDeUsuario}' creado exitosamente.\nContraseña: {contraseña}",
@@ -277,11 +272,6 @@ namespace UI
             }
             catch (Exception ex)
             {
-                // Registrar error en bitácora
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Error al crear usuario: {ex.Message}";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show(
                     $"Error al crear usuario: {ex.Message}",
                     "Error",

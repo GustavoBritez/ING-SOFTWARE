@@ -101,6 +101,7 @@ namespace DAL
         {
             try
             {
+                //Seleccionamos todos estas columnas de la fila donde el NombreDeUsuario sea igual al que pasamos
                 string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado
                                   FROM {TABLA_USUARIOS} 
                                   WHERE NombreDeUsuario = @nombreDeUsuario";
@@ -110,14 +111,15 @@ namespace DAL
                     new SqlParameter("@nombreDeUsuario", nombreDeUsuario)
                 };
 
+                // Aqui obtenemos los datos del usuario
                 DataTable dt = conexion.ExecuteReader(query, parametros);
 
+                // Si no se encuentra el usuario , devolvemos null
                 if (dt.Rows.Count == 0)
                 {
                     return null;
                 }
 
-                // En modo conectado como ven tenemos los datos del  UN usuario en un datatable y se lo ponemos a un UsuarioBE para devolverlo a la BLL
                 UsuarioBE usuarioEncontrado = new UsuarioBE(
                     dt.Rows[0]["Nombre"].ToString(),
                     dt.Rows[0]["Apellido"].ToString(),
