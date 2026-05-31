@@ -158,3 +158,23 @@ C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BLL\obj\Debug\net9.0\BLL.dll
 C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BLL\obj\Debug\net9.0\refint\BLL.dll
 C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BLL\obj\Debug\net9.0\BLL.pdb
 C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BLL\obj\Debug\net9.0\ref\BLL.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\BLL.deps.json
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\BLL.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\BLL.pdb
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\BE.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\DAL.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\Services.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\BE.pdb
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\DAL.pdb
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\bin\Debug\net9.0\Services.pdb
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.csproj.AssemblyReference.cache
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.AssemblyInfoInputs.cache
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.AssemblyInfo.cs
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.sourcelink.json
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.csproj.Up2Date
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\refint\BLL.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\BLL.pdb
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BLL\obj\Debug\net9.0\ref\BLL.dll

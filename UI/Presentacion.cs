@@ -70,10 +70,6 @@ namespace UI
 
                 if (loginOK)
                 {
-                    // Obtener usuario actualizado desde BD y establecer sesión
-                    UsuarioBE usuarioActivo = usuarioBLL.BuscarUsuario(nombre);
-                    ServicesSessionManager.Instancia.Login(usuarioActivo);
-
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Navegar al formulario principal

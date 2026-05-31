@@ -145,8 +145,12 @@ namespace BLL
                         intentosFallidos[nombreNormalizado] = 0;
                     }
                     Console.WriteLine($"Login exitoso para usuario '{nombreDeUsuario}'.");
-                    BitacoraBLL bitacoraBLL = new();
+
+                    ServicesSessionManager.Instancia.Login(usuarioEnBD);
                     int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+
+                    BitacoraBLL bitacoraBLL = new();
+                    
                     string descripcion = $" Inicio de Sesion";
                     bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
                     return true;
@@ -173,7 +177,7 @@ namespace BLL
                         Console.WriteLine($"Cuenta de usuario '{nombreDeUsuario}' bloqueada por 3 intentos fallidos.");
                         
                         BitacoraBLL bitacoraBLL = new();
-                        int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                        int dniActual = this.BuscarUsuario(nombreDeUsuario)._Dni;
                         string descripcion = $" Cuenta Bloqueada";
                         bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
                     }
