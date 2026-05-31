@@ -63,7 +63,6 @@ namespace DAL
             {
                 string query = $@"INSERT INTO {TABLA_BITACORA} (Criticidad, Descripcion, Dni, Fecha, Modulo)
                                   VALUES (@criticidad, @descripcion, @dni, @fecha, @modulo)";
-
                 SqlParameter[] parametros = new SqlParameter[]
                 {
                     new SqlParameter("@criticidad", newBitacora._Criticidad),

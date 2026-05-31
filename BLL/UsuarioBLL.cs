@@ -204,8 +204,11 @@ namespace BLL
             return 0;
         }
 
-
-        /// Solucionado : Movi el orden en que ocurren las cosas
+        /// <summary>
+        ///  Falta testear
+        ///  Lo que hice fue un Logout del Session Mannager al finalizar ya sea por Exito o Fallo 
+        /// </summary>
+        /// <param name="usuario"></param>
         public void LogOut(UsuarioBE usuario)
         {
             try
@@ -223,19 +226,22 @@ namespace BLL
 
                 string descripcion = $" Cierre de Sesion Exitoso";
 
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-
-                /// Lo ultimo que hacemos es tocar la instancia 
-                Services.ServicesSessionManager.Instancia.Logout();
+                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Gestion Usuario");
+                ///Services.ServicesSessionManager.Instancia.Logout();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error en LogOut: {ex.Message}");
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $" Cierre de Sesion de {usuario._NombreDeUsuario} FALLIDO ";
+                string descripcion = $" Error en LogOut: {usuario._NombreDeUsuario}";
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
+                ///Services.ServicesSessionManager.Instancia.Logout();
                 throw;
+            }
+            finally
+            {
+                Services.ServicesSessionManager.Instancia.Logout();
             }
         }
 

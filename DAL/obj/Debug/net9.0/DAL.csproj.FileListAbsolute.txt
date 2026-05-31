@@ -205,3 +205,21 @@ C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\DAL\obj\Deb
 C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\DAL\obj\Debug\net9.0\refint\DAL.dll
 C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\DAL\obj\Debug\net9.0\DAL.pdb
 C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\DAL\obj\Debug\net9.0\ref\DAL.dll
+C:\Users\Danie\Desktop\LOL\ING\DAL\bin\Debug\net9.0\DAL.deps.json
+C:\Users\Danie\Desktop\LOL\ING\DAL\bin\Debug\net9.0\DAL.dll
+C:\Users\Danie\Desktop\LOL\ING\DAL\bin\Debug\net9.0\DAL.pdb
+C:\Users\Danie\Desktop\LOL\ING\DAL\bin\Debug\net9.0\BE.dll
+C:\Users\Danie\Desktop\LOL\ING\DAL\bin\Debug\net9.0\Services.dll
+C:\Users\Danie\Desktop\LOL\ING\DAL\bin\Debug\net9.0\BE.pdb
+C:\Users\Danie\Desktop\LOL\ING\DAL\bin\Debug\net9.0\Services.pdb
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.AssemblyInfo.cs
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.sourcelink.json
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.csproj.Up2Date
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.dll
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\refint\DAL.dll
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\DAL.pdb
+C:\Users\Danie\Desktop\LOL\ING\DAL\obj\Debug\net9.0\ref\DAL.dll
