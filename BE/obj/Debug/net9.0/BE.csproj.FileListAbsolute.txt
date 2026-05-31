@@ -130,3 +130,15 @@ C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BE\obj\Debug\net9.0\BE.dll
 C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BE\obj\Debug\net9.0\refint\BE.dll
 C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BE\obj\Debug\net9.0\BE.pdb
 C:\Users\Danie\Desktop\Nueva carpeta (2)\PP\BE\obj\Debug\net9.0\ref\BE.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\bin\Debug\net9.0\BE.deps.json
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\bin\Debug\net9.0\BE.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\bin\Debug\net9.0\BE.pdb
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\BE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\BE.AssemblyInfoInputs.cache
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\BE.AssemblyInfo.cs
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\BE.csproj.CoreCompileInputs.cache
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\BE.sourcelink.json
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\BE.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\refint\BE.dll
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\BE.pdb
+C:\Users\usuario\OneDrive\Escritorio\INGENIERIA\PROYECTO CAMPO\Clone\BE\obj\Debug\net9.0\ref\BE.dll

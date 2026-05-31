@@ -68,7 +68,7 @@ namespace UI
 
             dgvBitacora.CellClick += DgvBitacora_CellClick;
 
-            btnAplicarFiltro.Click += BtnAplicarFiltro_Click;
+            //btnAplicarFiltro.Click += BtnAplicarFiltro_Click;
             btnExportar.Click += BtnExportar_Click;
         }
 
@@ -285,17 +285,14 @@ namespace UI
                 PdfPage page = document.AddPage();
                 XGraphics gfx = XGraphics.FromPdfPage(page);
 
-
                 XFont fontTitulo = new XFont("Segoe UI", 18, XFontStyle.Bold);
                 XFont fontEncabezado = new XFont("Segoe UI", 10, XFontStyle.Bold);
                 XFont fontDatos = new XFont("Segoe UI", 9);
                 XFont fontPie = new XFont("Segoe UI", 8, XFontStyle.Italic);
 
-
                 XColor colorEncabezado = XColor.FromArgb(46, 94, 67); // Verde oscuro
                 XColor colorTextoEncabezado = XColor.FromArgb(255, 255, 255); // Blanco
                 XColor colorTexto = XColor.FromArgb(0, 0, 0); // Negro
-
 
                 double margenIzq = 20;
                 double margenDer = 20;
@@ -303,34 +300,28 @@ namespace UI
                 double margenInf = 20;
 
                 double anchoUtil = page.Width - margenIzq - margenDer;
-
-
                 double yPos = margenSup;
 
-                // Título
                 gfx.DrawString("📋 Auditoría y Bitácora del Sistema", fontTitulo, XBrushes.DarkGreen,
                     new XRect(margenIzq, yPos, anchoUtil, 30), XStringFormats.TopCenter);
                 yPos += 40;
 
                 string filtroInfo = $"Período: {dtpDesde.Value:dd/MM/yyyy} al {dtpHasta.Value:dd/MM/yyyy} | " +
-                                   $"Criticidad: {cmbCriticidad.SelectedItem} | " +
-                                   $"Fecha de Exportación: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
+                                    $"Criticidad: {cmbCriticidad.SelectedItem} | " +
+                                    $"Fecha de Exportación: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
                 gfx.DrawString(filtroInfo, fontDatos, XBrushes.Black,
                     new XRect(margenIzq, yPos, anchoUtil, 15), XStringFormats.TopLeft);
                 yPos += 25;
 
-                double[] anchos = { 50, 110, 50, 50, 80, 150 }; // Ancho de cada columna
+                double[] anchos = { 45, 105, 55, 50, 80, 200 };
                 double xPosColumna = margenIzq;
                 string[] encabezados = { "ID Evento", "Fecha y Hora", "DNI", "Criticidad", "Módulo", "Descripción" };
 
                 for (int i = 0; i < encabezados.Length; i++)
                 {
-
                     gfx.DrawRectangle(new XSolidBrush(colorEncabezado), xPosColumna, yPos, anchos[i], 15);
-
                     gfx.DrawString(encabezados[i], fontEncabezado, new XSolidBrush(colorTextoEncabezado),
                         new XRect(xPosColumna, yPos, anchos[i], 15), XStringFormats.CenterLeft);
-
                     xPosColumna += anchos[i];
                 }
                 yPos += 20;
@@ -339,7 +330,42 @@ namespace UI
                 {
                     foreach (BitacoraBE bitacora in bitacoraData)
                     {
-                        if (yPos + 15 > page.Height - margenInf)
+                        string descripcionCompleta = bitacora._Descripcion ?? "";
+                        List<string> lineasDescripcion = new List<string>();
+                        int maxCaracteresPorLinea = 38; 
+
+                        if (descripcionCompleta.Length <= maxCaracteresPorLinea)
+                        {
+                            lineasDescripcion.Add(descripcionCompleta);
+                        }
+                        else
+                        {
+                            string temp = descripcionCompleta;
+                            while (temp.Length > 0)
+                            {
+                                if (temp.Length <= maxCaracteresPorLinea)
+                                {
+                                    lineasDescripcion.Add(temp);
+                                    break;
+                                }
+                                else
+                                {
+                                    int indiceCorte = temp.LastIndexOf(' ', maxCaracteresPorLinea);
+                                    if (indiceCorte <= 0) indiceCorte = maxCaracteresPorLinea; // Si no hay espacios, corta directo
+
+                                    lineasDescripcion.Add(temp.Substring(0, indiceCorte).Trim());
+                                    temp = temp.Substring(indiceCorte).Trim();
+                                }
+                            }
+                        }
+
+
+                        double altoLinea = 15;
+                        double altoCelda = lineasDescripcion.Count * altoLinea;
+                        if (altoCelda < 15) altoCelda = 15; 
+
+
+                        if (yPos + altoCelda > page.Height - margenInf)
                         {
                             page = document.AddPage();
                             gfx = XGraphics.FromPdfPage(page);
@@ -355,30 +381,40 @@ namespace UI
                             }
                             yPos += 20;
                         }
-
-                        // Datos de las columnas
                         string[] datos = {
-                            bitacora._Id_Evento.ToString(),
-                            bitacora._Fecha.ToString("dd/MM/yyyy HH:mm"),
-                            bitacora._Dni.ToString(),
-                            bitacora._Criticidad.ToString(),
-                            bitacora._Modulo,
-                            bitacora._Descripcion
-                        };
+                    bitacora._Id_Evento.ToString(),
+                    bitacora._Fecha.ToString("dd/MM/yyyy HH:mm"),
+                    bitacora._Dni.ToString(),
+                    bitacora._Criticidad.ToString(),
+                    bitacora._Modulo,
+                    ""
+                };
 
                         xPosColumna = margenIzq;
                         for (int i = 0; i < datos.Length; i++)
                         {
-                            // Línea separadora
-                            gfx.DrawRectangle(XPens.LightGray, xPosColumna, yPos, anchos[i], 15);
+                            
+                            gfx.DrawRectangle(XPens.LightGray, xPosColumna, yPos, anchos[i], altoCelda);
 
-                            // Texto de datos
-                            gfx.DrawString(datos[i], fontDatos, new XSolidBrush(colorTexto),
-                                new XRect(xPosColumna + 2, yPos, anchos[i] - 2, 15), XStringFormats.CenterLeft);
+                            if (i < 5) // Columnas normales del 0 al 4
+                            {
+                                gfx.DrawString(datos[i], fontDatos, new XSolidBrush(colorTexto),
+                                    new XRect(xPosColumna + 2, yPos, anchos[i] - 2, altoCelda), XStringFormats.CenterLeft);
+                            }
+                            else 
+                            {
+                                double yPosInterno = yPos;
+                                foreach (string linea in lineasDescripcion)
+                                {
+                                    gfx.DrawString(linea, fontDatos, new XSolidBrush(colorTexto),
+                                        new XRect(xPosColumna + 2, yPosInterno, anchos[i] - 2, altoLinea), XStringFormats.CenterLeft);
+                                    yPosInterno += altoLinea; 
+                                }
+                            }
 
                             xPosColumna += anchos[i];
                         }
-                        yPos += 15;
+                        yPos += altoCelda; // El cursor de la página baja el alto total que usó esta fila
                     }
                 }
 
@@ -528,6 +564,16 @@ namespace UI
                     MessageBoxIcon.Error
                 );
             }
+        }
+
+        private void btnAplicarFiltro_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

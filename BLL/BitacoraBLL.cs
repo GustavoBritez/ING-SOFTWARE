@@ -39,11 +39,6 @@ namespace BLL
                 throw;
             }
         }
-
-        /// <summary>
-        /// Registra un evento de bitácora sin lanzar excepciones
-        /// Útil para operaciones de UI donde queremos registrar incluso si fallan
-        /// </summary>
         public bool RegistrarEvento(int criticidad, string descripcion, int dni, string modulo)
         {
             try

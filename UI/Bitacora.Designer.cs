@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+=======
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+>>>>>>> origin/FernandoP
             panelLateral = new Panel();
             btnExportar = new Button();
             btnLimpiarFiltros = new Button();
@@ -44,9 +49,12 @@
             groupBox1 = new GroupBox();
             cmbCriticidad = new ComboBox();
             label2 = new Label();
+<<<<<<< HEAD
             groupBox2 = new GroupBox();
             comboBox1 = new ComboBox();
             label1 = new Label();
+=======
+>>>>>>> origin/FernandoP
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             gbFiltrosFecha.SuspendLayout();
@@ -75,6 +83,7 @@
             btnExportar.TabIndex = 1;
             btnExportar.Text = "Exportar";
             btnExportar.UseVisualStyleBackColor = false;
+            btnExportar.Click += btnExportar_Click_1;
             // 
             // btnLimpiarFiltros
             // 
@@ -88,11 +97,27 @@
             btnLimpiarFiltros.UseVisualStyleBackColor = false;
             btnLimpiarFiltros.Click += btnLimpiarFiltros_Click;
             // 
+<<<<<<< HEAD
+=======
+            // btnAplicarFiltro
+            // 
+            btnAplicarFiltro.BackColor = Color.FromArgb(225, 225, 225);
+            btnAplicarFiltro.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAplicarFiltro.Location = new Point(15, 15);
+            btnAplicarFiltro.Name = "btnAplicarFiltro";
+            btnAplicarFiltro.Size = new Size(128, 40);
+            btnAplicarFiltro.TabIndex = 3;
+            btnAplicarFiltro.Text = "Filtrar";
+            btnAplicarFiltro.UseVisualStyleBackColor = false;
+            btnAplicarFiltro.Click += btnAplicarFiltro_Click_1;
+            // 
+>>>>>>> origin/FernandoP
             // dgvBitacora
             // 
             dgvBitacora.BackgroundColor = Color.White;
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+<<<<<<< HEAD
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(46, 94, 67);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
@@ -111,6 +136,26 @@
             dataGridViewCellStyle6.SelectionForeColor = Color.Black;
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             dgvBitacora.DefaultCellStyle = dataGridViewCellStyle6;
+=======
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvBitacora.ColumnHeadersHeight = 30;
+            dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(180, 210, 190);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle2;
+>>>>>>> origin/FernandoP
             dgvBitacora.EnableHeadersVisualStyles = false;
             dgvBitacora.GridColor = Color.FromArgb(200, 220, 205);
             dgvBitacora.Location = new Point(185, 60);
@@ -228,6 +273,7 @@
             label2.Text = "Criticidad";
             label2.TextAlign = ContentAlignment.TopRight;
             // 
+<<<<<<< HEAD
             // groupBox2
             // 
             groupBox2.BackColor = Color.FromArgb(180, 180, 180);
@@ -259,6 +305,8 @@
             label1.Text = "Modulo";
             label1.TextAlign = ContentAlignment.TopRight;
             // 
+=======
+>>>>>>> origin/FernandoP
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);

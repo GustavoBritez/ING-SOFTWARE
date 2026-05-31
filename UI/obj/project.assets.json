@@ -1435,23 +1435,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Navegador\\.nuget\\packages\\": {},
+    "C:\\Users\\Danie\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\UI\\UI.csproj",
+      "projectUniqueName": "C:\\Users\\Danie\\Desktop\\LOL\\ING\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\UI\\UI.csproj",
-      "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\UI\\obj\\",
+      "projectPath": "C:\\Users\\Danie\\Desktop\\LOL\\ING\\UI\\UI.csproj",
+      "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Danie\\Desktop\\LOL\\ING\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Navegador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1460,19 +1460,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Users\\Navegador\\SQLClient": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
           "projectReferences": {
-            "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\BLL\\BLL.csproj"
+            "C:\\Users\\Danie\\Desktop\\LOL\\ING\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\LOL\\ING\\BLL\\BLL.csproj"
             },
-            "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\Navegador\\Desktop\\Test\\ING\\Services\\Services.csproj"
+            "C:\\Users\\Danie\\Desktop\\LOL\\ING\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\LOL\\ING\\Services\\Services.csproj"
             }
           }
         }
@@ -1517,7 +1515,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
