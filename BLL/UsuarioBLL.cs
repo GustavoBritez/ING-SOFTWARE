@@ -30,7 +30,8 @@ namespace BLL
                 usuarioDAL.CambioEstado(usuario);
                 BitacoraBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Estado cambiado a {usuario._Estado}";
+                string nuevoEstado = usuario._Estado ? "activado" : "desactivado";
+                string descripcion = $"Usuario '({usuario._NombreDeUsuario})' (DNI:{usuario._Dni}) {nuevoEstado}";
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
             }
             catch (Exception ex)

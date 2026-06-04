@@ -618,23 +618,10 @@ namespace UI
 
                 bool estabaActivo = usuarioSeleccionado._Estado;
                 usuarioBLL.CambiarEstado(usuarioSeleccionado);
-
-                string nuevoEstado = usuarioSeleccionado._Estado ? "activado" : "desactivado";
-                
-                // Registrar en bitácora
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Usuario '{usuarioSeleccionado._NombreDeUsuario}' (DNI: {usuarioSeleccionado._Dni}) {nuevoEstado}";
-                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
-
-                MessageBox.Show($"Usuario '{usuarioSeleccionado._NombreDeUsuario}' {nuevoEstado} correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Usuario '{usuarioSeleccionado._NombreDeUsuario}' cambio correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                // Registrar error en bitácora
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Error al cambiar estado de usuario: {ex.Message}";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show($"Error: No se pudo cambiar el estado del usuario. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally

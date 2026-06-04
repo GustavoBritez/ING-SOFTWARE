@@ -39,6 +39,7 @@ namespace UI
             dgvUsuarios = new DataGridView();
             lblTitulo = new Label();
             gbFiltrar = new GroupBox();
+            rbMostrarTodos = new RadioButton();
             rbMostrarInactivos = new RadioButton();
             rbMostrarActivos = new RadioButton();
             gbDetalles = new GroupBox();
@@ -57,7 +58,6 @@ namespace UI
             txtDni = new TextBox();
             lblDni = new Label();
             btnSalir = new Button();
-            rbMostrarTodos = new RadioButton();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             gbFiltrar.SuspendLayout();
@@ -158,6 +158,15 @@ namespace UI
             gbFiltrar.TabIndex = 2;
             gbFiltrar.TabStop = false;
             gbFiltrar.Text = "Filtrar Usuarios";
+            // 
+            // rbMostrarTodos
+            // 
+            rbMostrarTodos.ForeColor = Color.Red;
+            rbMostrarTodos.Location = new Point(15, 75);
+            rbMostrarTodos.Name = "rbMostrarTodos";
+            rbMostrarTodos.Size = new Size(150, 20);
+            rbMostrarTodos.TabIndex = 5;
+            rbMostrarTodos.Text = "Mostrar Todos";
             // 
             // rbMostrarInactivos
             // 
@@ -345,15 +354,6 @@ namespace UI
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
-            // rbMostrarTodos
-            // 
-            rbMostrarTodos.ForeColor = Color.Red;
-            rbMostrarTodos.Location = new Point(15, 75);
-            rbMostrarTodos.Name = "rbMostrarTodos";
-            rbMostrarTodos.Size = new Size(150, 20);
-            rbMostrarTodos.TabIndex = 5;
-            rbMostrarTodos.Text = "Mostrar Todos";
-            // 
             // GestionUsuario
             // 
             BackColor = Color.FromArgb(218, 237, 223);
@@ -361,9 +361,9 @@ namespace UI
             Controls.Add(btnSalir);
             Controls.Add(gbDetalles);
             Controls.Add(gbFiltrar);
-            Controls.Add(dgvUsuarios);
             Controls.Add(panelLateral);
             Controls.Add(lblTitulo);
+            Controls.Add(dgvUsuarios);
             Font = new Font("Segoe UI", 9F);
             Name = "GestionUsuario";
             StartPosition = FormStartPosition.CenterScreen;
