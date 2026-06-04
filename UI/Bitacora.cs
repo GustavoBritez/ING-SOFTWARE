@@ -32,9 +32,19 @@ namespace UI
             // Solo actualizamos si el formulario se volvió a poner visible
             if (this.Visible)
             {
-                _bitacoraCompleta = _bitacoraBLL.VerEventos();
-                CargarBitacora(_bitacoraCompleta);
+                CargarBitacora(BitacoraInicial());
             }
+        }
+
+        private List<BitacoraBE> BitacoraInicial()
+        {
+            DateTime desde = DateTime.Today.AddDays(-3);
+            DateTime hasta = DateTime.Now;
+
+            var bitacoraFiltrada = _bitacoraCompleta
+                .Where(b => b._Fecha >= desde && b._Fecha <= hasta)
+                .ToList();
+            return bitacoraFiltrada;
         }
         private void btnSalir_Click(object? sender, EventArgs e)
         {
@@ -48,15 +58,13 @@ namespace UI
 
         private void GestionBitacora_Load(object? sender, EventArgs e)
         {
-
-            dgvBitacora.DataSource = null;
-            dgvBitacora.DataSource = _bitacoraBLL.VerEventos();
             _bitacoraCompleta = _bitacoraBLL.VerEventos();
 
             InicializarDateTimePickers();
             InicializarComboBoxCriticidad();
+            InicializarComboBoxC();
 
-            CargarBitacora(_bitacoraCompleta);
+            CargarBitacora(BitacoraInicial());
 
 
             dtpDesde.ValueChanged += DtpFecha_ValueChanged;
@@ -75,41 +83,34 @@ namespace UI
         private void InicializarDateTimePickers()
         {
             DateTime hoy = DateTime.Today;
-
-            dtpDesde.Value = hoy;
-            dtpDesde.Enabled = false;
-
             dtpHasta.Value = hoy;
-            dtpHasta.MinDate = hoy.AddDays(-3);
-            dtpHasta.MaxDate = hoy;
         }
 
         private void InicializarComboBoxCriticidad()
         {
             cmbCriticidad.Items.Clear();
-            cmbCriticidad.Items.Add("Todas");
-            cmbCriticidad.Items.Add("1");
-            cmbCriticidad.Items.Add("2");
-            cmbCriticidad.Items.Add("3");
+            cmbCriticidad.Items.Add("Todos");
+            cmbCriticidad.Items.Add("Form1");
+            cmbCriticidad.Items.Add("GestionUsuario");
+            cmbCriticidad.Items.Add("Cambiar Contraseña");
             cmbCriticidad.SelectedIndex = 0; // Seleccionar "Todas" por defecto
         }
+        private void InicializarComboBoxC()
+        {
+            comboBox1.Items.Clear();
 
+            comboBox1.Items.Add("Todas");
+            comboBox1.Items.Add("1");
+            comboBox1.Items.Add("2");
+            comboBox1.Items.Add("3");
+            comboBox1.Items.Add("4");
+            comboBox1.Items.Add("5");
+
+            comboBox1.SelectedIndex = 0;
+        }
         private void DtpFecha_ValueChanged(object? sender, EventArgs e)
         {
             DateTime hoy = DateTime.Today;
-            DateTime minimoPermitido = hoy.AddDays(-3);
-
-            if (dtpHasta.Value < minimoPermitido)
-            {
-                MessageBox.Show(
-                    "No puede seleccionar una fecha anterior a 3 días atras.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                dtpHasta.Value = minimoPermitido;
-                return;
-            }
 
             if (dtpHasta.Value > hoy)
             {
@@ -122,11 +123,33 @@ namespace UI
                 dtpHasta.Value = hoy;
                 return;
             }
+
+            if(dtpDesde.Value>dtpHasta.Value)
+            {
+                MessageBox.Show(
+                   "No puede seleccionar FechaDesde mayor a FechaHasta.",
+                   "Validacion",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning
+               );
+                dtpDesde.Value = hoy;
+                return;
+            }
         }
 
         private void CmbCriticidad_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            AplicarFiltrosCombinados();
+            string modulo = cmbCriticidad.SelectedItem?.ToString() ?? "Todas";
+
+            var bitacoraFiltrada = _bitacoraCompleta;
+            if (modulo != "Todos")
+            {
+                bitacoraFiltrada = bitacoraFiltrada
+                    .Where(b => b._Modulo.ToString() == modulo)
+                    .ToList();
+            }
+
+            CargarBitacora(bitacoraFiltrada);
         }
 
         private void BtnAplicarFiltro_Click(object? sender, EventArgs e)
@@ -144,16 +167,10 @@ namespace UI
                 DateTime fechaHasta = dtpHasta.Value.Date;
                 string criticidadSeleccionada = cmbCriticidad.SelectedItem?.ToString() ?? "Todas";
 
+
                 var bitacoraFiltrada = _bitacoraCompleta
                     .Where(b => b._Fecha.Date >= fechaDesde && b._Fecha.Date <= fechaHasta)
                     .ToList();
-
-                if (criticidadSeleccionada != "Todas")
-                {
-                    bitacoraFiltrada = bitacoraFiltrada
-                        .Where(b => b._Criticidad.ToString() == criticidadSeleccionada)
-                        .ToList();
-                }
 
                 CargarBitacora(bitacoraFiltrada);
             }
@@ -582,6 +599,21 @@ namespace UI
         private void btnExportar_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string c = comboBox1.SelectedItem?.ToString() ?? "Todas";
+
+            var bitacoraFiltrada = _bitacoraCompleta;
+            if (c != "Todas")
+            {
+                bitacoraFiltrada = bitacoraFiltrada
+                    .Where(b => b._Criticidad.ToString() == c)
+                    .ToList();
+            }
+
+            CargarBitacora(bitacoraFiltrada);
         }
     }
 }

@@ -3,42 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\ui\\presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\ui\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\services\\servicessessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\dal\\bitacoradal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\ui\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\bll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\dal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:presentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\bll\\bitacorabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\dal\\bitacoradal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\dal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\bll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clone\\services\\servicessessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -48,7 +33,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -107,77 +92,64 @@
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T16:05:11.523Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Presentacion.cs",
-              "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Presentacion.cs",
-              "RelativeDocumentMoniker": "Presentacion.cs",
-              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Presentacion.cs",
-              "RelativeToolTip": "Presentacion.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAIAwwEYAAAAQAAAAAAAAAA==",
+              "Title": "Bitacora.cs",
+              "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Bitacora.cs",
+              "RelativeDocumentMoniker": "Bitacora.cs",
+              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Bitacora.cs",
+              "RelativeToolTip": "Bitacora.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAIwCEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T15:50:34.257Z",
+              "WhenOpened": "2026-06-04T17:50:21.318Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "ServicesSessionManager.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\Services\\ServicesSessionManager.cs",
               "RelativeDocumentMoniker": "..\\Services\\ServicesSessionManager.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\Services\\ServicesSessionManager.cs",
               "RelativeToolTip": "..\\Services\\ServicesSessionManager.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAADwvzIAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-31T15:50:15.487Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "BitacoraDAL.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\DAL\\BitacoraDAL.cs",
               "RelativeDocumentMoniker": "..\\DAL\\BitacoraDAL.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\DAL\\BitacoraDAL.cs",
               "RelativeToolTip": "..\\DAL\\BitacoraDAL.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-31T15:46:58.681Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "UsuarioDAL.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\DAL\\UsuarioDAL.cs",
               "RelativeDocumentMoniker": "..\\DAL\\UsuarioDAL.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\DAL\\UsuarioDAL.cs",
               "RelativeToolTip": "..\\DAL\\UsuarioDAL.cs",
-              "ViewState": "AgIAALkAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAMBAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-31T15:46:47.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "UsuarioBLL.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\BLL\\UsuarioBLL.cs",
               "RelativeDocumentMoniker": "..\\BLL\\UsuarioBLL.cs",
@@ -190,20 +162,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "BitacoraBLL.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\BLL\\BitacoraBLL.cs",
               "RelativeDocumentMoniker": "..\\BLL\\BitacoraBLL.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\BLL\\BitacoraBLL.cs",
               "RelativeToolTip": "..\\BLL\\BitacoraBLL.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAASwCkAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAIwCkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-31T15:41:08.482Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Bitacora.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Bitacora.cs",
               "RelativeDocumentMoniker": "Bitacora.cs",
@@ -211,43 +183,6 @@
               "RelativeToolTip": "Bitacora.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-31T15:40:33.88Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-29T04:18:41.448Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Conexion.cs",
-              "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\DAL\\Conexion.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\Conexion.cs",
-              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\DAL\\Conexion.cs",
-              "RelativeToolTip": "..\\DAL\\Conexion.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwA0AAACjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T15:38:24.367Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Presentacion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Presentacion.cs",
-              "RelativeDocumentMoniker": "Presentacion.cs",
-              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\Presentacion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Presentacion.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-29T01:32:54.896Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

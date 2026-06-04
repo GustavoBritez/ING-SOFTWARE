@@ -43,6 +43,8 @@
             lblDesde = new Label();
             btnSalir = new Button();
             groupBox1 = new GroupBox();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
             cmbCriticidad = new ComboBox();
             label2 = new Label();
             panelLateral.SuspendLayout();
@@ -129,7 +131,7 @@
             dgvBitacora.ReadOnly = true;
             dgvBitacora.RowHeadersVisible = false;
             dgvBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBitacora.Size = new Size(753, 335);
+            dgvBitacora.Size = new Size(1037, 335);
             dgvBitacora.TabIndex = 3;
             // 
             // lblTitulo
@@ -152,9 +154,9 @@
             gbFiltrosFecha.Controls.Add(lblDesde);
             gbFiltrosFecha.FlatStyle = FlatStyle.Flat;
             gbFiltrosFecha.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            gbFiltrosFecha.Location = new Point(185, 410);
+            gbFiltrosFecha.Location = new Point(362, 401);
             gbFiltrosFecha.Name = "gbFiltrosFecha";
-            gbFiltrosFecha.Size = new Size(753, 63);
+            gbFiltrosFecha.Size = new Size(625, 63);
             gbFiltrosFecha.TabIndex = 1;
             gbFiltrosFecha.TabStop = false;
             gbFiltrosFecha.Text = "Filtrar por Rango de Fechas";
@@ -211,38 +213,58 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.FromArgb(180, 180, 180);
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(cmbCriticidad);
             groupBox1.Controls.Add(label2);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            groupBox1.Location = new Point(185, 479);
+            groupBox1.Location = new Point(362, 470);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(314, 69);
+            groupBox1.Size = new Size(625, 69);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Filtrar por Criticidad";
+            groupBox1.Text = "Filtrar ";
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.Location = new Point(297, 26);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(115, 23);
+            comboBox1.TabIndex = 7;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.Location = new Point(227, 29);
+            label1.Name = "label1";
+            label1.Size = new Size(64, 20);
+            label1.TabIndex = 6;
+            label1.Text = "Criticidad";
+            label1.TextAlign = ContentAlignment.TopRight;
             // 
             // cmbCriticidad
             // 
             cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCriticidad.Location = new Point(180, 35);
+            cmbCriticidad.Location = new Point(93, 26);
             cmbCriticidad.Name = "cmbCriticidad";
             cmbCriticidad.Size = new Size(115, 23);
             cmbCriticidad.TabIndex = 5;
             // 
             // label2
             // 
-            label2.Location = new Point(110, 38);
+            label2.Location = new Point(23, 29);
             label2.Name = "label2";
             label2.Size = new Size(64, 20);
             label2.TabIndex = 4;
-            label2.Text = "Criticidad";
+            label2.Text = "Módulo";
             label2.TextAlign = ContentAlignment.TopRight;
             // 
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(950, 560);
+            ClientSize = new Size(1573, 609);
             Controls.Add(groupBox1);
             Controls.Add(btnSalir);
             Controls.Add(gbFiltrosFecha);
@@ -278,5 +300,7 @@
         private GroupBox groupBox1;
         private Label label2;
         private ComboBox cmbCriticidad;
+        private ComboBox comboBox1;
+        private Label label1;
     }
 }
