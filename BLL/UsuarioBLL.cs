@@ -65,42 +65,60 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        ///  Este DSS hay que rehacerlo denuevo.
+        ///  Anteriormente nos daba error siempre al crear la primer cuenta
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public void CrearUsuario(UsuarioBE usuario)
         {
             try
             {
-
+                // 1. Validaciones básicas de nulidad
                 if (string.IsNullOrWhiteSpace(usuario._NombreDeUsuario) || string.IsNullOrWhiteSpace(usuario._Contraseña))
                 {
                     throw new ArgumentException("El usuario o contraseña no pueden estar vacíos.");
                 }
-
-
-                UsuarioBE userExistente = usuarioDAL.ObtenerUsuario(usuario._NombreDeUsuario);
-                if (userExistente != null)
+                List<UsuarioBE> todosLosUsuarios = usuarioDAL.ListaUsuarios() ?? new List<UsuarioBE>();
+                if (todosLosUsuarios.Any(u => string.Equals(u._NombreDeUsuario, usuario._NombreDeUsuario, StringComparison.OrdinalIgnoreCase)))
                 {
                     throw new InvalidOperationException($"El nombre de usuario '{usuario._NombreDeUsuario}' ya existe.");
                 }
-                if (userExistente._Dni!= usuario._Dni)
+                if (todosLosUsuarios.Any(u => u._Dni == usuario._Dni))
                 {
                     throw new InvalidOperationException($"El DNI '{usuario._Dni}' ya está registrado con otro usuario.");
                 }
-
                 usuario._Contraseña = Bcryp.HashearContraseña(usuario._Contraseña);
                 usuarioDAL.CrearUsuario(usuario);
-
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                int dniActual;
+                try
+                {
+                    int dniSesion = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                    dniActual = dniSesion <= 0 ? 12345678 : dniSesion;
+                }
+                catch
+                {
+                    dniActual = 12345678;
+                }
                 string descripcion = $"Creación de Usuario Exitosa: '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
                 new BitacoraBLL().RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
             }
             catch (Exception ex)
             {
-                // Al usar un "throw" seco, conservamos el mensaje exacto 
-                // y permitimos que viaje limpio hasta el catch de la UI.
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"ERROR: Creación de Usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
-                new BitacoraBLL().RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
-
+                int dniActual;
+                try
+                {
+                    int dniSesion = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                    dniActual = dniSesion <= 0 ? 12345678 : dniSesion;
+                }
+                catch
+                {
+                    dniActual = 12345678;
+                }
+                string descripcion = $"ERROR: Creación de Usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni}). Motivo: {ex.Message}";
+                new BitacoraBLL().RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
                 Console.WriteLine($"Error al CrearUsuario: {ex.Message}");
                 throw;
             }
