@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class Form1
+    partial class MenuPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -43,6 +43,8 @@
             panelContenedor = new Panel();
             label1 = new Label();
             ChangePassPanel = new Panel();
+            label5 = new Label();
+            txtActualPass = new TextBox();
             btnCancelar = new Button();
             btnAceptar = new Button();
             txtRepPass = new TextBox();
@@ -50,8 +52,6 @@
             label2 = new Label();
             txtNewPass = new TextBox();
             sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
-            txtActualPass = new TextBox();
-            label5 = new Label();
             panelMenu.SuspendLayout();
             panelTop.SuspendLayout();
             panelContenedor.SuspendLayout();
@@ -167,7 +167,7 @@
             btnReportes.Text = "📊 Bitacora";
             btnReportes.TextAlign = ContentAlignment.MiddleLeft;
             btnReportes.UseVisualStyleBackColor = false;
-            btnReportes.Click += btnReportes_Click;
+            btnReportes.Click += btnBitacora_Click;
             // 
             // btnSeguimiento
             // 
@@ -269,6 +269,24 @@
             ChangePassPanel.TabIndex = 0;
             ChangePassPanel.Visible = false;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(157, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(185, 28);
+            label5.TabIndex = 13;
+            label5.Text = "Contraseña Actual";
+            // 
+            // txtActualPass
+            // 
+            txtActualPass.Location = new Point(39, 20);
+            txtActualPass.Name = "txtActualPass";
+            txtActualPass.Size = new Size(100, 23);
+            txtActualPass.TabIndex = 11;
+            // 
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.Red;
@@ -335,25 +353,7 @@
             txtNewPass.Size = new Size(100, 23);
             txtNewPass.TabIndex = 1;
             // 
-            // txtActualPass
-            // 
-            txtActualPass.Location = new Point(39, 20);
-            txtActualPass.Name = "txtActualPass";
-            txtActualPass.Size = new Size(100, 23);
-            txtActualPass.TabIndex = 11;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(157, 20);
-            label5.Name = "label5";
-            label5.Size = new Size(185, 28);
-            label5.TabIndex = 13;
-            label5.Text = "Contraseña Actual";
-            // 
-            // Form1
+            // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -364,7 +364,7 @@
             Controls.Add(panelMenu);
             Font = new Font("Segoe UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Form1";
+            Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sistema NutriEvolve";
             panelMenu.ResumeLayout(false);

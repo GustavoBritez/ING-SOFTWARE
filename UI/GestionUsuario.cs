@@ -364,7 +364,7 @@ namespace UI
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            FormManager.Navegar(this, FormManager.ObtenerForm1());
+            FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
         }
 
         private void GestionUsuario_Load(object sender, EventArgs e)

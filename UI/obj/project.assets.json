@@ -1441,11 +1441,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\UI\\UI.csproj",
+      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\UI\\UI.csproj",
+      "projectPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\UI\\UI.csproj",
       "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\UI\\obj\\",
+      "outputPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1468,11 +1468,11 @@
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
           "projectReferences": {
-            "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\BLL\\BLL.csproj"
+            "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\BLL\\BLL.csproj"
             },
-            "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\Services\\Services.csproj"
+            "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\Services\\Services.csproj"
             }
           }
         }
@@ -1517,7 +1517,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

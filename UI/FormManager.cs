@@ -6,29 +6,29 @@ namespace UI
 {
     public static class FormManager
     {
-        private static Presentacion _presentacion;
-        private static Form1 _form1;
+        private static Login _Login;
+        private static MenuPrincipal _MenuPrincipal;
         private static GestionUsuario _gestionUsuario;
         private static Bitacora _bitacora;
 
 
-        public static Presentacion ObtenerPresentacion()
+        public static Login ObtenerLogin()
         {
-            if (_presentacion == null || _presentacion.IsDisposed)
+            if (_Login == null || _Login.IsDisposed)
             {
-                _presentacion = new Presentacion();
+                _Login = new Login();
             }
-            return _presentacion;
+            return _Login;
         }
 
-        public static Form1 ObtenerForm1()
+        public static MenuPrincipal ObtenerMenuPrincipal()
         {
-            if (_form1 == null || _form1.IsDisposed)
+            if (_MenuPrincipal == null || _MenuPrincipal.IsDisposed)
             {
-                _form1 = new Form1();
+                _MenuPrincipal = new MenuPrincipal();
             }
 
-            return _form1;
+            return _MenuPrincipal;
         }
 
         // Para el composite son dos casos de uso, gestionar roles y gestionar familias
@@ -76,21 +76,21 @@ namespace UI
 
         public static void LimpiarInstancias()
         {
-            if (_presentacion != null && !_presentacion.IsDisposed)
+            if (_Login != null && !_Login.IsDisposed)
             {
-                _presentacion.Dispose();
+                _Login.Dispose();
             }
-            if (_form1 != null && !_form1.IsDisposed)
+            if (_MenuPrincipal != null && !_MenuPrincipal.IsDisposed)
             {
-                _form1.Dispose();
+                _MenuPrincipal.Dispose();
             }
             if (_gestionUsuario != null && !_gestionUsuario.IsDisposed)
             {
                 _gestionUsuario.Dispose();
             }
 
-            _presentacion = null;
-            _form1 = null;
+            _Login = null;
+            _MenuPrincipal = null;
             _gestionUsuario = null;
         }
 

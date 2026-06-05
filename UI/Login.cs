@@ -15,10 +15,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace UI
 {
-    public partial class Presentacion : Form
+    public partial class Login : Form
     {
         UsuarioBLL usuarioBLL = new();
-        public Presentacion()
+        public Login()
         {
             InitializeComponent();
         }
@@ -26,7 +26,7 @@ namespace UI
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            FormManager.Navegar(this, FormManager.ObtenerForm1());
+            FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace UI
                 if (ServicesSessionManager.Instancia.ObtenerUsuarioActivo() != null)
                 {
                     MessageBox.Show("Ya hay una sesion iniciada", "Sesion activa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    FormManager.Navegar(this, FormManager.ObtenerForm1());
+                    FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
                     return;
                 }
 
@@ -73,7 +73,7 @@ namespace UI
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Navegar al formulario principal
-                    FormManager.Navegar(this, FormManager.ObtenerForm1());
+                    FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
                     
                 }
                 else

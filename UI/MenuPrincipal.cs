@@ -5,12 +5,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI
 {
-    public partial class Form1 : Form
+    public partial class MenuPrincipal : Form
     {
         private readonly UsuarioBLL usuarioBLL = new UsuarioBLL();
         private readonly EventoBLL bitacoraBLL = new EventoBLL();
         private readonly ServicioBcrypt servicioB = new();
-        public Form1()
+        public MenuPrincipal()
         {
             InitializeComponent();
 
@@ -90,7 +90,7 @@ namespace UI
                 usuarioBLL.LogOut(usuarioActual);
                 MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarDisponibilidadBotones();
-                FormManager.Navegar(this, FormManager.ObtenerPresentacion());
+                FormManager.Navegar(this, FormManager.ObtenerLogin());
             }
             catch (Exception ex)
             {
@@ -117,7 +117,7 @@ namespace UI
             FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
         }
 
-        private void btnReportes_Click(object sender, EventArgs e)
+        private void btnBitacora_Click(object sender, EventArgs e)
         {
             UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
             if (usuarioActivo == null)
@@ -137,7 +137,7 @@ namespace UI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FormManager.Navegar(this, FormManager.ObtenerPresentacion());
+            FormManager.Navegar(this, FormManager.ObtenerLogin());
         }
 
         private void btnChangePass_Click(object sender, EventArgs e)

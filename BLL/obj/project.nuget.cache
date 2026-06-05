@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9XrK0JF7cCM=",
+  "dgSpecHash": "33wCfxIsYeg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\pipe\\Line\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\PO\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Navegador\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\Navegador\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",

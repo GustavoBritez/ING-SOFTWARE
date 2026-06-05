@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class Presentacion
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
