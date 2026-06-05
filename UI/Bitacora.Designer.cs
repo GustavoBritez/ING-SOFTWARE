@@ -46,7 +46,6 @@
             label1 = new Label();
             cmbCriticidad = new ComboBox();
             label2 = new Label();
-
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             gbFiltrosFecha.SuspendLayout();
@@ -159,12 +158,13 @@
             // 
             // lblHasta
             // 
-            lblHasta.Location = new Point(370, 38);
+            lblHasta.Location = new Point(370, 43);
             lblHasta.Name = "lblHasta";
             lblHasta.Size = new Size(64, 20);
             lblHasta.TabIndex = 2;
             lblHasta.Text = "Hasta:";
             lblHasta.TextAlign = ContentAlignment.TopRight;
+            lblHasta.Click += lblHasta_Click;
             // 
             // dtpDesde
             // 
@@ -177,7 +177,7 @@
             // 
             // lblDesde
             // 
-            lblDesde.Location = new Point(84, 38);
+            lblDesde.Location = new Point(110, 38);
             lblDesde.Name = "lblDesde";
             lblDesde.Size = new Size(64, 20);
             lblDesde.TabIndex = 4;
@@ -248,14 +248,9 @@
             label2.Text = "Módulo";
             label2.TextAlign = ContentAlignment.TopRight;
             // 
-            // groupBox3
-            // 
-
-            // 
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);
-
             ClientSize = new Size(1573, 609);
             Controls.Add(groupBox1);
             Controls.Add(btnSalir);
@@ -272,7 +267,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             gbFiltrosFecha.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
-            //groupBox3.ResumeLayout(false);
             ResumeLayout(false);
         }
 

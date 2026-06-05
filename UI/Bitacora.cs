@@ -17,7 +17,7 @@ namespace UI
 {
     public partial class Bitacora : Form
     {
-        BitacoraBLL _bitacoraBLL = new BitacoraBLL();
+        EventoBLL _bitacoraBLL = new EventoBLL();
         UsuarioBLL _usuarioBLL = new UsuarioBLL();
         private List<EventoBE>? _bitacoraCompleta;
 
@@ -124,7 +124,7 @@ namespace UI
                 return;
             }
 
-            if(dtpDesde.Value>dtpHasta.Value)
+            if (dtpDesde.Value > dtpHasta.Value)
             {
                 MessageBox.Show(
                    "No puede seleccionar FechaDesde mayor a FechaHasta.",
@@ -349,7 +349,7 @@ namespace UI
                     {
                         string descripcionCompleta = bitacora._Descripcion ?? "";
                         List<string> lineasDescripcion = new List<string>();
-                        int maxCaracteresPorLinea = 38; 
+                        int maxCaracteresPorLinea = 38;
 
                         if (descripcionCompleta.Length <= maxCaracteresPorLinea)
                         {
@@ -379,7 +379,7 @@ namespace UI
 
                         double altoLinea = 15;
                         double altoCelda = lineasDescripcion.Count * altoLinea;
-                        if (altoCelda < 15) altoCelda = 15; 
+                        if (altoCelda < 15) altoCelda = 15;
 
 
                         if (yPos + altoCelda > page.Height - margenInf)
@@ -410,7 +410,7 @@ namespace UI
                         xPosColumna = margenIzq;
                         for (int i = 0; i < datos.Length; i++)
                         {
-                            
+
                             gfx.DrawRectangle(XPens.LightGray, xPosColumna, yPos, anchos[i], altoCelda);
 
                             if (i < 5) // Columnas normales del 0 al 4
@@ -418,14 +418,14 @@ namespace UI
                                 gfx.DrawString(datos[i], fontDatos, new XSolidBrush(colorTexto),
                                     new XRect(xPosColumna + 2, yPos, anchos[i] - 2, altoCelda), XStringFormats.CenterLeft);
                             }
-                            else 
+                            else
                             {
                                 double yPosInterno = yPos;
                                 foreach (string linea in lineasDescripcion)
                                 {
                                     gfx.DrawString(linea, fontDatos, new XSolidBrush(colorTexto),
                                         new XRect(xPosColumna + 2, yPosInterno, anchos[i] - 2, altoLinea), XStringFormats.CenterLeft);
-                                    yPosInterno += altoLinea; 
+                                    yPosInterno += altoLinea;
                                 }
                             }
 
@@ -606,6 +606,11 @@ namespace UI
             }
 
             CargarBitacora(bitacoraFiltrada);
+        }
+
+        private void lblHasta_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

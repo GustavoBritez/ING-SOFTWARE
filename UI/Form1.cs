@@ -8,7 +8,7 @@ namespace UI
     public partial class Form1 : Form
     {
         private readonly UsuarioBLL usuarioBLL = new UsuarioBLL();
-        private readonly BitacoraBLL bitacoraBLL = new BitacoraBLL();
+        private readonly EventoBLL bitacoraBLL = new EventoBLL();
         private readonly ServicioBcrypt servicioB = new();
         public Form1()
         {
@@ -18,9 +18,6 @@ namespace UI
             this.Shown += (s, e) => Form1_Shown();
             this.VisibleChanged += (s, e) => Form1_VisibleChanged();
         }
-        
-
-
         private void Form1_Load()
         {
             

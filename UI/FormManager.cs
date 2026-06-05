@@ -29,6 +29,9 @@ namespace UI
             return _form1;
         }
 
+        // Para el composite son dos casos de uso, gestionar roles y gestionar familias
+        // Un loop para los permisos tmb ? no entendi que dijo o que pidio si alguno lo entiende que me explique y lo hacemo
+
         public static GestionUsuario ObtenerGestionUsuario()
         {
             if (_gestionUsuario == null || _gestionUsuario.IsDisposed)
