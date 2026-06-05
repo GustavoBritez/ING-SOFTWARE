@@ -41,6 +41,7 @@
             panelTop = new Panel();
             lblTitulo = new Label();
             panelContenedor = new Panel();
+            label1 = new Label();
             ChangePassPanel = new Panel();
             btnCancelar = new Button();
             btnAceptar = new Button();
@@ -48,6 +49,9 @@
             label3 = new Label();
             label2 = new Label();
             txtNewPass = new TextBox();
+            sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
+            txtActualPass = new TextBox();
+            label5 = new Label();
             panelMenu.SuspendLayout();
             panelTop.SuspendLayout();
             panelContenedor.SuspendLayout();
@@ -231,6 +235,7 @@
             // panelContenedor
             // 
             panelContenedor.BackColor = Color.FromArgb(225, 240, 228);
+            panelContenedor.Controls.Add(label1);
             panelContenedor.Controls.Add(ChangePassPanel);
             panelContenedor.Dock = DockStyle.Fill;
             panelContenedor.Location = new Point(240, 60);
@@ -238,18 +243,29 @@
             panelContenedor.Size = new Size(960, 640);
             panelContenedor.TabIndex = 2;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10F);
+            label1.Location = new Point(675, 512);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 19);
+            label1.TabIndex = 1;
+            // 
             // ChangePassPanel
             // 
             ChangePassPanel.BackColor = Color.FromArgb(76, 124, 89);
+            ChangePassPanel.Controls.Add(label5);
+            ChangePassPanel.Controls.Add(txtActualPass);
             ChangePassPanel.Controls.Add(btnCancelar);
             ChangePassPanel.Controls.Add(btnAceptar);
             ChangePassPanel.Controls.Add(txtRepPass);
             ChangePassPanel.Controls.Add(label3);
             ChangePassPanel.Controls.Add(label2);
             ChangePassPanel.Controls.Add(txtNewPass);
-            ChangePassPanel.Location = new Point(35, 240);
+            ChangePassPanel.Location = new Point(35, 217);
             ChangePassPanel.Name = "ChangePassPanel";
-            ChangePassPanel.Size = new Size(388, 193);
+            ChangePassPanel.Size = new Size(388, 216);
             ChangePassPanel.TabIndex = 0;
             ChangePassPanel.Visible = false;
             // 
@@ -259,7 +275,7 @@
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnCancelar.ForeColor = Color.Transparent;
-            btnCancelar.Location = new Point(197, 127);
+            btnCancelar.Location = new Point(208, 157);
             btnCancelar.Margin = new Padding(2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(123, 38);
@@ -274,7 +290,7 @@
             btnAceptar.FlatStyle = FlatStyle.Flat;
             btnAceptar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnAceptar.ForeColor = Color.Transparent;
-            btnAceptar.Location = new Point(39, 127);
+            btnAceptar.Location = new Point(39, 157);
             btnAceptar.Margin = new Padding(2);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(123, 38);
@@ -285,7 +301,7 @@
             // 
             // txtRepPass
             // 
-            txtRepPass.Location = new Point(39, 99);
+            txtRepPass.Location = new Point(39, 107);
             txtRepPass.Name = "txtRepPass";
             txtRepPass.Size = new Size(100, 23);
             txtRepPass.TabIndex = 5;
@@ -295,7 +311,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(157, 91);
+            label3.Location = new Point(157, 99);
             label3.Name = "label3";
             label3.Size = new Size(193, 28);
             label3.TabIndex = 4;
@@ -306,7 +322,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(157, 41);
+            label2.Location = new Point(157, 57);
             label2.Name = "label2";
             label2.Size = new Size(185, 28);
             label2.TabIndex = 3;
@@ -314,10 +330,28 @@
             // 
             // txtNewPass
             // 
-            txtNewPass.Location = new Point(39, 41);
+            txtNewPass.Location = new Point(39, 65);
             txtNewPass.Name = "txtNewPass";
             txtNewPass.Size = new Size(100, 23);
             txtNewPass.TabIndex = 1;
+            // 
+            // txtActualPass
+            // 
+            txtActualPass.Location = new Point(39, 20);
+            txtActualPass.Name = "txtActualPass";
+            txtActualPass.Size = new Size(100, 23);
+            txtActualPass.TabIndex = 11;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(157, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(185, 28);
+            label5.TabIndex = 13;
+            label5.Text = "Contraseña Actual";
             // 
             // Form1
             // 
@@ -338,9 +372,14 @@
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             panelContenedor.ResumeLayout(false);
+            panelContenedor.PerformLayout();
             ChangePassPanel.ResumeLayout(false);
             ChangePassPanel.PerformLayout();
             ResumeLayout(false);
+            //
+            // btnActive
+            //
+
         }
 
         #endregion
@@ -350,6 +389,9 @@
 
         private System.Windows.Forms.Label lblModulo;
         private System.Windows.Forms.Label lblTitulo;
+
+        // Botones creados manualmente 
+        private FormManager.ButtonActive btnActive;
 
         private System.Windows.Forms.Button btnTurnos;
         private System.Windows.Forms.Button btnSeguimiento;
@@ -366,5 +408,9 @@
         private Label label3;
         private Label label2;
         private TextBox txtNewPass;
+        private Label label1;
+        private Microsoft.Data.SqlClient.SqlCommandBuilder sqlCommandBuilder1;
+        private TextBox txtActualPass;
+        private Label label5;
     }
 }

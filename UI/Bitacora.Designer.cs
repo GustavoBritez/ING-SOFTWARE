@@ -251,7 +251,7 @@
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(1573, 609);
+            ClientSize = new Size(1240, 609);
             Controls.Add(groupBox1);
             Controls.Add(btnSalir);
             Controls.Add(gbFiltrosFecha);

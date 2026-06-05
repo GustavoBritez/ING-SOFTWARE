@@ -1,4 +1,5 @@
 using System;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace UI
@@ -9,6 +10,7 @@ namespace UI
         private static Form1 _form1;
         private static GestionUsuario _gestionUsuario;
         private static Bitacora _bitacora;
+
 
         public static Presentacion ObtenerPresentacion()
         {
@@ -25,7 +27,7 @@ namespace UI
             {
                 _form1 = new Form1();
             }
-            
+
             return _form1;
         }
 
@@ -43,7 +45,7 @@ namespace UI
 
         public static Bitacora ObtenerBitacora()
         {
-            if ( _bitacora == null || _bitacora.IsDisposed)
+            if (_bitacora == null || _bitacora.IsDisposed)
             {
                 _bitacora = new Bitacora();
             }
@@ -63,7 +65,7 @@ namespace UI
                 {
 
                     formularioDestino.Show();
-                   
+
                 }
             }
             catch (Exception ex)
@@ -91,5 +93,80 @@ namespace UI
             _form1 = null;
             _gestionUsuario = null;
         }
+
+        #region "Graficos Botones"
+
+        public class ButtonActive : Button
+        {
+            private Color _colorFondo = Color.FromArgb(0, 191, 143);
+            private Color _colorTexto = Color.Black;
+
+            public ButtonActive()
+            {
+                this.FlatStyle = FlatStyle.Flat;
+                this.FlatAppearance.BorderSize = 0;
+                this.Size = new Size(150, 45);
+                this.BackColor = _colorFondo;
+                this.ForeColor = _colorTexto;
+                this.Cursor = Cursors.Hand; // Cambia el cursor a la manito al pasar por encima
+                this.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            }
+
+            private GraphicsPath GetCapsulePath(RectangleF rect, float radius)
+            {
+                GraphicsPath path = new GraphicsPath();
+                float diameter = radius * 2;
+
+                path.StartFigure();
+                // Arco superior izquierdo
+                path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
+                // Arco superior derecho
+                path.AddArc(rect.Width - diameter + rect.X, rect.Y, diameter, diameter, 270, 90);
+                // Arco inferior derecho
+                path.AddArc(rect.Width - diameter + rect.X, rect.Height - diameter + rect.Y, diameter, diameter, 0, 90);
+                // Arco inferior izquierdo
+                path.AddArc(rect.X, rect.Height - diameter + rect.Y, diameter, diameter, 90, 90);
+                path.CloseFigure();
+
+                return path;
+            }
+
+            protected override void OnPaint(PaintEventArgs pevent)
+            {
+                base.OnPaint(pevent);
+
+                pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                RectangleF rectSuperficie = new RectangleF(0, 0, this.Width, this.Height);
+
+                float raddioBorde = this.Height / 2F;
+
+                using (GraphicsPath pathSuperficie = GetCapsulePath(rectSuperficie, raddioBorde))
+                using (Brush brushFondo = new SolidBrush(this.BackColor))
+                {
+                    this.Region = new Region(pathSuperficie);
+
+                    pevent.Graphics.FillPath(brushFondo, pathSuperficie);
+                }
+
+                TextRenderer.DrawText(
+                    pevent.Graphics,
+                    this.Text,
+                    this.Font,
+                    this.ClientRectangle,
+                    this.ForeColor,
+                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                );
+            }
+
+            protected override void OnSizeChanged(EventArgs e)
+            {
+                base.OnSizeChanged(e);
+                this.Invalidate();
+            }
+        }
+        #endregion
+
+
     }
 }

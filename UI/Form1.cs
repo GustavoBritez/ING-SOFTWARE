@@ -14,11 +14,11 @@ namespace UI
         {
             InitializeComponent();
 
-            this.Load += (s, e) => Form1_Load();
-            this.Shown += (s, e) => Form1_Shown();
+            //this.Load += (s, e) => Form1_Load();
+            //this.Shown += (s, e) => Form1_Shown();
             this.VisibleChanged += (s, e) => Form1_VisibleChanged();
         }
-        private void Form1_Load()
+        /*private void Form1_Load()
         {
             
         }
@@ -27,7 +27,7 @@ namespace UI
         {
 
             
-        }
+        }*/
         private void ActualizarDisponibilidadBotones()
         {
             try
@@ -36,7 +36,6 @@ namespace UI
                 bool tieneSession = usuarioActivo != null;
 
                 // Deshabilitar todos los botones excepto btnLogin si no hay sesión
-                
                 btnTurnos.Enabled = tieneSession;
                 btnLogout.Enabled = tieneSession;
                 btnChangePass.Enabled = tieneSession;
@@ -46,15 +45,15 @@ namespace UI
             }
             catch
             {
-                // Si hay error, asumir que no hay sesión
-                
+                // Si hay error, asumir que no hay sesión y fue
+
                 btnTurnos.Enabled = false;
                 btnLogout.Enabled = false;
                 btnChangePass.Enabled = false;
                 btnChangePass.Visible = false;
                 btnReportes.Enabled = false;
                 btnUsuarios.Enabled = false;
-               
+
             }
 
             btnLogin.Enabled = true;
@@ -153,8 +152,9 @@ namespace UI
             {
                 string nuevaPass = txtNewPass.Text;
                 string repPass = txtRepPass.Text;
+                string actualPass = txtActualPass.Text;
 
-                if (string.IsNullOrEmpty(txtNewPass.Text) || string.IsNullOrEmpty(txtRepPass.Text))
+                if (string.IsNullOrEmpty(txtNewPass.Text) || string.IsNullOrEmpty(txtRepPass.Text) || string.IsNullOrEmpty(txtActualPass.Text))
                 {
                     MessageBox.Show("Los campos estan vacios",
                     "Cambiar Contraseña",
@@ -174,10 +174,13 @@ namespace UI
 
                 UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
 
-                string hashnuevaPass = servicioB.HashearContraseña(nuevaPass);
+                /// Verificar otra forma por que es codigo aldope
+                bool boleano = servicioB.ValidarContraseña(actualPass,usuario._Contraseña);
+
+                bool boleano2 = servicioB.ValidarContraseña(nuevaPass, usuario._Contraseña );
 
                 // Validar que no sea igual a la contraseña anterior
-                if (string.CompareOrdinal(usuario._Contraseña, hashnuevaPass) == 0)
+                if (boleano && boleano2)
                 {
                     MessageBox.Show("Error: Tu contraseña es igual, no se cambio",
                        "Cambiar Contraseña",
@@ -185,6 +188,8 @@ namespace UI
                        MessageBoxIcon.Error);
                     return;
                 }
+
+                string hashnuevaPass = servicioB.HashearContraseña(nuevaPass);
 
                 usuario._Contraseña = hashnuevaPass;
                 usuarioBLL.CambiarContraseña(usuario);
@@ -217,6 +222,7 @@ namespace UI
             {
                 txtNewPass.Text = "";
                 txtRepPass.Text = "";
+                txtActualPass.Text = "";
                 ChangePassPanel.Visible = false;
             }
         }
@@ -227,7 +233,5 @@ namespace UI
             txtRepPass.Text = "";
             ChangePassPanel.Visible = false;
         }
-
-        
     }
 }
