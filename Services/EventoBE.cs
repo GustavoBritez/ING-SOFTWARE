@@ -1,6 +1,6 @@
 namespace BE
 {
-    public class BitacoraBE
+    public class EventoBE
     {
         private int Criticidad;
         private string Descripcion;
@@ -9,11 +9,11 @@ namespace BE
         private int Id_Evento;
         private string Modulo;
 
-        public BitacoraBE()
+        public EventoBE()
         {
 
         }
-        public BitacoraBE(int criticidad, string descripcion, int dni, DateTime fecha, string modulo)
+        public EventoBE(int criticidad, string descripcion, int dni, DateTime fecha, string modulo)
         {
             Criticidad = criticidad;
             Descripcion = descripcion;
@@ -24,7 +24,7 @@ namespace BE
         }
 
 
-        public BitacoraBE(int criticidad, string descripcion, int dni, DateTime fecha, string modulo, int id_evento)
+        public EventoBE(int criticidad, string descripcion, int dni, DateTime fecha, string modulo, int id_evento)
         {
             Criticidad = criticidad;
             Descripcion = descripcion;

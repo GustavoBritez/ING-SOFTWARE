@@ -5,20 +5,20 @@ using DAL;
 
 namespace BLL
 {
-    public class BitacoraBLL
+    public class EventoBLL
     {
-        private BitacoraDAL _bitacoraDAL;
+        private EventoDAL _EventoDAL;
 
-        public BitacoraBLL()
+        public EventoBLL()
         {
-            _bitacoraDAL = new BitacoraDAL();
+            _EventoDAL = new EventoDAL();
         }
 
-        public List<BitacoraBE> BuscarEventos(DateTime desde, DateTime hasta)
+        public List<EventoBE> BuscarEventos(DateTime desde, DateTime hasta)
         {
             try
             {
-                return _bitacoraDAL.FiltrarBitacora(desde, hasta);
+                return _EventoDAL.FiltrarBitacora(desde, hasta);
             }
             catch (Exception ex)
             {
@@ -27,11 +27,11 @@ namespace BLL
             }
         }
 
-        public List<BitacoraBE> VerEventos()
+        public List<EventoBE> VerEventos()
         {
             try
             {
-                return _bitacoraDAL.ObtenerBitacora();
+                return _EventoDAL.ObtenerBitacora();
             }
             catch (Exception ex)
             {
@@ -43,8 +43,8 @@ namespace BLL
         {
             try
             {
-                BitacoraBE evento = new BitacoraBE(criticidad, descripcion, dni, DateTime.Now, modulo);
-                _bitacoraDAL.GuardarBitacora(evento);
+                EventoBE evento = new EventoBE(criticidad, descripcion, dni, DateTime.Now, modulo);
+                _EventoDAL.GuardarBitacora(evento);
                 return true;
             }
             catch (Exception ex)

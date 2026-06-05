@@ -19,7 +19,7 @@ namespace UI
     {
         BitacoraBLL _bitacoraBLL = new BitacoraBLL();
         UsuarioBLL _usuarioBLL = new UsuarioBLL();
-        private List<BitacoraBE>? _bitacoraCompleta;
+        private List<EventoBE>? _bitacoraCompleta;
 
         public Bitacora()
         {
@@ -36,7 +36,7 @@ namespace UI
             }
         }
 
-        private List<BitacoraBE> BitacoraInicial()
+        private List<EventoBE> BitacoraInicial()
         {
             DateTime desde = DateTime.Today.AddDays(-3);
             DateTime hasta = DateTime.Now;
@@ -185,7 +185,7 @@ namespace UI
             }
         }
 
-        private void CargarBitacora(List<BitacoraBE> bitacora)
+        private void CargarBitacora(List<EventoBE> bitacora)
         {
             dgvBitacora.DataSource = null;
             dgvBitacora.DataSource = bitacora;
@@ -343,9 +343,9 @@ namespace UI
                 }
                 yPos += 20;
 
-                if (dgvBitacora.DataSource is List<BitacoraBE> bitacoraData)
+                if (dgvBitacora.DataSource is List<EventoBE> bitacoraData)
                 {
-                    foreach (BitacoraBE bitacora in bitacoraData)
+                    foreach (EventoBE bitacora in bitacoraData)
                     {
                         string descripcionCompleta = bitacora._Descripcion ?? "";
                         List<string> lineasDescripcion = new List<string>();
@@ -436,7 +436,7 @@ namespace UI
                 }
 
                 yPos = page.Height - margenInf - 10;
-                gfx.DrawString($"Exportado el: {DateTime.Now:dd/MM/yyyy HH:mm:ss} | Total de registros: {(dgvBitacora.DataSource is List<BitacoraBE> list ? list.Count : 0)}",
+                gfx.DrawString($"Exportado el: {DateTime.Now:dd/MM/yyyy HH:mm:ss} | Total de registros: {(dgvBitacora.DataSource is List<EventoBE> list ? list.Count : 0)}",
                     fontPie, XBrushes.Gray, new XRect(margenIzq, yPos, anchoUtil, 10), XStringFormats.BottomLeft);
 
                 // Guardar documento
@@ -467,7 +467,7 @@ namespace UI
 
             try
             {
-                BitacoraBE bitacora = (BitacoraBE)dgvBitacora.Rows[e.RowIndex].DataBoundItem;
+                EventoBE bitacora = (EventoBE)dgvBitacora.Rows[e.RowIndex].DataBoundItem;
 
                 if (bitacora != null)
                 {
@@ -485,7 +485,7 @@ namespace UI
             }
         }
 
-        private void MostrarDetallesUsuarioBitacora(BitacoraBE bitacora)
+        private void MostrarDetallesUsuarioBitacora(EventoBE bitacora)
         {
             try
             {

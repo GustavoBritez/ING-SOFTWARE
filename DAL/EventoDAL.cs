@@ -7,19 +7,19 @@ namespace DAL
 {
 
 
-    public class BitacoraDAL
+    public class EventoDAL
     {
         private readonly Conexion conexion;
         private const string TABLA_BITACORA = "Bitacora"; /// Nombre de la TABLA Bitacora en la BD - SQL Server 2019 NO PROBE EN 2020
 
-        public BitacoraDAL()
+        public EventoDAL()
         {
             conexion = new();
         }
 
-        public List<BitacoraBE> FiltrarBitacora(DateTime desde, DateTime hasta)
+        public List<EventoBE> FiltrarBitacora(DateTime desde, DateTime hasta)
         {
-            List<BitacoraBE> eventos = new List<BitacoraBE>();
+            List<EventoBE> eventos = new List<EventoBE>();
 
             try
             {
@@ -38,7 +38,7 @@ namespace DAL
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    eventos.Add(new BitacoraBE(
+                    eventos.Add(new EventoBE(
                         criticidad: (int)row["Criticidad"],
                         descripcion: row["Descripcion"].ToString(),
                         dni: (int)row["Dni"],
@@ -57,7 +57,7 @@ namespace DAL
             return eventos;
         }
 
-        public void GuardarBitacora(BitacoraBE newBitacora)
+        public void GuardarBitacora(EventoBE newBitacora)
         {
             try
             {
@@ -81,9 +81,9 @@ namespace DAL
             }
         }
 
-        public List<BitacoraBE> ObtenerBitacora()
+        public List<EventoBE> ObtenerBitacora()
         {
-            List<BitacoraBE> eventos = new List<BitacoraBE>();
+            List<EventoBE> eventos = new List<EventoBE>();
 
             try
             {
@@ -95,7 +95,7 @@ namespace DAL
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    eventos.Add(new BitacoraBE(
+                    eventos.Add(new EventoBE(
                         criticidad: (int)row["Criticidad"],
                         descripcion: row["Descripcion"].ToString(),
                         dni: (int)row["Dni"],

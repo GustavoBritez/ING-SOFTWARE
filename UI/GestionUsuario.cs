@@ -17,7 +17,7 @@ namespace UI
     public partial class GestionUsuario : Form
     {
         private UsuarioBLL usuarioBLL = new UsuarioBLL();
-        private BitacoraBLL bitacoraBLL = new BitacoraBLL();
+        private EventoBLL bitacoraBLL = new EventoBLL();
         private string _modoActual = ""; 
         private UsuarioBE _usuarioEnModificacion = null;
 

@@ -63,7 +63,7 @@ namespace DAL
 
                 conexion.ExecuteNonQuery(query, parametros);
 
-                BitacoraBE bit = new BitacoraBE()
+                EventoBE bit = new EventoBE()
                 {
                     _Criticidad = 5,
                     _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
@@ -72,7 +72,7 @@ namespace DAL
                     _Fecha = DateTime.Now
                 };
 
-                BitacoraDAL bitacoraDAL = new();
+                EventoDAL bitacoraDAL = new();
 
                 bitacoraDAL.GuardarBitacora(bit);
             }
@@ -80,7 +80,7 @@ namespace DAL
             {
 
 
-                BitacoraBE bit = new BitacoraBE()
+                EventoBE bit = new EventoBE()
                 {
                     _Criticidad = 2,
                     _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
@@ -89,7 +89,7 @@ namespace DAL
                     _Fecha = DateTime.Now
                 };
 
-                BitacoraDAL bitacoraDAL = new();
+                EventoDAL bitacoraDAL = new();
 
                 bitacoraDAL.GuardarBitacora(bit);
                 Console.WriteLine("ERROR:  No se cambio la contraseña ");
