@@ -63,9 +63,20 @@ namespace UI
         private void Form1_VisibleChanged()
         {
             ActualizarDisponibilidadBotones();
+            ActualizarUsuario();
         }
 
-
+        private void ActualizarUsuario()
+        {
+            if(ServicesSessionManager.Instancia.ObtenerUsuarioActivo()!=null)
+            {
+                this.label6.Text = $"{ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._NombreDeUsuario}, ROL:{ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Rol}";
+            }
+            else
+            {
+                this.label6.Text = $"";
+            }
+        }
         private void btnTurnos_Click(object sender, EventArgs e)
         {
 
@@ -90,6 +101,7 @@ namespace UI
                 usuarioBLL.LogOut(usuarioActual);
                 MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarDisponibilidadBotones();
+                ActualizarUsuario();
                 FormManager.Navegar(this, FormManager.ObtenerLogin());
             }
             catch (Exception ex)
@@ -196,7 +208,7 @@ namespace UI
 
                 // Registrar en bitácora
                 string descripcion = $"Cambio de contraseña realizado por el usuario '{usuario._NombreDeUsuario}'";
-                bitacoraBLL.RegistrarEvento(2, descripcion, usuario._Dni, "Form1");
+                bitacoraBLL.RegistrarEvento(2, descripcion, usuario._Dni, "MenuPrincipal");
 
                 MessageBox.Show("Contraseña cambiada exitosamente",
                 "Cambiar Contraseña",
@@ -210,7 +222,7 @@ namespace UI
                 if (usuario != null)
                 {
                     string descripcion = $"Error al cambiar contraseña: {ex.Message}";
-                    bitacoraBLL.RegistrarEvento(3, descripcion, usuario._Dni, "Form1");
+                    bitacoraBLL.RegistrarEvento(3, descripcion, usuario._Dni, "MenuPrincipal");
                 }
 
                 MessageBox.Show($"Error: {ex.Message}",

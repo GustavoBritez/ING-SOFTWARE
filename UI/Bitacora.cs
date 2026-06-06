@@ -90,7 +90,7 @@ namespace UI
         {
             cmbModulo.Items.Clear();
             cmbModulo.Items.Add("Todos");
-            cmbModulo.Items.Add("Form1");
+            cmbModulo.Items.Add("MenuPrincipal");
             cmbModulo.Items.Add("GestionUsuario");
             cmbModulo.Items.Add("Cambiar Contraseña");
             cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto

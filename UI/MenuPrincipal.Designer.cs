@@ -52,6 +52,8 @@
             label2 = new Label();
             txtNewPass = new TextBox();
             sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
+            label4 = new Label();
+            label6 = new Label();
             panelMenu.SuspendLayout();
             panelTop.SuspendLayout();
             panelContenedor.SuspendLayout();
@@ -214,6 +216,8 @@
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(92, 145, 104);
+            panelTop.Controls.Add(label6);
+            panelTop.Controls.Add(label4);
             panelTop.Controls.Add(lblTitulo);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(240, 0);
@@ -353,6 +357,27 @@
             txtNewPass.Size = new Size(100, 23);
             txtNewPass.TabIndex = 1;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            label4.ForeColor = Color.MistyRose;
+            label4.Location = new Point(236, 20);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 25);
+            label4.TabIndex = 9;
+            label4.Text = "Usuario: ";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            label6.ForeColor = Color.MistyRose;
+            label6.Location = new Point(323, 20);
+            label6.Name = "label6";
+            label6.Size = new Size(0, 25);
+            label6.TabIndex = 10;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -412,5 +437,7 @@
         private Microsoft.Data.SqlClient.SqlCommandBuilder sqlCommandBuilder1;
         private TextBox txtActualPass;
         private Label label5;
+        private Label label6;
+        private Label label4;
     }
 }
