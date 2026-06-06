@@ -18,7 +18,7 @@ namespace UI
     {
         private UsuarioBLL usuarioBLL = new UsuarioBLL();
         private EventoBLL bitacoraBLL = new EventoBLL();
-        private string _modoActual = ""; 
+        private string _modoActual = "";
         private UsuarioBE _usuarioEnModificacion = null;
 
         public GestionUsuario()
@@ -34,7 +34,7 @@ namespace UI
 
             GestionUsuarios_Load(null, null);
             dgvUsuarios.SelectionChanged += DgvUsuarios_SelectionChanged;
-            
+
             // Agregar event handlers para los RadioButtons de filtro
             rbMostrarActivos.CheckedChanged += RbMostrar_CheckedChanged;
             rbMostrarInactivos.CheckedChanged += RbMostrar_CheckedChanged;
@@ -84,7 +84,7 @@ namespace UI
                 if (usuarioSeleccionado != null)
                 {
                     CargarCamposDelUsuario(usuarioSeleccionado); // Cheken que atualizo los txt
-                    
+
 
                     if (_modoActual == "CambiarContrasena")
                     {
@@ -157,7 +157,7 @@ namespace UI
             _modoActual = "";
             dgvUsuarios.ClearSelection();
             LimpiarCampos();
-            
+
 
             btnCrear.Enabled = true;
             btnModificar.Enabled = true;
@@ -175,33 +175,33 @@ namespace UI
         {
 
             dgvUsuarios.ClearSelection();
-            
+
 
             LimpiarCampos();
-            
+
 
             txtDni.Enabled = true;
             txtNombre.Enabled = true;
             txtApellido.Enabled = true;
             cmbRol.Enabled = true;
             txtNombreUsuario.Enabled = true;
-            
+
 
             CKB_Desactivar.Enabled = false;
             CKB_Activar.Enabled = false;
-            
+
 
             btnAceptar.Visible = true;
             btnAceptar.Enabled = true;
             btnCancelar.Visible = true;
             btnCancelar.Enabled = true;
-            
+
 
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
             btnActDesact.Enabled = false;
             //btnCambiarContrasena.Enabled = false;
-            
+
 
             txtDni.Focus();
         }
@@ -325,22 +325,22 @@ namespace UI
         {
             _modoActual = "";
             _usuarioEnModificacion = null;
-            
+
 
             LimpiarCampos();
-            
+
 
             btnAceptar.Visible = false;
             btnAceptar.Enabled = false;
             btnCancelar.Visible = false;
             btnCancelar.Enabled = false;
-            
+
             btnCrear.Enabled = true;
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
             btnActDesact.Enabled = true;
             //btnCambiarContrasena.Enabled = true;
-            
+
 
             txtDni.Enabled = false;
             txtNombre.Enabled = false;
@@ -377,13 +377,13 @@ namespace UI
             txtNombreUsuario.Enabled = false;
             CKB_Desactivar.Enabled = false;
             CKB_Activar.Enabled = false;
-            
+
 
             btnAceptar.Visible = false;
             btnAceptar.Enabled = false;
             btnCancelar.Visible = false;
             btnCancelar.Enabled = false;
-            
+
             GestionUsuarios_Load(sender, e);
         }
 
@@ -475,17 +475,17 @@ namespace UI
             txtApellido.Enabled = true;
             cmbRol.Enabled = true;
             txtNombreUsuario.Enabled = true;
-            
+
 
             CKB_Desactivar.Enabled = false;
             CKB_Activar.Enabled = false;
-            
+
 
             btnAceptar.Visible = true;
             btnAceptar.Enabled = true;
             btnCancelar.Visible = true;
             btnCancelar.Enabled = true;
-            
+
 
             btnCrear.Enabled = false;
             btnEliminar.Enabled = false;
@@ -568,7 +568,7 @@ namespace UI
 
                 //bool estabaBloqueado = usuarioSeleccionado._Bloqueado;
 
-                if ( usuarioSeleccionado._Bloqueado == false)
+                if (usuarioSeleccionado._Bloqueado == false)
                 {
                     MessageBox.Show("Error: El Usuario no esta bloqueado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

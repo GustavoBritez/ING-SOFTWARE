@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panelLateral = new Panel();
             btnExportar = new Button();
             btnLimpiarFiltros = new Button();
@@ -42,10 +42,15 @@
             lblDesde = new Label();
             btnSalir = new Button();
             groupBox1 = new GroupBox();
-            comboBox1 = new ComboBox();
-            label1 = new Label();
+            lbApellido = new Label();
+            lbNombre = new Label();
+            label3 = new Label();
             cmbCriticidad = new ComboBox();
+            label1 = new Label();
+            cmbModulo = new ComboBox();
             label2 = new Label();
+            cmbEvento = new ComboBox();
+            label4 = new Label();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             gbFiltrosFecha.SuspendLayout();
@@ -62,6 +67,7 @@
             panelLateral.Name = "panelLateral";
             panelLateral.Size = new Size(160, 131);
             panelLateral.TabIndex = 4;
+            panelLateral.Paint += panelLateral_Paint;
             // 
             // btnExportar
             // 
@@ -92,24 +98,24 @@
             dgvBitacora.BackgroundColor = Color.White;
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvBitacora.ColumnHeadersHeight = 30;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(180, 210, 190);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(180, 210, 190);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle4;
             dgvBitacora.EnableHeadersVisualStyles = false;
             dgvBitacora.GridColor = Color.FromArgb(200, 220, 205);
             dgvBitacora.Location = new Point(185, 60);
@@ -140,9 +146,9 @@
             gbFiltrosFecha.Controls.Add(lblDesde);
             gbFiltrosFecha.FlatStyle = FlatStyle.Flat;
             gbFiltrosFecha.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            gbFiltrosFecha.Location = new Point(362, 401);
+            gbFiltrosFecha.Location = new Point(365, 401);
             gbFiltrosFecha.Name = "gbFiltrosFecha";
-            gbFiltrosFecha.Size = new Size(625, 63);
+            gbFiltrosFecha.Size = new Size(604, 63);
             gbFiltrosFecha.TabIndex = 1;
             gbFiltrosFecha.TabStop = false;
             gbFiltrosFecha.Text = "Filtrar por Rango de Fechas";
@@ -200,27 +206,59 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.FromArgb(180, 180, 180);
-            groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(cmbEvento);
+            groupBox1.Controls.Add(lbApellido);
+            groupBox1.Controls.Add(lbNombre);
+            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(cmbCriticidad);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(cmbModulo);
             groupBox1.Controls.Add(label2);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            groupBox1.Location = new Point(362, 470);
+            groupBox1.Location = new Point(365, 470);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(625, 69);
+            groupBox1.Size = new Size(604, 132);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtrar ";
             // 
-            // comboBox1
+            // lbApellido
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Location = new Point(297, 26);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(115, 23);
-            comboBox1.TabIndex = 7;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            lbApellido.AutoSize = true;
+            lbApellido.Location = new Point(196, 90);
+            lbApellido.Name = "lbApellido";
+            lbApellido.Size = new Size(58, 15);
+            lbApellido.TabIndex = 10;
+            lbApellido.Text = "Apellido :";
+            // 
+            // lbNombre
+            // 
+            lbNombre.AutoSize = true;
+            lbNombre.Location = new Point(196, 75);
+            lbNombre.Name = "lbNombre";
+            lbNombre.Size = new Size(62, 15);
+            lbNombre.TabIndex = 9;
+            lbNombre.Text = "Nombre : ";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(256, 60);
+            label3.Name = "label3";
+            label3.Size = new Size(98, 15);
+            label3.TabIndex = 8;
+            label3.Text = "Seleccion Actual";
+            // 
+            // cmbCriticidad
+            // 
+            cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCriticidad.Location = new Point(297, 26);
+            cmbCriticidad.Name = "cmbCriticidad";
+            cmbCriticidad.Size = new Size(115, 23);
+            cmbCriticidad.TabIndex = 7;
+            cmbCriticidad.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -231,13 +269,13 @@
             label1.Text = "Criticidad";
             label1.TextAlign = ContentAlignment.TopRight;
             // 
-            // cmbCriticidad
+            // cmbModulo
             // 
-            cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCriticidad.Location = new Point(93, 26);
-            cmbCriticidad.Name = "cmbCriticidad";
-            cmbCriticidad.Size = new Size(115, 23);
-            cmbCriticidad.TabIndex = 5;
+            cmbModulo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbModulo.Location = new Point(93, 26);
+            cmbModulo.Name = "cmbModulo";
+            cmbModulo.Size = new Size(115, 23);
+            cmbModulo.TabIndex = 5;
             // 
             // label2
             // 
@@ -248,10 +286,27 @@
             label2.Text = "Módulo";
             label2.TextAlign = ContentAlignment.TopRight;
             // 
+            // cmbEvento
+            // 
+            cmbEvento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEvento.Location = new Point(475, 26);
+            cmbEvento.Name = "cmbEvento";
+            cmbEvento.Size = new Size(115, 23);
+            cmbEvento.TabIndex = 11;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(423, 29);
+            label4.Name = "label4";
+            label4.Size = new Size(46, 15);
+            label4.TabIndex = 12;
+            label4.Text = "Evento";
+            // 
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(1240, 609);
+            ClientSize = new Size(1240, 614);
             Controls.Add(groupBox1);
             Controls.Add(btnSalir);
             Controls.Add(gbFiltrosFecha);
@@ -267,6 +322,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).EndInit();
             gbFiltrosFecha.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -285,9 +341,13 @@
         private System.Windows.Forms.Button btnSalir;
         private GroupBox groupBox1;
         private Label label2;
+        private ComboBox cmbModulo;
         private ComboBox cmbCriticidad;
-        private ComboBox comboBox1;
         private Label label1;
-
+        private Label lbApellido;
+        private Label lbNombre;
+        private Label label3;
+        private Label label4;
+        private ComboBox cmbEvento;
     }
 }

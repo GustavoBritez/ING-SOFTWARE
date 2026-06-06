@@ -263,7 +263,7 @@
             ChangePassPanel.Controls.Add(label3);
             ChangePassPanel.Controls.Add(label2);
             ChangePassPanel.Controls.Add(txtNewPass);
-            ChangePassPanel.Location = new Point(35, 217);
+            ChangePassPanel.Location = new Point(316, 185);
             ChangePassPanel.Name = "ChangePassPanel";
             ChangePassPanel.Size = new Size(388, 216);
             ChangePassPanel.TabIndex = 0;

@@ -71,7 +71,7 @@ namespace UI
             dtpHasta.ValueChanged += DtpFecha_ValueChanged;
 
 
-            cmbCriticidad.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
+            cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
 
 
             dgvBitacora.CellClick += DgvBitacora_CellClick;
@@ -88,25 +88,25 @@ namespace UI
 
         private void InicializarComboBoxCriticidad()
         {
-            cmbCriticidad.Items.Clear();
-            cmbCriticidad.Items.Add("Todos");
-            cmbCriticidad.Items.Add("Form1");
-            cmbCriticidad.Items.Add("GestionUsuario");
-            cmbCriticidad.Items.Add("Cambiar Contraseña");
-            cmbCriticidad.SelectedIndex = 0; // Seleccionar "Todas" por defecto
+            cmbModulo.Items.Clear();
+            cmbModulo.Items.Add("Todos");
+            cmbModulo.Items.Add("Form1");
+            cmbModulo.Items.Add("GestionUsuario");
+            cmbModulo.Items.Add("Cambiar Contraseña");
+            cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto
         }
         private void InicializarComboBoxC()
         {
-            comboBox1.Items.Clear();
+            cmbCriticidad.Items.Clear();
 
-            comboBox1.Items.Add("Todas");
-            comboBox1.Items.Add("1");
-            comboBox1.Items.Add("2");
-            comboBox1.Items.Add("3");
-            comboBox1.Items.Add("4");
-            comboBox1.Items.Add("5");
+            cmbCriticidad.Items.Add("Todas");
+            cmbCriticidad.Items.Add("1");
+            cmbCriticidad.Items.Add("2");
+            cmbCriticidad.Items.Add("3");
+            cmbCriticidad.Items.Add("4");
+            cmbCriticidad.Items.Add("5");
 
-            comboBox1.SelectedIndex = 0;
+            cmbCriticidad.SelectedIndex = 0;
         }
         private void DtpFecha_ValueChanged(object? sender, EventArgs e)
         {
@@ -139,7 +139,7 @@ namespace UI
 
         private void CmbCriticidad_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            string modulo = cmbCriticidad.SelectedItem?.ToString() ?? "Todas";
+            string modulo = cmbModulo.SelectedItem?.ToString() ?? "Todas";
 
             var bitacoraFiltrada = _bitacoraCompleta;
             if (modulo != "Todos")
@@ -165,7 +165,7 @@ namespace UI
 
                 DateTime fechaDesde = dtpDesde.Value.Date;
                 DateTime fechaHasta = dtpHasta.Value.Date;
-                string criticidadSeleccionada = cmbCriticidad.SelectedItem?.ToString() ?? "Todas";
+                string criticidadSeleccionada = cmbModulo.SelectedItem?.ToString() ?? "Todas";
 
 
                 var bitacoraFiltrada = _bitacoraCompleta
@@ -194,26 +194,26 @@ namespace UI
             ConfigurarColumnasGrid();
         }
 
+        // Lo estamos refaccionando como quiere silvestro
+        // En mantenimiento
+        // Columnas en orden
+        // Base de datos cambiada
+        // Posible error de ejecucion al cargar los datos en grilla
         private void ConfigurarColumnasGrid()
         {
-            if (dgvBitacora.Columns.Contains("_Id_Evento"))
+            if (dgvBitacora.Columns.Contains("_Login"))
             {
-                dgvBitacora.Columns["_Id_Evento"].HeaderText = "ID Evento";
+                dgvBitacora.Columns["_Login"].HeaderText = "Login";
             }
 
             if (dgvBitacora.Columns.Contains("_Fecha"))
             {
-                dgvBitacora.Columns["_Fecha"].HeaderText = "Fecha y Hora";
+                dgvBitacora.Columns["_Fecha"].HeaderText = "Fecha";
             }
 
-            if (dgvBitacora.Columns.Contains("_Dni"))
+            if (dgvBitacora.Columns.Contains("_Hora"))
             {
-                dgvBitacora.Columns["_Dni"].HeaderText = "DNI Usuario";
-            }
-
-            if (dgvBitacora.Columns.Contains("_Criticidad"))
-            {
-                dgvBitacora.Columns["_Criticidad"].HeaderText = "Criticidad";
+                dgvBitacora.Columns["_Hora"].HeaderText = "Hora";
             }
 
             if (dgvBitacora.Columns.Contains("_Modulo"))
@@ -221,10 +221,16 @@ namespace UI
                 dgvBitacora.Columns["_Modulo"].HeaderText = "Módulo";
             }
 
-            if (dgvBitacora.Columns.Contains("_Descripcion"))
+            if (dgvBitacora.Columns.Contains("_Evento"))
             {
-                dgvBitacora.Columns["_Descripcion"].HeaderText = "Descripción";
+                dgvBitacora.Columns["_Evento"].HeaderText = "Evento";
             }
+
+            if (dgvBitacora.Columns.Contains("_Criticidad"))
+            {
+                dgvBitacora.Columns["_Criticidad"].HeaderText = "Criticidad";
+            }
+
         }
 
         private void btnLimpiarFiltros_Click(object? sender, EventArgs e)
@@ -242,7 +248,7 @@ namespace UI
                 dtpHasta.Value = hoy;
 
 
-                cmbCriticidad.SelectedIndex = 0;
+                cmbModulo.SelectedIndex = 0;
 
 
                 _bitacoraCompleta = _bitacoraBLL.VerEventos();
@@ -324,7 +330,7 @@ namespace UI
                 yPos += 40;
 
                 string filtroInfo = $"Período: {dtpDesde.Value:dd/MM/yyyy} al {dtpHasta.Value:dd/MM/yyyy} | " +
-                                    $"Criticidad: {cmbCriticidad.SelectedItem} | " +
+                                    $"Criticidad: {cmbModulo.SelectedItem} | " +
                                     $"Fecha de Exportación: {DateTime.Now:dd/MM/yyyy HH:mm:ss}";
                 gfx.DrawString(filtroInfo, fontDatos, XBrushes.Black,
                     new XRect(margenIzq, yPos, anchoUtil, 15), XStringFormats.TopLeft);
@@ -463,7 +469,7 @@ namespace UI
 
         private void DgvBitacora_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return; // Ignore header clicks
+            if (e.RowIndex < 0) return; 
 
             try
             {
@@ -595,7 +601,7 @@ namespace UI
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string c = comboBox1.SelectedItem?.ToString() ?? "Todas";
+            string c = cmbCriticidad.SelectedItem?.ToString() ?? "Todas";
 
             var bitacoraFiltrada = _bitacoraCompleta;
             if (c != "Todas")
@@ -609,6 +615,11 @@ namespace UI
         }
 
         private void lblHasta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelLateral_Paint(object sender, PaintEventArgs e)
         {
 
         }
