@@ -68,7 +68,7 @@ namespace DAL
                     _Criticidad = 5,
                     _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
                     _Descripcion = $"Se cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
-                    _Modulo = "Cambiar Contraseña",
+                    _Modulo = "MenuPrincipal",
                     _Fecha = DateTime.Now
                 };
 
@@ -85,7 +85,7 @@ namespace DAL
                     _Criticidad = 2,
                     _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
                     _Descripcion = $"No cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
-                    _Modulo = "Cambiar Contraseña",
+                    _Modulo = "MenuPrincipal",
                     _Fecha = DateTime.Now
                 };
 

@@ -527,6 +527,11 @@ namespace UI
                     _usuarioEnModificacion._Rol = cmbRol.SelectedItem.ToString();
                 }
 
+                var u = usuarioBLL.ListarUsuarios().Find(x => x._NombreDeUsuario == txtNombreUsuario.Text.ToString());
+                if (u != null)
+                {
+                    throw new Exception($"Ya existe un usuario con el nombre de Usuario: {txtNombreUsuario.Text.ToString()}");
+                }
                 usuarioBLL.ModificarUsuario(_usuarioEnModificacion);
 
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -628,6 +633,11 @@ namespace UI
             {
                 GestionUsuarios_Load(sender, e);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AplicarFiltroEstado();
         }
     }
 }

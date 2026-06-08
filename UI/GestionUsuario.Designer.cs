@@ -58,6 +58,7 @@ namespace UI
             txtDni = new TextBox();
             lblDni = new Label();
             btnSalir = new Button();
+            button1 = new Button();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             gbFiltrar.SuspendLayout();
@@ -74,7 +75,7 @@ namespace UI
             panelLateral.Controls.Add(btnCrear);
             panelLateral.Location = new Point(12, 60);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(160, 240);
+            panelLateral.Size = new Size(160, 245);
             panelLateral.TabIndex = 4;
             // 
             // btnActDesact
@@ -354,10 +355,23 @@ namespace UI
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(225, 225, 225);
+            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button1.Location = new Point(28, 324);
+            button1.Name = "button1";
+            button1.Size = new Size(128, 40);
+            button1.TabIndex = 4;
+            button1.Text = "Actualizar";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // GestionUsuario
             // 
             BackColor = Color.FromArgb(218, 237, 223);
             ClientSize = new Size(950, 560);
+            Controls.Add(button1);
             Controls.Add(btnSalir);
             Controls.Add(gbDetalles);
             Controls.Add(gbFiltrar);
@@ -406,5 +420,6 @@ namespace UI
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private RadioButton rbMostrarTodos;
+        private Button button1;
     }
 }

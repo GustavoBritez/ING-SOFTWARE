@@ -53,7 +53,7 @@ namespace BLL
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Contraseña cambiada correctamente";
-                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "MenuPrincipal");
             }
             catch( Exception ex)
             {
@@ -61,7 +61,7 @@ namespace BLL
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Error al cambiar la contraseña";
-                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
+                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "MenuPrincipal");
                 throw;
             }
         }
@@ -260,7 +260,7 @@ namespace BLL
 
                 string descripcion = $" Cierre de Sesion Exitoso";
 
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Gestion Usuario");
+                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
                 ///Services.ServicesSessionManager.Instancia.Logout();
             }
             catch (Exception ex)

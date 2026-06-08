@@ -42,15 +42,16 @@
             lblDesde = new Label();
             btnSalir = new Button();
             groupBox1 = new GroupBox();
+            label4 = new Label();
+            cmbEvento = new ComboBox();
             lbApellido = new Label();
             lbNombre = new Label();
-            label3 = new Label();
             cmbCriticidad = new ComboBox();
             label1 = new Label();
             cmbModulo = new ComboBox();
             label2 = new Label();
-            cmbEvento = new ComboBox();
-            label4 = new Label();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             gbFiltrosFecha.SuspendLayout();
@@ -125,6 +126,7 @@
             dgvBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBitacora.Size = new Size(1037, 335);
             dgvBitacora.TabIndex = 3;
+            dgvBitacora.SelectionChanged += dgvBitacora_SelectionChanged;
             // 
             // lblTitulo
             // 
@@ -146,9 +148,9 @@
             gbFiltrosFecha.Controls.Add(lblDesde);
             gbFiltrosFecha.FlatStyle = FlatStyle.Flat;
             gbFiltrosFecha.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            gbFiltrosFecha.Location = new Point(365, 401);
+            gbFiltrosFecha.Location = new Point(185, 401);
             gbFiltrosFecha.Name = "gbFiltrosFecha";
-            gbFiltrosFecha.Size = new Size(604, 63);
+            gbFiltrosFecha.Size = new Size(469, 63);
             gbFiltrosFecha.TabIndex = 1;
             gbFiltrosFecha.TabStop = false;
             gbFiltrosFecha.Text = "Filtrar por Rango de Fechas";
@@ -157,14 +159,14 @@
             // 
             dtpHasta.Font = new Font("Segoe UI", 9F);
             dtpHasta.Format = DateTimePickerFormat.Short;
-            dtpHasta.Location = new Point(440, 35);
+            dtpHasta.Location = new Point(297, 19);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(150, 23);
             dtpHasta.TabIndex = 1;
             // 
             // lblHasta
             // 
-            lblHasta.Location = new Point(370, 43);
+            lblHasta.Location = new Point(227, 27);
             lblHasta.Name = "lblHasta";
             lblHasta.Size = new Size(64, 20);
             lblHasta.TabIndex = 2;
@@ -176,14 +178,14 @@
             // 
             dtpDesde.Font = new Font("Segoe UI", 9F);
             dtpDesde.Format = DateTimePickerFormat.Short;
-            dtpDesde.Location = new Point(180, 35);
+            dtpDesde.Location = new Point(74, 22);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(150, 23);
             dtpDesde.TabIndex = 3;
             // 
             // lblDesde
             // 
-            lblDesde.Location = new Point(110, 38);
+            lblDesde.Location = new Point(4, 25);
             lblDesde.Name = "lblDesde";
             lblDesde.Size = new Size(64, 20);
             lblDesde.TabIndex = 4;
@@ -208,48 +210,55 @@
             groupBox1.BackColor = Color.FromArgb(180, 180, 180);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(cmbEvento);
-            groupBox1.Controls.Add(lbApellido);
-            groupBox1.Controls.Add(lbNombre);
-            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(cmbCriticidad);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(cmbModulo);
             groupBox1.Controls.Add(label2);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            groupBox1.Location = new Point(365, 470);
+            groupBox1.Location = new Point(185, 470);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(604, 132);
+            groupBox1.Size = new Size(613, 75);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtrar ";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(423, 29);
+            label4.Name = "label4";
+            label4.Size = new Size(46, 15);
+            label4.TabIndex = 12;
+            label4.Text = "Evento";
+            // 
+            // cmbEvento
+            // 
+            cmbEvento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEvento.Location = new Point(475, 26);
+            cmbEvento.Name = "cmbEvento";
+            cmbEvento.Size = new Size(115, 23);
+            cmbEvento.TabIndex = 11;
+            // 
             // lbApellido
             // 
             lbApellido.AutoSize = true;
-            lbApellido.Location = new Point(196, 90);
+            lbApellido.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbApellido.Location = new Point(660, 433);
             lbApellido.Name = "lbApellido";
-            lbApellido.Size = new Size(58, 15);
+            lbApellido.Size = new Size(84, 21);
             lbApellido.TabIndex = 10;
             lbApellido.Text = "Apellido :";
             // 
             // lbNombre
             // 
             lbNombre.AutoSize = true;
-            lbNombre.Location = new Point(196, 75);
+            lbNombre.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbNombre.Location = new Point(660, 401);
             lbNombre.Name = "lbNombre";
-            lbNombre.Size = new Size(62, 15);
+            lbNombre.Size = new Size(88, 21);
             lbNombre.TabIndex = 9;
             lbNombre.Text = "Nombre : ";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(256, 60);
-            label3.Name = "label3";
-            label3.Size = new Size(98, 15);
-            label3.TabIndex = 8;
-            label3.Text = "Seleccion Actual";
             // 
             // cmbCriticidad
             // 
@@ -286,31 +295,32 @@
             label2.Text = "Módulo";
             label2.TextAlign = ContentAlignment.TopRight;
             // 
-            // cmbEvento
+            // textBox1
             // 
-            cmbEvento.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEvento.Location = new Point(475, 26);
-            cmbEvento.Name = "cmbEvento";
-            cmbEvento.Size = new Size(115, 23);
-            cmbEvento.TabIndex = 11;
+            textBox1.Location = new Point(754, 403);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(145, 23);
+            textBox1.TabIndex = 13;
             // 
-            // label4
+            // textBox2
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(423, 29);
-            label4.Name = "label4";
-            label4.Size = new Size(46, 15);
-            label4.TabIndex = 12;
-            label4.Text = "Evento";
+            textBox2.Location = new Point(754, 435);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(145, 23);
+            textBox2.TabIndex = 14;
             // 
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);
             ClientSize = new Size(1240, 614);
+            Controls.Add(textBox2);
+            Controls.Add(textBox1);
             Controls.Add(groupBox1);
             Controls.Add(btnSalir);
             Controls.Add(gbFiltrosFecha);
+            Controls.Add(lbApellido);
             Controls.Add(dgvBitacora);
+            Controls.Add(lbNombre);
             Controls.Add(panelLateral);
             Controls.Add(lblTitulo);
             Font = new Font("Segoe UI", 9F);
@@ -324,6 +334,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -346,8 +357,9 @@
         private Label label1;
         private Label lbApellido;
         private Label lbNombre;
-        private Label label3;
         private Label label4;
         private ComboBox cmbEvento;
+        private TextBox textBox1;
+        private TextBox textBox2;
     }
 }

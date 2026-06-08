@@ -73,6 +73,10 @@ namespace UI
 
             cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
 
+            textBox1.ReadOnly= true;
+            textBox2.ReadOnly= true;
+            dgvBitacora.AllowUserToResizeColumns = false;
+            dgvBitacora.AllowUserToResizeRows= false;
 
             dgvBitacora.CellClick += DgvBitacora_CellClick;
 
@@ -92,7 +96,6 @@ namespace UI
             cmbModulo.Items.Add("Todos");
             cmbModulo.Items.Add("MenuPrincipal");
             cmbModulo.Items.Add("GestionUsuario");
-            cmbModulo.Items.Add("Cambiar Contraseña");
             cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto
         }
         private void InicializarComboBoxC()
@@ -469,124 +472,26 @@ namespace UI
 
         private void DgvBitacora_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return; 
+            //if (e.RowIndex < 0) return;
 
-            try
-            {
-                EventoBE bitacora = (EventoBE)dgvBitacora.Rows[e.RowIndex].DataBoundItem;
+            //try
+            //{
+            //    EventoBE bitacora = (EventoBE)dgvBitacora.Rows[e.RowIndex].DataBoundItem;
 
-                if (bitacora != null)
-                {
-                    MostrarDetallesUsuarioBitacora(bitacora);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    $"Error al obtener detalles: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-        }
-
-        private void MostrarDetallesUsuarioBitacora(EventoBE bitacora)
-        {
-            try
-            {
-                List<UsuarioBE> usuarios = _usuarioBLL.ListarUsuarios();
-                UsuarioBE? usuario = usuarios.FirstOrDefault(u => u._Dni == bitacora._Dni);
-
-                // POPUP
-                Form popup = new Form();
-                popup.Text = "Detalles del Evento y Usuario";
-                popup.Size = new Size(500, 400);
-                popup.StartPosition = FormStartPosition.CenterParent;
-                popup.BackColor = Color.FromArgb(218, 237, 223);
-                popup.FormBorderStyle = FormBorderStyle.FixedDialog;
-                popup.MaximizeBox = false;
-                popup.MinimizeBox = false;
-
-                Panel panel = new Panel();
-                panel.Dock = DockStyle.Fill;
-                panel.BackColor = Color.FromArgb(218, 237, 223);
-                panel.Padding = new Padding(15);
-
-                Label lblTituloEvento = new Label();
-                lblTituloEvento.Text = "📌 Información del Evento";
-                lblTituloEvento.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-                lblTituloEvento.ForeColor = Color.FromArgb(46, 94, 67);
-                lblTituloEvento.AutoSize = true;
-                panel.Controls.Add(lblTituloEvento);
-
-                int yPos = 40;
-                string eventoInfo = $"ID Evento: {bitacora._Id_Evento}\n" +
-                                   $"Fecha: {bitacora._Fecha:yyyy-MM-dd HH:mm:ss}\n" +
-                                   $"Criticidad: {bitacora._Criticidad}\n" +
-                                   $"Módulo: {bitacora._Modulo}\n" +
-                                   $"Descripción: {bitacora._Descripcion}";
-
-                Label lblEvento = new Label();
-                lblEvento.Text = eventoInfo;
-                lblEvento.Font = new Font("Segoe UI", 10);
-                lblEvento.Location = new Point(15, yPos);
-                lblEvento.Size = new Size(450, 120);
-                lblEvento.AutoSize = false;
-                panel.Controls.Add(lblEvento);
-
-                Label lblTituloUsuario = new Label();
-                lblTituloUsuario.Text = "👤 Información del Usuario";
-                lblTituloUsuario.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-                lblTituloUsuario.ForeColor = Color.FromArgb(46, 94, 67);
-                lblTituloUsuario.Location = new Point(15, 170);
-                lblTituloUsuario.AutoSize = true;
-                panel.Controls.Add(lblTituloUsuario);
-
-                Label lblUsuario = new Label();
-                if (usuario != null)
-                {
-                    string usuarioInfo = $"Nombre: {usuario._Nombre}\n" +
-                                        $"Apellido: {usuario._Apellido}\n" +
-                                        $"DNI: {usuario._Dni}\n" +
-                                        $"Usuario: {usuario._NombreDeUsuario}\n" +
-                                        $"Estado: {(usuario._Estado ? "Activo" : "Inactivo")}\n" +
-                                        $"Bloqueado: {(usuario._Bloqueado ? "Sí" : "No")}";
-                    lblUsuario.Text = usuarioInfo;
-                }
-                else
-                {
-                    lblUsuario.Text = $"No se encontró información del usuario con DNI: {bitacora._Dni}";
-                }
-
-                lblUsuario.Font = new Font("Segoe UI", 10);
-                lblUsuario.Location = new Point(15, 200);
-                lblUsuario.Size = new Size(450, 120);
-                lblUsuario.AutoSize = false;
-                panel.Controls.Add(lblUsuario);
-
-                Button btnCerrar = new Button();
-                btnCerrar.Text = "Cerrar";
-                btnCerrar.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-                btnCerrar.BackColor = Color.FromArgb(225, 225, 225);
-                btnCerrar.ForeColor = Color.Black;
-                btnCerrar.Location = new Point(200, 330);
-                btnCerrar.Size = new Size(100, 30);
-                btnCerrar.Click += (s, e) => popup.Close();
-                panel.Controls.Add(btnCerrar);
-
-                popup.Controls.Add(panel);
-                popup.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    $"Error al mostrar detalles: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
+            //    if (bitacora != null)
+            //    {
+            //        MostrarDetallesUsuarioBitacora(bitacora);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(
+            //        $"Error al obtener detalles: {ex.Message}",
+            //        "Error",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Error
+            //    );
+            //}
         }
 
         private void btnAplicarFiltro_Click_1(object sender, EventArgs e)
@@ -622,6 +527,24 @@ namespace UI
         private void panelLateral_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dgvBitacora_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvBitacora.CurrentRow != null)
+            {
+                string dni = dgvBitacora.CurrentRow.Cells["_Dni"].Value.ToString();
+
+                List<UsuarioBE> usuarios = _usuarioBLL.ListarUsuarios();
+                UsuarioBE? usuario = usuarios.FirstOrDefault(u => u._Dni == Convert.ToInt32(dni));
+
+
+                if (usuario != null)
+                {
+                    textBox1.Text = usuario._Nombre;
+                    textBox2.Text = usuario._Apellido;
+                }
+            }
         }
     }
 }
