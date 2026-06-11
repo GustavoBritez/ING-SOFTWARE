@@ -63,6 +63,7 @@ namespace UI
             InicializarDateTimePickers();
             InicializarComboBoxCriticidad();
             InicializarComboBoxC();
+            InicializarComboBoxEvento();
 
             CargarBitacora(BitacoraInicial());
 
@@ -73,10 +74,10 @@ namespace UI
 
             cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
 
-            textBox1.ReadOnly= true;
-            textBox2.ReadOnly= true;
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
             dgvBitacora.AllowUserToResizeColumns = false;
-            dgvBitacora.AllowUserToResizeRows= false;
+            dgvBitacora.AllowUserToResizeRows = false;
 
             dgvBitacora.CellClick += DgvBitacora_CellClick;
 
@@ -94,7 +95,7 @@ namespace UI
         {
             cmbModulo.Items.Clear();
             cmbModulo.Items.Add("Todos");
-            cmbModulo.Items.Add("MenuPrincipal");
+            cmbModulo.Items.Add("Login");
             cmbModulo.Items.Add("GestionUsuario");
             cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto
         }
@@ -110,6 +111,23 @@ namespace UI
             cmbCriticidad.Items.Add("5");
 
             cmbCriticidad.SelectedIndex = 0;
+        }
+        private void InicializarComboBoxEvento()
+        {
+            cmbEvento.Items.Clear();
+
+            cmbEvento.Items.Add("Todos");
+            cmbEvento.Items.Add("Inicio de Sesion");
+            cmbEvento.Items.Add("Cierre de Sesion");
+            cmbEvento.Items.Add("Error");
+            cmbEvento.Items.Add("Creacion de Usuario");
+            cmbEvento.Items.Add("Modificar Usuario");
+            cmbEvento.Items.Add("Desbloqueo de Usuario");
+            cmbEvento.Items.Add("Bloqueo de Cuenta");
+            cmbEvento.Items.Add("Cambio de Estado");
+            cmbEvento.Items.Add("Cambio de Clave");
+
+            cmbEvento.SelectedIndex = 0;
         }
         private void DtpFecha_ValueChanged(object? sender, EventArgs e)
         {
@@ -545,6 +563,30 @@ namespace UI
                     textBox2.Text = usuario._Apellido;
                 }
             }
+        }
+
+        private void cmbEvento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string evento = cmbEvento.SelectedItem?.ToString() ?? "Todos";
+
+            var bitacoraFiltrada = _bitacoraCompleta;
+            if (evento != "Todos")
+            {
+                if (evento == "Error")
+                {
+                    bitacoraFiltrada = bitacoraFiltrada
+                        .Where(b => b._Descripcion != null && b._Descripcion.ToString().StartsWith("error", StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+                }
+                else
+                {
+                    bitacoraFiltrada = bitacoraFiltrada
+                        .Where(b => b._Descripcion.ToString() == evento)
+                        .ToList();
+                }
+            }
+
+            CargarBitacora(bitacoraFiltrada);
         }
     }
 }

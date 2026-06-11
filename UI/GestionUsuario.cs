@@ -132,9 +132,9 @@ namespace UI
                 usuarioBLL.ModificarUsuario(usuario);
 
                 // Registrar en bitácora
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Cambio de contraseña para usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
-                bitacoraBLL.RegistrarEvento(5, descripcion, dniActual, "GestionUsuario");
+                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                //string descripcion = $"Cambio de contraseña para usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
+                //bitacoraBLL.RegistrarEvento(5, descripcion, dniActual, "GestionUsuario");
 
                 MessageBox.Show($"Contraseña del usuario '{usuario._NombreDeUsuario}' cambiada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RestablecerModoCambiarContrasena();
@@ -143,9 +143,9 @@ namespace UI
             catch (Exception ex)
             {
                 // Registrar error en bitácora
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Error al cambiar contraseña del usuario '{usuario._NombreDeUsuario}': {ex.Message}";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                //string descripcion = $"Error al cambiar contraseña del usuario '{usuario._NombreDeUsuario}': {ex.Message}";
+                //bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
 
                 MessageBox.Show($"Error al cambiar contraseña: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 RestablecerModoCambiarContrasena();
@@ -534,9 +534,9 @@ namespace UI
                 }
                 usuarioBLL.ModificarUsuario(_usuarioEnModificacion);
 
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Modificación de usuario '{_usuarioEnModificacion._NombreDeUsuario}' (DNI: {_usuarioEnModificacion._Dni}). Cambios: {(string.IsNullOrEmpty(cambios) ? "Sin cambios" : cambios)}";
-                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
+                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                //string descripcion = $"Modificación de usuario '{_usuarioEnModificacion._NombreDeUsuario}' (DNI: {_usuarioEnModificacion._Dni}). Cambios: {(string.IsNullOrEmpty(cambios) ? "Sin cambios" : cambios)}";
+                //bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
 
                 MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CancelarOperacion();
@@ -545,9 +545,9 @@ namespace UI
             catch (Exception ex)
             {
 
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Error al modificar usuario: {ex.Message}";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                //string descripcion = $"Error al modificar usuario: {ex.Message}";
+                //bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
 
                 MessageBox.Show($"Error: Modificaciones no aplicadas. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -584,9 +584,9 @@ namespace UI
                 string bloqueado = usuarioSeleccionado._Bloqueado ? "bloqueado" : "desbloqueado";
 
 
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Usuario '{usuarioSeleccionado._NombreDeUsuario}' (DNI: {usuarioSeleccionado._Dni}) {bloqueado}";
-                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
+                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                //string descripcion = $"Usuario '{usuarioSeleccionado._NombreDeUsuario}' (DNI: {usuarioSeleccionado._Dni}) {bloqueado}";
+                //bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
 
                 MessageBox.Show($"Usuario '{usuarioSeleccionado._NombreDeUsuario}' {bloqueado} correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -595,9 +595,9 @@ namespace UI
             catch (Exception ex)
             {
 
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Error al cambiar bloqueo de usuario: {ex.Message}";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
+                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+                //string descripcion = $"Error al cambiar bloqueo de usuario: {ex.Message}";
+                //bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
 
                 MessageBox.Show($"Error: No se pudo cambiar el estado del usuario. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

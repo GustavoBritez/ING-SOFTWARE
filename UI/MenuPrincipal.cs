@@ -207,8 +207,6 @@ namespace UI
                 usuarioBLL.CambiarContraseña(usuario);
 
                 // Registrar en bitácora
-                string descripcion = $"Cambio de contraseña realizado por el usuario '{usuario._NombreDeUsuario}'";
-                bitacoraBLL.RegistrarEvento(2, descripcion, usuario._Dni, "MenuPrincipal");
 
                 MessageBox.Show("Contraseña cambiada exitosamente",
                 "Cambiar Contraseña",
