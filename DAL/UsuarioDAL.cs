@@ -8,8 +8,7 @@ namespace DAL
     public class UsuarioDAL
     {
         private readonly Conexion conexion = new();
-        private const string TABLA_USUARIOS = "Usuarios"; /// Nombre de la TABLA usuarios en la BD - SQL Server 2019 NO PROBE EN 2020
-        private readonly string Modulo = "UsuarioDAL";
+        private const string TABLA_USUARIOS = "Usuarios"; 
         public void CrearUsuario(UsuarioBE usuario)
         {
             try
@@ -78,8 +77,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-
-
                 EventoBE bit = new EventoBE()
                 {
                     _Criticidad = 2,

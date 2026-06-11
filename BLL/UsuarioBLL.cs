@@ -143,23 +143,17 @@ namespace BLL
             try
             {
 
-                ///Entramos y validamos nulos, no mandamos mensaje de error simplemente no hacemos nada
                 if (string.IsNullOrWhiteSpace(nombreDeUsuario) || string.IsNullOrWhiteSpace(contraseñaPlana))
                 {
                     return false;
                 }
-                /// Normalizamos el nombre, da igual que metan una minuscula o mayuscula
                 string nombreNormalizado = nombreDeUsuario.ToLower();
 
-                /// Esto en realidad es aldope porq ue la BD normaliza los datos siempre usando SQL
-                /// Podriamos sacarlo es indiferente.
                 UsuarioBE usuarioEnBD = usuarioDAL.ObtenerUsuario(nombreNormalizado);
 
-                // validacion de user null
                 if (usuarioEnBD == null)
                 {
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' no existe");
-                    // Consideramos que no tiene sentido guardar el intento fallido en bitacora
                     return false;
                 }
 

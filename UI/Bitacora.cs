@@ -38,13 +38,17 @@ namespace UI
 
         private List<EventoBE> BitacoraInicial()
         {
-            DateTime desde = DateTime.Today.AddDays(-3);
-            DateTime hasta = DateTime.Now;
+            dtpDesde.Value = DateTime.Today.AddDays(-3);
+            dtpHasta.Value = DateTime.Today;
+            cmbModulo.SelectedIndex = 0;
+            cmbCriticidad.SelectedIndex = 0;
 
-            var bitacoraFiltrada = _bitacoraCompleta
-                .Where(b => b._Fecha >= desde && b._Fecha <= hasta)
+            DateTime desde = dtpDesde.Value.Date;
+            DateTime hasta = dtpHasta.Value.Date.AddDays(1).AddTicks(-1);
+
+            return _bitacoraCompleta
+                .Where(b => b._Fecha.Date >= desde && b._Fecha.Date <= hasta)
                 .ToList();
-            return bitacoraFiltrada;
         }
         private void btnSalir_Click(object? sender, EventArgs e)
         {
@@ -60,46 +64,16 @@ namespace UI
         {
             _bitacoraCompleta = _bitacoraBLL.VerEventos();
 
-            InicializarDateTimePickers();
-            InicializarComboBoxCriticidad();
-            InicializarComboBoxC();
-
-            CargarBitacora(BitacoraInicial());
-
-
-            dtpDesde.ValueChanged += DtpFecha_ValueChanged;
-            dtpHasta.ValueChanged += DtpFecha_ValueChanged;
-
-
-            cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
-
-            textBox1.ReadOnly= true;
-            textBox2.ReadOnly= true;
-            dgvBitacora.AllowUserToResizeColumns = false;
-            dgvBitacora.AllowUserToResizeRows= false;
-
-            dgvBitacora.CellClick += DgvBitacora_CellClick;
-
-            //btnAplicarFiltro.Click += BtnAplicarFiltro_Click;
-            btnExportar.Click += BtnExportar_Click;
-        }
-
-        private void InicializarDateTimePickers()
-        {
             DateTime hoy = DateTime.Today;
             dtpHasta.Value = hoy;
-        }
 
-        private void InicializarComboBoxCriticidad()
-        {
+
             cmbModulo.Items.Clear();
             cmbModulo.Items.Add("Todos");
             cmbModulo.Items.Add("MenuPrincipal");
             cmbModulo.Items.Add("GestionUsuario");
-            cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto
-        }
-        private void InicializarComboBoxC()
-        {
+            cmbModulo.SelectedIndex = 0;
+
             cmbCriticidad.Items.Clear();
 
             cmbCriticidad.Items.Add("Todas");
@@ -110,82 +84,49 @@ namespace UI
             cmbCriticidad.Items.Add("5");
 
             cmbCriticidad.SelectedIndex = 0;
+
+            CargarBitacora(BitacoraInicial());
+
+
+            dtpDesde.ValueChanged += DtpFecha_ValueChanged;
+            dtpHasta.ValueChanged += DtpFecha_ValueChanged;
+
+
+            cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
+
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
+            dgvBitacora.AllowUserToResizeColumns = false;
+            dgvBitacora.AllowUserToResizeRows = false;
+
+            dgvBitacora.CellClick += DgvBitacora_CellClick;
+
+            btnExportar.Click += BtnExportar_Click;
         }
+
         private void DtpFecha_ValueChanged(object? sender, EventArgs e)
         {
             DateTime hoy = DateTime.Today;
 
             if (dtpHasta.Value > hoy)
             {
-                MessageBox.Show(
-                    "No puede seleccionar una fecha futura.",
-                    "Validacion",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                MessageBox.Show("No puede seleccionar una fecha futura.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtpHasta.Value = hoy;
                 return;
             }
 
             if (dtpDesde.Value > dtpHasta.Value)
             {
-                MessageBox.Show(
-                   "No puede seleccionar FechaDesde mayor a FechaHasta.",
-                   "Validacion",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Warning
-               );
-                dtpDesde.Value = hoy;
+                MessageBox.Show("No puede seleccionar FechaDesde mayor a FechaHasta.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpDesde.Value = dtpHasta.Value;
                 return;
             }
+            AplicarFiltros();
         }
 
         private void CmbCriticidad_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            string modulo = cmbModulo.SelectedItem?.ToString() ?? "Todas";
-
-            var bitacoraFiltrada = _bitacoraCompleta;
-            if (modulo != "Todos")
-            {
-                bitacoraFiltrada = bitacoraFiltrada
-                    .Where(b => b._Modulo.ToString() == modulo)
-                    .ToList();
-            }
-
-            CargarBitacora(bitacoraFiltrada);
-        }
-
-        private void BtnAplicarFiltro_Click(object? sender, EventArgs e)
-        {
-            AplicarFiltrosCombinados();
-        }
-
-        private void AplicarFiltrosCombinados()
-        {
-            try
-            {
-                if (_bitacoraCompleta == null) return;
-
-                DateTime fechaDesde = dtpDesde.Value.Date;
-                DateTime fechaHasta = dtpHasta.Value.Date;
-                string criticidadSeleccionada = cmbModulo.SelectedItem?.ToString() ?? "Todas";
-
-
-                var bitacoraFiltrada = _bitacoraCompleta
-                    .Where(b => b._Fecha.Date >= fechaDesde && b._Fecha.Date <= fechaHasta)
-                    .ToList();
-
-                CargarBitacora(bitacoraFiltrada);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    $"Error al filtrar bitacora: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
+            AplicarFiltros();
         }
 
         private void CargarBitacora(List<EventoBE> bitacora)
@@ -245,34 +186,40 @@ namespace UI
         {
             try
             {
-
-                DateTime hoy = DateTime.Today;
-                dtpDesde.Value = hoy;
-                dtpHasta.Value = hoy;
-
-
+                dtpDesde.Value = DateTime.Today.AddDays(-3); // Mejor que arranque con los últimos 3 días en vez de hoy plano
+                dtpHasta.Value = DateTime.Today;
                 cmbModulo.SelectedIndex = 0;
+                cmbCriticidad.SelectedIndex = 0;
 
-
-                _bitacoraCompleta = _bitacoraBLL.VerEventos();
-                CargarBitacora(_bitacoraCompleta);
-
-                MessageBox.Show(
-                    "Filtros restablecidos correctamente.",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                MessageBox.Show("Filtros restablecidos correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al limpiar filtros: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show($"Error al limpiar filtros: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dgvBitacora_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvBitacora.CurrentRow != null)
+            {
+                string dni = dgvBitacora.CurrentRow.Cells["_Dni"].Value.ToString();
+
+                List<UsuarioBE> usuarios = _usuarioBLL.ListarUsuarios();
+                UsuarioBE? usuario = usuarios.FirstOrDefault(u => u._Dni == Convert.ToInt32(dni));
+
+
+                if (usuario != null)
+                {
+                    textBox1.Text = usuario._Nombre;
+                    textBox2.Text = usuario._Apellido;
+                }
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
         }
 
         private void BtnExportar_Click(object? sender, EventArgs e)
@@ -302,7 +249,6 @@ namespace UI
                 );
             }
         }
-
         private void ExportarAPDF(string rutaArchivo)
         {
             try
@@ -422,7 +368,7 @@ namespace UI
 
                             gfx.DrawRectangle(XPens.LightGray, xPosColumna, yPos, anchos[i], altoCelda);
 
-                            if (i < 5) // Columnas normales del 0 al 4
+                            if (i < 5) 
                             {
                                 gfx.DrawString(datos[i], fontDatos, new XSolidBrush(colorTexto),
                                     new XRect(xPosColumna + 2, yPos, anchos[i] - 2, altoCelda), XStringFormats.CenterLeft);
@@ -440,7 +386,7 @@ namespace UI
 
                             xPosColumna += anchos[i];
                         }
-                        yPos += altoCelda; // El cursor de la página baja el alto total que usó esta fila
+                        yPos += altoCelda; 
                     }
                 }
 
@@ -469,7 +415,6 @@ namespace UI
             }
         }
 
-
         private void DgvBitacora_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
             //if (e.RowIndex < 0) return;
@@ -494,31 +439,6 @@ namespace UI
             //}
         }
 
-        private void btnAplicarFiltro_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnExportar_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string c = cmbCriticidad.SelectedItem?.ToString() ?? "Todas";
-
-            var bitacoraFiltrada = _bitacoraCompleta;
-            if (c != "Todas")
-            {
-                bitacoraFiltrada = bitacoraFiltrada
-                    .Where(b => b._Criticidad.ToString() == c)
-                    .ToList();
-            }
-
-            CargarBitacora(bitacoraFiltrada);
-        }
-
         private void lblHasta_Click(object sender, EventArgs e)
         {
 
@@ -528,23 +448,36 @@ namespace UI
         {
 
         }
-
-        private void dgvBitacora_SelectionChanged(object sender, EventArgs e)
+        public void AplicarFiltros()
         {
-            if (dgvBitacora.CurrentRow != null)
+
+            if (_bitacoraCompleta == null) return;
+
+            IEnumerable<EventoBE> query = _bitacoraCompleta;
+
+            DateTime desde = dtpDesde.Value.Date;
+            DateTime hasta = dtpHasta.Value.Date.AddDays(1).AddTicks(-1);
+
+            query = query.Where(b => b._Fecha.Date >= desde && b._Fecha.Date <= hasta);
+
+            string moduloSeleccionado = cmbModulo.SelectedItem?.ToString() ?? "Todos";
+            if (moduloSeleccionado != "Todos")
             {
-                string dni = dgvBitacora.CurrentRow.Cells["_Dni"].Value.ToString();
-
-                List<UsuarioBE> usuarios = _usuarioBLL.ListarUsuarios();
-                UsuarioBE? usuario = usuarios.FirstOrDefault(u => u._Dni == Convert.ToInt32(dni));
-
-
-                if (usuario != null)
-                {
-                    textBox1.Text = usuario._Nombre;
-                    textBox2.Text = usuario._Apellido;
-                }
+                query = query.Where(b => b._Modulo.ToString() == moduloSeleccionado);
             }
+
+            string criticidadSeleccionada = cmbCriticidad.SelectedItem?.ToString() ?? "Todas";
+            if (criticidadSeleccionada != "Todas")
+            {
+                query = query.Where(b => b._Criticidad.ToString() == criticidadSeleccionada);
+            }
+
+            CargarBitacora(query.ToList());
+        }
+
+        private void btnExportar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
