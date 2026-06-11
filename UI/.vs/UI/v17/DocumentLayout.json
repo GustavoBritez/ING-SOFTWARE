@@ -144,8 +144,7 @@
               "RelativeToolTip": "Bitacora.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T01:04:14.934Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -158,8 +157,7 @@
               "ViewState": "AgIAADYAAAAAAAAAAAAzwPsAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-06T12:13:10.959Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -172,8 +170,7 @@
               "ViewState": "AgIAABEAAAAAAAAAAAAgwCcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-06T12:18:40.099Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -245,20 +242,19 @@
               "RelativeToolTip": "Bitacora.cs",
               "ViewState": "AgIAACYCAAAAAAAAAAAuwDsCAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T14:22:06.112Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T14:22:06.112Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GestionUsuario.cs [Dise\u00F1o]",
+              "Title": "GestionUsuario.cs [Design]",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\GestionUsuario.cs",
               "RelativeDocumentMoniker": "GestionUsuario.cs",
-              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\GestionUsuario.cs [Dise\u00F1o]",
-              "RelativeToolTip": "GestionUsuario.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\GestionUsuario.cs [Design]",
+              "RelativeToolTip": "GestionUsuario.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-08T13:45:09.418Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -270,8 +266,7 @@
               "RelativeToolTip": "..\\DAL\\Conexion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAACjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-06T12:10:32.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-06T12:10:32.813Z"
             },
             {
               "$type": "Document",
@@ -292,7 +287,7 @@
               "RelativeDocumentMoniker": "GestionUsuario.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\UI\\GestionUsuario.cs",
               "RelativeToolTip": "GestionUsuario.cs",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAcwPoAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAALcAAAAAAAAAAAAowPoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T01:04:14.695Z",
               "EditorCaption": ""
@@ -307,8 +302,7 @@
               "RelativeToolTip": "MenuPrincipal.cs",
               "ViewState": "AgIAALIAAAAAAAAAAAApwNAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-05T19:48:26.075Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-05T19:48:26.075Z"
             },
             {
               "$type": "Document",
@@ -320,8 +314,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-05T01:04:14.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-05T01:04:14.946Z"
             },
             {
               "$type": "Document",
