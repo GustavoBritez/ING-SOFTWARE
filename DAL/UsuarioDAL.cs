@@ -61,34 +61,10 @@ namespace DAL
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
-
-                EventoBE bit = new EventoBE()
-                {
-                    _Criticidad = 5,
-                    _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
-                    _Descripcion = $"Se cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
-                    _Modulo = "MenuPrincipal",
-                    _Fecha = DateTime.Now
-                };
-
-                EventoDAL bitacoraDAL = new();
-
-                bitacoraDAL.GuardarBitacora(bit);
             }
             catch (Exception ex)
             {
-                EventoBE bit = new EventoBE()
-                {
-                    _Criticidad = 2,
-                    _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
-                    _Descripcion = $"No cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
-                    _Modulo = "MenuPrincipal",
-                    _Fecha = DateTime.Now
-                };
 
-                EventoDAL bitacoraDAL = new();
-
-                bitacoraDAL.GuardarBitacora(bit);
                 Console.WriteLine("ERROR:  No se cambio la contraseña ");
             }
             

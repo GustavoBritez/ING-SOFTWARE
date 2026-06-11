@@ -206,10 +206,6 @@ namespace UI
                 usuario._Contraseña = hashnuevaPass;
                 usuarioBLL.CambiarContraseña(usuario);
 
-                // Registrar en bitácora
-                string descripcion = $"Cambio de contraseña realizado por el usuario '{usuario._NombreDeUsuario}'";
-                bitacoraBLL.RegistrarEvento(2, descripcion, usuario._Dni, "MenuPrincipal");
-
                 MessageBox.Show("Contraseña cambiada exitosamente",
                 "Cambiar Contraseña",
                 MessageBoxButtons.OK,
@@ -217,13 +213,6 @@ namespace UI
             }
             catch (Exception ex)
             {
-                // Registrar error en bitácora
-                UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-                if (usuario != null)
-                {
-                    string descripcion = $"Error al cambiar contraseña: {ex.Message}";
-                    bitacoraBLL.RegistrarEvento(3, descripcion, usuario._Dni, "MenuPrincipal");
-                }
 
                 MessageBox.Show($"Error: {ex.Message}",
                    "Cambiar Contraseña",

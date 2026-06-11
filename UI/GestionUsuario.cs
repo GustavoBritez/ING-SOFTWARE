@@ -131,7 +131,6 @@ namespace UI
                 usuario._Contraseña = nuevaContraseña;
                 usuarioBLL.ModificarUsuario(usuario);
 
-                // Registrar en bitácora
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Cambio de contraseña para usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
                 bitacoraBLL.RegistrarEvento(5, descripcion, dniActual, "GestionUsuario");
@@ -142,7 +141,6 @@ namespace UI
             }
             catch (Exception ex)
             {
-                // Registrar error en bitácora
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Error al cambiar contraseña del usuario '{usuario._NombreDeUsuario}': {ex.Message}";
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
@@ -196,12 +194,9 @@ namespace UI
             btnCancelar.Visible = true;
             btnCancelar.Enabled = true;
 
-
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
             btnActDesact.Enabled = false;
-            //btnCambiarContrasena.Enabled = false;
-
 
             txtDni.Focus();
         }
@@ -257,7 +252,6 @@ namespace UI
                     bloqueado: true,
                     estado: true
                 );
-                // Testear crear dos usuarios con mismo nombre de usuario y luego con mismo dni
                 usuarioBLL.CrearUsuario(nuevoUsuario);
 
                 MessageBox.Show(

@@ -35,7 +35,7 @@ namespace UI
                 CargarBitacora(BitacoraInicial());
             }
         }
-
+         
         private List<EventoBE> BitacoraInicial()
         {
             dtpDesde.Value = DateTime.Today.AddDays(-3);
@@ -50,6 +50,61 @@ namespace UI
                 .Where(b => b._Fecha.Date >= desde && b._Fecha.Date <= hasta)
                 .ToList();
         }
+
+        private void GestionBitacora_Load(object? sender, EventArgs e)
+        {
+            _bitacoraCompleta = _bitacoraBLL.VerEventos();
+
+            // 1. Poblamos los combos primero sin disparar eventos aún
+            cmbModulo.Items.Clear();
+            cmbModulo.Items.Add("Todos");
+            cmbModulo.Items.Add("MenuPrincipal");
+            cmbModulo.Items.Add("GestionUsuario");
+            cmbModulo.SelectedIndex = 0;
+
+            cmbCriticidad.Items.Clear();
+            cmbCriticidad.Items.Add("Todas");
+            cmbCriticidad.Items.Add("1");
+            cmbCriticidad.Items.Add("2");
+            cmbCriticidad.Items.Add("3");
+            cmbCriticidad.Items.Add("4");
+            cmbCriticidad.Items.Add("5");
+            cmbCriticidad.Items.Add("6"); // Tip: Tenías registros con criticidad 6 en tu script de BD, agregalo por las dudas
+            cmbCriticidad.SelectedIndex = 0;
+
+            // 2. Seteamos las fechas iniciales
+            dtpDesde.Value = DateTime.Today.AddDays(-3);
+            dtpHasta.Value = DateTime.Today;
+
+            // 3. Configuraciones visuales del Grid
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
+            dgvBitacora.AllowUserToResizeColumns = false;
+            dgvBitacora.AllowUserToResizeRows = false;
+
+            // 🚀 EL TRUCO: Nos suscribimos al evento de enlace completo
+            dgvBitacora.DataBindingComplete += (s, ev) => ConfigurarColumnasGrid();
+
+            // 4. Cargamos la lista inicial
+            CargarBitacora(BitacoraInicial());
+
+            // 5. RECIÉN AL FINAL NOS SUSCRIBIMOS A LOS EVENTOS DE FILTRADO
+            // Así evitamos ejecuciones duplicadas innecesarias mientras se arma el formulario
+            dtpDesde.ValueChanged += DtpFecha_ValueChanged;
+            dtpHasta.ValueChanged += DtpFecha_ValueChanged;
+            cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
+            cmbCriticidad.SelectedIndexChanged += comboBox1_SelectedIndexChanged; // Vinculamos el de criticidad que faltaba
+
+            dgvBitacora.CellClick += DgvBitacora_CellClick;
+            btnExportar.Click += BtnExportar_Click;
+        }
+        private void CargarBitacora(List<EventoBE> bitacora)
+        {
+            dgvBitacora.DataSource = null;
+            dgvBitacora.DataSource = bitacora;
+            dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        }
         private void btnSalir_Click(object? sender, EventArgs e)
         {
             FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
@@ -58,50 +113,6 @@ namespace UI
         private void Bitacora_Load(object? sender, EventArgs e)
         {
             GestionBitacora_Load(sender, e);
-        }
-
-        private void GestionBitacora_Load(object? sender, EventArgs e)
-        {
-            _bitacoraCompleta = _bitacoraBLL.VerEventos();
-
-            DateTime hoy = DateTime.Today;
-            dtpHasta.Value = hoy;
-
-
-            cmbModulo.Items.Clear();
-            cmbModulo.Items.Add("Todos");
-            cmbModulo.Items.Add("MenuPrincipal");
-            cmbModulo.Items.Add("GestionUsuario");
-            cmbModulo.SelectedIndex = 0;
-
-            cmbCriticidad.Items.Clear();
-
-            cmbCriticidad.Items.Add("Todas");
-            cmbCriticidad.Items.Add("1");
-            cmbCriticidad.Items.Add("2");
-            cmbCriticidad.Items.Add("3");
-            cmbCriticidad.Items.Add("4");
-            cmbCriticidad.Items.Add("5");
-
-            cmbCriticidad.SelectedIndex = 0;
-
-            CargarBitacora(BitacoraInicial());
-
-
-            dtpDesde.ValueChanged += DtpFecha_ValueChanged;
-            dtpHasta.ValueChanged += DtpFecha_ValueChanged;
-
-
-            cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
-
-            textBox1.ReadOnly = true;
-            textBox2.ReadOnly = true;
-            dgvBitacora.AllowUserToResizeColumns = false;
-            dgvBitacora.AllowUserToResizeRows = false;
-
-            dgvBitacora.CellClick += DgvBitacora_CellClick;
-
-            btnExportar.Click += BtnExportar_Click;
         }
 
         private void DtpFecha_ValueChanged(object? sender, EventArgs e)
@@ -129,14 +140,7 @@ namespace UI
             AplicarFiltros();
         }
 
-        private void CargarBitacora(List<EventoBE> bitacora)
-        {
-            dgvBitacora.DataSource = null;
-            dgvBitacora.DataSource = bitacora;
-            dgvBitacora.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            ConfigurarColumnasGrid();
-        }
 
         // Lo estamos refaccionando como quiere silvestro
         // En mantenimiento
@@ -145,38 +149,18 @@ namespace UI
         // Posible error de ejecucion al cargar los datos en grilla
         private void ConfigurarColumnasGrid()
         {
-            if (dgvBitacora.Columns.Contains("_Login"))
-            {
-                dgvBitacora.Columns["_Login"].HeaderText = "Login";
-            }
+            // Ocultamos la llave primaria de control que al usuario final no le interesa ver
+            if (dgvBitacora.Columns.Contains("_Id_Evento")) dgvBitacora.Columns["_Id_Evento"].Visible = false;
+            if (dgvBitacora.Columns.Contains("_Dni")) dgvBitacora.Columns["_Dni"].Visible = false; // Lo ocultás si solo mostrás nombre/apellido abajo
 
-            if (dgvBitacora.Columns.Contains("_Fecha"))
-            {
-                dgvBitacora.Columns["_Fecha"].HeaderText = "Fecha";
-            }
-
-            if (dgvBitacora.Columns.Contains("_Hora"))
-            {
-                dgvBitacora.Columns["_Hora"].HeaderText = "Hora";
-            }
-
-            if (dgvBitacora.Columns.Contains("_Modulo"))
-            {
-                dgvBitacora.Columns["_Modulo"].HeaderText = "Módulo";
-            }
-
-            if (dgvBitacora.Columns.Contains("_Evento"))
-            {
-                dgvBitacora.Columns["_Evento"].HeaderText = "Evento";
-            }
-
-            if (dgvBitacora.Columns.Contains("_Criticidad"))
-            {
-                dgvBitacora.Columns["_Criticidad"].HeaderText = "Criticidad";
-            }
-
+            // Renombramos las cabeceras reales de las propiedades de tu EventoBE
+            if (dgvBitacora.Columns.Contains("_Login")) dgvBitacora.Columns["_Login"].HeaderText = "Login";
+            if (dgvBitacora.Columns.Contains("_Fecha")) dgvBitacora.Columns["_Fecha"].HeaderText = "Fecha";
+            if (dgvBitacora.Columns.Contains("_Hora")) dgvBitacora.Columns["_Hora"].HeaderText = "Hora";
+            if (dgvBitacora.Columns.Contains("_Modulo")) dgvBitacora.Columns["_Modulo"].HeaderText = "Módulo";
+            if (dgvBitacora.Columns.Contains("_Descripcion")) dgvBitacora.Columns["_Descripcion"].HeaderText = "Evento";
+            if (dgvBitacora.Columns.Contains("_Criticidad")) dgvBitacora.Columns["_Criticidad"].HeaderText = "Criticidad";
         }
-
         private void btnLimpiarFiltros_Click(object? sender, EventArgs e)
         {
             LimpiarFiltros();
