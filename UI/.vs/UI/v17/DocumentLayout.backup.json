@@ -7,14 +7,14 @@
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\navegador\\desktop\\nueva carpeta\\io\\ui\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\nueva carpeta\\io\\bll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\navegador\\desktop\\nueva carpeta\\io\\dal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -194,14 +194,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "MenuPrincipal.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.cs",
               "RelativeDocumentMoniker": "MenuPrincipal.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "MenuPrincipal.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "MenuPrincipal.cs [Dise\u00F1o]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T21:20:44.747Z",
+              "WhenOpened": "2026-06-11T00:45:25.326Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
@@ -210,9 +210,9 @@
               "Title": "MenuPrincipal.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.cs",
               "RelativeDocumentMoniker": "MenuPrincipal.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.cs",
-              "RelativeToolTip": "MenuPrincipal.cs",
-              "ViewState": "AgIAAMIAAAAAAAAAAAAwwNQAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.cs*",
+              "RelativeToolTip": "MenuPrincipal.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-05T19:48:26.075Z",
               "EditorCaption": ""
@@ -226,8 +226,7 @@
               "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\Login.cs [Dise\u00F1o]",
               "RelativeToolTip": "Login.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-05T01:04:14.939Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-06-05T01:04:14.939Z"
             },
             {
               "$type": "Document",
@@ -238,12 +237,11 @@
               "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\GestionUsuario.cs [Dise\u00F1o]",
               "RelativeToolTip": "GestionUsuario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T13:45:09.418Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-06-08T13:45:09.418Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UsuarioBLL.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\BLL\\UsuarioBLL.cs",
               "RelativeDocumentMoniker": "..\\BLL\\UsuarioBLL.cs",
@@ -251,12 +249,11 @@
               "RelativeToolTip": "..\\BLL\\UsuarioBLL.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAAAEEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T23:25:36.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-10T23:25:36.637Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UsuarioDAL.cs",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\DAL\\UsuarioDAL.cs",
               "RelativeDocumentMoniker": "..\\DAL\\UsuarioDAL.cs",
@@ -264,8 +261,7 @@
               "RelativeToolTip": "..\\DAL\\UsuarioDAL.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAwwEYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T23:24:35.549Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-10T23:24:35.549Z"
             },
             {
               "$type": "Document",
@@ -277,8 +273,7 @@
               "RelativeToolTip": "GestionUsuario.cs",
               "ViewState": "AgIAAD8BAAAAAAAAAAAAAEMBAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-05T01:04:14.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-05T01:04:14.695Z"
             },
             {
               "$type": "Document",
@@ -290,8 +285,7 @@
               "RelativeToolTip": "..\\BLL\\EventoBLL.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T00:30:04.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T00:30:04.388Z"
             },
             {
               "$type": "Document",
@@ -303,8 +297,7 @@
               "RelativeToolTip": "..\\Services\\ServicesSessionManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T00:30:09.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T00:30:09.24Z"
             },
             {
               "$type": "Document",
@@ -316,8 +309,7 @@
               "RelativeToolTip": "..\\Services\\ServicioBcrypt.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T00:30:10.21Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T00:30:10.21Z"
             },
             {
               "$type": "Document",
@@ -329,8 +321,7 @@
               "RelativeToolTip": "..\\Services\\UsuarioBE.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T00:30:11.022Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T00:30:11.022Z"
             },
             {
               "$type": "Document",
@@ -367,8 +358,7 @@
               "RelativeToolTip": "..\\DAL\\EventoDAL.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T00:11:14.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T00:11:14.466Z"
             },
             {
               "$type": "Document",
@@ -391,8 +381,7 @@
               "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\Bitacora.cs [Design]",
               "RelativeToolTip": "Bitacora.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T23:47:42.055Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-06-10T23:47:42.055Z"
             },
             {
               "$type": "Document",
@@ -612,8 +601,8 @@
               "Title": "MenuPrincipal.resx",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.resx",
               "RelativeDocumentMoniker": "MenuPrincipal.resx",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.resx",
-              "RelativeToolTip": "MenuPrincipal.resx",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\UI\\MenuPrincipal.resx*",
+              "RelativeToolTip": "MenuPrincipal.resx*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
               "WhenOpened": "2026-06-05T01:04:14.985Z",
               "EditorCaption": ""

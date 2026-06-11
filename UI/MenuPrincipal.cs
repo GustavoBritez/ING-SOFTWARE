@@ -13,21 +13,8 @@ namespace UI
         public MenuPrincipal()
         {
             InitializeComponent();
-
-            //this.Load += (s, e) => Form1_Load();
-            //this.Shown += (s, e) => Form1_Shown();
             this.VisibleChanged += (s, e) => Form1_VisibleChanged();
         }
-        /*private void Form1_Load()
-        {
-            
-        }
-
-        private void Form1_Shown()
-        {
-
-            
-        }*/
         private void ActualizarDisponibilidadBotones()
         {
             try
@@ -76,21 +63,6 @@ namespace UI
             {
                 this.label6.Text = $"";
             }
-        }
-        private void btnTurnos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -213,7 +185,6 @@ namespace UI
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show($"Error: {ex.Message}",
                    "Cambiar Contraseña",
                    MessageBoxButtons.OK,

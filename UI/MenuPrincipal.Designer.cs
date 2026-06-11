@@ -39,6 +39,8 @@
             btnTurnos = new Button();
             lblModulo = new Label();
             panelTop = new Panel();
+            label6 = new Label();
+            label4 = new Label();
             lblTitulo = new Label();
             panelContenedor = new Panel();
             label1 = new Label();
@@ -52,8 +54,6 @@
             label2 = new Label();
             txtNewPass = new TextBox();
             sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
-            label4 = new Label();
-            label6 = new Label();
             panelMenu.SuspendLayout();
             panelTop.SuspendLayout();
             panelContenedor.SuspendLayout();
@@ -200,7 +200,6 @@
             btnTurnos.Text = "📅 Gestión de Turnos";
             btnTurnos.TextAlign = ContentAlignment.MiddleLeft;
             btnTurnos.UseVisualStyleBackColor = false;
-            btnTurnos.Click += btnTurnos_Click;
             // 
             // lblModulo
             // 
@@ -224,6 +223,27 @@
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(960, 60);
             panelTop.TabIndex = 1;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            label6.ForeColor = Color.MistyRose;
+            label6.Location = new Point(323, 20);
+            label6.Name = "label6";
+            label6.Size = new Size(0, 25);
+            label6.TabIndex = 10;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            label4.ForeColor = Color.MistyRose;
+            label4.Location = new Point(236, 20);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 25);
+            label4.TabIndex = 9;
+            label4.Text = "Usuario: ";
             // 
             // lblTitulo
             // 
@@ -356,27 +376,6 @@
             txtNewPass.Name = "txtNewPass";
             txtNewPass.Size = new Size(100, 23);
             txtNewPass.TabIndex = 1;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            label4.ForeColor = Color.MistyRose;
-            label4.Location = new Point(236, 20);
-            label4.Name = "label4";
-            label4.Size = new Size(87, 25);
-            label4.TabIndex = 9;
-            label4.Text = "Usuario: ";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            label6.ForeColor = Color.MistyRose;
-            label6.Location = new Point(323, 20);
-            label6.Name = "label6";
-            label6.Size = new Size(0, 25);
-            label6.TabIndex = 10;
             // 
             // MenuPrincipal
             // 
