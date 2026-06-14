@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panelLateral = new Panel();
             btnExportar = new Button();
             btnLimpiarFiltros = new Button();
             dgvBitacora = new DataGridView();
-            lblTitulo = new Label();
+            lblTituloBitacora = new Label();
             gbFiltrosFecha = new GroupBox();
             dtpHasta = new DateTimePicker();
             lblHasta = new Label();
@@ -42,12 +42,12 @@
             lblDesde = new Label();
             btnSalir = new Button();
             groupBox1 = new GroupBox();
-            label4 = new Label();
+            labelEvento = new Label();
             cmbEvento = new ComboBox();
             cmbCriticidad = new ComboBox();
-            label1 = new Label();
+            labelCriticidad = new Label();
             cmbModulo = new ComboBox();
-            label2 = new Label();
+            labelModulo = new Label();
             lbApellido = new Label();
             lbNombre = new Label();
             textBox1 = new TextBox();
@@ -99,24 +99,24 @@
             dgvBitacora.BackgroundColor = Color.White;
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvBitacora.ColumnHeadersHeight = 30;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(180, 210, 190);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(180, 210, 190);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle4;
             dgvBitacora.EnableHeadersVisualStyles = false;
             dgvBitacora.GridColor = Color.FromArgb(200, 220, 205);
             dgvBitacora.Location = new Point(185, 60);
@@ -128,16 +128,16 @@
             dgvBitacora.TabIndex = 3;
             dgvBitacora.SelectionChanged += dgvBitacora_SelectionChanged;
             // 
-            // lblTitulo
+            // lblTituloBitacora
             // 
-            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.FromArgb(46, 94, 67);
-            lblTitulo.Location = new Point(12, 9);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(926, 40);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "📋 Auditoría y Bitácora del Sistema";
-            lblTitulo.TextAlign = ContentAlignment.TopCenter;
+            lblTituloBitacora.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTituloBitacora.ForeColor = Color.FromArgb(46, 94, 67);
+            lblTituloBitacora.Location = new Point(12, 9);
+            lblTituloBitacora.Name = "lblTituloBitacora";
+            lblTituloBitacora.Size = new Size(926, 40);
+            lblTituloBitacora.TabIndex = 0;
+            lblTituloBitacora.Text = "📋 Auditoría y Bitácora del Sistema";
+            lblTituloBitacora.TextAlign = ContentAlignment.TopCenter;
             // 
             // gbFiltrosFecha
             // 
@@ -208,12 +208,12 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.FromArgb(180, 180, 180);
-            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(labelEvento);
             groupBox1.Controls.Add(cmbEvento);
             groupBox1.Controls.Add(cmbCriticidad);
-            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(labelCriticidad);
             groupBox1.Controls.Add(cmbModulo);
-            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(labelModulo);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             groupBox1.Location = new Point(185, 470);
@@ -223,14 +223,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtrar ";
             // 
-            // label4
+            // labelEvento
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(423, 29);
-            label4.Name = "label4";
-            label4.Size = new Size(46, 15);
-            label4.TabIndex = 12;
-            label4.Text = "Evento";
+            labelEvento.AutoSize = true;
+            labelEvento.Location = new Point(423, 29);
+            labelEvento.Name = "labelEvento";
+            labelEvento.Size = new Size(46, 15);
+            labelEvento.TabIndex = 12;
+            labelEvento.Text = "Evento";
             // 
             // cmbEvento
             // 
@@ -250,14 +250,14 @@
             cmbCriticidad.TabIndex = 7;
             cmbCriticidad.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // label1
+            // labelCriticidad
             // 
-            label1.Location = new Point(227, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(64, 20);
-            label1.TabIndex = 6;
-            label1.Text = "Criticidad";
-            label1.TextAlign = ContentAlignment.TopRight;
+            labelCriticidad.Location = new Point(227, 29);
+            labelCriticidad.Name = "labelCriticidad";
+            labelCriticidad.Size = new Size(64, 20);
+            labelCriticidad.TabIndex = 6;
+            labelCriticidad.Text = "Criticidad";
+            labelCriticidad.TextAlign = ContentAlignment.TopRight;
             // 
             // cmbModulo
             // 
@@ -267,14 +267,14 @@
             cmbModulo.Size = new Size(115, 23);
             cmbModulo.TabIndex = 5;
             // 
-            // label2
+            // labelModulo
             // 
-            label2.Location = new Point(23, 29);
-            label2.Name = "label2";
-            label2.Size = new Size(64, 20);
-            label2.TabIndex = 4;
-            label2.Text = "Módulo";
-            label2.TextAlign = ContentAlignment.TopRight;
+            labelModulo.Location = new Point(23, 29);
+            labelModulo.Name = "labelModulo";
+            labelModulo.Size = new Size(64, 20);
+            labelModulo.TabIndex = 4;
+            labelModulo.Text = "Módulo";
+            labelModulo.TextAlign = ContentAlignment.TopRight;
             // 
             // lbApellido
             // 
@@ -323,7 +323,7 @@
             Controls.Add(dgvBitacora);
             Controls.Add(lbNombre);
             Controls.Add(panelLateral);
-            Controls.Add(lblTitulo);
+            Controls.Add(lblTituloBitacora);
             Font = new Font("Segoe UI", 9F);
             Name = "Bitacora";
             StartPosition = FormStartPosition.CenterScreen;
@@ -344,7 +344,7 @@
         private System.Windows.Forms.Button btnLimpiarFiltros;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.DataGridView dgvBitacora;
-        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblTituloBitacora;
         private System.Windows.Forms.GroupBox gbFiltrosFecha;
         private System.Windows.Forms.Label lblDesde;
         private System.Windows.Forms.DateTimePicker dtpDesde;
@@ -352,13 +352,13 @@
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.Button btnSalir;
         private GroupBox groupBox1;
-        private Label label2;
+        private Label labelModulo;
         private ComboBox cmbModulo;
         private ComboBox cmbCriticidad;
-        private Label label1;
+        private Label labelCriticidad;
         private Label lbApellido;
         private Label lbNombre;
-        private Label label4;
+        private Label labelEvento;
         private ComboBox cmbEvento;
         private TextBox textBox1;
         private TextBox textBox2;

@@ -14,16 +14,21 @@ using Services;
 
 namespace UI
 {
-    public partial class GestionUsuario : Form
+    public partial class GestionUsuario : Form,IIdiomaObserver
     {
         private UsuarioBLL usuarioBLL = new UsuarioBLL();
         private EventoBLL bitacoraBLL = new EventoBLL();
         private string _modoActual = "";
         private UsuarioBE _usuarioEnModificacion = null;
 
+        private IdiomaBLL idiomaBLL= new IdiomaBLL();
+
         public GestionUsuario()
         {
             InitializeComponent();
+
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
 
             cmbRol.Items.Add("Usuario");
             cmbRol.Items.Add("Administrador");
@@ -191,10 +196,10 @@ namespace UI
             CKB_Activar.Enabled = false;
 
 
-            btnAceptar.Visible = true;
-            btnAceptar.Enabled = true;
-            btnCancelar.Visible = true;
-            btnCancelar.Enabled = true;
+            btnAceptarG.Visible = true;
+            btnAceptarG.Enabled = true;
+            btnCancelarG.Visible = true;
+            btnCancelarG.Enabled = true;
 
 
             btnModificar.Enabled = false;
@@ -330,10 +335,10 @@ namespace UI
             LimpiarCampos();
 
 
-            btnAceptar.Visible = false;
-            btnAceptar.Enabled = false;
-            btnCancelar.Visible = false;
-            btnCancelar.Enabled = false;
+            btnAceptarG.Visible = false;
+            btnAceptarG.Enabled = false;
+            btnCancelarG.Visible = false;
+            btnCancelarG.Enabled = false;
 
             btnCrear.Enabled = true;
             btnModificar.Enabled = true;
@@ -379,10 +384,10 @@ namespace UI
             CKB_Activar.Enabled = false;
 
 
-            btnAceptar.Visible = false;
-            btnAceptar.Enabled = false;
-            btnCancelar.Visible = false;
-            btnCancelar.Enabled = false;
+            btnAceptarG.Visible = false;
+            btnAceptarG.Enabled = false;
+            btnCancelarG.Visible = false;
+            btnCancelarG.Enabled = false;
 
             GestionUsuarios_Load(sender, e);
         }
@@ -481,10 +486,10 @@ namespace UI
             CKB_Activar.Enabled = false;
 
 
-            btnAceptar.Visible = true;
-            btnAceptar.Enabled = true;
-            btnCancelar.Visible = true;
-            btnCancelar.Enabled = true;
+            btnAceptarG.Visible = true;
+            btnAceptarG.Enabled = true;
+            btnCancelarG.Visible = true;
+            btnCancelarG.Enabled = true;
 
 
             btnCrear.Enabled = false;
@@ -638,6 +643,30 @@ namespace UI
         private void button1_Click(object sender, EventArgs e)
         {
             AplicarFiltroEstado();
+        }
+
+        public void ActualizarIdioma()
+        {
+            if(ServicesSessionManager.Instancia.ObtenerIdioma()!=null)
+            {
+                Traducir(this.Controls);
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name) // evita reemplazar si no existe la clave
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
+            }
         }
     }
 }

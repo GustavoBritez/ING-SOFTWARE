@@ -12,19 +12,24 @@ using BE;
 using System.IO;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
+using Services;
 
 namespace UI
 {
-    public partial class Bitacora : Form
+    public partial class Bitacora : Form,IIdiomaObserver
     {
         EventoBLL _bitacoraBLL = new EventoBLL();
         UsuarioBLL _usuarioBLL = new UsuarioBLL();
         private List<EventoBE>? _bitacoraCompleta;
 
+        private IdiomaBLL idiomaBLL = new IdiomaBLL();
+
         public Bitacora()
         {
             InitializeComponent();
             this.VisibleChanged += (s, e) => Bitacora_VisibleChanged();
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
         }
 
         private void Bitacora_VisibleChanged()
@@ -587,6 +592,30 @@ namespace UI
             }
 
             CargarBitacora(bitacoraFiltrada);
+        }
+
+        public void ActualizarIdioma()
+        {
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
+            {
+                Traducir(this.Controls);
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name) // evita reemplazar si no existe la clave
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
+            }
         }
     }
 }

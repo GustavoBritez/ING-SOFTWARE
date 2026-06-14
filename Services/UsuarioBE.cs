@@ -1,3 +1,5 @@
+using Services;
+
 namespace BE
 {
     public class UsuarioBE
@@ -10,7 +12,6 @@ namespace BE
         private string NombreDeUsuario;
         private string Rol;
         private bool Estado;
-
 
         public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, string rol, bool bloqueado, bool estado)
         {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2jvVUINfdJI=",
+  "dgSpecHash": "qGsRBolOVD4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\Clone\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",

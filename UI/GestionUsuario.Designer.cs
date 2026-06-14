@@ -43,8 +43,8 @@ namespace UI
             rbMostrarInactivos = new RadioButton();
             rbMostrarActivos = new RadioButton();
             gbDetalles = new GroupBox();
-            btnCancelar = new Button();
-            btnAceptar = new Button();
+            btnCancelarG = new Button();
+            btnAceptarG = new Button();
             CKB_Desactivar = new CheckBox();
             CKB_Activar = new CheckBox();
             txtNombreUsuario = new TextBox();
@@ -57,8 +57,8 @@ namespace UI
             lblNombre = new Label();
             txtDni = new TextBox();
             lblDni = new Label();
-            btnSalir = new Button();
-            button1 = new Button();
+            btnSalirG = new Button();
+            buttonActualizar = new Button();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             gbFiltrar.SuspendLayout();
@@ -190,8 +190,8 @@ namespace UI
             // gbDetalles
             // 
             gbDetalles.BackColor = Color.FromArgb(180, 180, 180);
-            gbDetalles.Controls.Add(btnCancelar);
-            gbDetalles.Controls.Add(btnAceptar);
+            gbDetalles.Controls.Add(btnCancelarG);
+            gbDetalles.Controls.Add(btnAceptarG);
             gbDetalles.Controls.Add(CKB_Desactivar);
             gbDetalles.Controls.Add(CKB_Activar);
             gbDetalles.Controls.Add(txtNombreUsuario);
@@ -211,33 +211,33 @@ namespace UI
             gbDetalles.TabIndex = 1;
             gbDetalles.TabStop = false;
             // 
-            // btnCancelar
+            // btnCancelarG
             // 
-            btnCancelar.BackColor = Color.FromArgb(200, 100, 100);
-            btnCancelar.Enabled = false;
-            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnCancelar.Location = new Point(333, 102);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(80, 25);
-            btnCancelar.TabIndex = 14;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Visible = false;
-            btnCancelar.Click += btnCancelar_Click;
+            btnCancelarG.BackColor = Color.FromArgb(200, 100, 100);
+            btnCancelarG.Enabled = false;
+            btnCancelarG.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCancelarG.Location = new Point(333, 102);
+            btnCancelarG.Name = "btnCancelarG";
+            btnCancelarG.Size = new Size(80, 25);
+            btnCancelarG.TabIndex = 14;
+            btnCancelarG.Text = "Cancelar";
+            btnCancelarG.UseVisualStyleBackColor = false;
+            btnCancelarG.Visible = false;
+            btnCancelarG.Click += btnCancelar_Click;
             // 
-            // btnAceptar
+            // btnAceptarG
             // 
-            btnAceptar.BackColor = Color.FromArgb(100, 200, 100);
-            btnAceptar.Enabled = false;
-            btnAceptar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAceptar.Location = new Point(245, 102);
-            btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(80, 25);
-            btnAceptar.TabIndex = 13;
-            btnAceptar.Text = "Aceptar";
-            btnAceptar.UseVisualStyleBackColor = false;
-            btnAceptar.Visible = false;
-            btnAceptar.Click += btnAceptar_Click;
+            btnAceptarG.BackColor = Color.FromArgb(100, 200, 100);
+            btnAceptarG.Enabled = false;
+            btnAceptarG.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAceptarG.Location = new Point(245, 102);
+            btnAceptarG.Name = "btnAceptarG";
+            btnAceptarG.Size = new Size(80, 25);
+            btnAceptarG.TabIndex = 13;
+            btnAceptarG.Text = "Aceptar";
+            btnAceptarG.UseVisualStyleBackColor = false;
+            btnAceptarG.Visible = false;
+            btnAceptarG.Click += btnAceptar_Click;
             // 
             // CKB_Desactivar
             // 
@@ -342,37 +342,37 @@ namespace UI
             lblDni.TabIndex = 10;
             lblDni.Text = "DNI";
             // 
-            // btnSalir
+            // btnSalirG
             // 
-            btnSalir.BackColor = Color.FromArgb(255, 120, 120);
-            btnSalir.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnSalir.ForeColor = Color.Black;
-            btnSalir.Location = new Point(12, 505);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(115, 40);
-            btnSalir.TabIndex = 0;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = false;
-            btnSalir.Click += btnSalir_Click;
+            btnSalirG.BackColor = Color.FromArgb(255, 120, 120);
+            btnSalirG.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSalirG.ForeColor = Color.Black;
+            btnSalirG.Location = new Point(12, 505);
+            btnSalirG.Name = "btnSalirG";
+            btnSalirG.Size = new Size(115, 40);
+            btnSalirG.TabIndex = 0;
+            btnSalirG.Text = "Salir";
+            btnSalirG.UseVisualStyleBackColor = false;
+            btnSalirG.Click += btnSalir_Click;
             // 
-            // button1
+            // buttonActualizar
             // 
-            button1.BackColor = Color.FromArgb(225, 225, 225);
-            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            button1.Location = new Point(28, 324);
-            button1.Name = "button1";
-            button1.Size = new Size(128, 40);
-            button1.TabIndex = 4;
-            button1.Text = "Actualizar";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            buttonActualizar.BackColor = Color.FromArgb(225, 225, 225);
+            buttonActualizar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            buttonActualizar.Location = new Point(28, 324);
+            buttonActualizar.Name = "buttonActualizar";
+            buttonActualizar.Size = new Size(128, 40);
+            buttonActualizar.TabIndex = 4;
+            buttonActualizar.Text = "Actualizar";
+            buttonActualizar.UseVisualStyleBackColor = false;
+            buttonActualizar.Click += button1_Click;
             // 
             // GestionUsuario
             // 
             BackColor = Color.FromArgb(218, 237, 223);
             ClientSize = new Size(950, 560);
-            Controls.Add(button1);
-            Controls.Add(btnSalir);
+            Controls.Add(buttonActualizar);
+            Controls.Add(btnSalirG);
             Controls.Add(gbDetalles);
             Controls.Add(gbFiltrar);
             Controls.Add(panelLateral);
@@ -414,12 +414,12 @@ namespace UI
         private System.Windows.Forms.ComboBox cmbRol;
         private System.Windows.Forms.Label lblNombreUsuario;
         private System.Windows.Forms.TextBox txtNombreUsuario;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnSalirG;
         private System.Windows.Forms.CheckBox CKB_Desactivar;
         private System.Windows.Forms.CheckBox CKB_Activar;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAceptarG;
+        private System.Windows.Forms.Button btnCancelarG;
         private RadioButton rbMostrarTodos;
-        private Button button1;
+        private Button buttonActualizar;
     }
 }

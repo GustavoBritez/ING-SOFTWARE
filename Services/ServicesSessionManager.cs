@@ -2,18 +2,20 @@ using BE;
 
 namespace Services
 {
-    /// <summary>
-    /// ServicesSessionManager - Patrón Singleton
-    /// Gestiona la SESIÓN actual del usuario (quién está logueado)
-    /// NO maneja CRUD - eso lo hace BLL
-    /// </summary>
-    public class ServicesSessionManager
+    public class ServicesSessionManager:IIdiomaObservable
     {
         private static ServicesSessionManager _instancia;
         private static readonly object _lock = new object();
 
         private UsuarioBE usuarioActivo;
 
+        private Idioma idiomaActual;
+        private List<IIdiomaObserver> observadores;
+
+        private ServicesSessionManager()
+        {
+            observadores = new List<IIdiomaObserver>();
+        }
 
         public static ServicesSessionManager Instancia
         {
@@ -73,5 +75,31 @@ namespace Services
         {
             usuarioActivo = null;
         }
+
+        public void CambiarIdioma(Idioma idioma)
+        {
+            idiomaActual = idioma;
+            Notificar();
+        }
+        public void Suscribir(IIdiomaObserver observer)
+        {
+            if (!observadores.Contains(observer))
+                observadores.Add(observer);
+        }
+
+        public void Desuscribir(IIdiomaObserver observer)
+        {
+            if (observadores.Contains(observer))
+                observadores.Remove(observer);
+        }
+
+        public void Notificar()
+        {
+            foreach (var observer in observadores)
+            {
+                observer.ActualizarIdioma();
+            }
+        }
+        public Idioma ObtenerIdioma() => this.idiomaActual;
     }
 }
