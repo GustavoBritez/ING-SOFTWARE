@@ -3,28 +3,68 @@
   "WorkspaceRootPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\ui\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\dal\\perfiles\\familiadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\services\\perfiles\\permiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\services\\perfiles\\componente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\services\\perfiles\\patenteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\services\\perfiles\\familiaservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\dal\\perfiles\\perfildal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\bll\\perfiles\\familiabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\dal\\perfiles\\patentedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\services\\perfiles\\perfilservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\bll\\perfiles\\perfilbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\bll\\perfiles\\patentebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\bll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\dal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\dal\\eventodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\dal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\bll\\eventobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\bll\\idiomabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\services\\services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\dal\\dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\bll\\bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\ui\\bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\danie\\desktop\\nueva carpeta\\ing\\ui\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,71 +74,266 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MenuPrincipal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\MenuPrincipal.cs",
-              "RelativeDocumentMoniker": "MenuPrincipal.cs",
-              "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\MenuPrincipal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\MenuPrincipal.cs [Dise\u00F1o]",
+              "DocumentIndex": 6,
+              "Title": "FamiliaBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\Perfiles\\FamiliaBLL.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\Perfiles\\FamiliaBLL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\Perfiles\\FamiliaBLL.cs",
+              "RelativeToolTip": "..\\BLL\\Perfiles\\FamiliaBLL.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAswB4AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-14T14:59:30.736Z",
-              "IsPinned": true
+              "WhenOpened": "2026-06-15T14:10:52.569Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GestionUsuario.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\GestionUsuario.cs",
-              "RelativeDocumentMoniker": "GestionUsuario.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\GestionUsuario.cs [Design]",
-              "RelativeToolTip": "GestionUsuario.cs [Design]",
+              "Title": "PatenteServices.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\PatenteServices.cs",
+              "RelativeDocumentMoniker": "..\\Services\\Perfiles\\PatenteServices.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\PatenteServices.cs",
+              "RelativeToolTip": "..\\Services\\Perfiles\\PatenteServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-14T14:59:39.11Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\Login.cs",
-              "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAA0wG4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-14T15:30:04.04Z",
-              "IsPinned": true
+              "WhenOpened": "2026-06-15T15:03:47.074Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "MenuPrincipal.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\MenuPrincipal.cs",
-              "RelativeDocumentMoniker": "MenuPrincipal.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\MenuPrincipal.cs",
-              "RelativeToolTip": "MenuPrincipal.cs",
-              "ViewState": "AgIAAPkAAAAAAAAAAAA0wB0BAABKAAAAAAAAAA==",
+              "Title": "PerfilDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Perfiles\\PerfilDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Perfiles\\PerfilDAL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Perfiles\\PerfilDAL.cs",
+              "RelativeToolTip": "..\\DAL\\Perfiles\\PerfilDAL.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAswIgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-14T16:15:31.964Z",
-              "IsPinned": true
+              "WhenOpened": "2026-06-15T15:00:47.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FamiliaServices.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\FamiliaServices.cs",
+              "RelativeDocumentMoniker": "..\\Services\\Perfiles\\FamiliaServices.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\FamiliaServices.cs",
+              "RelativeToolTip": "..\\Services\\Perfiles\\FamiliaServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:03:21.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Componente.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\Componente.cs",
+              "RelativeDocumentMoniker": "..\\Services\\Perfiles\\Componente.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\Componente.cs",
+              "RelativeToolTip": "..\\Services\\Perfiles\\Componente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:42:04.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Permiso.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\Permiso.cs",
+              "RelativeDocumentMoniker": "..\\Services\\Perfiles\\Permiso.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\Permiso.cs",
+              "RelativeToolTip": "..\\Services\\Perfiles\\Permiso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAEwAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:15:06.533Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GestionUsuario.cs",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\GestionUsuario.cs",
-              "RelativeDocumentMoniker": "GestionUsuario.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\GestionUsuario.cs",
-              "RelativeToolTip": "GestionUsuario.cs",
-              "ViewState": "AgIAACoCAAAAAAAAAAAAAIsCAAAoAAAAAAAAAA==",
+              "Title": "FamiliaDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Perfiles\\FamiliaDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Perfiles\\FamiliaDAL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Perfiles\\FamiliaDAL.cs",
+              "RelativeToolTip": "..\\DAL\\Perfiles\\FamiliaDAL.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAEwA4AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-14T18:05:38.855Z",
-              "IsPinned": true,
+              "WhenOpened": "2026-06-15T15:00:34.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PatenteDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Perfiles\\PatenteDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Perfiles\\PatenteDAL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Perfiles\\PatenteDAL.cs",
+              "RelativeToolTip": "..\\DAL\\Perfiles\\PatenteDAL.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAmwCwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:00:40.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PerfilServices.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\PerfilServices.cs",
+              "RelativeDocumentMoniker": "..\\Services\\Perfiles\\PerfilServices.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Perfiles\\PerfilServices.cs",
+              "RelativeToolTip": "..\\Services\\Perfiles\\PerfilServices.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:03:31.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PerfilBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\Perfiles\\PerfilBLL.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\Perfiles\\PerfilBLL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\Perfiles\\PerfilBLL.cs",
+              "RelativeToolTip": "..\\BLL\\Perfiles\\PerfilBLL.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T14:10:40.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PatenteBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\Perfiles\\PatenteBLL.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\Perfiles\\PatenteBLL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\Perfiles\\PatenteBLL.cs",
+              "RelativeToolTip": "..\\BLL\\Perfiles\\PatenteBLL.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T14:17:57.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UsuarioBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\UsuarioBLL.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\UsuarioBLL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\UsuarioBLL.cs",
+              "RelativeToolTip": "..\\BLL\\UsuarioBLL.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:55:41.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Conexion.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Conexion.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Conexion.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\Conexion.cs",
+              "RelativeToolTip": "..\\DAL\\Conexion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T16:04:31.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EventoDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\EventoDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\EventoDAL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\EventoDAL.cs",
+              "RelativeToolTip": "..\\DAL\\EventoDAL.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T16:02:05.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UsuarioDAL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\UsuarioDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\UsuarioDAL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\UsuarioDAL.cs",
+              "RelativeToolTip": "..\\DAL\\UsuarioDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:03:39.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EventoBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\EventoBLL.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\EventoBLL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\EventoBLL.cs",
+              "RelativeToolTip": "..\\BLL\\EventoBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:55:39.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IdiomaBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\IdiomaBLL.cs",
+              "RelativeDocumentMoniker": "..\\BLL\\IdiomaBLL.cs",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\IdiomaBLL.cs",
+              "RelativeToolTip": "..\\BLL\\IdiomaBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T15:55:37.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Services",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Services.csproj",
+              "RelativeDocumentMoniker": "..\\Services\\Services.csproj",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Services.csproj",
+              "RelativeToolTip": "..\\Services\\Services.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-15T13:54:36.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DAL",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\DAL.csproj",
+              "RelativeDocumentMoniker": "..\\DAL\\DAL.csproj",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\DAL.csproj",
+              "RelativeToolTip": "..\\DAL\\DAL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-15T14:11:10.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "BLL",
+              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\BLL.csproj",
+              "RelativeDocumentMoniker": "..\\BLL\\BLL.csproj",
+              "ToolTip": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BLL\\BLL.csproj",
+              "RelativeToolTip": "..\\BLL\\BLL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-15T14:10:18.92Z",
               "EditorCaption": ""
             },
             {
@@ -115,7 +350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 20,
               "Title": "Bitacora.cs",
               "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\UI\\Bitacora.cs",
               "RelativeDocumentMoniker": "Bitacora.cs",

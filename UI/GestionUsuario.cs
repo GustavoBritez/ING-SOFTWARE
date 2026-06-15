@@ -136,11 +136,6 @@ namespace UI
                 usuario._Contraseña = nuevaContraseña;
                 usuarioBLL.ModificarUsuario(usuario);
 
-                // Registrar en bitácora
-                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                //string descripcion = $"Cambio de contraseña para usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
-                //bitacoraBLL.RegistrarEvento(5, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show($"Contraseña del usuario '{usuario._NombreDeUsuario}' cambiada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RestablecerModoCambiarContrasena();
                 GestionUsuarios_Load(null, null);
@@ -205,7 +200,6 @@ namespace UI
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
             btnActDesact.Enabled = false;
-            //btnCambiarContrasena.Enabled = false;
 
 
             txtDni.Focus();
@@ -248,7 +242,7 @@ namespace UI
                     MessageBox.Show("Error, el DNI debe tener 8 dígitos");
                     return;
                 }
-                // Aseguramos el nombre + dni 
+
                 string contraseña = $"{nombre}{_dni}";
                 string rol = cmbRol.SelectedItem?.ToString() ?? "Usuario";
 
@@ -262,7 +256,6 @@ namespace UI
                     bloqueado: true,
                     estado: true
                 );
-                // Testear crear dos usuarios con mismo nombre de usuario y luego con mismo dni
                 usuarioBLL.CrearUsuario(nuevoUsuario);
 
                 MessageBox.Show(
@@ -344,7 +337,6 @@ namespace UI
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
             btnActDesact.Enabled = true;
-            //btnCambiarContrasena.Enabled = true;
 
 
             txtDni.Enabled = false;
@@ -475,7 +467,7 @@ namespace UI
 
         private void HabilitarModoModificar()
         {
-            txtDni.Enabled = false; // DNI no se puede editar
+            txtDni.Enabled = false;
             txtNombre.Enabled = true;
             txtApellido.Enabled = true;
             cmbRol.Enabled = true;
@@ -538,22 +530,12 @@ namespace UI
                     throw new Exception($"Ya existe un usuario con el nombre de Usuario: {txtNombreUsuario.Text.ToString()}");
                 }
                 usuarioBLL.ModificarUsuario(_usuarioEnModificacion);
-
-                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                //string descripcion = $"Modificación de usuario '{_usuarioEnModificacion._NombreDeUsuario}' (DNI: {_usuarioEnModificacion._Dni}). Cambios: {(string.IsNullOrEmpty(cambios) ? "Sin cambios" : cambios)}";
-                //bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CancelarOperacion();
                 GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
-
-                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                //string descripcion = $"Error al modificar usuario: {ex.Message}";
-                //bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show($"Error: Modificaciones no aplicadas. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -576,8 +558,6 @@ namespace UI
                     return;
                 }
 
-                //bool estabaBloqueado = usuarioSeleccionado._Bloqueado;
-
                 if (usuarioSeleccionado._Bloqueado == false)
                 {
                     MessageBox.Show("Error: El Usuario no esta bloqueado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -587,23 +567,12 @@ namespace UI
                 usuarioBLL.Desbloquear(usuarioSeleccionado);
 
                 string bloqueado = usuarioSeleccionado._Bloqueado ? "bloqueado" : "desbloqueado";
-
-
-                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                //string descripcion = $"Usuario '{usuarioSeleccionado._NombreDeUsuario}' (DNI: {usuarioSeleccionado._Dni}) {bloqueado}";
-                //bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show($"Usuario '{usuarioSeleccionado._NombreDeUsuario}' {bloqueado} correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
-
-                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                //string descripcion = $"Error al cambiar bloqueo de usuario: {ex.Message}";
-                //bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show($"Error: No se pudo cambiar el estado del usuario. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
