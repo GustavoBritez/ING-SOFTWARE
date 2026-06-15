@@ -136,16 +136,10 @@ namespace UI
                 usuario._Contraseña = nuevaContraseña;
                 usuarioBLL.ModificarUsuario(usuario);
 
-<<<<<<< HEAD
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Cambio de contraseña para usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
-                bitacoraBLL.RegistrarEvento(5, descripcion, dniActual, "GestionUsuario");
-=======
                 // Registrar en bitácora
                 //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 //string descripcion = $"Cambio de contraseña para usuario '{usuario._NombreDeUsuario}' (DNI: {usuario._Dni})";
                 //bitacoraBLL.RegistrarEvento(5, descripcion, dniActual, "GestionUsuario");
->>>>>>> origin/FernandoP
 
                 MessageBox.Show($"Contraseña del usuario '{usuario._NombreDeUsuario}' cambiada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RestablecerModoCambiarContrasena();
@@ -153,16 +147,10 @@ namespace UI
             }
             catch (Exception ex)
             {
-<<<<<<< HEAD
-                int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                string descripcion = $"Error al cambiar contraseña del usuario '{usuario._NombreDeUsuario}': {ex.Message}";
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-=======
                 // Registrar error en bitácora
                 //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 //string descripcion = $"Error al cambiar contraseña del usuario '{usuario._NombreDeUsuario}': {ex.Message}";
                 //bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
->>>>>>> origin/FernandoP
 
                 MessageBox.Show($"Error al cambiar contraseña: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 RestablecerModoCambiarContrasena();
@@ -213,9 +201,12 @@ namespace UI
             btnCancelarG.Visible = true;
             btnCancelarG.Enabled = true;
 
+
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
             btnActDesact.Enabled = false;
+            //btnCambiarContrasena.Enabled = false;
+
 
             txtDni.Focus();
         }
@@ -271,6 +262,7 @@ namespace UI
                     bloqueado: true,
                     estado: true
                 );
+                // Testear crear dos usuarios con mismo nombre de usuario y luego con mismo dni
                 usuarioBLL.CrearUsuario(nuevoUsuario);
 
                 MessageBox.Show(

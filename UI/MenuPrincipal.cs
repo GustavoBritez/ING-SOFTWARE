@@ -16,7 +16,16 @@ namespace UI
         public MenuPrincipal()
         {
             InitializeComponent();
+
+            //this.Load += (s, e) => Form1_Load();
+            //this.Shown += (s, e) => Form1_Shown();
             this.VisibleChanged += (s, e) => Form1_VisibleChanged();
+
+            comboBox1.SelectedIndex = 0;
+            comboBox1.DropDownStyle= ComboBoxStyle.DropDownList;
+
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
         }
         private void ActualizarDisponibilidadBotones()
         {
@@ -66,6 +75,21 @@ namespace UI
             {
                 this.label6.Text = $"";
             }
+        }
+        private void btnTurnos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -181,11 +205,8 @@ namespace UI
                 usuario._Contraseña = hashnuevaPass;
                 usuarioBLL.CambiarContraseña(usuario);
 
-<<<<<<< HEAD
-=======
                 // Registrar en bitácora
 
->>>>>>> origin/FernandoP
                 MessageBox.Show("Contraseña cambiada exitosamente",
                 "Cambiar Contraseña",
                 MessageBoxButtons.OK,
@@ -193,6 +214,14 @@ namespace UI
             }
             catch (Exception ex)
             {
+                // Registrar error en bitácora
+                UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+                if (usuario != null)
+                {
+                    string descripcion = $"Error al cambiar contraseña: {ex.Message}";
+                    bitacoraBLL.RegistrarEvento(3, descripcion, usuario._Dni, "MenuPrincipal");
+                }
+
                 MessageBox.Show($"Error: {ex.Message}",
                    "Cambiar Contraseña",
                    MessageBoxButtons.OK,

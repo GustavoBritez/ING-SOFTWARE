@@ -8,7 +8,8 @@ namespace DAL
     public class UsuarioDAL
     {
         private readonly Conexion conexion = new();
-        private const string TABLA_USUARIOS = "Usuarios"; 
+        private const string TABLA_USUARIOS = "Usuarios"; /// Nombre de la TABLA usuarios en la BD - SQL Server 2019 NO PROBE EN 2020
+        private readonly string Modulo = "UsuarioDAL";
         public void CrearUsuario(UsuarioBE usuario)
         {
             try
@@ -61,10 +62,36 @@ namespace DAL
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
+
+                EventoBE bit = new EventoBE()
+                {
+                    _Criticidad = 5,
+                    _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
+                    _Descripcion = $"Se cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
+                    _Modulo = "MenuPrincipal",
+                    _Fecha = DateTime.Now
+                };
+
+                EventoDAL bitacoraDAL = new();
+
+                bitacoraDAL.GuardarBitacora(bit);
             }
             catch (Exception ex)
             {
 
+
+                EventoBE bit = new EventoBE()
+                {
+                    _Criticidad = 2,
+                    _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
+                    _Descripcion = $"No cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
+                    _Modulo = "MenuPrincipal",
+                    _Fecha = DateTime.Now
+                };
+
+                EventoDAL bitacoraDAL = new();
+
+                bitacoraDAL.GuardarBitacora(bit);
                 Console.WriteLine("ERROR:  No se cambio la contraseña ");
             }
             

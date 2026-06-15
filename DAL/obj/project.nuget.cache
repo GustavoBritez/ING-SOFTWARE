@@ -29,15 +29,5 @@
     "C:\\Users\\Danie\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.13\\system.security.cryptography.pkcs.9.0.13.nupkg.sha512",
     "C:\\Users\\Danie\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.13\\system.security.cryptography.protecteddata.9.0.13.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problema al leer el archivo de caché C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\DAL.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\DAL\\DAL.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

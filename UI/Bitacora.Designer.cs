@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panelLateral = new Panel();
             btnExportar = new Button();
             btnLimpiarFiltros = new Button();
@@ -45,15 +45,9 @@
             labelEvento = new Label();
             cmbEvento = new ComboBox();
             cmbCriticidad = new ComboBox();
-<<<<<<< HEAD
-            label1 = new Label();
-            cmbModulo = new ComboBox();
-            label2 = new Label();
-=======
             labelCriticidad = new Label();
             cmbModulo = new ComboBox();
             labelModulo = new Label();
->>>>>>> origin/FernandoP
             lbApellido = new Label();
             lbNombre = new Label();
             textBox1 = new TextBox();
@@ -86,6 +80,7 @@
             btnExportar.TabIndex = 1;
             btnExportar.Text = "Exportar";
             btnExportar.UseVisualStyleBackColor = false;
+            btnExportar.Click += btnExportar_Click_1;
             // 
             // btnLimpiarFiltros
             // 
@@ -104,24 +99,24 @@
             dgvBitacora.BackgroundColor = Color.White;
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvBitacora.ColumnHeadersHeight = 30;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(180, 210, 190);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(180, 210, 190);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle4;
             dgvBitacora.EnableHeadersVisualStyles = false;
             dgvBitacora.GridColor = Color.FromArgb(200, 220, 205);
             dgvBitacora.Location = new Point(185, 60);
@@ -281,44 +276,6 @@
             labelModulo.Text = "Módulo";
             labelModulo.TextAlign = ContentAlignment.TopRight;
             // 
-<<<<<<< HEAD
-            // cmbCriticidad
-            // 
-            cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCriticidad.Location = new Point(297, 26);
-            cmbCriticidad.Name = "cmbCriticidad";
-            cmbCriticidad.Size = new Size(115, 23);
-            cmbCriticidad.TabIndex = 7;
-            cmbCriticidad.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // label1
-            // 
-            label1.Location = new Point(227, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(64, 20);
-            label1.TabIndex = 6;
-            label1.Text = "Criticidad";
-            label1.TextAlign = ContentAlignment.TopRight;
-            // 
-            // cmbModulo
-            // 
-            cmbModulo.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbModulo.Location = new Point(93, 26);
-            cmbModulo.Name = "cmbModulo";
-            cmbModulo.Size = new Size(115, 23);
-            cmbModulo.TabIndex = 5;
-            // 
-            // label2
-            // 
-            label2.Location = new Point(23, 29);
-            label2.Name = "label2";
-            label2.Size = new Size(64, 20);
-            label2.TabIndex = 4;
-            label2.Text = "Módulo";
-            label2.TextAlign = ContentAlignment.TopRight;
-            // 
-=======
->>>>>>> origin/FernandoP
             // lbApellido
             // 
             lbApellido.AutoSize = true;
@@ -363,14 +320,10 @@
             Controls.Add(btnSalir);
             Controls.Add(gbFiltrosFecha);
             Controls.Add(lbApellido);
+            Controls.Add(dgvBitacora);
             Controls.Add(lbNombre);
             Controls.Add(panelLateral);
-<<<<<<< HEAD
-            Controls.Add(lblTitulo);
-            Controls.Add(dgvBitacora);
-=======
             Controls.Add(lblTituloBitacora);
->>>>>>> origin/FernandoP
             Font = new Font("Segoe UI", 9F);
             Name = "Bitacora";
             StartPosition = FormStartPosition.CenterScreen;

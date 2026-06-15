@@ -39,10 +39,7 @@
             btnTurnos = new Button();
             lblModulo = new Label();
             panelTop = new Panel();
-<<<<<<< HEAD
-=======
             comboBox1 = new ComboBox();
->>>>>>> origin/FernandoP
             label6 = new Label();
             label4 = new Label();
             lblTitulo = new Label();
@@ -204,6 +201,7 @@
             btnTurnos.Text = "📅 Gestión de Turnos";
             btnTurnos.TextAlign = ContentAlignment.MiddleLeft;
             btnTurnos.UseVisualStyleBackColor = false;
+            btnTurnos.Click += btnTurnos_Click;
             // 
             // lblModulo
             // 
@@ -229,8 +227,6 @@
             panelTop.Size = new Size(951, 60);
             panelTop.TabIndex = 1;
             // 
-<<<<<<< HEAD
-=======
             // comboBox1
             // 
             comboBox1.BackColor = Color.DarkSeaGreen;
@@ -243,17 +239,12 @@
             comboBox1.TabIndex = 2;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
->>>>>>> origin/FernandoP
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             label6.ForeColor = Color.MistyRose;
-<<<<<<< HEAD
-            label6.Location = new Point(323, 20);
-=======
             label6.Location = new Point(285, 20);
->>>>>>> origin/FernandoP
             label6.Name = "label6";
             label6.Size = new Size(0, 25);
             label6.TabIndex = 10;
@@ -263,11 +254,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             label4.ForeColor = Color.MistyRose;
-<<<<<<< HEAD
-            label4.Location = new Point(236, 20);
-=======
             label4.Location = new Point(192, 20);
->>>>>>> origin/FernandoP
             label4.Name = "label4";
             label4.Size = new Size(87, 25);
             label4.TabIndex = 9;
