@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "5ZeIpgn99gY=",
+  "dgSpecHash": "iUyuRYqJ4Bg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\BE\\BE.csproj",
+  "projectFilePath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BE\\BE.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problema al leer el archivo de caché C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BE\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BE\\BE.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\BE\\BE.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

@@ -1,15 +1,18 @@
 using BE;
 using BLL;
 using Services;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI
 {
-    public partial class MenuPrincipal : Form
+    public partial class MenuPrincipal : Form, IIdiomaObserver
     {
         private readonly UsuarioBLL usuarioBLL = new UsuarioBLL();
         private readonly EventoBLL bitacoraBLL = new EventoBLL();
         private readonly ServicioBcrypt servicioB = new();
+
+        private IdiomaBLL idiomaBLL = new IdiomaBLL();
         public MenuPrincipal()
         {
             InitializeComponent();
@@ -55,9 +58,9 @@ namespace UI
 
         private void ActualizarUsuario()
         {
-            if(ServicesSessionManager.Instancia.ObtenerUsuarioActivo()!=null)
+            if (ServicesSessionManager.Instancia.ObtenerUsuarioActivo() != null)
             {
-                this.label6.Text = $"{ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._NombreDeUsuario}, ROL:{ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Rol}";
+                this.label6.Text = $"{ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._NombreDeUsuario} || {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Rol}";
             }
             else
             {
@@ -159,9 +162,9 @@ namespace UI
                 UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
 
                 /// Verificar otra forma por que es codigo aldope
-                bool boleano = servicioB.ValidarContraseña(actualPass,usuario._Contraseña);
+                bool boleano = servicioB.ValidarContraseña(actualPass, usuario._Contraseña);
 
-                bool boleano2 = servicioB.ValidarContraseña(nuevaPass, usuario._Contraseña );
+                bool boleano2 = servicioB.ValidarContraseña(nuevaPass, usuario._Contraseña);
 
                 // Validar que no sea igual a la contraseña anterior
                 if (boleano && boleano2)
@@ -178,6 +181,11 @@ namespace UI
                 usuario._Contraseña = hashnuevaPass;
                 usuarioBLL.CambiarContraseña(usuario);
 
+<<<<<<< HEAD
+=======
+                // Registrar en bitácora
+
+>>>>>>> origin/FernandoP
                 MessageBox.Show("Contraseña cambiada exitosamente",
                 "Cambiar Contraseña",
                 MessageBoxButtons.OK,
@@ -205,5 +213,55 @@ namespace UI
             txtRepPass.Text = "";
             ChangePassPanel.Visible = false;
         }
+        public void ActualizarIdioma()
+        {
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
+            {
+                Traducir(this.Controls);
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name) // evita reemplazar si no existe la clave
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+
+            if (comboBox1.SelectedItem.ToString() == "Español")
+            {
+                Idioma español = idiomas.First(i => i.Codigo == "es");
+                ServicesSessionManager.Instancia.CambiarIdioma(español);
+            }
+            else if (comboBox1.SelectedItem.ToString() == "Ingles")
+            {
+                Idioma ingles = idiomas.First(i => i.Codigo == "en");
+                ServicesSessionManager.Instancia.CambiarIdioma(ingles);
+            }
+            else if (comboBox1.SelectedItem.ToString() == "Portugues")
+            {
+                Idioma portugues= idiomas.First(i => i.Codigo == "po");
+                ServicesSessionManager.Instancia.CambiarIdioma(portugues);
+            }
+        }
+
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
+
 }

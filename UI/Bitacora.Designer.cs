@@ -34,7 +34,7 @@
             btnExportar = new Button();
             btnLimpiarFiltros = new Button();
             dgvBitacora = new DataGridView();
-            lblTitulo = new Label();
+            lblTituloBitacora = new Label();
             gbFiltrosFecha = new GroupBox();
             dtpHasta = new DateTimePicker();
             lblHasta = new Label();
@@ -42,12 +42,18 @@
             lblDesde = new Label();
             btnSalir = new Button();
             groupBox1 = new GroupBox();
-            label4 = new Label();
+            labelEvento = new Label();
             cmbEvento = new ComboBox();
             cmbCriticidad = new ComboBox();
+<<<<<<< HEAD
             label1 = new Label();
             cmbModulo = new ComboBox();
             label2 = new Label();
+=======
+            labelCriticidad = new Label();
+            cmbModulo = new ComboBox();
+            labelModulo = new Label();
+>>>>>>> origin/FernandoP
             lbApellido = new Label();
             lbNombre = new Label();
             textBox1 = new TextBox();
@@ -127,16 +133,16 @@
             dgvBitacora.TabIndex = 3;
             dgvBitacora.SelectionChanged += dgvBitacora_SelectionChanged;
             // 
-            // lblTitulo
+            // lblTituloBitacora
             // 
-            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.FromArgb(46, 94, 67);
-            lblTitulo.Location = new Point(12, 9);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(926, 40);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "📋 Auditoría y Bitácora del Sistema";
-            lblTitulo.TextAlign = ContentAlignment.TopCenter;
+            lblTituloBitacora.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTituloBitacora.ForeColor = Color.FromArgb(46, 94, 67);
+            lblTituloBitacora.Location = new Point(12, 9);
+            lblTituloBitacora.Name = "lblTituloBitacora";
+            lblTituloBitacora.Size = new Size(926, 40);
+            lblTituloBitacora.TabIndex = 0;
+            lblTituloBitacora.Text = "📋 Auditoría y Bitácora del Sistema";
+            lblTituloBitacora.TextAlign = ContentAlignment.TopCenter;
             // 
             // gbFiltrosFecha
             // 
@@ -207,12 +213,12 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.FromArgb(180, 180, 180);
-            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(labelEvento);
             groupBox1.Controls.Add(cmbEvento);
             groupBox1.Controls.Add(cmbCriticidad);
-            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(labelCriticidad);
             groupBox1.Controls.Add(cmbModulo);
-            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(labelModulo);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             groupBox1.Location = new Point(185, 470);
@@ -222,14 +228,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtrar ";
             // 
-            // label4
+            // labelEvento
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(423, 29);
-            label4.Name = "label4";
-            label4.Size = new Size(46, 15);
-            label4.TabIndex = 12;
-            label4.Text = "Evento";
+            labelEvento.AutoSize = true;
+            labelEvento.Location = new Point(423, 29);
+            labelEvento.Name = "labelEvento";
+            labelEvento.Size = new Size(46, 15);
+            labelEvento.TabIndex = 12;
+            labelEvento.Text = "Evento";
             // 
             // cmbEvento
             // 
@@ -238,7 +244,44 @@
             cmbEvento.Name = "cmbEvento";
             cmbEvento.Size = new Size(115, 23);
             cmbEvento.TabIndex = 11;
+            cmbEvento.SelectedIndexChanged += cmbEvento_SelectedIndexChanged;
             // 
+            // cmbCriticidad
+            // 
+            cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCriticidad.Location = new Point(297, 26);
+            cmbCriticidad.Name = "cmbCriticidad";
+            cmbCriticidad.Size = new Size(115, 23);
+            cmbCriticidad.TabIndex = 7;
+            cmbCriticidad.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // labelCriticidad
+            // 
+            labelCriticidad.Location = new Point(227, 29);
+            labelCriticidad.Name = "labelCriticidad";
+            labelCriticidad.Size = new Size(64, 20);
+            labelCriticidad.TabIndex = 6;
+            labelCriticidad.Text = "Criticidad";
+            labelCriticidad.TextAlign = ContentAlignment.TopRight;
+            // 
+            // cmbModulo
+            // 
+            cmbModulo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbModulo.Location = new Point(93, 26);
+            cmbModulo.Name = "cmbModulo";
+            cmbModulo.Size = new Size(115, 23);
+            cmbModulo.TabIndex = 5;
+            // 
+            // labelModulo
+            // 
+            labelModulo.Location = new Point(23, 29);
+            labelModulo.Name = "labelModulo";
+            labelModulo.Size = new Size(64, 20);
+            labelModulo.TabIndex = 4;
+            labelModulo.Text = "Módulo";
+            labelModulo.TextAlign = ContentAlignment.TopRight;
+            // 
+<<<<<<< HEAD
             // cmbCriticidad
             // 
             cmbCriticidad.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -274,6 +317,8 @@
             label2.Text = "Módulo";
             label2.TextAlign = ContentAlignment.TopRight;
             // 
+=======
+>>>>>>> origin/FernandoP
             // lbApellido
             // 
             lbApellido.AutoSize = true;
@@ -320,8 +365,12 @@
             Controls.Add(lbApellido);
             Controls.Add(lbNombre);
             Controls.Add(panelLateral);
+<<<<<<< HEAD
             Controls.Add(lblTitulo);
             Controls.Add(dgvBitacora);
+=======
+            Controls.Add(lblTituloBitacora);
+>>>>>>> origin/FernandoP
             Font = new Font("Segoe UI", 9F);
             Name = "Bitacora";
             StartPosition = FormStartPosition.CenterScreen;
@@ -342,7 +391,7 @@
         private System.Windows.Forms.Button btnLimpiarFiltros;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.DataGridView dgvBitacora;
-        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblTituloBitacora;
         private System.Windows.Forms.GroupBox gbFiltrosFecha;
         private System.Windows.Forms.Label lblDesde;
         private System.Windows.Forms.DateTimePicker dtpDesde;
@@ -350,13 +399,13 @@
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.Button btnSalir;
         private GroupBox groupBox1;
-        private Label label2;
+        private Label labelModulo;
         private ComboBox cmbModulo;
         private ComboBox cmbCriticidad;
-        private Label label1;
+        private Label labelCriticidad;
         private Label lbApellido;
         private Label lbNombre;
-        private Label label4;
+        private Label labelEvento;
         private ComboBox cmbEvento;
         private TextBox textBox1;
         private TextBox textBox2;

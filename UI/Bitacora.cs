@@ -12,19 +12,24 @@ using BE;
 using System.IO;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
+using Services;
 
 namespace UI
 {
-    public partial class Bitacora : Form
+    public partial class Bitacora : Form,IIdiomaObserver
     {
         EventoBLL _bitacoraBLL = new EventoBLL();
         UsuarioBLL _usuarioBLL = new UsuarioBLL();
         private List<EventoBE>? _bitacoraCompleta;
 
+        private IdiomaBLL idiomaBLL = new IdiomaBLL();
+
         public Bitacora()
         {
             InitializeComponent();
             this.VisibleChanged += (s, e) => Bitacora_VisibleChanged();
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
         }
 
         private void Bitacora_VisibleChanged()
@@ -115,6 +120,82 @@ namespace UI
             GestionBitacora_Load(sender, e);
         }
 
+<<<<<<< HEAD
+=======
+        private void GestionBitacora_Load(object? sender, EventArgs e)
+        {
+            _bitacoraCompleta = _bitacoraBLL.VerEventos();
+
+            InicializarDateTimePickers();
+            InicializarComboBoxCriticidad();
+            InicializarComboBoxC();
+            InicializarComboBoxEvento();
+
+            CargarBitacora(BitacoraInicial());
+
+
+            dtpDesde.ValueChanged += DtpFecha_ValueChanged;
+            dtpHasta.ValueChanged += DtpFecha_ValueChanged;
+
+
+            cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
+
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
+            dgvBitacora.AllowUserToResizeColumns = false;
+            dgvBitacora.AllowUserToResizeRows = false;
+
+            dgvBitacora.CellClick += DgvBitacora_CellClick;
+
+            //btnAplicarFiltro.Click += BtnAplicarFiltro_Click;
+            btnExportar.Click += BtnExportar_Click;
+        }
+
+        private void InicializarDateTimePickers()
+        {
+            DateTime hoy = DateTime.Today;
+            dtpHasta.Value = hoy;
+        }
+
+        private void InicializarComboBoxCriticidad()
+        {
+            cmbModulo.Items.Clear();
+            cmbModulo.Items.Add("Todos");
+            cmbModulo.Items.Add("Login");
+            cmbModulo.Items.Add("GestionUsuario");
+            cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto
+        }
+        private void InicializarComboBoxC()
+        {
+            cmbCriticidad.Items.Clear();
+
+            cmbCriticidad.Items.Add("Todas");
+            cmbCriticidad.Items.Add("1");
+            cmbCriticidad.Items.Add("2");
+            cmbCriticidad.Items.Add("3");
+            cmbCriticidad.Items.Add("4");
+            cmbCriticidad.Items.Add("5");
+
+            cmbCriticidad.SelectedIndex = 0;
+        }
+        private void InicializarComboBoxEvento()
+        {
+            cmbEvento.Items.Clear();
+
+            cmbEvento.Items.Add("Todos");
+            cmbEvento.Items.Add("Inicio de Sesion");
+            cmbEvento.Items.Add("Cierre de Sesion");
+            cmbEvento.Items.Add("Error");
+            cmbEvento.Items.Add("Creacion de Usuario");
+            cmbEvento.Items.Add("Modificar Usuario");
+            cmbEvento.Items.Add("Desbloqueo de Usuario");
+            cmbEvento.Items.Add("Bloqueo de Cuenta");
+            cmbEvento.Items.Add("Cambio de Estado");
+            cmbEvento.Items.Add("Cambio de Clave");
+
+            cmbEvento.SelectedIndex = 0;
+        }
+>>>>>>> origin/FernandoP
         private void DtpFecha_ValueChanged(object? sender, EventArgs e)
         {
             DateTime hoy = DateTime.Today;
@@ -462,6 +543,54 @@ namespace UI
         private void btnExportar_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbEvento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string evento = cmbEvento.SelectedItem?.ToString() ?? "Todos";
+
+            var bitacoraFiltrada = _bitacoraCompleta;
+            if (evento != "Todos")
+            {
+                if (evento == "Error")
+                {
+                    bitacoraFiltrada = bitacoraFiltrada
+                        .Where(b => b._Descripcion != null && b._Descripcion.ToString().StartsWith("error", StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+                }
+                else
+                {
+                    bitacoraFiltrada = bitacoraFiltrada
+                        .Where(b => b._Descripcion.ToString() == evento)
+                        .ToList();
+                }
+            }
+
+            CargarBitacora(bitacoraFiltrada);
+        }
+
+        public void ActualizarIdioma()
+        {
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
+            {
+                Traducir(this.Controls);
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name) // evita reemplazar si no existe la clave
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
+            }
         }
     }
 }

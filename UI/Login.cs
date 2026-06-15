@@ -15,12 +15,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace UI
 {
-    public partial class Login : Form
+    public partial class Login : Form, IIdiomaObserver
     {
         UsuarioBLL usuarioBLL = new();
+        private IdiomaBLL idiomaBLL = new IdiomaBLL();
         public Login()
         {
             InitializeComponent();
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -74,7 +78,7 @@ namespace UI
 
                     // Navegar al formulario principal
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
-                    
+
                 }
                 else
                 {
@@ -95,6 +99,31 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show($"Error en el proceso de login: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //OBSERVER
+        public void ActualizarIdioma()
+        {
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
+            {
+                Traducir(this.Controls);
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name) // evita reemplazar si no existe la clave
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
             }
         }
     }

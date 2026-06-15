@@ -39,6 +39,10 @@
             btnTurnos = new Button();
             lblModulo = new Label();
             panelTop = new Panel();
+<<<<<<< HEAD
+=======
+            comboBox1 = new ComboBox();
+>>>>>>> origin/FernandoP
             label6 = new Label();
             label4 = new Label();
             lblTitulo = new Label();
@@ -47,7 +51,7 @@
             ChangePassPanel = new Panel();
             label5 = new Label();
             txtActualPass = new TextBox();
-            btnCancelar = new Button();
+            btnCancelarMP = new Button();
             btnAceptar = new Button();
             txtRepPass = new TextBox();
             label3 = new Label();
@@ -75,7 +79,7 @@
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(240, 700);
+            panelMenu.Size = new Size(259, 700);
             panelMenu.TabIndex = 0;
             // 
             // btnChangePass
@@ -84,7 +88,7 @@
             btnChangePass.FlatStyle = FlatStyle.Flat;
             btnChangePass.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnChangePass.ForeColor = Color.Transparent;
-            btnChangePass.Location = new Point(0, 564);
+            btnChangePass.Location = new Point(11, 564);
             btnChangePass.Margin = new Padding(2);
             btnChangePass.Name = "btnChangePass";
             btnChangePass.Size = new Size(240, 38);
@@ -99,7 +103,7 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(0, 606);
+            btnLogin.Location = new Point(11, 606);
             btnLogin.Margin = new Padding(2);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(240, 38);
@@ -115,7 +119,7 @@
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Segoe UI", 10F);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(12, 640);
+            btnLogout.Location = new Point(24, 643);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(215, 45);
             btnLogout.TabIndex = 6;
@@ -133,7 +137,7 @@
             btnAyuda.ForeColor = Color.White;
             btnAyuda.Location = new Point(12, 300);
             btnAyuda.Name = "btnAyuda";
-            btnAyuda.Size = new Size(215, 45);
+            btnAyuda.Size = new Size(239, 45);
             btnAyuda.TabIndex = 5;
             btnAyuda.Text = "❓ Ayuda";
             btnAyuda.TextAlign = ContentAlignment.MiddleLeft;
@@ -148,7 +152,7 @@
             btnUsuarios.ForeColor = Color.White;
             btnUsuarios.Location = new Point(12, 245);
             btnUsuarios.Name = "btnUsuarios";
-            btnUsuarios.Size = new Size(215, 45);
+            btnUsuarios.Size = new Size(239, 45);
             btnUsuarios.TabIndex = 4;
             btnUsuarios.Text = "👤 Gestión de Usuarios";
             btnUsuarios.TextAlign = ContentAlignment.MiddleLeft;
@@ -164,7 +168,7 @@
             btnReportes.ForeColor = Color.White;
             btnReportes.Location = new Point(12, 190);
             btnReportes.Name = "btnReportes";
-            btnReportes.Size = new Size(215, 45);
+            btnReportes.Size = new Size(239, 45);
             btnReportes.TabIndex = 3;
             btnReportes.Text = "📊 Bitacora";
             btnReportes.TextAlign = ContentAlignment.MiddleLeft;
@@ -180,7 +184,7 @@
             btnSeguimiento.ForeColor = Color.White;
             btnSeguimiento.Location = new Point(12, 131);
             btnSeguimiento.Name = "btnSeguimiento";
-            btnSeguimiento.Size = new Size(215, 45);
+            btnSeguimiento.Size = new Size(241, 45);
             btnSeguimiento.TabIndex = 2;
             btnSeguimiento.Text = "\U0001f957 Seguimiento Nutricional";
             btnSeguimiento.TextAlign = ContentAlignment.MiddleLeft;
@@ -195,7 +199,7 @@
             btnTurnos.ForeColor = Color.White;
             btnTurnos.Location = new Point(12, 80);
             btnTurnos.Name = "btnTurnos";
-            btnTurnos.Size = new Size(215, 45);
+            btnTurnos.Size = new Size(239, 45);
             btnTurnos.TabIndex = 1;
             btnTurnos.Text = "📅 Gestión de Turnos";
             btnTurnos.TextAlign = ContentAlignment.MiddleLeft;
@@ -215,21 +219,41 @@
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(92, 145, 104);
+            panelTop.Controls.Add(comboBox1);
             panelTop.Controls.Add(label6);
             panelTop.Controls.Add(label4);
             panelTop.Controls.Add(lblTitulo);
             panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(240, 0);
+            panelTop.Location = new Point(259, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(960, 60);
+            panelTop.Size = new Size(951, 60);
             panelTop.TabIndex = 1;
             // 
+<<<<<<< HEAD
+=======
+            // comboBox1
+            // 
+            comboBox1.BackColor = Color.DarkSeaGreen;
+            comboBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Español", "Ingles", "Portugues" });
+            comboBox1.Location = new Point(784, 16);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(164, 29);
+            comboBox1.TabIndex = 2;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+>>>>>>> origin/FernandoP
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             label6.ForeColor = Color.MistyRose;
+<<<<<<< HEAD
             label6.Location = new Point(323, 20);
+=======
+            label6.Location = new Point(285, 20);
+>>>>>>> origin/FernandoP
             label6.Name = "label6";
             label6.Size = new Size(0, 25);
             label6.TabIndex = 10;
@@ -239,7 +263,11 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             label4.ForeColor = Color.MistyRose;
+<<<<<<< HEAD
             label4.Location = new Point(236, 20);
+=======
+            label4.Location = new Point(192, 20);
+>>>>>>> origin/FernandoP
             label4.Name = "label4";
             label4.Size = new Size(87, 25);
             label4.TabIndex = 9;
@@ -262,9 +290,9 @@
             panelContenedor.Controls.Add(label1);
             panelContenedor.Controls.Add(ChangePassPanel);
             panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(240, 60);
+            panelContenedor.Location = new Point(259, 60);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(960, 640);
+            panelContenedor.Size = new Size(951, 640);
             panelContenedor.TabIndex = 2;
             // 
             // label1
@@ -281,7 +309,7 @@
             ChangePassPanel.BackColor = Color.FromArgb(76, 124, 89);
             ChangePassPanel.Controls.Add(label5);
             ChangePassPanel.Controls.Add(txtActualPass);
-            ChangePassPanel.Controls.Add(btnCancelar);
+            ChangePassPanel.Controls.Add(btnCancelarMP);
             ChangePassPanel.Controls.Add(btnAceptar);
             ChangePassPanel.Controls.Add(txtRepPass);
             ChangePassPanel.Controls.Add(label3);
@@ -311,20 +339,20 @@
             txtActualPass.Size = new Size(100, 23);
             txtActualPass.TabIndex = 11;
             // 
-            // btnCancelar
+            // btnCancelarMP
             // 
-            btnCancelar.BackColor = Color.Red;
-            btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnCancelar.ForeColor = Color.Transparent;
-            btnCancelar.Location = new Point(208, 157);
-            btnCancelar.Margin = new Padding(2);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(123, 38);
-            btnCancelar.TabIndex = 10;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
+            btnCancelarMP.BackColor = Color.Red;
+            btnCancelarMP.FlatStyle = FlatStyle.Flat;
+            btnCancelarMP.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCancelarMP.ForeColor = Color.Transparent;
+            btnCancelarMP.Location = new Point(208, 157);
+            btnCancelarMP.Margin = new Padding(2);
+            btnCancelarMP.Name = "btnCancelarMP";
+            btnCancelarMP.Size = new Size(123, 38);
+            btnCancelarMP.TabIndex = 10;
+            btnCancelarMP.Text = "Cancelar";
+            btnCancelarMP.UseVisualStyleBackColor = false;
+            btnCancelarMP.Click += btnCancelar_Click;
             // 
             // btnAceptar
             // 
@@ -382,7 +410,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(225, 240, 228);
-            ClientSize = new Size(1200, 700);
+            ClientSize = new Size(1210, 700);
             Controls.Add(panelContenedor);
             Controls.Add(panelTop);
             Controls.Add(panelMenu);
@@ -391,6 +419,7 @@
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sistema NutriEvolve";
+            Load += MenuPrincipal_Load;
             panelMenu.ResumeLayout(false);
             panelMenu.PerformLayout();
             panelTop.ResumeLayout(false);
@@ -426,7 +455,7 @@
         private Button btnChangePass;
         private Button btnLogin;
         private Panel ChangePassPanel;
-        private Button btnCancelar;
+        private Button btnCancelarMP;
         private Button btnAceptar;
         private TextBox txtRepPass;
         private Label label3;
@@ -438,5 +467,6 @@
         private Label label5;
         private Label label6;
         private Label label4;
+        private ComboBox comboBox1;
     }
 }

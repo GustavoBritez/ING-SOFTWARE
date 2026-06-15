@@ -185,7 +185,7 @@
             lblLogin.TabIndex = 0;
             lblLogin.Text = "LOGIN";
             // 
-            // Presentacion
+            // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -195,7 +195,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2);
             MaximizeBox = false;
-            Name = "Presentacion";
+            Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sistema NutriEvolve";
             panelIzquierdo.ResumeLayout(false);

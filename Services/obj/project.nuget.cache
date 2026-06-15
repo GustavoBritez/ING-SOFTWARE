@@ -1,10 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "jGx/QbUMDBs=",
+  "dgSpecHash": "1IJmBx6Tyok=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\io\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Services.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Navegador\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512"
+    "C:\\Users\\Danie\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problema al leer el archivo de caché C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Services.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Danie\\Desktop\\Nueva carpeta\\ING\\Services\\Services.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

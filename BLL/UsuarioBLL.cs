@@ -30,17 +30,27 @@ namespace BLL
                 usuarioDAL.CambioEstado(usuario);
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+<<<<<<< HEAD
                 string nuevoEstado = usuario._Estado ? "activado" : "desactivado";
                 string descripcion = $"Cambio de estado";
+=======
+                string descripcion = $"Cambio de Estado";
+>>>>>>> origin/FernandoP
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"ERROR: Cambio de estado";
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
                 throw;
+=======
+                string descripcion = $"ERROR: Cambio de Estado";
+                new EventoBLL().RegistrarEvento(4, descripcion, ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(), "GestionUsuario");
+                throw new Exception($"Error en CambiarEstado: {ex.Message}");
+>>>>>>> origin/FernandoP
             }
         }
 
@@ -51,6 +61,7 @@ namespace BLL
                 usuarioDAL.CambiarContraseña(usuario);
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+<<<<<<< HEAD
                 string descripcion = $"Cambio Contraseña";
                 bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "MenuPrincipal");
             }
@@ -62,13 +73,19 @@ namespace BLL
                 string descripcion = $"ERROR: Cambio de contraseña";
                 bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "MenuPrincipal");
                 throw;
+=======
+                string descripcion = $"Cambio de Clave";
+                bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
+            }
+            catch( Exception ex)
+            {
+                string descripcion = $"ERROR: Cambio de Clave";
+                new EventoBLL().RegistrarEvento(4, descripcion, ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(), "GestionUsuario");
+                throw new Exception($"Error en Cambiar contraseña: {ex.Message}");
+>>>>>>> origin/FernandoP
             }
         }
 
-        /// <summary>
-        ///  Este DSS hay que rehacerlo denuevo.
-        ///  Anteriormente nos daba error siempre al crear la primer cuenta
-        /// </summary>
         /// <param name="usuario"></param>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
@@ -177,8 +194,8 @@ namespace BLL
 
                     EventoBLL bitacoraBLL = new();
                     
-                    string descripcion = $" Inicio de Sesion";
-                    bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
+                    string descripcion = $"Inicio de Sesion";
+                    bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "Login");
                     return true;
                 }
                 else
@@ -203,8 +220,8 @@ namespace BLL
                         
                         EventoBLL bitacoraBLL = new();
                         int dniActual = this.BuscarUsuario(nombreDeUsuario)._Dni;
-                        string descripcion = $" Cuenta Bloqueada";
-                        bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+                        string descripcion = $"Bloqueo de Cuenta";
+                        bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "Login");
                     }
 
                     return false;
@@ -248,19 +265,27 @@ namespace BLL
 
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
 
+<<<<<<< HEAD
                 string descripcion = $" Cierre de Sesion";
+=======
+                string descripcion = $"Cierre de Sesion";
+>>>>>>> origin/FernandoP
 
-                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-                ///Services.ServicesSessionManager.Instancia.Logout();
+                bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Login");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error en LogOut: {ex.Message}");
                     EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+<<<<<<< HEAD
                 string descripcion = $" ERROR: Cierre de Sesion";
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
                 ///Services.ServicesSessionManager.Instancia.Logout();
+=======
+                string descripcion = $" Error: Cierre de Sesion";
+                bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "Login");
+>>>>>>> origin/FernandoP
                 throw;
             }
             finally
@@ -281,7 +306,11 @@ namespace BLL
 
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+<<<<<<< HEAD
                 string descripcion = $" Modificar Usuario ";
+=======
+                string descripcion = $"Modificar Usuario";
+>>>>>>> origin/FernandoP
                 
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
 
@@ -292,7 +321,11 @@ namespace BLL
 
                 EventoBLL    bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+<<<<<<< HEAD
                 string descripcion = $" ERROR: Modificar Usuario ";
+=======
+                string descripcion = $"Error: Modificar Usuario";
+>>>>>>> origin/FernandoP
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
                 throw;
             }
@@ -318,14 +351,22 @@ namespace BLL
 
                 EventoBLL    bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+<<<<<<< HEAD
                 string descripcion = $" Desbloquear";
+=======
+                string descripcion = $"Desbloqueo de Usuario";
+>>>>>>> origin/FernandoP
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
             }
             catch (Exception ex)
             {
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+<<<<<<< HEAD
                 string descripcion = $" ERROR: Desbloquear";
+=======
+                string descripcion = $"ERROR: Desbloqueo de Usuario";
+>>>>>>> origin/FernandoP
                 bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
             }
         }
