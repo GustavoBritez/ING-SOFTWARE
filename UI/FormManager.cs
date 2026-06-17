@@ -10,6 +10,7 @@ namespace UI
         private static MenuPrincipal _MenuPrincipal;
         private static GestionUsuario _gestionUsuario;
         private static Bitacora _bitacora;
+        private static Perfiles _perfiles;
 
 
         public static Login ObtenerLogin()
@@ -19,6 +20,15 @@ namespace UI
                 _Login = new Login();
             }
             return _Login;
+        }
+
+        public static Perfiles ObtenerPerfiles()
+        {
+            if (_perfiles == null || _perfiles.IsDisposed)
+            {
+                _perfiles = new Perfiles();
+            }
+            return _perfiles;
         }
 
         public static MenuPrincipal ObtenerMenuPrincipal()

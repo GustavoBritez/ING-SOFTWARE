@@ -1,4 +1,5 @@
 ﻿using DAL.Perfiles;
+using Services;
 using Services.Perfiles;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,6 @@ namespace BLL.Perfiles
 
         public void AgregarPermisoAPerfil(int idPerfil, int idPermiso)
         {
-            // Validaciones de negocio
             _patenteDAL.InsertarPermisoPerfil(idPerfil, idPermiso);
         }
 
@@ -22,8 +22,20 @@ namespace BLL.Perfiles
         {
             _patenteDAL.EliminarPermisoPerfil(idPerfil, idPermiso);
         }
+        public void CrearNuevoPermiso(string nombrePermiso)
+        {
+            if (string.IsNullOrWhiteSpace(nombrePermiso))
+            {
+                throw new ArgumentException("ERROR: El nombre del permiso no puede estar vacío.");
+            }
 
-        // Métodos que exigen retorno a la UI
+            _patenteDAL.InsertarPatenteNueva(nombrePermiso);
+
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Crear Permiso";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
+        }
         public List<Componente> ObtenerComponentesTotales() => _patenteDAL.ObtenerComponentesTotales();
         public List<Componente> ObtenerPermisosPerfil() => _patenteDAL.ObtenerPermisosPerfil();
     }

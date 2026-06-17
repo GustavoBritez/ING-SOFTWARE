@@ -1,10 +1,6 @@
 ﻿using Services.Perfiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Data;
+using Microsoft.Data.SqlClient;
 namespace DAL.Perfiles
 {
     public class PatenteDAL
@@ -49,6 +45,19 @@ namespace DAL.Perfiles
             // SELECT * FROM Componentes WHERE EsFamilia = 0
             return new List<Componente>();
         }
+        // Adentro de DAL.Perfiles.PatenteDAL
+        // Adentro de DAL.Perfiles.PatenteDAL
+        public void InsertarPatenteNueva(string nombrePermiso)
+        {
+            // Hacemos el INSERT en la tabla maestra. EsFamilia es 0 porque es una patente (hoja).
+            string query = "INSERT INTO Componentes (Nombre, EsFamilia) VALUES (@nombre, 0)";
 
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@nombre", nombrePermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
     }
 }

@@ -1,17 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
-using Services;
 using Services.Perfiles;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Perfiles
 {
@@ -20,12 +9,12 @@ namespace DAL.Perfiles
         private readonly Conexion _conexion;
         private readonly string TABLA_PERFIL = "Perfil";
         private readonly string TABLA_COMPONENTES = "Componentes";
+
         public PerfilDAL()
         {
             this._conexion = new();
         }
 
-        // Los métodos reciben los parámetros necesarios para armar la query
         public void InsertarPermisoPerfil(int idPerfil, int idPermiso)
         {
             string query = $"INSERT INTO {TABLA_PERFIL} (IdPerfil, IdPermiso) " +
@@ -69,26 +58,22 @@ IdPermiso(INT, FOREIGN KEY) -> Apunta al IdComponente del Hijo(que puede ser una
         public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
         {
             string query = $"DELETE FROM {TABLA_PERFIL} WHERE IdPerfil = @idPerfil AND IdPermiso = @idPermiso";
-
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@idPerfil", idPerfil),
                 new SqlParameter("@idPermiso", idPermiso)
             };
-
             _conexion.ExecuteNonQuery(query, parametros);
         }
 
         public void EliminarFamiliaPerfil(int idPerfil, int idFamilia)
         {
             string query = $"DELETE FROM {TABLA_PERFIL} WHERE IdPerfil = @idPerfil AND IdPermiso = @idFamilia";
-
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@idPerfil", idPerfil),
                 new SqlParameter("@idFamilia", idFamilia)
             };
-
             _conexion.ExecuteNonQuery(query, parametros);
         }
 
@@ -105,72 +90,35 @@ IdPermiso(INT, FOREIGN KEY) -> Apunta al IdComponente del Hijo(que puede ser una
                 int id = Convert.ToInt32(fila["IdComponente"]);
                 string nombre = fila["Nombre"].ToString();
                 bool esFamilia = Convert.ToBoolean(fila["EsFamilia"]);
-
                 Componente comp;
-
                 if (esFamilia)
                 {
-                    comp = new PerfilServices(nombre) { Id = id }; // Permiso
+                    // Instanciamos el Nodo (Rol)
+                    comp = new FamiliaServices(nombre) { Id = id };
                 }
                 else
                 {
-                    comp = new Permiso(nombre) { Id = id }; // Hoja
+                    // Instanciamos la Hoja (Acción suelta)
+                    comp = new PatenteServices(nombre) { Id = id };
                 }
 
                 if (comp is not null )
                     _perfil.Add(comp);
             }
-
             return _perfil;
         }
 
-
-        public FamiliaServices ObtenerFamiliaPorId(int idFamiliaRaiz)
+        public void InsertarPatenteNueva(string nombrePermiso)
         {
-            // 1. Buscamos los datos básicos de la familia raíz
-            string queryPadre = $"SELECT IdComponente, Nombre FROM {TABLA_COMPONENTES} WHERE IdComponente = @id";
-            DataTable dtPadre = _conexion.ExecuteReader(queryPadre, new SqlParameter[] { new SqlParameter("@id", idFamiliaRaiz) });
+            string query = "INSERT INTO Componentes (Nombre, EsFamilia) VALUES (@nombre, 0)";
 
-            if (dtPadre.Rows.Count == 0) return null; // No existe
-
-            // Instanciamos el nodo principal
-            FamiliaServices familiaArmada = new FamiliaServices(dtPadre.Rows[0]["Nombre"].ToString()) { Id = idFamiliaRaiz };
-
-            // 2. Buscamos quiénes son los hijos de este padre en la tabla relacional
-            string queryHijos = $@"
-        SELECT c.IdComponente, c.Nombre, c.EsFamilia 
-        FROM {TABLA_PERFIL} pc
-        INNER JOIN {TABLA_COMPONENTES} c ON pc.IdPermiso = c.IdComponente
-        WHERE pc.IdPerfil = @idPadre";
-
-            DataTable dtHijos = _conexion.ExecuteReader(queryHijos, new SqlParameter[] { new SqlParameter("@idPadre", idFamiliaRaiz) });
-
-            // 3. Recorremos los hijos encontrados
-            foreach (DataRow fila in dtHijos.Rows)
+            SqlParameter[] parametros = new SqlParameter[]
             {
-                int idHijo = Convert.ToInt32(fila["IdComponente"]);
-                string nombreHijo = fila["Nombre"].ToString();
-                bool esFamilia = Convert.ToBoolean(fila["EsFamilia"]);
+        new SqlParameter("@nombre", nombrePermiso)
+            };
 
-                if (esFamilia)
-                {
-                    // ¡ACÁ ESTÁ LA MAGIA RECURSIVA! 
-                    // Si el hijo es OTRA familia, el método se llama a sí mismo para armar el sub-árbol
-                    FamiliaServices subFamilia = ObtenerFamiliaPorId(idHijo);
-                    familiaArmada.Agregar(subFamilia);
-                }
-                else
-                {
-                    // Si es una hoja (Permiso), simplemente la instanciamos y la agregamos a la lista del padre
-                    Permiso permisoHoja = new Permiso(nombreHijo) { Id = idHijo };
-                    familiaArmada.Agregar(permisoHoja);
-                }
-            }
-
-            // 4. Retornamos el árbol completo y ensamblado
-            return familiaArmada;
+            _conexion.ExecuteNonQuery(query, parametros);
         }
-
 
     }
 }

@@ -18,5 +18,6 @@ namespace Services.Perfiles
         public void Agregar(Componente c) => _hijos.Add(c);
 
         public override bool EsCompuesto() => true;
+
     }
 }

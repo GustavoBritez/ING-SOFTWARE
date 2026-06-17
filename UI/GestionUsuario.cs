@@ -14,14 +14,14 @@ using Services;
 
 namespace UI
 {
-    public partial class GestionUsuario : Form,IIdiomaObserver
+    public partial class GestionUsuario : Form, IIdiomaObserver
     {
         private UsuarioBLL usuarioBLL = new UsuarioBLL();
         private EventoBLL bitacoraBLL = new EventoBLL();
         private string _modoActual = "";
         private UsuarioBE _usuarioEnModificacion = null;
 
-        private IdiomaBLL idiomaBLL= new IdiomaBLL();
+        private IdiomaBLL idiomaBLL = new IdiomaBLL();
 
         public GestionUsuario()
         {
@@ -616,7 +616,7 @@ namespace UI
 
         public void ActualizarIdioma()
         {
-            if(ServicesSessionManager.Instancia.ObtenerIdioma()!=null)
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
             {
                 Traducir(this.Controls);
             }
@@ -636,6 +636,11 @@ namespace UI
                 if (control.HasChildren)
                     Traducir(control.Controls);
             }
+        }
+
+        private void btnGestionarPerfiles_Click(object sender, EventArgs e)
+        {
+            FormManager.Navegar(this, new Perfiles());
         }
     }
 }
