@@ -301,3 +301,21 @@ C:\Users\Danie\Desktop\Nueva carpeta\ING\DAL\obj\Debug\net9.0\DAL.AssemblyInfoIn
 C:\Users\Danie\Desktop\Nueva carpeta\ING\DAL\obj\Debug\net9.0\DAL.AssemblyInfo.cs
 C:\Users\Danie\Desktop\Nueva carpeta\ING\DAL\obj\Debug\net9.0\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Danie\Desktop\Nueva carpeta\ING\DAL\obj\Debug\net9.0\DAL.sourcelink.json
+C:\Users\Navegador\Desktop\ING\pimb\DAL\bin\Debug\net9.0\DAL.deps.json
+C:\Users\Navegador\Desktop\ING\pimb\DAL\bin\Debug\net9.0\DAL.dll
+C:\Users\Navegador\Desktop\ING\pimb\DAL\bin\Debug\net9.0\DAL.pdb
+C:\Users\Navegador\Desktop\ING\pimb\DAL\bin\Debug\net9.0\BE.dll
+C:\Users\Navegador\Desktop\ING\pimb\DAL\bin\Debug\net9.0\Services.dll
+C:\Users\Navegador\Desktop\ING\pimb\DAL\bin\Debug\net9.0\BE.pdb
+C:\Users\Navegador\Desktop\ING\pimb\DAL\bin\Debug\net9.0\Services.pdb
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.AssemblyInfo.cs
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.sourcelink.json
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.csproj.Up2Date
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.dll
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\refint\DAL.dll
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\DAL.pdb
+C:\Users\Navegador\Desktop\ING\pimb\DAL\obj\Debug\net9.0\ref\DAL.dll

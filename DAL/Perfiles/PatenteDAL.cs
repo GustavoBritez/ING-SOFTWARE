@@ -1,62 +1,113 @@
-﻿using Services.Perfiles;
+﻿using Microsoft.Data.SqlClient;
+using Services.Perfiles;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
+
 namespace DAL.Perfiles
 {
     public class PatenteDAL
     {
-        private Conexion _conexion = new();
+        private readonly Conexion _conexion = new();
+
         public PatenteDAL() { }
 
-        // Manejo de la tabla relacional Perfil_Componente
-        public void InsertarPermisoPerfil(int idPerfil, int idPermiso)
+        public void InsertarPermisoPerfil(int idFamilia, int idPermiso)
         {
-            string query = "INSERT INTO Perfil (IdPerfil, IdPermiso) VALUES (@idPerfil, @idPermiso)";
-            // Ejecución SQL...
+            string query = "INSERT INTO Permiso_Familia (ID_Familia, ID_Permiso) VALUES (@idFamilia, @idPermiso)";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idFamilia", idFamilia),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+            _conexion.ExecuteNonQuery(query, parametros);
         }
 
-        public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
+        public void EliminarPermisoPerfil(int idFamilia, int idPermiso)
         {
-            string query = "DELETE FROM Perfil WHERE IdPerfil = @idPerfil AND IdPermiso = @idPermiso";
-            // Ejecución SQL...
+            string query = "DELETE FROM Permiso_Familia WHERE ID_Familia = @idFamilia AND ID_Permiso = @idPermiso";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idFamilia", idFamilia),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+            _conexion.ExecuteNonQuery(query, parametros);
         }
 
-        public void EliminarFamiliaPerfil(int idPerfil, int idFamilia)
+        public void InsertarFamiliaPerfil(int idFamiliaPadre, int idFamiliaHija)
         {
-            string query = "DELETE FROM Perfil WHERE IdPerfil = @idPerfil AND IdPermiso = @idFamilia";
-            // Ejecución SQL...
+            string query = "INSERT INTO Familia_Familia (ID_FamiliaPadre, ID_FamiliaHija) VALUES (@idFamiliaPadre, @idFamiliaHija)";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idFamiliaPadre", idFamiliaPadre),
+                new SqlParameter("@idFamiliaHija", idFamiliaHija)
+            };
+            _conexion.ExecuteNonQuery(query, parametros);
         }
 
-        // Lecturas
-        public List<Componente> ObtenerComponentesTotales()
+        public void EliminarFamiliaPerfil(int idFamiliaPadre, int idFamiliaHija)
         {
-            // SELECT * FROM Componentes
-            return new List<Componente>();
+            string query = "DELETE FROM Familia_Familia WHERE ID_FamiliaPadre = @idFamiliaPadre AND ID_FamiliaHija = @idFamiliaHija";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idFamiliaPadre", idFamiliaPadre),
+                new SqlParameter("@idFamiliaHija", idFamiliaHija)
+            };
+            _conexion.ExecuteNonQuery(query, parametros);
         }
 
         public List<Componente> ObtenerFamiliasPerfil()
         {
-            // SELECT * FROM Componentes WHERE EsFamilia = 1
-            return new List<Componente>();
+            List<Componente> lista = new();
+            string query = "SELECT ID_Familia, Nombre FROM Familia";
+            DataTable dt = _conexion.ExecuteReader(query, null);
+
+            foreach (DataRow fila in dt.Rows)
+            {
+                int id = Convert.ToInt32(fila["ID_Familia"]);
+                string nombre = fila["Nombre"].ToString();
+
+                lista.Add(new FamiliaServices(nombre) { Id = id });
+            }
+            return lista;
         }
 
         public List<Componente> ObtenerPermisosPerfil()
         {
-            // SELECT * FROM Componentes WHERE EsFamilia = 0
-            return new List<Componente>();
+            List<Componente> lista = new();
+            string query = "SELECT ID_Permiso, Nombre FROM Permiso";
+            DataTable dt = _conexion.ExecuteReader(query, null);
+
+            foreach (DataRow fila in dt.Rows)
+            {
+                int id = Convert.ToInt32(fila["ID_Permiso"]);
+                string nombre = fila["Nombre"].ToString();
+
+                lista.Add(new PatenteServices(nombre) { Id = id });
+            }
+            return lista;
         }
-        // Adentro de DAL.Perfiles.PatenteDAL
-        // Adentro de DAL.Perfiles.PatenteDAL
+
+        public List<Componente> ObtenerComponentesTotales()
+        {
+            List<Componente> lista = new();
+            lista.AddRange(ObtenerFamiliasPerfil());
+            lista.AddRange(ObtenerPermisosPerfil());
+            return lista;
+        }
+
+        // =======================================================
+        // 3. CREAR NUEVO PERMISO (HOJA) DESDE EL MENÚ
+        // =======================================================
+
         public void InsertarPatenteNueva(string nombrePermiso)
         {
-            // Hacemos el INSERT en la tabla maestra. EsFamilia es 0 porque es una patente (hoja).
-            string query = "INSERT INTO Componentes (Nombre, EsFamilia) VALUES (@nombre, 0)";
-
+            // Insertamos directo en la tabla maestra de Permisos
+            string query = "INSERT INTO Permiso (Nombre) VALUES (@nombre)";
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@nombre", nombrePermiso)
             };
-
             _conexion.ExecuteNonQuery(query, parametros);
         }
     }

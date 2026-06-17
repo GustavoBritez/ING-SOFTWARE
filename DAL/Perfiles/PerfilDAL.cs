@@ -8,7 +8,6 @@ namespace DAL.Perfiles
     {
         private readonly Conexion _conexion;
         private readonly string TABLA_PERFIL = "Perfil";
-        private readonly string TABLA_COMPONENTES = "Componentes";
 
         public PerfilDAL()
         {
@@ -28,32 +27,6 @@ namespace DAL.Perfiles
 
             _conexion.ExecuteNonQuery(query, parametros);
         }
-
-        #region VER PARA CREAR DER 
-        /*
-        Para que el polimorfismo que armamos en C# funcione perfecto, tus tablas en SQL Server tienen que tener exactamente estas columnas:
-
-TABLA_COMPONENTES(La tabla maestra donde vive todo)
-
-IdComponente(INT, PRIMARY KEY, IDENTITY) -> El número único.
-
-Nombre(VARCHAR(100), NOT NULL) -> Ej: "Nutricionista" o "Crear_Dieta".
-
-EsFamilia(BIT, NOT NULL) -> 1 si es un Perfil/Familia(tiene hijos). 0 si es un Permiso suelto(hoja).
-
-TABLA_PERFIL(La tabla relacional o de jerarquía)
-Aunque en tu código la llames TABLA_PERFIL, su nombre técnico en el DER suele ser Perfil_Componente porque une un Padre con un Hijo.
-
-IdPerfil(INT, FOREIGN KEY) -> Apunta al IdComponente del Padre.
-
-IdPermiso(INT, FOREIGN KEY) -> Apunta al IdComponente del Hijo(que puede ser una hoja u otra familia).
-
-(Opcional pero recomendado): Una PRIMARY KEY compuesta por(IdPerfil, IdPermiso) para que no se puedan guardar permisos duplicados en el mismo perfil por accidente.
-
-        */
-
-        #endregion
-
 
         public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
         {
@@ -81,36 +54,32 @@ IdPermiso(INT, FOREIGN KEY) -> Apunta al IdComponente del Hijo(que puede ser una
         {
             List<Componente> _perfil = new();
 
-            string query = $@"SELECT * FROM {TABLA_COMPONENTES}";
+            string queryFamilias = "SELECT ID_Familia as Id, Nombre FROM Familia";
+            DataTable dtFamilias = _conexion.ExecuteReader(queryFamilias, null);
 
-            DataTable dt = _conexion.ExecuteReader(query,null);
-
-            foreach ( DataRow fila in dt.Rows )
+            foreach (DataRow fila in dtFamilias.Rows)
             {
-                int id = Convert.ToInt32(fila["IdComponente"]);
+                int id = Convert.ToInt32(fila["Id"]);
                 string nombre = fila["Nombre"].ToString();
-                bool esFamilia = Convert.ToBoolean(fila["EsFamilia"]);
-                Componente comp;
-                if (esFamilia)
-                {
-                    // Instanciamos el Nodo (Rol)
-                    comp = new FamiliaServices(nombre) { Id = id };
-                }
-                else
-                {
-                    // Instanciamos la Hoja (Acción suelta)
-                    comp = new PatenteServices(nombre) { Id = id };
-                }
-
-                if (comp is not null )
-                    _perfil.Add(comp);
+                _perfil.Add(new FamiliaServices(nombre) { Id = id });
             }
+
+            string queryPermisos = "SELECT ID_Permiso as Id, Nombre FROM Permiso";
+            DataTable dtPermisos = _conexion.ExecuteReader(queryPermisos, null);
+
+            foreach (DataRow fila in dtPermisos.Rows)
+            {
+                int id = Convert.ToInt32(fila["Id"]);
+                string nombre = fila["Nombre"].ToString();
+                _perfil.Add(new PatenteServices(nombre) { Id = id });
+            }
+
             return _perfil;
         }
 
         public void InsertarPatenteNueva(string nombrePermiso)
         {
-            string query = "INSERT INTO Componentes (Nombre, EsFamilia) VALUES (@nombre, 0)";
+            string query = "INSERT INTO Permiso (Nombre) VALUES (@nombre)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -119,6 +88,5 @@ IdPermiso(INT, FOREIGN KEY) -> Apunta al IdComponente del Hijo(que puede ser una
 
             _conexion.ExecuteNonQuery(query, parametros);
         }
-
     }
 }

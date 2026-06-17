@@ -1441,11 +1441,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\pp\\UI\\UI.csproj",
+      "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\ING\\pimb\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\pp\\UI\\UI.csproj",
+      "projectPath": "C:\\Users\\Navegador\\Desktop\\ING\\pimb\\UI\\UI.csproj",
       "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\pp\\UI\\obj\\",
+      "outputPath": "C:\\Users\\Navegador\\Desktop\\ING\\pimb\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1468,11 +1468,11 @@
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
           "projectReferences": {
-            "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\pp\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\pp\\BLL\\BLL.csproj"
+            "C:\\Users\\Navegador\\Desktop\\ING\\pimb\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Navegador\\Desktop\\ING\\pimb\\BLL\\BLL.csproj"
             },
-            "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\pp\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\Navegador\\Desktop\\Nueva carpeta\\pp\\Services\\Services.csproj"
+            "C:\\Users\\Navegador\\Desktop\\ING\\pimb\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Navegador\\Desktop\\ING\\pimb\\Services\\Services.csproj"
             }
           }
         }

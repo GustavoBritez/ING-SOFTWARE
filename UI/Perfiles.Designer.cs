@@ -47,7 +47,6 @@
             label2 = new Label();
             btnSalir = new Button();
             Vista_Familia = new TreeView();
-            sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
             dgvPermisos = new DataGridView();
             panel3 = new Panel();
             label4 = new Label();
@@ -82,14 +81,14 @@
             familiaAlPerfilToolStripMenuItem.Name = "familiaAlPerfilToolStripMenuItem";
             familiaAlPerfilToolStripMenuItem.Size = new Size(180, 22);
             familiaAlPerfilToolStripMenuItem.Text = "Familia al perfil";
-            familiaAlPerfilToolStripMenuItem.Click += familiaAlPerfilToolStripMenuItem_Click;
+            familiaAlPerfilToolStripMenuItem.Click += familiaAlPerfilToolStripMenuItem1_Click;
             // 
             // permisoAlPerfilToolStripMenuItem
             // 
             permisoAlPerfilToolStripMenuItem.Name = "permisoAlPerfilToolStripMenuItem";
             permisoAlPerfilToolStripMenuItem.Size = new Size(180, 22);
             permisoAlPerfilToolStripMenuItem.Text = "Permiso al perfil";
-            permisoAlPerfilToolStripMenuItem.Click += permisoAlPerfilToolStripMenuItem_Click;
+            permisoAlPerfilToolStripMenuItem.Click += permisoAlPerfilToolStripMenuItem1_Click;
             // 
             // permisoToolStripMenuItem
             // 
@@ -129,13 +128,13 @@
             // familiaDelPefilToolStripMenuItem
             // 
             familiaDelPefilToolStripMenuItem.Name = "familiaDelPefilToolStripMenuItem";
-            familiaDelPefilToolStripMenuItem.Size = new Size(180, 22);
+            familiaDelPefilToolStripMenuItem.Size = new Size(166, 22);
             familiaDelPefilToolStripMenuItem.Text = "Familia del pefil";
             // 
             // permisoDelPerfilToolStripMenuItem
             // 
             permisoDelPerfilToolStripMenuItem.Name = "permisoDelPerfilToolStripMenuItem";
-            permisoDelPerfilToolStripMenuItem.Size = new Size(180, 22);
+            permisoDelPerfilToolStripMenuItem.Size = new Size(166, 22);
             permisoDelPerfilToolStripMenuItem.Text = "Permiso del perfil";
             // 
             // dgvPerfiles
@@ -298,7 +297,6 @@
         private Label label1;
         private Button btnSalir;
         private TreeView Vista_Familia;
-        private Microsoft.Data.SqlClient.SqlCommandBuilder sqlCommandBuilder1;
         private DataGridView dgvPermisos;
         private Panel panel3;
         private Label label4;

@@ -22,8 +22,6 @@ namespace BLL
 
             _perfilDAL.InsertarPermisoPerfil(idPerfil, idFamilia);
 
-
-            /// Registrar evento en la bitacora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Asignar Perfil a Familia";
@@ -39,13 +37,12 @@ namespace BLL
 
             _perfilDAL.InsertarPermisoPerfil(idPerfil, idPermiso);
 
-            /// Registrar evento en la bitacora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Asignar Permiso a Perfil";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
-        // Adentro de BLL.Perfiles.PatenteBLL
+
         public void CrearNuevoPermiso(string nombrePermiso)
         {
             if (string.IsNullOrWhiteSpace(nombrePermiso))
@@ -55,8 +52,6 @@ namespace BLL
 
             _patenteDAL.InsertarPatenteNueva(nombrePermiso);
 
-            // 3. Registramos en tu Bitácora (¡Excelente práctica!)
-            // Ojo: Asegurate de tener los using necesarios acá arriba (using BLL; etc)
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Creación de nuevo permiso: {nombrePermiso}";

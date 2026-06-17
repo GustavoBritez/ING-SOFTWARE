@@ -17,7 +17,7 @@ namespace BLL.Perfiles
 
         public void AgregarFamiliaAPerfil(int idPerfil, int idFamilia)
         {
-            _patenteDAL.InsertarPermisoPerfil(idPerfil, idFamilia);
+            _patenteDAL.InsertarFamiliaPerfil(idPerfil, idFamilia);
         }
 
         public void EliminarFamiliaPerfil(int idPerfil, int idFamilia)

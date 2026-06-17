@@ -9,61 +9,61 @@ namespace DAL.Perfiles
     {
         private readonly Conexion _conexion = new();
 
-        // Nombres de tus tablas para no errarle
         private readonly string TABLA_COMPONENTES = "Componentes";
         private readonly string TABLA_PERFIL = "Perfil";
 
         public FamiliaServices ObtenerArbolFamiliar(int idFamiliaRaiz)
         {
-            // 1. Buscamos el nombre del rol en la tabla maestra para solucionar el error del constructor
-            string queryPadre = $"SELECT Nombre FROM {TABLA_COMPONENTES} WHERE IdComponente = @id";
+            // 1. Buscar el nombre de la Familia Padre
+            string queryPadre = "SELECT Nombre FROM Familia WHERE ID_Familia = @id";
             SqlParameter[] paramPadre = new SqlParameter[] { new SqlParameter("@id", idFamiliaRaiz) };
 
             DataTable dtPadre = _conexion.ExecuteReader(queryPadre, paramPadre);
-
-            // Si no encuentra nada en la BD, devolvemos null de forma segura
             if (dtPadre.Rows.Count == 0) return null;
 
             string nombreFamilia = dtPadre.Rows[0]["Nombre"].ToString();
-
-            // ¡Acá le pasamos el argumento "nombre" requerido para que no tire más error!
             FamiliaServices familiaArmada = new FamiliaServices(nombreFamilia) { Id = idFamiliaRaiz };
 
-            // 2. Buscamos quiénes son los hijos directos de este padre en la tabla relacional (Perfil)
-            string queryHijos = $@"
-                SELECT c.IdComponente, c.Nombre, c.EsFamilia 
-                FROM {TABLA_PERFIL} pc
-                INNER JOIN {TABLA_COMPONENTES} c ON pc.IdPermiso = c.IdComponente
-                WHERE pc.IdPerfil = @idPadre";
+            // 2. Buscar Familias Hijas (Recursividad cruzando con Familia_Familia)
+            string queryFamHijas = @"
+        SELECT f.ID_Familia, f.Nombre 
+        FROM Familia_Familia ff
+        INNER JOIN Familia f ON ff.ID_FamiliaHija = f.ID_Familia
+        WHERE ff.ID_FamiliaPadre = @idPadre";
 
-            SqlParameter[] paramHijos = new SqlParameter[] { new SqlParameter("@idPadre", idFamiliaRaiz) };
-            DataTable dtHijos = _conexion.ExecuteReader(queryHijos, paramHijos);
+            SqlParameter[] paramFam = new SqlParameter[] { new SqlParameter("@idPadre", idFamiliaRaiz) };
+            DataTable dtFamHijas = _conexion.ExecuteReader(queryFamHijas, paramFam);
 
-            // 3. Recorremos los hijos y aplicamos RECURSIVIDAD
-            foreach (DataRow fila in dtHijos.Rows)
+            foreach (DataRow fila in dtFamHijas.Rows)
             {
-                int idHijo = Convert.ToInt32(fila["IdComponente"]);
-                string nombreHijo = fila["Nombre"].ToString();
-                bool esFamilia = Convert.ToBoolean(fila["EsFamilia"]);
+                int idHijo = Convert.ToInt32(fila["ID_Familia"]);
 
-                if (esFamilia)
-                {
-                    // ¡RECURSIVIDAD COMPOSITE!
-                    // Si el hijo es otra familia, este método se llama a sí mismo para traer su sub-árbol
-                    FamiliaServices subFamilia = ObtenerArbolFamiliar(idHijo);
+                // ¡Magia recursiva! Llamamos al mismo método para que arme las ramas de adentro
+                FamiliaServices subFamilia = ObtenerArbolFamiliar(idHijo);
 
-                    if (subFamilia is not null)
-                        familiaArmada.Agregar(subFamilia);
-                }
-                else
-                {
-                    // Si es una hoja/patente, instanciamos PatenteServices pasándole su nombre obligatorio
-                    PatenteServices permisoHoja = new PatenteServices(nombreHijo) { Id = idHijo };
-                    familiaArmada.Agregar(permisoHoja);
-                }
+                if (subFamilia is not null)
+                    familiaArmada.Agregar(subFamilia);
             }
 
-            // 4. Devolvemos el árbol estructurado
+            // 3. Buscar Permisos Hijos (Hojas cruzando con Permiso_Familia)
+            string queryPermisos = @"
+        SELECT p.ID_Permiso, p.Nombre 
+        FROM Permiso_Familia pf
+        INNER JOIN Permiso p ON pf.ID_Permiso = p.ID_Permiso
+        WHERE pf.ID_Familia = @idPadre";
+
+            SqlParameter[] paramPerm = new SqlParameter[] { new SqlParameter("@idPadre", idFamiliaRaiz) };
+            DataTable dtPermisos = _conexion.ExecuteReader(queryPermisos, paramPerm);
+
+            foreach (DataRow fila in dtPermisos.Rows)
+            {
+                int idHijo = Convert.ToInt32(fila["ID_Permiso"]);
+                string nombreHijo = fila["Nombre"].ToString();
+
+                PatenteServices permisoHoja = new PatenteServices(nombreHijo) { Id = idHijo };
+                familiaArmada.Agregar(permisoHoja);
+            }
+
             return familiaArmada;
         }
     }
