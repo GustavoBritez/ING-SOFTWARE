@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DAL.Perfiles;
+using Services;
+using Services.Perfiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Perfiles;
-using Services.Perfiles;
 
 namespace BLL.Perfiles
 {
@@ -31,6 +32,22 @@ namespace BLL.Perfiles
         }
 
         public List<Componente> ObtenerFamiliasPerfil() => _patenteDAL.ObtenerFamiliasPerfil();
+
+        public void CrearNuevaFamilia(string nombreFamilia)
+        {
+            if (string.IsNullOrWhiteSpace(nombreFamilia))
+            {
+                throw new ArgumentException("ERROR: El nombre de la familia no puede estar vacío.");
+            }
+
+            _familiaDAL.InsertarFamiliaNueva(nombreFamilia);
+
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Creación de nueva Familia: {nombreFamilia}";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
+        }
+
     }
     
 }

@@ -109,5 +109,30 @@ namespace BLL
             return false;
         }
 
+        public void CrearNuevoPerfil(string nombrePerfil)
+        {
+            if (string.IsNullOrWhiteSpace(nombrePerfil))
+            {
+                throw new ArgumentException("ERROR: El nombre del perfil no puede estar vacío.");
+            }
+
+            _perfilDAL.InsertarPerfilNuevo(nombrePerfil);
+
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Creación de nuevo Perfil: {nombrePerfil}";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
+        }
+
+        public List<Componente> ObtenerPerfiles()
+        {
+            return _perfilDAL.ObtenerPerfiles();
+        }
+
+        public FamiliaServices ObtenerArbolPerfil(int idPerfil)
+        {
+            return _perfilDAL.ObtenerArbolPerfil(idPerfil);
+        }
+
     }
 }

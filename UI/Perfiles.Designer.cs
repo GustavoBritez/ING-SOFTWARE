@@ -33,6 +33,8 @@
             familiaAlPerfilToolStripMenuItem = new ToolStripMenuItem();
             permisoAlPerfilToolStripMenuItem = new ToolStripMenuItem();
             permisoToolStripMenuItem = new ToolStripMenuItem();
+            perfilToolStripMenuItem = new ToolStripMenuItem();
+            familiaToolStripMenuItem = new ToolStripMenuItem();
             toolStripLabel2 = new ToolStripDropDownButton();
             familiaAlPerfilToolStripMenuItem1 = new ToolStripMenuItem();
             permisoAlPerfilToolStripMenuItem1 = new ToolStripMenuItem();
@@ -71,7 +73,7 @@
             // toolStripLabel1
             // 
             toolStripLabel1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { familiaAlPerfilToolStripMenuItem, permisoAlPerfilToolStripMenuItem, permisoToolStripMenuItem });
+            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { familiaAlPerfilToolStripMenuItem, permisoAlPerfilToolStripMenuItem, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
             toolStripLabel1.Name = "toolStripLabel1";
             toolStripLabel1.Size = new Size(62, 22);
             toolStripLabel1.Text = "Agregar";
@@ -81,21 +83,35 @@
             familiaAlPerfilToolStripMenuItem.Name = "familiaAlPerfilToolStripMenuItem";
             familiaAlPerfilToolStripMenuItem.Size = new Size(180, 22);
             familiaAlPerfilToolStripMenuItem.Text = "Familia al perfil";
-            familiaAlPerfilToolStripMenuItem.Click += familiaAlPerfilToolStripMenuItem1_Click;
+            familiaAlPerfilToolStripMenuItem.Click += Agregar_familiaAlPerfil;
             // 
             // permisoAlPerfilToolStripMenuItem
             // 
             permisoAlPerfilToolStripMenuItem.Name = "permisoAlPerfilToolStripMenuItem";
             permisoAlPerfilToolStripMenuItem.Size = new Size(180, 22);
             permisoAlPerfilToolStripMenuItem.Text = "Permiso al perfil";
-            permisoAlPerfilToolStripMenuItem.Click += permisoAlPerfilToolStripMenuItem1_Click;
+            permisoAlPerfilToolStripMenuItem.Click += Agregar_permisoAlPerfil;
             // 
             // permisoToolStripMenuItem
             // 
             permisoToolStripMenuItem.Name = "permisoToolStripMenuItem";
             permisoToolStripMenuItem.Size = new Size(180, 22);
             permisoToolStripMenuItem.Text = "Permiso";
-            permisoToolStripMenuItem.Click += permisoToolStripMenuItem_Click;
+            permisoToolStripMenuItem.Click += Agregar_Permiso;
+            // 
+            // perfilToolStripMenuItem
+            // 
+            perfilToolStripMenuItem.Name = "perfilToolStripMenuItem";
+            perfilToolStripMenuItem.Size = new Size(180, 22);
+            perfilToolStripMenuItem.Text = "Perfil";
+            perfilToolStripMenuItem.Click += Agregar_Perfil;
+            // 
+            // familiaToolStripMenuItem
+            // 
+            familiaToolStripMenuItem.Name = "familiaToolStripMenuItem";
+            familiaToolStripMenuItem.Size = new Size(180, 22);
+            familiaToolStripMenuItem.Text = "Familia";
+            familiaToolStripMenuItem.Click += Agregar_Familia;
             // 
             // toolStripLabel2
             // 
@@ -109,14 +125,14 @@
             familiaAlPerfilToolStripMenuItem1.Name = "familiaAlPerfilToolStripMenuItem1";
             familiaAlPerfilToolStripMenuItem1.Size = new Size(159, 22);
             familiaAlPerfilToolStripMenuItem1.Text = "Familia al perfil";
-            familiaAlPerfilToolStripMenuItem1.Click += familiaAlPerfilToolStripMenuItem1_Click;
+            familiaAlPerfilToolStripMenuItem1.Click += Eliminar_familiaAlPerfil_Click;
             // 
             // permisoAlPerfilToolStripMenuItem1
             // 
             permisoAlPerfilToolStripMenuItem1.Name = "permisoAlPerfilToolStripMenuItem1";
             permisoAlPerfilToolStripMenuItem1.Size = new Size(159, 22);
             permisoAlPerfilToolStripMenuItem1.Text = "Permiso al perfil";
-            permisoAlPerfilToolStripMenuItem1.Click += permisoAlPerfilToolStripMenuItem1_Click;
+            permisoAlPerfilToolStripMenuItem1.Click += Eliminar_permisoAlPerfil;
             // 
             // toolStripLabel3
             // 
@@ -261,6 +277,7 @@
             Controls.Add(TS_Gestion);
             Controls.Add(panel1);
             Name = "Perfiles";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Perfiles";
             Load += Perfiles_Load;
             TS_Gestion.ResumeLayout(false);
@@ -301,5 +318,7 @@
         private Panel panel3;
         private Label label4;
         private ToolStripMenuItem permisoToolStripMenuItem;
+        private ToolStripMenuItem perfilToolStripMenuItem;
+        private ToolStripMenuItem familiaToolStripMenuItem;
     }
 }

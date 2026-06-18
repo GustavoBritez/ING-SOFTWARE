@@ -66,5 +66,15 @@ namespace DAL.Perfiles
 
             return familiaArmada;
         }
+        public void InsertarFamiliaNueva(string nombreFamilia)
+        {
+            string query = "INSERT INTO Familia (Nombre) VALUES (@nombre)";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+          new SqlParameter("@nombre", nombreFamilia)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
     }
 }
