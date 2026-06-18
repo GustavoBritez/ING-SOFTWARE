@@ -56,9 +56,9 @@ namespace DAL.Perfiles
             _conexion.ExecuteNonQuery(query, parametros);
         }
 
-        public List<Componente> ObtenerFamiliasPerfil()
+        public List<Perfil> ObtenerFamiliasPerfil()
         {
-            List<Componente> lista = new();
+            List<Perfil> lista = new();
             string query = "SELECT ID_Familia, Nombre FROM Familia";
             DataTable dt = _conexion.ExecuteReader(query, null);
 
@@ -72,9 +72,9 @@ namespace DAL.Perfiles
             return lista;
         }
 
-        public List<Componente> ObtenerPermisosPerfil()
+        public List<Perfil> ObtenerPermisosPerfil()
         {
-            List<Componente> lista = new();
+            List<Perfil> lista = new();
             string query = "SELECT ID_Permiso, Nombre FROM Permiso";
             DataTable dt = _conexion.ExecuteReader(query, null);
 
@@ -88,9 +88,9 @@ namespace DAL.Perfiles
             return lista;
         }
 
-        public List<Componente> ObtenerComponentesTotales()
+        public List<Perfil> ObtenerComponentesTotales()
         {
-            List<Componente> lista = new();
+            List<Perfil> lista = new();
             lista.AddRange(ObtenerFamiliasPerfil());
             lista.AddRange(ObtenerPermisosPerfil());
             return lista;

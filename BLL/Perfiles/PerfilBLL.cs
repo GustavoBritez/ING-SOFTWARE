@@ -15,12 +15,13 @@ namespace BLL
         #region Agregar
         public void AgregarFamiliaAPerfil(int idPerfil, int idFamilia)
         {
+            // No lo agrega pero no salta el error, revisar luego
             if (TienePermisoDuplicado(idPerfil, idFamilia))
             {
                 throw new ArgumentException("ERROR: El perfil ya tiene esta familia asignada.");
             }
 
-            _perfilDAL.InsertarPermisoPerfil(idPerfil, idFamilia);
+            _perfilDAL.InsertarPerfilFamilia(idPerfil, idFamilia);
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -30,6 +31,7 @@ namespace BLL
         
         public void AgregarPermisoAPerfil(int idPerfil, int idPermiso)
         {
+            /// Revisar luego, no se agrega nuevamente pero no salta el error.
             if (TienePermisoDuplicado(idPerfil, idPermiso))
             {
                 throw new ArgumentException("ERROR: El perfil ya tiene el permiso asignado.");
@@ -84,19 +86,19 @@ namespace BLL
         #endregion
 
         #region Solo lo usamos para cargar las 3 grillas
-        public List<Componente> ObtenerComponentesTotales()
+        public List<Perfil> ObtenerComponentesTotales()
         {
             return _perfilDAL.ObtenerComponentesTotales();
         }
 
-        public List<Componente> ObtenerFamiliasPerfil()
+        public List<Perfil> ObtenerFamiliasPerfil()
         {
             return _perfilDAL.ObtenerComponentesTotales()
                              .Where(c => c.EsCompuesto())
                              .ToList();
         }
 
-        public List<Componente> ObtenerPermisosPerfil()
+        public List<Perfil> ObtenerPermisosPerfil()
         {
             return _perfilDAL.ObtenerComponentesTotales()
                              .Where(c => !c.EsCompuesto())
@@ -124,7 +126,7 @@ namespace BLL
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
 
-        public List<Componente> ObtenerPerfiles()
+        public List<Perfil> ObtenerPerfiles()
         {
             return _perfilDAL.ObtenerPerfiles();
         }

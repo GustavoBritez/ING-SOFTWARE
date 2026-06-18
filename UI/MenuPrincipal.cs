@@ -39,8 +39,8 @@ namespace UI
                 btnLogout.Enabled = tieneSession;
                 btnChangePass.Enabled = tieneSession;
                 btnChangePass.Visible = tieneSession;
-                btnReportes.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
-                btnUsuarios.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
+                btnReportes.Enabled = tieneSession && usuarioActivo?._Rol == "1";
+                btnUsuarios.Enabled = tieneSession && usuarioActivo?._Rol == "1";
             }
             catch
             {
@@ -119,11 +119,7 @@ namespace UI
                 return;
             }
 
-            if (usuarioActivo._Rol != "Administrador")
-            {
-                MessageBox.Show("Solo los administradores pueden acceder a Gestión de Usuarios.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+
 
             FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
         }
@@ -131,17 +127,7 @@ namespace UI
         private void btnBitacora_Click(object sender, EventArgs e)
         {
             UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-            if (usuarioActivo == null)
-            {
-                MessageBox.Show("Debe iniciar sesión para acceder a Reportes.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            if (usuarioActivo._Rol != "Administrador")
-            {
-                MessageBox.Show("Solo los administradores pueden acceder a Reportes.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             FormManager.Navegar(this, FormManager.ObtenerBitacora());
         }

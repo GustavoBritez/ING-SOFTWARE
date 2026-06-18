@@ -36,7 +36,7 @@ namespace BLL.Perfiles
             string descripcion = $"Crear Permiso";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
-        public List<Componente> ObtenerComponentesTotales() => _patenteDAL.ObtenerComponentesTotales();
-        public List<Componente> ObtenerPermisosPerfil() => _patenteDAL.ObtenerPermisosPerfil();
+        public List<Perfil> ObtenerComponentesTotales() => _patenteDAL.ObtenerComponentesTotales();
+        public List<Perfil> ObtenerPermisosPerfil() => _patenteDAL.ObtenerPermisosPerfil();
     }
 }

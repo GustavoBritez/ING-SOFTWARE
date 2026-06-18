@@ -44,24 +44,24 @@ namespace UI
         {
             try
             {
-                List<Componente> listaPerfiles = _perfilBLL.ObtenerPerfiles();
+                List<Perfil> listaPerfiles = _perfilBLL.ObtenerPerfiles();
 
                 dgvPerfiles.DataSource = null;
-                dgvPerfiles.DataSource = new List<Componente>(listaPerfiles);
+                dgvPerfiles.DataSource = new List<Perfil>(listaPerfiles);
                 dgvPerfiles.Columns["Id"].Visible = false;
                 dgvPerfiles.Columns["Nombre"].HeaderText = "Nombre del Perfil";
 
-                List<Componente> listaFamilias = _familiaBLL.ObtenerFamiliasPerfil(); // <--- Corregido acá
+                List<Perfil> listaFamilias = _familiaBLL.ObtenerFamiliasPerfil(); // <--- Corregido acá
 
                 dgvFamilias.DataSource = null;
-                dgvFamilias.DataSource = new List<Componente>(listaFamilias);
+                dgvFamilias.DataSource = new List<Perfil>(listaFamilias);
                 dgvFamilias.Columns["Id"].Visible = false;
                 dgvFamilias.Columns["Nombre"].HeaderText = "Nombre de Familia";
 
-                List<Componente> listaPermisos = _patenteBLL.ObtenerPermisosPerfil();
+                List<Perfil> listaPermisos = _patenteBLL.ObtenerPermisosPerfil();
 
                 dgvPermisos.DataSource = null;
-                dgvPermisos.DataSource = new List<Componente>(listaPermisos);
+                dgvPermisos.DataSource = new List<Perfil>(listaPermisos);
                 dgvPermisos.Columns["Id"].Visible = false;
                 dgvPermisos.Columns["Nombre"].HeaderText = "Acciones / Permisos";
             }
@@ -112,7 +112,7 @@ namespace UI
 
         private void DibujarNodosFamiliasRecursivo(FamiliaServices familiaPadre, TreeNode nodoVisualPadre)
         {
-            foreach (Componente hijo in familiaPadre.Hijos)
+            foreach (Perfil hijo in familiaPadre.Hijos)
             {
                 if (hijo.EsCompuesto())
                 {
@@ -126,7 +126,7 @@ namespace UI
                 }
                 else
                 {
-                    TreeNode nodoHoja = new TreeNode( hijo.Nombre);
+                    TreeNode nodoHoja = new TreeNode(hijo.Nombre);
                     nodoHoja.Tag = hijo.Id;
 
                     nodoVisualPadre.Nodes.Add(nodoHoja);
@@ -144,6 +144,8 @@ namespace UI
         }
 
         #endregion
+
+        #region Eliminar
 
         private void Eliminar_familiaAlPerfil_Click(object sender, EventArgs e)
         {
@@ -209,7 +211,11 @@ namespace UI
             }
         }
 
-        private void Agregar_familiaAlPerfil(object sender, EventArgs e)
+        #endregion Eliminar
+
+        #region Agregar
+
+        private void Agregar_Perfil_A_Familia(object sender, EventArgs e)
         {
             try
             {
@@ -367,6 +373,9 @@ namespace UI
             }
         }
 
+        #endregion
+
+        #region GUI
         private void ConfigurarEstiloGrillas()
         {
             // Definimos los colores institucionales que venimos usando
@@ -375,12 +384,11 @@ namespace UI
             Color fondoGrilla = Color.White;
             Color colorLineas = Color.FromArgb(200, 220, 205);
 
-            // Metemos las tres grillas en un arreglo para aplicarles el mismo diseño
             DataGridView[] grillas = { dgvPerfiles, dgvFamilias, dgvPermisos };
 
             foreach (DataGridView dgv in grillas)
             {
-                // ⚠️ REGLA DE ORO: Hay que apagar esto para que Windows Forms nos deje pintar el encabezado
+                // Hay que apagar esto para que Windows Forms nos deje pintar el encabezado
                 dgv.EnableHeadersVisualStyles = false;
 
                 // --- Estilo del Encabezado (Header) ---
@@ -411,8 +419,8 @@ namespace UI
                 dgv.AllowUserToAddRows = false; // Saca la fila vacía extra del final
                 dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Hace que las columnas ocupen todo el ancho
             }
-        }
+            #endregion
 
-        
+        }
     }
 }

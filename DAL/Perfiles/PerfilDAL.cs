@@ -8,11 +8,16 @@ namespace DAL.Perfiles
     {
         private readonly Conexion _conexion;
         private readonly string TABLA_PERFIL = "Perfil";
+        private readonly string PERFIL_PERMISO = "Perfil_Permiso";
+        private readonly string PERFIL_FAMILIA = "Perfil";
+        private readonly string FAMILIA_FAMILIA = "Familia_Familia";
 
         public PerfilDAL()
         {
             this._conexion = new();
         }
+
+        #region Agregar
 
         public void InsertarPerfilNuevo(string nombrePerfil)
         {
@@ -25,9 +30,22 @@ namespace DAL.Perfiles
             _conexion.ExecuteNonQuery(query, parametros);
         }
 
+        public void InsertarPerfilFamilia(int idPerfil , int idFamilia)
+        {
+            string query = $"INSERT INTO {PERFIL_FAMILIA} (ID_Perfil, ID_Familia) " +
+                            "VALUES (@idPerfil, @idPermiso)";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idFamilia", idFamilia)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
         public void InsertarPermisoPerfil(int idPerfil, int idPermiso)
         {
-            string query = $"INSERT INTO {TABLA_PERFIL} (IdPerfil, IdPermiso) " +
+            string query = $"INSERT INTO {PERFIL_PERMISO} (ID_Perfil, ID_Permiso) " +
                             "VALUES (@idPerfil, @idPermiso)";
 
             SqlParameter[] parametros = new SqlParameter[]
@@ -38,6 +56,22 @@ namespace DAL.Perfiles
 
             _conexion.ExecuteNonQuery(query, parametros);
         }
+
+        public void InsertarPatenteNueva(string nombrePermiso)
+        {
+            string query = "INSERT INTO Permiso (Nombre) VALUES (@nombre)";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@nombre", nombrePermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
+
+        #endregion
+
+        #region Eliminar
 
         public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
         {
@@ -60,10 +94,12 @@ namespace DAL.Perfiles
             };
             _conexion.ExecuteNonQuery(query, parametros);
         }
+        #endregion
 
-        public List<Componente> ObtenerComponentesTotales()
+        #region Obtener
+        public List<Perfil> ObtenerComponentesTotales()
         {
-            List<Componente> _perfil = new();
+            List<Perfil> _perfil = new();
 
             string queryFamilias = "SELECT ID_Familia as Id, Nombre FROM Familia";
             DataTable dtFamilias = _conexion.ExecuteReader(queryFamilias, null);
@@ -87,22 +123,9 @@ namespace DAL.Perfiles
 
             return _perfil;
         }
-
-        public void InsertarPatenteNueva(string nombrePermiso)
+        public List<Perfil> ObtenerPerfiles()
         {
-            string query = "INSERT INTO Permiso (Nombre) VALUES (@nombre)";
-
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-        new SqlParameter("@nombre", nombrePermiso)
-            };
-
-            _conexion.ExecuteNonQuery(query, parametros);
-        }
-
-        public List<Componente> ObtenerPerfiles()
-        {
-            List<Componente> lista = new List<Componente>();
+            List<Perfil> lista = new List<Perfil>();
             string query = "SELECT ID_Perfil, Nombre FROM Perfil";
             DataTable dt = _conexion.ExecuteReader(query, null);
 
@@ -145,17 +168,13 @@ namespace DAL.Perfiles
                     perfilArmado.Agregar(subFamilia);
             }
 
-            // 3. Buscar Permisos directos de este Perfil (via Perfil_Permiso)
             string queryPermisos = @"
                 SELECT p.ID_Permiso, p.Nombre 
                 FROM Perfil_Permiso pp
                 INNER JOIN Permiso p ON pp.ID_Permiso = p.ID_Permiso
                 WHERE pp.ID_Perfil = @idPerfil";
 
-            // ⚠️ LA SOLUCIÓN: Creamos un parámetro NUEVO y limpio, en vez de reusar el anterior
             SqlParameter[] paramPerm = { new SqlParameter("@idPerfil", idPerfil) };
-
-            // Le pasamos el parámetro nuevo a la ejecución
             DataTable dtPerm = _conexion.ExecuteReader(queryPermisos, paramPerm);
 
             foreach (DataRow fila in dtPerm.Rows)
@@ -167,5 +186,7 @@ namespace DAL.Perfiles
 
             return perfilArmado;
         }
+        #endregion
+
     }
 }

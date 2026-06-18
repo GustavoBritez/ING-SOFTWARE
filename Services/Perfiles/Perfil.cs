@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Services.Perfiles
 {
-    public abstract class Componente
+    public abstract class Perfil
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        protected Componente(string nombre)
+        protected Perfil(string nombre)
         {
             this.Nombre = nombre;
         }

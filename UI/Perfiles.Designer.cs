@@ -30,7 +30,7 @@
         {
             TS_Gestion = new ToolStrip();
             toolStripLabel1 = new ToolStripDropDownButton();
-            familiaAlPerfilToolStripMenuItem = new ToolStripMenuItem();
+            Perfil_A_Familia = new ToolStripMenuItem();
             permisoAlPerfilToolStripMenuItem = new ToolStripMenuItem();
             permisoToolStripMenuItem = new ToolStripMenuItem();
             perfilToolStripMenuItem = new ToolStripMenuItem();
@@ -73,17 +73,17 @@
             // toolStripLabel1
             // 
             toolStripLabel1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { familiaAlPerfilToolStripMenuItem, permisoAlPerfilToolStripMenuItem, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
+            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { Perfil_A_Familia, permisoAlPerfilToolStripMenuItem, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
             toolStripLabel1.Name = "toolStripLabel1";
             toolStripLabel1.Size = new Size(62, 22);
             toolStripLabel1.Text = "Agregar";
             // 
-            // familiaAlPerfilToolStripMenuItem
+            // Perfil_A_Familia
             // 
-            familiaAlPerfilToolStripMenuItem.Name = "familiaAlPerfilToolStripMenuItem";
-            familiaAlPerfilToolStripMenuItem.Size = new Size(180, 22);
-            familiaAlPerfilToolStripMenuItem.Text = "Familia al perfil";
-            familiaAlPerfilToolStripMenuItem.Click += Agregar_familiaAlPerfil;
+            Perfil_A_Familia.Name = "Perfil_A_Familia";
+            Perfil_A_Familia.Size = new Size(180, 22);
+            Perfil_A_Familia.Text = "Perfil a Familia";
+            Perfil_A_Familia.Click += Agregar_Perfil_A_Familia;
             // 
             // permisoAlPerfilToolStripMenuItem
             // 
@@ -123,14 +123,14 @@
             // familiaAlPerfilToolStripMenuItem1
             // 
             familiaAlPerfilToolStripMenuItem1.Name = "familiaAlPerfilToolStripMenuItem1";
-            familiaAlPerfilToolStripMenuItem1.Size = new Size(159, 22);
-            familiaAlPerfilToolStripMenuItem1.Text = "Familia al perfil";
+            familiaAlPerfilToolStripMenuItem1.Size = new Size(180, 22);
+            familiaAlPerfilToolStripMenuItem1.Text = "Perfil al Familia";
             familiaAlPerfilToolStripMenuItem1.Click += Eliminar_familiaAlPerfil_Click;
             // 
             // permisoAlPerfilToolStripMenuItem1
             // 
             permisoAlPerfilToolStripMenuItem1.Name = "permisoAlPerfilToolStripMenuItem1";
-            permisoAlPerfilToolStripMenuItem1.Size = new Size(159, 22);
+            permisoAlPerfilToolStripMenuItem1.Size = new Size(180, 22);
             permisoAlPerfilToolStripMenuItem1.Text = "Permiso al perfil";
             permisoAlPerfilToolStripMenuItem1.Click += Eliminar_permisoAlPerfil;
             // 
@@ -298,7 +298,7 @@
         #endregion
         private ToolStrip TS_Gestion;
         private ToolStripDropDownButton toolStripLabel1;
-        private ToolStripMenuItem familiaAlPerfilToolStripMenuItem;
+        private ToolStripMenuItem Perfil_A_Familia;
         private ToolStripMenuItem permisoAlPerfilToolStripMenuItem;
         private ToolStripDropDownButton toolStripLabel2;
         private ToolStripMenuItem familiaAlPerfilToolStripMenuItem1;

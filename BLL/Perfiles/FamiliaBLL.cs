@@ -31,7 +31,7 @@ namespace BLL.Perfiles
             return _familiaDAL.ObtenerArbolFamiliar(idFamiliaRaiz);
         }
 
-        public List<Componente> ObtenerFamiliasPerfil() => _patenteDAL.ObtenerFamiliasPerfil();
+        public List<Perfil> ObtenerFamiliasPerfil() => _patenteDAL.ObtenerFamiliasPerfil();
 
         public void CrearNuevaFamilia(string nombreFamilia)
         {

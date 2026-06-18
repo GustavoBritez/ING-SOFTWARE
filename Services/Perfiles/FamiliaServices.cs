@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Services.Perfiles
 {
-    public class FamiliaServices : Componente
+    public class FamiliaServices : Perfil
     {
-        private List<Componente> _hijos = new();
-        public IReadOnlyList<Componente> Hijos => _hijos.AsReadOnly();
+        private List<Perfil> _hijos = new();
+        public IReadOnlyList<Perfil> Hijos => _hijos.AsReadOnly();
 
         public FamiliaServices(string nombre) : base(nombre)
         {
-        }
 
-        public void Agregar(Componente c) => _hijos.Add(c);
+        }
+        public void Agregar(Perfil c) => _hijos.Add(c);
 
         public override bool EsCompuesto() => true;
 
