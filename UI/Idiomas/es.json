@@ -1,4 +1,5 @@
 {
+
   "lblTitulo": "NutriEvolve",
   "lblSubtitulo": "Sistema Nutricional",
   "lblLogin": "LOGIN",
@@ -6,6 +7,8 @@
   "lblPassword": "Contraseña",
   "btnIngresar": "Ingresar",
   "btnCancelar": "Cancelar",
+
+
 
   "lblModulo": "Módulos",
   "btnTurnos": "📅 Gestión de Turnos",
@@ -23,6 +26,7 @@
   "btnAceptar": "Aceptar",
   "btnCancelarMP": "Cancelar",
 
+
   "lblTituloBitacora": "📋 Auditoría y Bitácora del Sistema",
   "btnExportar": "Exportar",
   "btnLimpiarFiltros": "Limpiar",
@@ -36,6 +40,7 @@
   "labelEvento": "Evento",
   "lbNombre": "Nombre :",
   "lbApellido": "Apellido :",
+
 
   "lblTituloGestionUsuario": "👤 Gestión de Usuarios",
   "btnCrear": "Crear",
@@ -56,6 +61,29 @@
   "CKB_Desactivar": "Desactivar",
   "btnAceptarG": "Aceptar",
   "btnCancelarG": "Cancelar",
-  "btnSalirG": "Salir"
+  "btnSalirG": "Salir",
 
+
+  "toolStripLabel1": "Agregar",
+  "Perfil_A_Familia": "Perfil a Familia",
+  "permisoAlPerfilToolStripMenuItem": "Permiso al Perfil",
+  "permisoToolStripMenuItem": "Permiso",
+  "perfilToolStripMenuItem": "Perfil",
+  "familiaToolStripMenuItem": "Familia",
+  "toolStripLabel2": "Eliminar",
+  "familiaAlPerfilToolStripMenuItem1": "Perfil a Familia",
+  "permisoAlPerfilToolStripMenuItem1": "Permiso al Perfil",
+  "permisoToolStripMenuItem1": "Permiso",
+  "perfilToolStripMenuItem1": "Perfil",
+  "familiaToolStripMenuItem1": "Familia",
+  "labelPerfil": "Perfiles Existentes",
+  "labelFamilia": "Familias Existentes",
+  "labelPermiso": "Permisos",
+  "btnSalirPerfiles": "Salir",
+
+  "lblTituloCrearPermiso": "🛡️ Crear Nuevo Permiso",
+  "lblNombrePermiso": "Nombre de la Acción:",
+  "btnAceptarPermiso": "Aceptar",
+  "btnCancelarPermiso": "Cancelar",
+  "formCrearPermiso": "Gestión de Permisos"
 }

@@ -44,7 +44,7 @@ namespace BLL.Perfiles
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Creación de nueva Familia: {nombreFamilia}";
+            string descripcion = $"Creacion Familia";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
         public List<string> ObtenerPerfilesDeFamilia(int idFamilia)

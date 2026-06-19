@@ -56,5 +56,28 @@
   "CKB_Desactivar": "Desativar",
   "btnAceptarG": "Aceitar",
   "btnCancelarG": "Cancelar",
-  "btnSalirG": "Sair"
+  "btnSalirG": "Sair",
+
+  "toolStripLabel1": "Adicionar",
+  "Perfil_A_Familia": "Perfil para Família",
+  "permisoAlPerfilToolStripMenuItem": "Permissão ao Perfil",
+  "permisoToolStripMenuItem": "Permissão",
+  "perfilToolStripMenuItem": "Perfil",
+  "familiaToolStripMenuItem": "Família",
+  "toolStripLabel2": "Excluir",
+  "familiaAlPerfilToolStripMenuItem1": "Perfil para Família",
+  "permisoAlPerfilToolStripMenuItem1": "Permissão ao Perfil",
+  "permisoToolStripMenuItem1": "Permissão",
+  "perfilToolStripMenuItem1": "Perfil",
+  "familiaToolStripMenuItem1": "Família",
+  "labelPerfil": "Perfis Existentes",
+  "labelFamilia": "Famílias Existentes",
+  "labelPermiso": "Permissões",
+  "btnSalirPerfiles": "Sair",
+
+  "lblTituloCrearPermiso": "🛡️ Criar Nova Permissão",
+  "lblNombrePermiso": "Nome da Ação:",
+  "btnAceptarPermiso": "Aceitar",
+  "btnCancelarPermiso": "Cancelar",
+  "formCrearPermiso": "Gerenciamento de Permissões"
 }

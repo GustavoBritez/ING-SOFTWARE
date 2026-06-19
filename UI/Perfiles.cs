@@ -1,6 +1,8 @@
 ﻿using BLL;
 using BLL.Perfiles;
+using DAL;
 using Microsoft.VisualBasic;
+using Services;
 using Services.Perfiles;
 using System;
 using System.Collections.Generic;
@@ -8,15 +10,20 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Perfiles : Form
+    public partial class Perfiles : Form,IIdiomaObserver
     {
         private FamiliaBLL _familiaBLL;
         private PatenteBLL _patenteBLL;
         private PerfilBLL _perfilBLL;
 
+        private IdiomaBLL idiomaBLL = new IdiomaBLL();
+
         public Perfiles()
         {
             InitializeComponent();
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
+
             _familiaBLL = new FamiliaBLL();
             _patenteBLL = new PatenteBLL();
             _perfilBLL = new PerfilBLL();
@@ -44,26 +51,46 @@ namespace UI
         {
             try
             {
+                Idioma idioma = ServicesSessionManager.Instancia.ObtenerIdioma();
+
+                string nombrePerfil = "Nombre del Perfil";
+                string nombreFamilia = "Nombre de Familia";
+                string nombrePermiso = "Acciones / Permisos";
+
+                switch (idioma.Nombre)
+                {
+                    case "English":
+                        nombrePerfil = "Profile Name";
+                        nombreFamilia = "Family Name";
+                        nombrePermiso = "Actions / Permissions";
+                        break;
+
+                    case "Portugues":
+                        nombrePerfil = "Nome do Perfil";
+                        nombreFamilia = "Nome da Família";
+                        nombrePermiso = "Ações / Permissões";
+                        break;
+                }
                 List<Perfil> listaPerfiles = _perfilBLL.ObtenerPerfiles();
 
                 dgvPerfiles.DataSource = null;
                 dgvPerfiles.DataSource = new List<Perfil>(listaPerfiles);
                 dgvPerfiles.Columns["Id"].Visible = false;
-                dgvPerfiles.Columns["Nombre"].HeaderText = "Nombre del Perfil";
+                dgvPerfiles.Columns["Nombre"].HeaderText = nombrePerfil;
 
                 List<Perfil> listaFamilias = _familiaBLL.ObtenerFamiliasPerfil();
 
                 dgvFamilias.DataSource = null;
                 dgvFamilias.DataSource = new List<Perfil>(listaFamilias);
                 dgvFamilias.Columns["Id"].Visible = false;
-                dgvFamilias.Columns["Nombre"].HeaderText = "Nombre de Familia";
+                dgvFamilias.Columns["Nombre"].HeaderText = nombreFamilia;
 
                 List<Perfil> listaPermisos = _patenteBLL.ObtenerPermisosPerfil();
 
                 dgvPermisos.DataSource = null;
                 dgvPermisos.DataSource = new List<Perfil>(listaPermisos);
                 dgvPermisos.Columns["Id"].Visible = false;
-                dgvPermisos.Columns["Nombre"].HeaderText = "Acciones / Permisos";
+                dgvPermisos.Columns["Nombre"].HeaderText = nombrePermiso;
             }
             catch (Exception ex)
             {
@@ -575,6 +602,49 @@ namespace UI
         private void Eliminar_Familia_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void ActualizarIdioma()
+        {
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
+            {
+                Traducir(this.Controls);
+                TraducirToolStrip(toolStripLabel1.DropDownItems);
+                TraducirToolStrip(toolStripLabel2.DropDownItems);
+                toolStripLabel1.Text = idiomaBLL.Traducir("toolStripLabel1");
+                toolStripLabel2.Text = idiomaBLL.Traducir("toolStripLabel2");
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name)
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
+            }
+        }
+        private void TraducirToolStrip(ToolStripItemCollection items)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                string traduccion = idiomaBLL.Traducir(item.Name);
+
+                if (traduccion != item.Name)
+                    item.Text = traduccion;
+
+                if (item is ToolStripDropDownItem dropDown)
+                {
+                    TraducirToolStrip(dropDown.DropDownItems);
+                }
+            }
         }
     }
 }

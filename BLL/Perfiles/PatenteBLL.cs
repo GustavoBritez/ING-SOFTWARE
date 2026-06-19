@@ -48,7 +48,7 @@ namespace BLL.Perfiles
             // Registramos la acción fuerte en la bitácora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Eliminación en cascada del Permiso: '{nombrePermiso}'";
+            string descripcion = $"Eliminacion Permiso";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
     }

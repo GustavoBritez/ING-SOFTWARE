@@ -28,97 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblTitulo = new System.Windows.Forms.Label();
-            panelCentral = new System.Windows.Forms.Panel();
-            txtNombrePermiso = new System.Windows.Forms.TextBox();
-            lblNombrePermiso = new System.Windows.Forms.Label();
-            btnAceptar = new System.Windows.Forms.Button();
-            btnCancelar = new System.Windows.Forms.Button();
+            lblTitulo = new Label();
+            panelCentral = new Panel();
+            txtNombrePermiso = new TextBox();
+            lblNombrePermiso = new Label();
+            btnAceptar = new Button();
+            btnCancelar = new Button();
             panelCentral.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitulo
             // 
-            lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            lblTitulo.ForeColor = System.Drawing.Color.FromArgb(46, 94, 67);
-            lblTitulo.Location = new System.Drawing.Point(12, 18);
+            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(46, 94, 67);
+            lblTitulo.Location = new Point(12, 18);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new System.Drawing.Size(410, 40);
+            lblTitulo.Size = new Size(410, 40);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "🛡️ Crear Nuevo Permiso";
-            lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panelCentral
             // 
-            panelCentral.BackColor = System.Drawing.Color.FromArgb(180, 180, 180);
-            panelCentral.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panelCentral.BackColor = Color.FromArgb(180, 180, 180);
+            panelCentral.BorderStyle = BorderStyle.FixedSingle;
             panelCentral.Controls.Add(txtNombrePermiso);
             panelCentral.Controls.Add(lblNombrePermiso);
-            panelCentral.Location = new System.Drawing.Point(34, 73);
+            panelCentral.Location = new Point(34, 73);
             panelCentral.Name = "panelCentral";
-            panelCentral.Size = new System.Drawing.Size(365, 87);
+            panelCentral.Size = new Size(365, 87);
             panelCentral.TabIndex = 1;
             // 
             // txtNombrePermiso
             // 
-            txtNombrePermiso.Font = new System.Drawing.Font("Segoe UI", 10F);
-            txtNombrePermiso.Location = new System.Drawing.Point(23, 40);
+            txtNombrePermiso.Font = new Font("Segoe UI", 10F);
+            txtNombrePermiso.Location = new Point(23, 40);
             txtNombrePermiso.Name = "txtNombrePermiso";
-            txtNombrePermiso.Size = new System.Drawing.Size(317, 25);
+            txtNombrePermiso.Size = new Size(317, 25);
             txtNombrePermiso.TabIndex = 1;
             // 
             // lblNombrePermiso
             // 
             lblNombrePermiso.AutoSize = true;
-            lblNombrePermiso.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            lblNombrePermiso.ForeColor = System.Drawing.Color.Black;
-            lblNombrePermiso.Location = new System.Drawing.Point(19, 15);
+            lblNombrePermiso.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblNombrePermiso.ForeColor = Color.Black;
+            lblNombrePermiso.Location = new Point(19, 15);
             lblNombrePermiso.Name = "lblNombrePermiso";
-            lblNombrePermiso.Size = new System.Drawing.Size(155, 19);
+            lblNombrePermiso.Size = new Size(155, 19);
             lblNombrePermiso.TabIndex = 0;
             lblNombrePermiso.Text = "Nombre de la Acción:";
             // 
             // btnAceptar
             // 
-            btnAceptar.BackColor = System.Drawing.Color.FromArgb(225, 225, 225);
-            btnAceptar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            btnAceptar.Location = new System.Drawing.Point(271, 178);
+            btnAceptar.BackColor = Color.FromArgb(225, 225, 225);
+            btnAceptar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAceptar.Location = new Point(271, 178);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new System.Drawing.Size(128, 40);
+            btnAceptar.Size = new Size(128, 40);
             btnAceptar.TabIndex = 2;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = false;
-            btnAceptar.Click += new System.EventHandler(btnAceptar_Click);
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.BackColor = System.Drawing.Color.FromArgb(255, 120, 120);
-            btnCancelar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            btnCancelar.Location = new System.Drawing.Point(34, 178);
+            btnCancelar.BackColor = Color.FromArgb(255, 120, 120);
+            btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnCancelar.Location = new Point(34, 178);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new System.Drawing.Size(128, 40);
+            btnCancelar.Size = new Size(128, 40);
             btnCancelar.TabIndex = 3;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += new System.EventHandler(btnCancelar_Click);
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // FrmCrearPermiso
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.FromArgb(218, 237, 223);
-            ClientSize = new System.Drawing.Size(434, 241);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(218, 237, 223);
+            ClientSize = new Size(434, 241);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(panelCentral);
             Controls.Add(lblTitulo);
-            Font = new System.Drawing.Font("Segoe UI", 9F);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Font = new Font("Segoe UI", 9F);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmCrearPermiso";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Gestión de Permisos";
+            Load += FrmCrearPermiso_Load;
             panelCentral.ResumeLayout(false);
             panelCentral.PerformLayout();
             ResumeLayout(false);

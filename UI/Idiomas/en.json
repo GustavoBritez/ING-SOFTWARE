@@ -37,7 +37,6 @@
   "lbApellido": "Surname:",
 
   "lblTituloGestionUsuario": "👤 User Management",
-
   "btnCrear": "Create",
   "btnModificar": "Edit",
   "btnEliminar": "Unlock",
@@ -56,7 +55,30 @@
   "CKB_Desactivar": "Disable",
   "btnAceptarG": "Accept",
   "btnCancelarG": "Cancel",
-  "btnSalirG": "Exit"
+  "btnSalirG": "Exit",
+
+  "toolStripLabel1": "Add",
+  "Perfil_A_Familia": "Profile to Family",
+  "permisoAlPerfilToolStripMenuItem": "Permission to Profile",
+  "permisoToolStripMenuItem": "Permission",
+  "perfilToolStripMenuItem": "Profile",
+  "familiaToolStripMenuItem": "Family",
+  "toolStripLabel2": "Delete",
+  "familiaAlPerfilToolStripMenuItem1": "Profile to Family",
+  "permisoAlPerfilToolStripMenuItem1": "Permission to Profile",
+  "permisoToolStripMenuItem1": "Permission",
+  "perfilToolStripMenuItem1": "Profile",
+  "familiaToolStripMenuItem1": "Family",
+  "labelPerfil": "Existing Profiles",
+  "labelFamilia": "Existing Families",
+  "labelPermiso": "Permissions",
+  "btnSalirPerfiles": "Exit",
+
+  "lblTituloCrearPermiso": "🛡️ Create New Permission",
+  "lblNombrePermiso": "Action Name:",
+  "btnAceptarPermiso": "Accept",
+  "btnCancelarPermiso": "Cancel",
+  "formCrearPermiso": "Permission Management"
 
 
 }

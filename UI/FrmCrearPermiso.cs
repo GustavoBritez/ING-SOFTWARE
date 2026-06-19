@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,15 +12,18 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class FrmCrearPermiso : Form
+    public partial class FrmCrearPermiso : Form,IIdiomaObserver
     {
         // Esta propiedad pública es la que va a leer tu pantalla principal
         public string NombrePermiso { get; private set; }
 
+        IdiomaBLL idiomaBLL = new IdiomaBLL();
+
         public FrmCrearPermiso()
         {
             InitializeComponent();
-
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
             // Opcional: Centrar el form en la pantalla
             this.StartPosition = FormStartPosition.CenterParent;
             // Opcional: Evitar que lo maximicen
@@ -48,6 +53,34 @@ namespace UI
             // Le decimos a Windows Forms que el usuario canceló
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void FrmCrearPermiso_Load(object sender, EventArgs e)
+        {
+
+        }
+        public void ActualizarIdioma()
+        {
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
+            {
+                Traducir(this.Controls);
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name)
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
+            }
         }
     }
 }

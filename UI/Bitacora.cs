@@ -278,13 +278,10 @@ namespace UI
             {
 
                 DateTime hoy = DateTime.Today;
-                dtpDesde.Value = hoy;
                 dtpHasta.Value = hoy;
-
-
+                dtpDesde.Value = hoy;
+               
                 cmbModulo.SelectedIndex = 0;
-
-
                 _bitacoraCompleta = _bitacoraBLL.VerEventos();
                 CargarBitacora(_bitacoraCompleta);
             }
