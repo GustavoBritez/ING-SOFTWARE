@@ -163,6 +163,7 @@
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(150, 23);
             dtpHasta.TabIndex = 1;
+            dtpHasta.ValueChanged += dtpHasta_ValueChanged;
             // 
             // lblHasta
             // 
@@ -182,6 +183,7 @@
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(150, 23);
             dtpDesde.TabIndex = 3;
+            dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             // 
             // lblDesde
             // 

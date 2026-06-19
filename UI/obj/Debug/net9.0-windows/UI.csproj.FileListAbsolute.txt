@@ -1,8 +1,6 @@
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.csproj.AssemblyReference.cache
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.Bitacora.resources
-C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.Form1.resources
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.GestionUsuario.resources
-C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.Presentacion.resources
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.csproj.GenerateResource.cache
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.AssemblyInfoInputs.cache
@@ -1131,3 +1129,18 @@ C:\Users\Navegador\Desktop\Nueva carpeta\Campo\UI\obj\Debug\net9.0-windows\refin
 C:\Users\Navegador\Desktop\Nueva carpeta\Campo\UI\obj\Debug\net9.0-windows\UI.pdb
 C:\Users\Navegador\Desktop\Nueva carpeta\Campo\UI\obj\Debug\net9.0-windows\UI.genruntimeconfig.cache
 C:\Users\Navegador\Desktop\Nueva carpeta\Campo\UI\obj\Debug\net9.0-windows\ref\UI.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Idiomas\en.json
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Idiomas\es.json
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Idiomas\idiomas.json
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\Idiomas\po.json
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\System.Configuration.ConfigurationManager.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\System.Diagnostics.EventLog.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\System.Security.Cryptography.Pkcs.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\runtimes\win\lib\net9.0\System.Diagnostics.EventLog.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\bin\Debug\net9.0-windows\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.FrmCrearPermiso.resources
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.Login.resources
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.MenuPrincipal.resources
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.Perfiles.resources
+C:\Users\Navegador\Desktop\Nueva carpeta\ING\UI\obj\Debug\net9.0-windows\UI.Properties.Resources.resources

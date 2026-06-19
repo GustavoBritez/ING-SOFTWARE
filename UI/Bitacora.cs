@@ -16,7 +16,7 @@ using Services;
 
 namespace UI
 {
-    public partial class Bitacora : Form,IIdiomaObserver
+    public partial class Bitacora : Form, IIdiomaObserver
     {
         EventoBLL _bitacoraBLL = new EventoBLL();
         UsuarioBLL _usuarioBLL = new UsuarioBLL();
@@ -53,7 +53,9 @@ namespace UI
         }
         private void btnSalir_Click(object? sender, EventArgs e)
         {
+            LimpiarFiltros();
             FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
+
         }
 
         private void Bitacora_Load(object? sender, EventArgs e)
@@ -262,6 +264,12 @@ namespace UI
         private void btnLimpiarFiltros_Click(object? sender, EventArgs e)
         {
             LimpiarFiltros();
+            MessageBox.Show(
+                    "Filtros restablecidos correctamente.",
+                    "Éxito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
         }
 
         private void LimpiarFiltros()
@@ -279,13 +287,6 @@ namespace UI
 
                 _bitacoraCompleta = _bitacoraBLL.VerEventos();
                 CargarBitacora(_bitacoraCompleta);
-
-                MessageBox.Show(
-                    "Filtros restablecidos correctamente.",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
             }
             catch (Exception ex)
             {
@@ -324,6 +325,11 @@ namespace UI
                     MessageBoxIcon.Error
                 );
             }
+        }
+
+        private void btnExportar_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         private void ExportarAPDF(string rutaArchivo)
@@ -522,10 +528,7 @@ namespace UI
 
         }
 
-        private void btnExportar_Click_1(object sender, EventArgs e)
-        {
 
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -609,13 +612,27 @@ namespace UI
                 {
                     string traduccion = idiomaBLL.Traducir(control.Name);
 
-                    if (traduccion != control.Name) 
+                    if (traduccion != control.Name)
                         control.Text = traduccion;
                 }
 
                 if (control.HasChildren)
                     Traducir(control.Controls);
             }
+        }
+
+        private void dtpDesde_ValueChanged(object sender, EventArgs e)
+        {
+            List<EventoBE> listaE = _bitacoraBLL.BuscarEventos(dtpDesde.Value, dtpHasta.Value.AddDays(1));
+
+
+            CargarBitacora(listaE);
+        }
+
+        private void dtpHasta_ValueChanged(object sender, EventArgs e)
+        {
+            List<EventoBE> listaE = _bitacoraBLL.BuscarEventos(dtpDesde.Value, dtpHasta.Value.AddDays(1));
+            CargarBitacora(listaE);
         }
     }
 }
