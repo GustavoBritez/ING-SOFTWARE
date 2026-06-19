@@ -6,14 +6,26 @@
       "AbsoluteMoniker": "D:0:0:{5DC26196-D04A-9119-EA64-07214DDE2CFD}|..\\BLL\\BLL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\bll\\idiomabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\dal\\idiomadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\services\\servicessessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\ui\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\ui\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\ui\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB3DC7C-5059-F4AD-2883-65AE6414B1AF}|..\\DAL\\DAL.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\dal\\idiomadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\services\\servicessessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\services\\iidiomaobservable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -22,20 +34,8 @@
       "AbsoluteMoniker": "D:0:0:{6383C15B-5AA6-14CC-E6DE-B8C238620A33}|..\\Services\\Services.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\services\\iidiomaobserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\ui\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:gestionusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|c:\\users\\usuario\\onedrive\\escritorio\\ingenieria\\proyecto campo\\clonef\\ui\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87485E63-29BE-4663-82DC-9285C667D531}|UI.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,7 +49,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "MenuPrincipal.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\MenuPrincipal.cs",
               "RelativeDocumentMoniker": "MenuPrincipal.cs",
@@ -57,11 +57,12 @@
               "RelativeToolTip": "MenuPrincipal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-14T14:59:30.736Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "GestionUsuario.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\GestionUsuario.cs",
               "RelativeDocumentMoniker": "GestionUsuario.cs",
@@ -69,46 +70,50 @@
               "RelativeToolTip": "GestionUsuario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-14T14:59:39.11Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\Login.cs",
               "RelativeDocumentMoniker": "Login.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\Login.cs",
               "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAA0wG4AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAmwG4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-14T15:30:04.04Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MenuPrincipal.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\MenuPrincipal.cs",
               "RelativeDocumentMoniker": "MenuPrincipal.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\MenuPrincipal.cs",
               "RelativeToolTip": "MenuPrincipal.cs",
-              "ViewState": "AgIAAPkAAAAAAAAAAAAjwA4BAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4BAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-14T16:15:31.964Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "GestionUsuario.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\GestionUsuario.cs",
               "RelativeDocumentMoniker": "GestionUsuario.cs",
               "ToolTip": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\UI\\GestionUsuario.cs",
               "RelativeToolTip": "GestionUsuario.cs",
-              "ViewState": "AgIAAHYCAAAAAAAAAAA0wIsCAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAYCAAAAAAAAAAAQwIsCAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-14T18:05:38.855Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -126,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "IdiomaDAL.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\DAL\\IdiomaDAL.cs",
               "RelativeDocumentMoniker": "..\\DAL\\IdiomaDAL.cs",
@@ -135,8 +140,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwwAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-15T22:51:57.981Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -200,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "ServicesSessionManager.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\Services\\ServicesSessionManager.cs",
               "RelativeDocumentMoniker": "..\\Services\\ServicesSessionManager.cs",
@@ -208,12 +212,11 @@
               "RelativeToolTip": "..\\Services\\ServicesSessionManager.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAYwCoAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T22:17:29.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T22:17:29.296Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "IIdiomaObservable.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\Services\\IIdiomaObservable.cs",
               "RelativeDocumentMoniker": "..\\Services\\IIdiomaObservable.cs",
@@ -225,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "IIdiomaObserver.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\OneDrive\\Escritorio\\INGENIERIA\\PROYECTO CAMPO\\CloneF\\Services\\IIdiomaObserver.cs",
               "RelativeDocumentMoniker": "..\\Services\\IIdiomaObserver.cs",
