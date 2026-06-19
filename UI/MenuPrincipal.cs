@@ -126,10 +126,19 @@ namespace UI
 
         private void btnBitacora_Click(object sender, EventArgs e)
         {
+
             UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+            if ( usuarioActivo._Rol == "Administrador")
+            {
+                /// Aqui hay que meter una validacion para ver si administrador tiene el permiso de entrar a bitacora
+                FormManager.Navegar(this, FormManager.ObtenerBitacora());
+            }
+            else
+            {
+                MessageBox.Show("Usted no es administrador");
+            }
 
 
-            FormManager.Navegar(this, FormManager.ObtenerBitacora());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

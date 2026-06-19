@@ -188,7 +188,7 @@
             // dgvFamilias
             // 
             dgvFamilias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFamilias.Location = new Point(633, 72);
+            dgvFamilias.Location = new Point(633, 76);
             dgvFamilias.Name = "dgvFamilias";
             dgvFamilias.Size = new Size(184, 271);
             dgvFamilias.TabIndex = 9;

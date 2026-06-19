@@ -43,10 +43,12 @@ namespace UI
 
         private List<EventoBE> BitacoraInicial()
         {
+           List<EventoBE>? _bitacoraCompleta2 =  _bitacoraBLL.VerEventos();
+
             DateTime desde = DateTime.Today.AddDays(-3);
             DateTime hasta = DateTime.Now;
 
-            var bitacoraFiltrada = _bitacoraCompleta
+            var bitacoraFiltrada = _bitacoraCompleta2
                 .Where(b => b._Fecha >= desde && b._Fecha <= hasta)
                 .ToList();
             return bitacoraFiltrada;
@@ -54,6 +56,7 @@ namespace UI
         private void btnSalir_Click(object? sender, EventArgs e)
         {
             LimpiarFiltros();
+
             FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
 
         }
@@ -61,6 +64,8 @@ namespace UI
         private void Bitacora_Load(object? sender, EventArgs e)
         {
             GestionBitacora_Load(sender, e);
+            CargarBitacora(BitacoraInicial());
+
         }
 
         private void GestionBitacora_Load(object? sender, EventArgs e)
@@ -89,7 +94,7 @@ namespace UI
             dgvBitacora.CellClick += DgvBitacora_CellClick;
 
             //btnAplicarFiltro.Click += BtnAplicarFiltro_Click;
-            btnExportar.Click += BtnExportar_Click;
+
         }
 
         private void InicializarDateTimePickers()
@@ -133,6 +138,8 @@ namespace UI
             cmbEvento.Items.Add("Bloqueo de Cuenta");
             cmbEvento.Items.Add("Cambio de Estado");
             cmbEvento.Items.Add("Cambio de Clave");
+            /// Nuevos Eventos colocar, lo de los perfiles 
+            /// Nuevos Eventos colocar, lo de los idiomas 
 
             cmbEvento.SelectedIndex = 0;
         }
@@ -222,11 +229,6 @@ namespace UI
             ConfigurarColumnasGrid();
         }
 
-        // Lo estamos refaccionando como quiere silvestro
-        // En mantenimiento
-        // Columnas en orden
-        // Base de datos cambiada
-        // Posible error de ejecucion al cargar los datos en grilla
         private void ConfigurarColumnasGrid()
         {
             if (dgvBitacora.Columns.Contains("_Login"))
@@ -296,7 +298,9 @@ namespace UI
             }
         }
 
-        private void BtnExportar_Click(object? sender, EventArgs e)
+
+
+        private void btnExportar_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -322,11 +326,6 @@ namespace UI
                     MessageBoxIcon.Error
                 );
             }
-        }
-
-        private void btnExportar_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void ExportarAPDF(string rutaArchivo)

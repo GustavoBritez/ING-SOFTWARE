@@ -27,6 +27,8 @@ namespace DAL
                     new SqlParameter("@rol", usuario._Rol),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
                     new SqlParameter("@estado", usuario._Estado)
+
+
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
