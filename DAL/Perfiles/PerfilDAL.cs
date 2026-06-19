@@ -9,7 +9,7 @@ namespace DAL.Perfiles
         private readonly Conexion _conexion;
         private readonly string TABLA_PERFIL = "Perfil";
         private readonly string PERFIL_PERMISO = "Perfil_Permiso";
-        private readonly string PERFIL_FAMILIA = "Perfil";
+        private readonly string FAMILIA_PERFIL = "Familia_Perfil";
         private readonly string FAMILIA_FAMILIA = "Familia_Familia";
 
         public PerfilDAL()
@@ -29,11 +29,37 @@ namespace DAL.Perfiles
 
             _conexion.ExecuteNonQuery(query, parametros);
         }
+        public bool ExisteRelacionFamiliaPerfil(int idPerfil, int idFamilia)
+        {
+            string query = "SELECT COUNT(1) FROM Familia_Perfil WHERE ID_Perfil = @idPerfil AND ID_Familia = @idFamilia";
+
+            SqlParameter[] parametros = {
+                            new SqlParameter("@idPerfil", idPerfil),
+                            new SqlParameter("@idFamilia", idFamilia)
+                        };
+
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            return Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
+        public bool ExisteRelacionPermisoPerfil(int idPerfil, int idPermiso)
+        {
+            string query = "SELECT COUNT(1) FROM Perfil_Permiso WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+
+            SqlParameter[] parametros = {
+                    new SqlParameter("@idPerfil", idPerfil),
+                    new SqlParameter("@idPermiso", idPermiso)
+                };
+
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            return Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
 
         public void InsertarPerfilFamilia(int idPerfil , int idFamilia)
         {
-            string query = $"INSERT INTO {PERFIL_FAMILIA} (ID_Perfil, ID_Familia) " +
-                            "VALUES (@idPerfil, @idPermiso)";
+            string query = $"INSERT INTO {FAMILIA_PERFIL} (ID_Perfil, ID_Familia) " +
+                            "VALUES (@idPerfil, @idFamilia)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -75,18 +101,46 @@ namespace DAL.Perfiles
 
         public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
         {
-            string query = $"DELETE FROM {TABLA_PERFIL} WHERE IdPerfil = @idPerfil AND IdPermiso = @idPermiso";
+            string query = $"DELETE FROM {PERFIL_PERMISO} WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@idPerfil", idPerfil),
-                new SqlParameter("@idPermiso", idPermiso)
+                new SqlParameter("@IdPermiso", idPermiso)
             };
             _conexion.ExecuteNonQuery(query, parametros);
         }
-
-        public void EliminarFamiliaPerfil(int idPerfil, int idFamilia)
+        public void EliminarPerfilDefinitivo(int idPerfil)
         {
-            string query = $"DELETE FROM {TABLA_PERFIL} WHERE IdPerfil = @idPerfil AND IdPermiso = @idFamilia";
+
+            string queryFamilia = "DELETE FROM Familia_Perfil WHERE ID_Perfil = @id";
+            _conexion.ExecuteNonQuery(queryFamilia, new SqlParameter[] { new SqlParameter("@id", idPerfil) });
+
+            string queryPermiso = "DELETE FROM Perfil_Permiso WHERE ID_Perfil = @id";
+            _conexion.ExecuteNonQuery(queryPermiso, new SqlParameter[] { new SqlParameter("@id", idPerfil) });
+
+            string queryPerfil = "DELETE FROM Perfil WHERE ID_Perfil = @id";
+            _conexion.ExecuteNonQuery(queryPerfil, new SqlParameter[] { new SqlParameter("@id", idPerfil) });
+        }
+
+        public bool PerfilTieneUsuarios(int idPerfil)
+        {
+
+            string query = "SELECT COUNT(1) FROM Usuario WHERE ID_Perfil = @id";
+            SqlParameter[] param = { new SqlParameter("@id", idPerfil) };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+
+            return false;
+        }
+        public void EliminarPerfilAFamilia(int idPerfil, int idFamilia)
+        {
+            string query = $"DELETE FROM {FAMILIA_PERFIL} WHERE ID_Perfil = @idPerfil AND ID_Familia = @idFamilia";
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@idPerfil", idPerfil),
@@ -94,6 +148,9 @@ namespace DAL.Perfiles
             };
             _conexion.ExecuteNonQuery(query, parametros);
         }
+
+
+
         #endregion
 
         #region Obtener
@@ -187,6 +244,5 @@ namespace DAL.Perfiles
             return perfilArmado;
         }
         #endregion
-
     }
 }

@@ -609,7 +609,7 @@ namespace UI
                 {
                     string traduccion = idiomaBLL.Traducir(control.Name);
 
-                    if (traduccion != control.Name) // evita reemplazar si no existe la clave
+                    if (traduccion != control.Name) 
                         control.Text = traduccion;
                 }
 

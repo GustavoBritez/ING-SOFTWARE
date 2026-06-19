@@ -13,32 +13,35 @@ namespace BLL
         private readonly PerfilDAL _perfilDAL = new();
         private readonly PatenteDAL _patenteDAL = new();
         #region Agregar
-        public void AgregarFamiliaAPerfil(int idPerfil, int idFamilia)
+        public void AgregarPerfilAFamilia(int idPerfil, int idFamilia, string nombrePerfil)
         {
-            // No lo agrega pero no salta el error, revisar luego
-            if (TienePermisoDuplicado(idPerfil, idFamilia))
+
+            if (_perfilDAL.ExisteRelacionFamiliaPerfil(idPerfil, idFamilia))
             {
-                throw new ArgumentException("ERROR: El perfil ya tiene esta familia asignada.");
+                throw new ArgumentException($"El perfil '{nombrePerfil}' ya existe en esta familia.");
             }
 
             _perfilDAL.InsertarPerfilFamilia(idPerfil, idFamilia);
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Asignar Perfil a Familia";
+            string descripcion = $"Asignar Perfil '{nombrePerfil}' a Familia";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
-        
-        public void AgregarPermisoAPerfil(int idPerfil, int idPermiso)
+
+        public void AgregarPermisoAPerfil(int idPerfil, int idPermiso, string nombrePermiso)
         {
-            /// Revisar luego, no se agrega nuevamente pero no salta el error.
-            if (TienePermisoDuplicado(idPerfil, idPermiso))
+            // 1. Validamos usando el nuevo método de la DAL
+            if (_perfilDAL.ExisteRelacionPermisoPerfil(idPerfil, idPermiso))
             {
-                throw new ArgumentException("ERROR: El perfil ya tiene el permiso asignado.");
+                // Disparamos la excepción con el texto exacto
+                throw new ArgumentException($"El permiso '{nombrePermiso}' ya existe en este perfil.");
             }
 
+            // 2. Si no existe, procedemos a vincularlo
             _perfilDAL.InsertarPermisoPerfil(idPerfil, idPermiso);
 
+            // 3. Registro en Bitácora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Asignar Permiso a Perfil";
@@ -62,25 +65,54 @@ namespace BLL
         #endregion 
 
         #region Eliminar
-        public void EliminarFamiliaPerfil(int idPerfil, int idFamilia)
+        public void EliminarPerfilAFamilia(int idPerfil, int idFamilia, string nombreFamilia)
         {
-            _perfilDAL.EliminarFamiliaPerfil(idPerfil, idFamilia);
+            // 1. Validamos que la relación REALMENTE exista en la base de datos
+            // Usamos el mismo método de la DAL, pero le ponemos un "!" adelante (que significa NO)
+            if (!_perfilDAL.ExisteRelacionFamiliaPerfil(idPerfil, idFamilia))
+            {
+                throw new ArgumentException($"La familia '{nombreFamilia}' no se encuentra asignada a este perfil.");
+            }
 
-            /// Registrar evento en la bitacora
+            // 2. Si existe, procedemos a borrarla
+            _perfilDAL.EliminarPerfilAFamilia(idPerfil, idFamilia);
+
+            // 3. Registrar evento en la bitacora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Eliminar Perfil a Familia";
+            string descripcion = $"Eliminar Perfil de Familia";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
-
-        public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
+        public void EliminarPerfil(int idPerfil, string nombrePerfil)
         {
-            _perfilDAL.EliminarPermisoPerfil(idPerfil, idPermiso);
+            // Frenamos si hay gente usándolo
+            if (_perfilDAL.PerfilTieneUsuarios(idPerfil))
+            {
+                throw new ArgumentException($"No se puede eliminar el perfil '{nombrePerfil}' porque hay usuarios en el sistema que lo tienen asignado. Quíteles este perfil primero.");
+            }
 
-            /// Registrar evento en la bitacora
+            _perfilDAL.EliminarPerfilDefinitivo(idPerfil);
+
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Eliminar Permiso a Perfil";
+            string descripcion = $"Eliminación en cascada del Perfil: '{nombrePerfil}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
+        }
+        public void EliminarPermisoPerfil(int idPerfil, int idPermiso, string nombrePermiso)
+        {
+            // 1. Validamos que la relación REALMENTE exista en la base de datos
+            if (!_perfilDAL.ExisteRelacionPermisoPerfil(idPerfil, idPermiso))
+            {
+                throw new ArgumentException($"El permiso '{nombrePermiso}' no se encuentra asignado a este perfil.");
+            }
+
+            // 2. Si existe, procedemos a borrarlo de la tabla puente Perfil_Permiso
+            _perfilDAL.EliminarPermisoPerfil(idPerfil, idPermiso);
+
+            // 3. Registrar evento en la bitácora
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Desvincular Permiso '{nombrePermiso}' de Perfil";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
         #endregion

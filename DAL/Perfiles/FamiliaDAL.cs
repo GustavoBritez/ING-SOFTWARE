@@ -71,10 +71,33 @@ namespace DAL.Perfiles
             string query = "INSERT INTO Familia (Nombre) VALUES (@nombre)";
             SqlParameter[] parametros = new SqlParameter[]
             {
-          new SqlParameter("@nombre", nombreFamilia)
+                 new SqlParameter("@nombre", nombreFamilia)
             };
 
             _conexion.ExecuteNonQuery(query, parametros);
+        }
+        public List<string> ObtenerPerfilesDeFamilia(int idFamilia)
+        {
+            List<string> nombresPerfiles = new List<string>();
+
+            string query = @"
+                SELECT p.Nombre 
+                FROM Familia_Perfil fp
+                INNER JOIN Perfil p ON fp.ID_Perfil = p.ID_Perfil
+                WHERE fp.ID_Familia = @idFamilia";
+
+            SqlParameter[] parametros = {
+                     new SqlParameter("@idFamilia", idFamilia)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            foreach (DataRow fila in dt.Rows)
+            {
+                nombresPerfiles.Add(fila["Nombre"].ToString());
+            }
+
+            return nombresPerfiles;
         }
     }
 }

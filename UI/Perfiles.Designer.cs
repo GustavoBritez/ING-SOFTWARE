@@ -38,9 +38,6 @@
             toolStripLabel2 = new ToolStripDropDownButton();
             familiaAlPerfilToolStripMenuItem1 = new ToolStripMenuItem();
             permisoAlPerfilToolStripMenuItem1 = new ToolStripMenuItem();
-            toolStripLabel3 = new ToolStripDropDownButton();
-            familiaDelPefilToolStripMenuItem = new ToolStripMenuItem();
-            permisoDelPerfilToolStripMenuItem = new ToolStripMenuItem();
             dgvPerfiles = new DataGridView();
             panel1 = new Panel();
             label1 = new Label();
@@ -52,6 +49,9 @@
             dgvPermisos = new DataGridView();
             panel3 = new Panel();
             label4 = new Label();
+            permisoToolStripMenuItem1 = new ToolStripMenuItem();
+            perfilToolStripMenuItem1 = new ToolStripMenuItem();
+            familiaToolStripMenuItem1 = new ToolStripMenuItem();
             TS_Gestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPerfiles).BeginInit();
             panel1.SuspendLayout();
@@ -63,7 +63,7 @@
             // 
             // TS_Gestion
             // 
-            TS_Gestion.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel2, toolStripLabel3 });
+            TS_Gestion.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel2 });
             TS_Gestion.Location = new Point(0, 0);
             TS_Gestion.Name = "TS_Gestion";
             TS_Gestion.Size = new Size(891, 25);
@@ -115,7 +115,7 @@
             // 
             // toolStripLabel2
             // 
-            toolStripLabel2.DropDownItems.AddRange(new ToolStripItem[] { familiaAlPerfilToolStripMenuItem1, permisoAlPerfilToolStripMenuItem1 });
+            toolStripLabel2.DropDownItems.AddRange(new ToolStripItem[] { familiaAlPerfilToolStripMenuItem1, permisoAlPerfilToolStripMenuItem1, permisoToolStripMenuItem1, perfilToolStripMenuItem1, familiaToolStripMenuItem1 });
             toolStripLabel2.Name = "toolStripLabel2";
             toolStripLabel2.Size = new Size(63, 22);
             toolStripLabel2.Text = "Eliminar";
@@ -125,7 +125,7 @@
             familiaAlPerfilToolStripMenuItem1.Name = "familiaAlPerfilToolStripMenuItem1";
             familiaAlPerfilToolStripMenuItem1.Size = new Size(180, 22);
             familiaAlPerfilToolStripMenuItem1.Text = "Perfil al Familia";
-            familiaAlPerfilToolStripMenuItem1.Click += Eliminar_familiaAlPerfil_Click;
+            familiaAlPerfilToolStripMenuItem1.Click += Eliminar_PerfilAFamilia_Click;
             // 
             // permisoAlPerfilToolStripMenuItem1
             // 
@@ -134,25 +134,6 @@
             permisoAlPerfilToolStripMenuItem1.Text = "Permiso al perfil";
             permisoAlPerfilToolStripMenuItem1.Click += Eliminar_permisoAlPerfil;
             // 
-            // toolStripLabel3
-            // 
-            toolStripLabel3.DropDownItems.AddRange(new ToolStripItem[] { familiaDelPefilToolStripMenuItem, permisoDelPerfilToolStripMenuItem });
-            toolStripLabel3.Name = "toolStripLabel3";
-            toolStripLabel3.Size = new Size(71, 22);
-            toolStripLabel3.Text = "Modificar";
-            // 
-            // familiaDelPefilToolStripMenuItem
-            // 
-            familiaDelPefilToolStripMenuItem.Name = "familiaDelPefilToolStripMenuItem";
-            familiaDelPefilToolStripMenuItem.Size = new Size(166, 22);
-            familiaDelPefilToolStripMenuItem.Text = "Familia del pefil";
-            // 
-            // permisoDelPerfilToolStripMenuItem
-            // 
-            permisoDelPerfilToolStripMenuItem.Name = "permisoDelPerfilToolStripMenuItem";
-            permisoDelPerfilToolStripMenuItem.Size = new Size(166, 22);
-            permisoDelPerfilToolStripMenuItem.Text = "Permiso del perfil";
-            // 
             // dgvPerfiles
             // 
             dgvPerfiles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -160,6 +141,7 @@
             dgvPerfiles.Name = "dgvPerfiles";
             dgvPerfiles.Size = new Size(218, 267);
             dgvPerfiles.TabIndex = 7;
+            dgvPerfiles.SelectionChanged += dgvPerfiles_SelectionChanged;
             // 
             // panel1
             // 
@@ -261,6 +243,27 @@
             label4.TabIndex = 14;
             label4.Text = "Permiso";
             // 
+            // permisoToolStripMenuItem1
+            // 
+            permisoToolStripMenuItem1.Name = "permisoToolStripMenuItem1";
+            permisoToolStripMenuItem1.Size = new Size(180, 22);
+            permisoToolStripMenuItem1.Text = "Permiso";
+            permisoToolStripMenuItem1.Click += Eliminar_Permiso_Click;
+            // 
+            // perfilToolStripMenuItem1
+            // 
+            perfilToolStripMenuItem1.Name = "perfilToolStripMenuItem1";
+            perfilToolStripMenuItem1.Size = new Size(180, 22);
+            perfilToolStripMenuItem1.Text = "Perfil";
+            perfilToolStripMenuItem1.Click += Eliminar_Perfil_Click;
+            // 
+            // familiaToolStripMenuItem1
+            // 
+            familiaToolStripMenuItem1.Name = "familiaToolStripMenuItem1";
+            familiaToolStripMenuItem1.Size = new Size(180, 22);
+            familiaToolStripMenuItem1.Text = "Familia";
+            familiaToolStripMenuItem1.Click += Eliminar_Familia_Click;
+            // 
             // Perfiles
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -272,10 +275,10 @@
             Controls.Add(Vista_Familia);
             Controls.Add(btnSalir);
             Controls.Add(dgvPerfiles);
-            Controls.Add(dgvFamilias);
             Controls.Add(panel2);
             Controls.Add(TS_Gestion);
             Controls.Add(panel1);
+            Controls.Add(dgvFamilias);
             Name = "Perfiles";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Perfiles";
@@ -303,9 +306,6 @@
         private ToolStripDropDownButton toolStripLabel2;
         private ToolStripMenuItem familiaAlPerfilToolStripMenuItem1;
         private ToolStripMenuItem permisoAlPerfilToolStripMenuItem1;
-        private ToolStripDropDownButton toolStripLabel3;
-        private ToolStripMenuItem familiaDelPefilToolStripMenuItem;
-        private ToolStripMenuItem permisoDelPerfilToolStripMenuItem;
         private DataGridView dgvPerfiles;
         private Panel panel2;
         private Label label2;
@@ -320,5 +320,8 @@
         private ToolStripMenuItem permisoToolStripMenuItem;
         private ToolStripMenuItem perfilToolStripMenuItem;
         private ToolStripMenuItem familiaToolStripMenuItem;
+        private ToolStripMenuItem permisoToolStripMenuItem1;
+        private ToolStripMenuItem perfilToolStripMenuItem1;
+        private ToolStripMenuItem familiaToolStripMenuItem1;
     }
 }

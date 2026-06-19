@@ -38,5 +38,18 @@ namespace BLL.Perfiles
         }
         public List<Perfil> ObtenerComponentesTotales() => _patenteDAL.ObtenerComponentesTotales();
         public List<Perfil> ObtenerPermisosPerfil() => _patenteDAL.ObtenerPermisosPerfil();
+
+
+        public void EliminarPermiso(int idPermiso, string nombrePermiso)
+        {
+            // Mandamos la orden directa a la DAL para que haga el borrado en cascada
+            _patenteDAL.EliminarPermisoDefinitivo(idPermiso);
+
+            // Registramos la acción fuerte en la bitácora
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Eliminación en cascada del Permiso: '{nombrePermiso}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
+        }
     }
 }

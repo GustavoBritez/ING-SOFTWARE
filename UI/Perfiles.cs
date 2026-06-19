@@ -51,7 +51,7 @@ namespace UI
                 dgvPerfiles.Columns["Id"].Visible = false;
                 dgvPerfiles.Columns["Nombre"].HeaderText = "Nombre del Perfil";
 
-                List<Perfil> listaFamilias = _familiaBLL.ObtenerFamiliasPerfil(); // <--- Corregido acá
+                List<Perfil> listaFamilias = _familiaBLL.ObtenerFamiliasPerfil();
 
                 dgvFamilias.DataSource = null;
                 dgvFamilias.DataSource = new List<Perfil>(listaFamilias);
@@ -73,7 +73,7 @@ namespace UI
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
+            FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
         }
 
         #region Arbol visual
@@ -101,12 +101,56 @@ namespace UI
             }
         }
 
-        private void dgvPerfiles_SelectionChanged(object sender, EventArgs e)
+        private void MostrarArbolEnTreeView(int idFamiliaSeleccionada)
         {
-            if (dgvPerfiles.CurrentRow != null)
+            try
             {
-                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
-                MostrarArbolPerfilEnTreeView(idPerfil);
+                Vista_Familia.Nodes.Clear();
+
+
+                FamiliaServices familiaRaiz = _familiaBLL.ObtenerArbolFamiliar(idFamiliaSeleccionada);
+                if (familiaRaiz == null) return;
+
+
+                TreeNode nodoRaiz = new TreeNode("📦 Familia: " + familiaRaiz.Nombre);
+                nodoRaiz.Tag = familiaRaiz.Id;
+
+
+                TreeNode nodoPerfiles = new TreeNode("👥 Perfiles que usa esta familia");
+
+                List<string> perfilesAsignados = _familiaBLL.ObtenerPerfilesDeFamilia(idFamiliaSeleccionada);
+
+                if (perfilesAsignados.Count > 0)
+                {
+                    foreach (string nombrePerfil in perfilesAsignados)
+                    {
+                        nodoPerfiles.Nodes.Add(new TreeNode("👤 " + nombrePerfil));
+                    }
+                }
+                else
+                {
+                    nodoPerfiles.Nodes.Add(new TreeNode("⚠️ No está asignada a ningún perfil"));
+                }
+
+                nodoRaiz.Nodes.Add(nodoPerfiles);
+
+                // =========================================================
+                // RAMA B: EL COMPOSITE ORIGINAL (Top-Down)
+                // =========================================================
+                TreeNode nodoContenido = new TreeNode("⚙️ Contenido Interno (Hijos)");
+
+                // Usamos tu método recursivo pero colgándolo de esta nueva sub-rama
+                DibujarNodosFamiliasRecursivo(familiaRaiz, nodoContenido);
+
+                nodoRaiz.Nodes.Add(nodoContenido);
+
+                // 3. Dibujamos todo en pantalla
+                Vista_Familia.Nodes.Add(nodoRaiz);
+                Vista_Familia.ExpandAll();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al graficar el árbol: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -139,15 +183,24 @@ namespace UI
             if (dgvFamilias.CurrentRow != null)
             {
                 int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
-                MostrarArbolPerfilEnTreeView(idFamilia);
+
+                MostrarArbolEnTreeView(idFamilia);
             }
         }
 
+        private void dgvPerfiles_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvPerfiles.CurrentRow != null)
+            {
+                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
+
+                MostrarArbolPerfilEnTreeView(idPerfil);
+            }
+        }
         #endregion
 
         #region Eliminar
-
-        private void Eliminar_familiaAlPerfil_Click(object sender, EventArgs e)
+        private void Eliminar_PerfilAFamilia_Click(object sender, EventArgs e)
         {
             try
             {
@@ -157,8 +210,10 @@ namespace UI
                     return;
                 }
 
-                int idPerfilPadre = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
-                int idFamiliaHija = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
+                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
+                int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
+
+                string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString();
 
                 DialogResult respuesta = MessageBox.Show(
                     "¿Está seguro que desea quitar esta familia del perfil seleccionado?",
@@ -168,17 +223,21 @@ namespace UI
 
                 if (respuesta == DialogResult.Yes)
                 {
-                    _perfilBLL.EliminarFamiliaPerfil(idPerfilPadre, idFamiliaHija);
+                    _perfilBLL.EliminarPerfilAFamilia(idPerfil, idFamilia, nombreFamilia);
+
                     MessageBox.Show("¡Familia desvinculada del perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al desvincular la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Eliminar_permisoAlPerfil(object sender, EventArgs e)
         {
             try
@@ -192,6 +251,9 @@ namespace UI
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
 
+                // Extraemos el NOMBRE del permiso para pasarlo a la BLL
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+
                 DialogResult respuesta = MessageBox.Show(
                     "¿Está seguro que desea quitar este permiso del perfil seleccionado?",
                     "Confirmar desvinculación",
@@ -200,10 +262,17 @@ namespace UI
 
                 if (respuesta == DialogResult.Yes)
                 {
-                    _perfilBLL.EliminarPermisoPerfil(idPerfil, idPermiso);
+                    // Le pasamos los 3 datos a la BLL
+                    _perfilBLL.EliminarPermisoPerfil(idPerfil, idPermiso, nombrePermiso);
+
                     MessageBox.Show("Permiso desvinculado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
+            }
+            catch (ArgumentException argEx)
+            {
+                // Acá atrapamos nuestra validación si el permiso no estaba asignado
+                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -234,7 +303,9 @@ namespace UI
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
 
-                _perfilBLL.AgregarFamiliaAPerfil(idPerfil, idFamilia);
+                string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                _perfilBLL.AgregarPerfilAFamilia(idPerfil, idFamilia, nombrePerfil);
 
                 MessageBox.Show("¡Familia asignada al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
@@ -268,13 +339,18 @@ namespace UI
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
 
-                _perfilBLL.AgregarPermisoAPerfil(idPerfil, idPermiso);
+                // Extraemos el NOMBRE del permiso para mostrarlo en el error
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                // Le pasamos los 3 parámetros a la BLL
+                _perfilBLL.AgregarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso);
 
                 MessageBox.Show("¡Permiso asignado al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
+                // Acá atrapa y muestra: "El permiso 'x' ya existe en este perfil."
                 MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
@@ -420,6 +496,84 @@ namespace UI
                 dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Hace que las columnas ocupen todo el ancho
             }
             #endregion
+
+        }
+
+        private void Eliminar_Permiso_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvPermisos.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                // Actualizamos el mensaje para reflejar el borrado en cascada
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Está seguro que desea ELIMINAR el permiso '{nombrePermiso}'?\n\nAl hacerlo, también se desvinculará automáticamente de todos los Perfiles y Familias que lo estén utilizando actualmente.",
+                    "Confirmar Borrado en Cascada",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // Ejecutamos la BLL
+                    _patenteBLL.EliminarPermiso(idPermiso, nombrePermiso);
+
+                    MessageBox.Show("¡Permiso eliminado del sistema y desvinculado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarGrillas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Eliminar_Perfil_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Validamos que haya algo seleccionado en la grilla izquierda
+                if (dgvPerfiles.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un Perfil de la grilla izquierda que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. Extraemos ID y Nombre
+                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
+                string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                // 3. Advertencia de cascada
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Está seguro que desea ELIMINAR COMPLETAMENTE el perfil '{nombrePerfil}'?\n\nAl hacerlo, se eliminarán todas sus asignaciones de Familias y Permisos. Si hay usuarios utilizando este perfil, podrían perder el acceso al sistema.",
+                    "Confirmar Borrado de Perfil",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // 4. Mandamos a borrar
+                    _perfilBLL.EliminarPerfil(idPerfil, nombrePerfil);
+
+                    // 5. Avisamos y refrescamos
+                    MessageBox.Show("¡Perfil eliminado del sistema con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarGrillas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Eliminar_Familia_Click(object sender, EventArgs e)
+        {
 
         }
     }

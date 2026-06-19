@@ -47,7 +47,10 @@ namespace BLL.Perfiles
             string descripcion = $"Creación de nueva Familia: {nombreFamilia}";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
-
+        public List<string> ObtenerPerfilesDeFamilia(int idFamilia)
+        {
+            return _familiaDAL.ObtenerPerfilesDeFamilia(idFamilia);
+        }
     }
     
 }
