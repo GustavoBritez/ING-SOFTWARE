@@ -1,0 +1,248 @@
+﻿using Microsoft.Data.SqlClient;
+using Services.Perfiles;
+using System.Data;
+
+namespace DAL.Perfiles
+{
+    public class PerfilDAL
+    {
+        private readonly Conexion _conexion;
+        private readonly string TABLA_PERFIL = "Perfil";
+        private readonly string PERFIL_PERMISO = "Perfil_Permiso";
+        private readonly string FAMILIA_PERFIL = "Familia_Perfil";
+        private readonly string FAMILIA_FAMILIA = "Familia_Familia";
+
+        public PerfilDAL()
+        {
+            this._conexion = new();
+        }
+
+        #region Agregar
+
+        public void InsertarPerfilNuevo(string nombrePerfil)
+        {
+            string query = "INSERT INTO Perfil (Nombre) VALUES (@nombre)";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@nombre", nombrePerfil)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
+        public bool ExisteRelacionFamiliaPerfil(int idPerfil, int idFamilia)
+        {
+            string query = "SELECT COUNT(1) FROM Familia_Perfil WHERE ID_Perfil = @idPerfil AND ID_Familia = @idFamilia";
+
+            SqlParameter[] parametros = {
+                            new SqlParameter("@idPerfil", idPerfil),
+                            new SqlParameter("@idFamilia", idFamilia)
+                        };
+
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            return Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
+        public bool ExisteRelacionPermisoPerfil(int idPerfil, int idPermiso)
+        {
+            string query = "SELECT COUNT(1) FROM Perfil_Permiso WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+
+            SqlParameter[] parametros = {
+                    new SqlParameter("@idPerfil", idPerfil),
+                    new SqlParameter("@idPermiso", idPermiso)
+                };
+
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            return Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
+
+        public void InsertarPerfilFamilia(int idPerfil , int idFamilia)
+        {
+            string query = $"INSERT INTO {FAMILIA_PERFIL} (ID_Perfil, ID_Familia) " +
+                            "VALUES (@idPerfil, @idFamilia)";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idFamilia", idFamilia)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
+        public void InsertarPermisoPerfil(int idPerfil, int idPermiso)
+        {
+            string query = $"INSERT INTO {PERFIL_PERMISO} (ID_Perfil, ID_Permiso) " +
+                            "VALUES (@idPerfil, @idPermiso)";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
+
+        public void InsertarPatenteNueva(string nombrePermiso)
+        {
+            string query = "INSERT INTO Permiso (Nombre) VALUES (@nombre)";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@nombre", nombrePermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
+
+        #endregion
+
+        #region Eliminar
+
+        public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
+        {
+            string query = $"DELETE FROM {PERFIL_PERMISO} WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@IdPermiso", idPermiso)
+            };
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
+        public void EliminarPerfilDefinitivo(int idPerfil)
+        {
+
+            string queryFamilia = "DELETE FROM Familia_Perfil WHERE ID_Perfil = @id";
+            _conexion.ExecuteNonQuery(queryFamilia, new SqlParameter[] { new SqlParameter("@id", idPerfil) });
+
+            string queryPermiso = "DELETE FROM Perfil_Permiso WHERE ID_Perfil = @id";
+            _conexion.ExecuteNonQuery(queryPermiso, new SqlParameter[] { new SqlParameter("@id", idPerfil) });
+
+            string queryPerfil = "DELETE FROM Perfil WHERE ID_Perfil = @id";
+            _conexion.ExecuteNonQuery(queryPerfil, new SqlParameter[] { new SqlParameter("@id", idPerfil) });
+        }
+
+        public bool PerfilTieneUsuarios(int idPerfil)
+        {
+
+            string query = "SELECT COUNT(1) FROM Usuario WHERE ID_Perfil = @id";
+            SqlParameter[] param = { new SqlParameter("@id", idPerfil) };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+
+            return false;
+        }
+        public void EliminarPerfilAFamilia(int idPerfil, int idFamilia)
+        {
+            string query = $"DELETE FROM {FAMILIA_PERFIL} WHERE ID_Perfil = @idPerfil AND ID_Familia = @idFamilia";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idFamilia", idFamilia)
+            };
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
+
+
+
+        #endregion
+
+        #region Obtener
+        public List<Perfil> ObtenerComponentesTotales()
+        {
+            List<Perfil> _perfil = new();
+
+            string queryFamilias = "SELECT ID_Familia as Id, Nombre FROM Familia";
+            DataTable dtFamilias = _conexion.ExecuteReader(queryFamilias, null);
+
+            foreach (DataRow fila in dtFamilias.Rows)
+            {
+                int id = Convert.ToInt32(fila["Id"]);
+                string nombre = fila["Nombre"].ToString();
+                _perfil.Add(new FamiliaServices(nombre) { Id = id });
+            }
+
+            string queryPermisos = "SELECT ID_Permiso as Id, Nombre FROM Permiso";
+            DataTable dtPermisos = _conexion.ExecuteReader(queryPermisos, null);
+
+            foreach (DataRow fila in dtPermisos.Rows)
+            {
+                int id = Convert.ToInt32(fila["Id"]);
+                string nombre = fila["Nombre"].ToString();
+                _perfil.Add(new PatenteServices(nombre) { Id = id });
+            }
+
+            return _perfil;
+        }
+        public List<Perfil> ObtenerPerfiles()
+        {
+            List<Perfil> lista = new List<Perfil>();
+            string query = "SELECT ID_Perfil, Nombre FROM Perfil";
+            DataTable dt = _conexion.ExecuteReader(query, null);
+
+            foreach (DataRow fila in dt.Rows)
+            {
+                int id = Convert.ToInt32(fila["ID_Perfil"]);
+                string nombre = fila["Nombre"].ToString();
+
+                lista.Add(new FamiliaServices(nombre) { Id = id });
+            }
+            return lista;
+        }
+
+        public FamiliaServices ObtenerArbolPerfil(int idPerfil)
+        {
+            string queryPadre = "SELECT Nombre FROM Perfil WHERE ID_Perfil = @id";
+            SqlParameter[] paramPadre = { new SqlParameter("@id", idPerfil) };
+            DataTable dtPadre = _conexion.ExecuteReader(queryPadre, paramPadre);
+            if (dtPadre.Rows.Count == 0) return null;
+
+            string nombrePerfil = dtPadre.Rows[0]["Nombre"].ToString();
+            FamiliaServices perfilArmado = new FamiliaServices(nombrePerfil) { Id = idPerfil };
+
+            string queryFamilias = @"
+                    SELECT f.ID_Familia, f.Nombre 
+                    FROM Familia_Perfil fp
+                    INNER JOIN Familia f ON fp.ID_Familia = f.ID_Familia
+                    WHERE fp.ID_Perfil = @idPerfil";
+
+            SqlParameter[] paramFam = { new SqlParameter("@idPerfil", idPerfil) };
+            DataTable dtFam = _conexion.ExecuteReader(queryFamilias, paramFam);
+
+            FamiliaDAL familiaDAL = new FamiliaDAL();
+
+            foreach (DataRow fila in dtFam.Rows)
+            {
+                int idFamilia = Convert.ToInt32(fila["ID_Familia"]);
+                FamiliaServices subFamilia = familiaDAL.ObtenerArbolFamiliar(idFamilia);
+                if (subFamilia != null)
+                    perfilArmado.Agregar(subFamilia);
+            }
+
+            string queryPermisos = @"
+                SELECT p.ID_Permiso, p.Nombre 
+                FROM Perfil_Permiso pp
+                INNER JOIN Permiso p ON pp.ID_Permiso = p.ID_Permiso
+                WHERE pp.ID_Perfil = @idPerfil";
+
+            SqlParameter[] paramPerm = { new SqlParameter("@idPerfil", idPerfil) };
+            DataTable dtPerm = _conexion.ExecuteReader(queryPermisos, paramPerm);
+
+            foreach (DataRow fila in dtPerm.Rows)
+            {
+                int idPermiso = Convert.ToInt32(fila["ID_Permiso"]);
+                string nombrePermiso = fila["Nombre"].ToString();
+                perfilArmado.Agregar(new PatenteServices(nombrePermiso) { Id = idPermiso });
+            }
+
+            return perfilArmado;
+        }
+        #endregion
+    }
+}

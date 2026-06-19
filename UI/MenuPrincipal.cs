@@ -119,11 +119,7 @@ namespace UI
                 return;
             }
 
-            if (usuarioActivo._Rol != "Administrador")
-            {
-                MessageBox.Show("Solo los administradores pueden acceder a Gestión de Usuarios.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+
 
             FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
         }
@@ -131,17 +127,7 @@ namespace UI
         private void btnBitacora_Click(object sender, EventArgs e)
         {
             UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-            if (usuarioActivo == null)
-            {
-                MessageBox.Show("Debe iniciar sesión para acceder a Reportes.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            if (usuarioActivo._Rol != "Administrador")
-            {
-                MessageBox.Show("Solo los administradores pueden acceder a Reportes.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             FormManager.Navegar(this, FormManager.ObtenerBitacora());
         }
@@ -185,7 +171,6 @@ namespace UI
 
                 UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
 
-                /// Verificar otra forma por que es codigo aldope
                 bool boleano = servicioB.ValidarContraseña(actualPass, usuario._Contraseña);
 
                 bool boleano2 = servicioB.ValidarContraseña(nuevaPass, usuario._Contraseña);
@@ -205,7 +190,6 @@ namespace UI
                 usuario._Contraseña = hashnuevaPass;
                 usuarioBLL.CambiarContraseña(usuario);
 
-                // Registrar en bitácora
 
                 MessageBox.Show("Contraseña cambiada exitosamente",
                 "Cambiar Contraseña",
@@ -214,14 +198,6 @@ namespace UI
             }
             catch (Exception ex)
             {
-                // Registrar error en bitácora
-                UsuarioBE usuario = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-                if (usuario != null)
-                {
-                    string descripcion = $"Error al cambiar contraseña: {ex.Message}";
-                    bitacoraBLL.RegistrarEvento(3, descripcion, usuario._Dni, "MenuPrincipal");
-                }
-
                 MessageBox.Show($"Error: {ex.Message}",
                    "Cambiar Contraseña",
                    MessageBoxButtons.OK,

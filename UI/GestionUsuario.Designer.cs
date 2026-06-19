@@ -59,6 +59,7 @@ namespace UI
             lblDni = new Label();
             btnSalirG = new Button();
             buttonActualizar = new Button();
+            btnGestionarPerfiles = new Button();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             gbFiltrar.SuspendLayout();
@@ -75,7 +76,7 @@ namespace UI
             panelLateral.Controls.Add(btnCrear);
             panelLateral.Location = new Point(12, 60);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(160, 245);
+            panelLateral.Size = new Size(160, 289);
             panelLateral.TabIndex = 4;
             // 
             // btnActDesact
@@ -132,7 +133,7 @@ namespace UI
             dgvUsuarios.BorderStyle = BorderStyle.None;
             dgvUsuarios.Location = new Point(185, 60);
             dgvUsuarios.Name = "dgvUsuarios";
-            dgvUsuarios.Size = new Size(753, 335);
+            dgvUsuarios.Size = new Size(769, 335);
             dgvUsuarios.TabIndex = 3;
             // 
             // lblTitulo
@@ -153,7 +154,7 @@ namespace UI
             gbFiltrar.Controls.Add(rbMostrarActivos);
             gbFiltrar.FlatStyle = FlatStyle.Flat;
             gbFiltrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            gbFiltrar.Location = new Point(245, 410);
+            gbFiltrar.Location = new Point(185, 410);
             gbFiltrar.Name = "gbFiltrar";
             gbFiltrar.Size = new Size(200, 114);
             gbFiltrar.TabIndex = 2;
@@ -205,7 +206,7 @@ namespace UI
             gbDetalles.Controls.Add(txtDni);
             gbDetalles.Controls.Add(lblDni);
             gbDetalles.FlatStyle = FlatStyle.Flat;
-            gbDetalles.Location = new Point(495, 410);
+            gbDetalles.Location = new Point(391, 410);
             gbDetalles.Name = "gbDetalles";
             gbDetalles.Size = new Size(443, 135);
             gbDetalles.TabIndex = 1;
@@ -359,7 +360,7 @@ namespace UI
             // 
             buttonActualizar.BackColor = Color.FromArgb(225, 225, 225);
             buttonActualizar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            buttonActualizar.Location = new Point(28, 324);
+            buttonActualizar.Location = new Point(28, 355);
             buttonActualizar.Name = "buttonActualizar";
             buttonActualizar.Size = new Size(128, 40);
             buttonActualizar.TabIndex = 4;
@@ -367,10 +368,23 @@ namespace UI
             buttonActualizar.UseVisualStyleBackColor = false;
             buttonActualizar.Click += button1_Click;
             // 
+            // btnGestionarPerfiles
+            // 
+            btnGestionarPerfiles.BackColor = Color.FromArgb(225, 225, 225);
+            btnGestionarPerfiles.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnGestionarPerfiles.Location = new Point(843, 505);
+            btnGestionarPerfiles.Name = "btnGestionarPerfiles";
+            btnGestionarPerfiles.Size = new Size(128, 40);
+            btnGestionarPerfiles.TabIndex = 5;
+            btnGestionarPerfiles.Text = "Perfiles";
+            btnGestionarPerfiles.UseVisualStyleBackColor = false;
+            btnGestionarPerfiles.Click += btnGestionarPerfiles_Click;
+            // 
             // GestionUsuario
             // 
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(950, 560);
+            ClientSize = new Size(983, 560);
+            Controls.Add(btnGestionarPerfiles);
             Controls.Add(buttonActualizar);
             Controls.Add(btnSalirG);
             Controls.Add(gbDetalles);
@@ -421,5 +435,6 @@ namespace UI
         private System.Windows.Forms.Button btnCancelarG;
         private RadioButton rbMostrarTodos;
         private Button buttonActualizar;
+        private Button btnGestionarPerfiles;
     }
 }
