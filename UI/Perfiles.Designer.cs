@@ -30,8 +30,8 @@
         {
             TS_Gestion = new ToolStrip();
             toolStripLabel1 = new ToolStripDropDownButton();
-            Perfil_A_Familia = new ToolStripMenuItem();
-            permisoAlPerfilToolStripMenuItem = new ToolStripMenuItem();
+            MenuItem_Familia_A_Perfil = new ToolStripMenuItem();
+            MenuItem_Permiso_A_Familia = new ToolStripMenuItem();
             permisoToolStripMenuItem = new ToolStripMenuItem();
             perfilToolStripMenuItem = new ToolStripMenuItem();
             familiaToolStripMenuItem = new ToolStripMenuItem();
@@ -66,50 +66,50 @@
             TS_Gestion.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel2 });
             TS_Gestion.Location = new Point(0, 0);
             TS_Gestion.Name = "TS_Gestion";
-            TS_Gestion.Size = new Size(1199, 25);
+            TS_Gestion.Size = new Size(1074, 25);
             TS_Gestion.TabIndex = 6;
             TS_Gestion.Text = "TS_Gestion";
             // 
             // toolStripLabel1
             // 
             toolStripLabel1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { Perfil_A_Familia, permisoAlPerfilToolStripMenuItem, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
+            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_Familia_A_Perfil, MenuItem_Permiso_A_Familia, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
             toolStripLabel1.Name = "toolStripLabel1";
             toolStripLabel1.Size = new Size(62, 22);
             toolStripLabel1.Text = "Agregar";
             // 
-            // Perfil_A_Familia
+            // MenuItem_Familia_A_Perfil
             // 
-            Perfil_A_Familia.Name = "Perfil_A_Familia";
-            Perfil_A_Familia.Size = new Size(159, 22);
-            Perfil_A_Familia.Text = "Perfil a Familia";
-            Perfil_A_Familia.Click += Agregar_Perfil_A_Familia;
+            MenuItem_Familia_A_Perfil.Name = "MenuItem_Familia_A_Perfil";
+            MenuItem_Familia_A_Perfil.Size = new Size(180, 22);
+            MenuItem_Familia_A_Perfil.Text = "Familia a Perfil";
+            MenuItem_Familia_A_Perfil.Click += Agregar_Familia_A_Perfil;
             // 
-            // permisoAlPerfilToolStripMenuItem
+            // MenuItem_Permiso_A_Familia
             // 
-            permisoAlPerfilToolStripMenuItem.Name = "permisoAlPerfilToolStripMenuItem";
-            permisoAlPerfilToolStripMenuItem.Size = new Size(159, 22);
-            permisoAlPerfilToolStripMenuItem.Text = "Permiso al perfil";
-            permisoAlPerfilToolStripMenuItem.Click += Agregar_permisoAlPerfil;
+            MenuItem_Permiso_A_Familia.Name = "MenuItem_Permiso_A_Familia";
+            MenuItem_Permiso_A_Familia.Size = new Size(180, 22);
+            MenuItem_Permiso_A_Familia.Text = "Permiso a Familia";
+            MenuItem_Permiso_A_Familia.Click += Agregar_Permiso_A_Familia;
             // 
             // permisoToolStripMenuItem
             // 
             permisoToolStripMenuItem.Name = "permisoToolStripMenuItem";
-            permisoToolStripMenuItem.Size = new Size(159, 22);
+            permisoToolStripMenuItem.Size = new Size(180, 22);
             permisoToolStripMenuItem.Text = "Permiso";
             permisoToolStripMenuItem.Click += Agregar_Permiso;
             // 
             // perfilToolStripMenuItem
             // 
             perfilToolStripMenuItem.Name = "perfilToolStripMenuItem";
-            perfilToolStripMenuItem.Size = new Size(159, 22);
+            perfilToolStripMenuItem.Size = new Size(180, 22);
             perfilToolStripMenuItem.Text = "Perfil";
             perfilToolStripMenuItem.Click += Agregar_Perfil;
             // 
             // familiaToolStripMenuItem
             // 
             familiaToolStripMenuItem.Name = "familiaToolStripMenuItem";
-            familiaToolStripMenuItem.Size = new Size(159, 22);
+            familiaToolStripMenuItem.Size = new Size(180, 22);
             familiaToolStripMenuItem.Text = "Familia";
             familiaToolStripMenuItem.Click += Agregar_Familia;
             // 
@@ -158,7 +158,7 @@
             // dgvPerfiles
             // 
             dgvPerfiles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPerfiles.Location = new Point(292, 76);
+            dgvPerfiles.Location = new Point(470, 72);
             dgvPerfiles.Name = "dgvPerfiles";
             dgvPerfiles.Size = new Size(293, 267);
             dgvPerfiles.TabIndex = 7;
@@ -169,9 +169,9 @@
             panel1.BackColor = Color.FromArgb(143, 188, 153);
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(labelPerfil);
-            panel1.Location = new Point(292, 42);
+            panel1.Location = new Point(470, 38);
             panel1.Name = "panel1";
-            panel1.Size = new Size(293, 28);
+            panel1.Size = new Size(588, 28);
             panel1.TabIndex = 8;
             // 
             // labelPerfil
@@ -179,7 +179,7 @@
             labelPerfil.AutoSize = true;
             labelPerfil.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             labelPerfil.ForeColor = Color.White;
-            labelPerfil.Location = new Point(48, -2);
+            labelPerfil.Location = new Point(192, 0);
             labelPerfil.Name = "labelPerfil";
             labelPerfil.Size = new Size(184, 28);
             labelPerfil.TabIndex = 14;
@@ -188,7 +188,7 @@
             // dgvFamilias
             // 
             dgvFamilias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFamilias.Location = new Point(633, 76);
+            dgvFamilias.Location = new Point(255, 72);
             dgvFamilias.Name = "dgvFamilias";
             dgvFamilias.Size = new Size(184, 271);
             dgvFamilias.TabIndex = 9;
@@ -199,9 +199,9 @@
             panel2.BackColor = Color.FromArgb(143, 188, 153);
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(labelFamilia);
-            panel2.Location = new Point(633, 42);
+            panel2.Location = new Point(255, 38);
             panel2.Name = "panel2";
-            panel2.Size = new Size(479, 28);
+            panel2.Size = new Size(195, 28);
             panel2.TabIndex = 10;
             // 
             // labelFamilia
@@ -209,7 +209,7 @@
             labelFamilia.AutoSize = true;
             labelFamilia.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             labelFamilia.ForeColor = Color.White;
-            labelFamilia.Location = new Point(132, -2);
+            labelFamilia.Location = new Point(3, -1);
             labelFamilia.Name = "labelFamilia";
             labelFamilia.Size = new Size(190, 28);
             labelFamilia.TabIndex = 14;
@@ -230,7 +230,7 @@
             // 
             // Vista_Familia
             // 
-            Vista_Familia.Location = new Point(823, 72);
+            Vista_Familia.Location = new Point(769, 72);
             Vista_Familia.Name = "Vista_Familia";
             Vista_Familia.Size = new Size(289, 271);
             Vista_Familia.TabIndex = 12;
@@ -269,7 +269,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(1199, 396);
+            ClientSize = new Size(1074, 396);
             Controls.Add(panel3);
             Controls.Add(dgvPermisos);
             Controls.Add(Vista_Familia);
@@ -301,8 +301,8 @@
         #endregion
         private ToolStrip TS_Gestion;
         private ToolStripDropDownButton toolStripLabel1;
-        private ToolStripMenuItem Perfil_A_Familia;
-        private ToolStripMenuItem permisoAlPerfilToolStripMenuItem;
+        private ToolStripMenuItem MenuItem_Familia_A_Perfil;
+        private ToolStripMenuItem MenuItem_Permiso_A_Familia;
         private ToolStripDropDownButton toolStripLabel2;
         private ToolStripMenuItem familiaAlPerfilToolStripMenuItem1;
         private ToolStripMenuItem permisoAlPerfilToolStripMenuItem1;

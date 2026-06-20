@@ -55,8 +55,8 @@ namespace DAL.Perfiles
 
             return Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
-
-        public void InsertarPerfilFamilia(int idPerfil , int idFamilia)
+       
+        public void InsertarFamiliaAlPerfi(int idPerfil , int idFamilia)
         {
             string query = $"INSERT INTO {FAMILIA_PERFIL} (ID_Perfil, ID_Familia) " +
                             "VALUES (@idPerfil, @idFamilia)";
@@ -69,7 +69,7 @@ namespace DAL.Perfiles
 
             _conexion.ExecuteNonQuery(query, parametros);
         }
-        public void InsertarPermisoPerfil(int idPerfil, int idPermiso)
+        public void InsertarPermisoAFamilia(int idPerfil, int idPermiso)
         {
             string query = $"INSERT INTO {PERFIL_PERMISO} (ID_Perfil, ID_Permiso) " +
                             "VALUES (@idPerfil, @idPermiso)";
@@ -83,17 +83,6 @@ namespace DAL.Perfiles
             _conexion.ExecuteNonQuery(query, parametros);
         }
 
-        public void InsertarPatenteNueva(string nombrePermiso)
-        {
-            string query = "INSERT INTO Permiso (Nombre) VALUES (@nombre)";
-
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@nombre", nombrePermiso)
-            };
-
-            _conexion.ExecuteNonQuery(query, parametros);
-        }
 
         #endregion
 

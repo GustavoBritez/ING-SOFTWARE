@@ -13,15 +13,14 @@ namespace BLL
         private readonly PerfilDAL _perfilDAL = new();
         private readonly PatenteDAL _patenteDAL = new();
         #region Agregar
-        public void AgregarPerfilAFamilia(int idPerfil, int idFamilia, string nombrePerfil)
+        public void AgregarFamiliaAlPerfil(int idPerfil, int idFamilia, string nombrePerfil)
         {
 
             if (_perfilDAL.ExisteRelacionFamiliaPerfil(idPerfil, idFamilia))
             {
-                throw new ArgumentException($"El perfil '{nombrePerfil}' ya existe en esta familia.");
+                throw new ArgumentException($"La familia'{nombrePerfil}' ya existe en esta familia.");
             }
-
-            _perfilDAL.InsertarPerfilFamilia(idPerfil, idFamilia);
+            _perfilDAL.InsertarFamiliaAlPerfi(idPerfil, idFamilia);
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -29,17 +28,17 @@ namespace BLL
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
 
-        public void AgregarPermisoAPerfil(int idPerfil, int idPermiso, string nombrePermiso)
+        public void AgregarPermisoAFamilia(int idPerfil, int idPermiso, string nombrePermiso)
         {
             // 1. Validamos usando el nuevo método de la DAL
             if (_perfilDAL.ExisteRelacionPermisoPerfil(idPerfil, idPermiso))
             {
                 // Disparamos la excepción con el texto exacto
-                throw new ArgumentException($"El permiso '{nombrePermiso}' ya existe en este perfil.");
+                throw new ArgumentException($"El permiso '{nombrePermiso}' ya existe en esta familia.");
             }
 
             // 2. Si no existe, procedemos a vincularlo
-            _perfilDAL.InsertarPermisoPerfil(idPerfil, idPermiso);
+            _perfilDAL.InsertarPermisoAFamilia(idPerfil, idPermiso);
 
             // 3. Registro en Bitácora
             EventoBLL bitacoraBLL = new();

@@ -66,6 +66,7 @@ namespace DAL.Perfiles
 
             return familiaArmada;
         }
+
         public void InsertarFamiliaNueva(string nombreFamilia)
         {
             string query = "INSERT INTO Familia (Nombre) VALUES (@nombre)";
@@ -76,6 +77,7 @@ namespace DAL.Perfiles
 
             _conexion.ExecuteNonQuery(query, parametros);
         }
+
         public List<string> ObtenerPerfilesDeFamilia(int idFamilia)
         {
             List<string> nombresPerfiles = new List<string>();
@@ -98,6 +100,27 @@ namespace DAL.Perfiles
             }
 
             return nombresPerfiles;
+        }
+
+        public bool ExisteRelacionPermisoFamilia(int idFamilia, int idPermiso)
+        {
+            string query = "SELECT COUNT(1) FROM Permiso_Familia WHERE ID_Familia = @idFam AND ID_Permiso = @idPerm";
+            SqlParameter[] param = {
+                new SqlParameter("@idFam", idFamilia),
+                new SqlParameter("@idPerm", idPermiso)
+            };
+            DataTable dt = _conexion.ExecuteReader(query, param);
+            return Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
+
+        public void InsertarPermisoFamilia(int idFamilia, int idPermiso)
+        {
+            string query = "INSERT INTO Permiso_Familia (ID_Familia, ID_Permiso) VALUES (@idFam, @idPerm)";
+            SqlParameter[] param = {
+                new SqlParameter("@idFam", idFamilia),
+                new SqlParameter("@idPerm", idPermiso)
+            };
+            _conexion.ExecuteNonQuery(query, param);
         }
     }
 }

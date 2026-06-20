@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Perfiles : Form,IIdiomaObserver
+    public partial class Perfiles : Form, IIdiomaObserver
     {
         private FamiliaBLL _familiaBLL;
         private PatenteBLL _patenteBLL;
@@ -104,80 +104,57 @@ namespace UI
         }
 
         #region Arbol visual
-        private void MostrarArbolPerfilEnTreeView(int idPerfilSeleccionado)
+        private void MostrarArbolEnTreeView_Perfil(int idPerfilSeleccionado)
         {
             try
             {
                 Vista_Familia.Nodes.Clear();
 
+                // 1. Buscamos el perfil y todo lo que tiene asignado
                 FamiliaServices perfilRaiz = _perfilBLL.ObtenerArbolPerfil(idPerfilSeleccionado);
-
                 if (perfilRaiz == null) return;
 
+                // 2. Creamos el nodo principal
                 TreeNode nodoRaiz = new TreeNode("👤 Perfil: " + perfilRaiz.Nombre);
                 nodoRaiz.Tag = perfilRaiz.Id;
 
+                // 3. Dibujamos las familias y permisos que cuelgan de este perfil
                 DibujarNodosFamiliasRecursivo(perfilRaiz, nodoRaiz);
 
+                // 4. Mostramos en pantalla
                 Vista_Familia.Nodes.Add(nodoRaiz);
                 Vista_Familia.ExpandAll();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al graficar el árbol del perfil: " + ex.Message, "Error");
+                MessageBox.Show("Error al graficar el árbol del perfil: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void MostrarArbolEnTreeView(int idFamiliaSeleccionada)
+        private void MostrarArbolEnTreeView_Familia(int idFamiliaSeleccionada)
         {
             try
             {
                 Vista_Familia.Nodes.Clear();
 
-
+                // 1. Buscamos la familia y sus componentes en la BLL
                 FamiliaServices familiaRaiz = _familiaBLL.ObtenerArbolFamiliar(idFamiliaSeleccionada);
                 if (familiaRaiz == null) return;
 
-
+                // 2. Creamos el nodo principal
                 TreeNode nodoRaiz = new TreeNode("📦 Familia: " + familiaRaiz.Nombre);
                 nodoRaiz.Tag = familiaRaiz.Id;
 
+                // 3. Dibujamos directamente los permisos y subfamilias que tiene adentro
+                DibujarNodosFamiliasRecursivo(familiaRaiz, nodoRaiz);
 
-                TreeNode nodoPerfiles = new TreeNode("👥 Perfiles que usa esta familia");
-
-                List<string> perfilesAsignados = _familiaBLL.ObtenerPerfilesDeFamilia(idFamiliaSeleccionada);
-
-                if (perfilesAsignados.Count > 0)
-                {
-                    foreach (string nombrePerfil in perfilesAsignados)
-                    {
-                        nodoPerfiles.Nodes.Add(new TreeNode("👤 " + nombrePerfil));
-                    }
-                }
-                else
-                {
-                    nodoPerfiles.Nodes.Add(new TreeNode("⚠️ No está asignada a ningún perfil"));
-                }
-
-                nodoRaiz.Nodes.Add(nodoPerfiles);
-
-                // =========================================================
-                // RAMA B: EL COMPOSITE ORIGINAL (Top-Down)
-                // =========================================================
-                TreeNode nodoContenido = new TreeNode("⚙️ Contenido Interno (Hijos)");
-
-                // Usamos tu método recursivo pero colgándolo de esta nueva sub-rama
-                DibujarNodosFamiliasRecursivo(familiaRaiz, nodoContenido);
-
-                nodoRaiz.Nodes.Add(nodoContenido);
-
-                // 3. Dibujamos todo en pantalla
+                // 4. Mostramos en pantalla
                 Vista_Familia.Nodes.Add(nodoRaiz);
                 Vista_Familia.ExpandAll();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al graficar el árbol: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al graficar el árbol de la familia: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -211,7 +188,7 @@ namespace UI
             {
                 int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
 
-                MostrarArbolEnTreeView(idFamilia);
+                MostrarArbolEnTreeView_Familia(idFamilia);
             }
         }
 
@@ -221,7 +198,7 @@ namespace UI
             {
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
 
-                MostrarArbolPerfilEnTreeView(idPerfil);
+                MostrarArbolEnTreeView_Perfil(idPerfil);
             }
         }
         #endregion
@@ -310,11 +287,12 @@ namespace UI
         #endregion Eliminar
 
         #region Agregar
-
-        private void Agregar_Perfil_A_Familia(object sender, EventArgs e)
+        /// Cambiar
+        private void Agregar_Familia_A_Perfil(object sender, EventArgs e)
         {
             try
             {
+                // 1. Validamos que haya selecciones en ambas grillas
                 if (dgvPerfiles.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un Perfil de la grilla izquierda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -327,64 +305,72 @@ namespace UI
                     return;
                 }
 
+                // 2. Extraemos los IDs de las celdas seleccionadas
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
 
+                // Extraemos el nombre del perfil para pasarlo a la validación de la BLL que ya tenés armada
                 string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
 
-                _perfilBLL.AgregarPerfilAFamilia(idPerfil, idFamilia, nombrePerfil);
-
+                // 3. Llamamos al método de la capa de negocio (reutilizamos el que ya existe)
+                _perfilBLL.AgregarFamiliaAlPerfil(idPerfil, idFamilia, nombrePerfil);
+                // 4. Avisamos al usuario y refrescamos la vista
                 MessageBox.Show("¡Familia asignada al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
+                // Atrapa tu validación personalizada si la relación ya existe
                 MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
+                // Atrapa cualquier otro error inesperado (como caídas de red o base de datos)
                 MessageBox.Show("Error al asignar la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void Agregar_permisoAlPerfil(object sender, EventArgs e)
+        private void Agregar_Permiso_A_Familia(object sender, EventArgs e)
         {
             try
             {
-                if (dgvPerfiles.CurrentRow == null)
+                // 1. Cambiamos a la grilla de FAMILIAS (Centro)
+                if (dgvFamilias.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Perfil de la grilla izquierda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor, seleccione una Familia de la grilla central.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // 2. Grilla de PERMISOS (Derecha)
                 if (dgvPermisos.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
+                // 3. Extraemos los IDs y nombres correctos
+                int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
                 int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
 
-                // Extraemos el NOMBRE del permiso para mostrarlo en el error
                 string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+                string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString();
 
-                // Le pasamos los 3 parámetros a la BLL
-                _perfilBLL.AgregarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso);
+                // 4. Llamamos al método correcto en la BLL de Familias
+                _familiaBLL.AgregarPermisoAFamilia(idFamilia, idPermiso, nombrePermiso, nombreFamilia);
 
-                MessageBox.Show("¡Permiso asignado al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("¡Permiso asignado a la familia con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
-                // Acá atrapa y muestra: "El permiso 'x' ya existe en este perfil."
                 MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al asignar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al asignar el permiso a la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void Agregar_Permiso(object sender, EventArgs e)
         {
@@ -604,6 +590,24 @@ namespace UI
 
         }
 
+
+
+        private void TraducirToolStrip(ToolStripItemCollection items)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                string traduccion = idiomaBLL.Traducir(item.Name);
+
+                if (traduccion != item.Name)
+                    item.Text = traduccion;
+
+                if (item is ToolStripDropDownItem dropDown)
+                {
+                    TraducirToolStrip(dropDown.DropDownItems);
+                }
+            }
+        }
+        #region Idioma
         public void ActualizarIdioma()
         {
             if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
@@ -631,20 +635,6 @@ namespace UI
                     Traducir(control.Controls);
             }
         }
-        private void TraducirToolStrip(ToolStripItemCollection items)
-        {
-            foreach (ToolStripItem item in items)
-            {
-                string traduccion = idiomaBLL.Traducir(item.Name);
-
-                if (traduccion != item.Name)
-                    item.Text = traduccion;
-
-                if (item is ToolStripDropDownItem dropDown)
-                {
-                    TraducirToolStrip(dropDown.DropDownItems);
-                }
-            }
-        }
+        #endregion
     }
 }

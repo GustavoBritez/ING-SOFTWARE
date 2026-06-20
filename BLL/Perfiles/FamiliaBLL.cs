@@ -47,9 +47,25 @@ namespace BLL.Perfiles
             string descripcion = $"Creacion Familia";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
+
         public List<string> ObtenerPerfilesDeFamilia(int idFamilia)
         {
             return _familiaDAL.ObtenerPerfilesDeFamilia(idFamilia);
+        }
+
+        public void AgregarPermisoAFamilia(int idFamilia, int idPermiso, string nombrePermiso, string nombreFamilia)
+        {
+            if (_familiaDAL.ExisteRelacionPermisoFamilia(idFamilia, idPermiso))
+            {
+                throw new ArgumentException($"El permiso '{nombrePermiso}' ya se encuentra dentro de la familia '{nombreFamilia}'.");
+            }
+
+            _familiaDAL.InsertarPermisoFamilia(idFamilia, idPermiso);
+
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Asignar Permiso '{nombrePermiso}' a Familia '{nombreFamilia}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
         }
     }
     
