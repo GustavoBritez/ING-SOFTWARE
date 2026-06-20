@@ -47,7 +47,7 @@ namespace BLL
             string descripcion = $"Asignar Permiso a Perfil";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
-
+        //aasdad
         public void CrearNuevoPermiso(string nombrePermiso)
         {
             if (string.IsNullOrWhiteSpace(nombrePermiso))
