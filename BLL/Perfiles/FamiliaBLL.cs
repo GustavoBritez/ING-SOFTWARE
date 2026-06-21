@@ -20,15 +20,20 @@ namespace BLL.Perfiles
         {
             if (string.IsNullOrWhiteSpace(nombreFamilia))
             {
-                throw new ArgumentException("ERROR: El nombre de la familia no puede estar vacío.");
+                throw new ArgumentException("El nombre de la familia no puede estar vacío.");
             }
 
-            _familiaDAL.InsertarFamiliaNueva(nombreFamilia);
+            if (_familiaDAL.ExisteFamiliaPorNombre(nombreFamilia))
+            {
+                throw new ArgumentException($"Ya existe una familia registrada con el nombre '{nombreFamilia}'. Por favor, elija un nombre diferente.");
+            }
+
+            _familiaDAL.InsertarFamiliaNueva(nombreFamilia); 
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Creacion Familia";
-            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
+            string descripcion = $"Creación de nueva Familia: '{nombreFamilia}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
         }
 
         public void AgregarFamiliaAPerfil(int idPerfil, int idFamilia)

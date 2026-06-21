@@ -30,35 +30,16 @@ namespace BLL
 
         public void AgregarPermisoAFamilia(int idPerfil, int idPermiso, string nombrePermiso)
         {
-            // 1. Validamos usando el nuevo método de la DAL
             if (_perfilDAL.ExisteRelacionPermisoPerfil(idPerfil, idPermiso))
             {
-                // Disparamos la excepción con el texto exacto
                 throw new ArgumentException($"El permiso '{nombrePermiso}' ya existe en esta familia.");
             }
 
-            // 2. Si no existe, procedemos a vincularlo
             _perfilDAL.InsertarPermisoAFamilia(idPerfil, idPermiso);
 
-            // 3. Registro en Bitácora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Asignar Permiso a Perfil";
-            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
-        }
-        //aasdad
-        public void CrearNuevoPermiso(string nombrePermiso)
-        {
-            if (string.IsNullOrWhiteSpace(nombrePermiso))
-            {
-                throw new ArgumentException("ERROR: El nombre del permiso no puede estar vacío.");
-            }
-
-            _patenteDAL.InsertarPatenteNueva(nombrePermiso);
-
-            EventoBLL bitacoraBLL = new();
-            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Creacion Permiso";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
         #endregion 
@@ -137,23 +118,23 @@ namespace BLL
         }
         #endregion
 
-        private bool TienePermisoDuplicado(int idPerfil, int idPermiso)
-        {
-            return false;
-        }
-
         public void CrearNuevoPerfil(string nombrePerfil)
         {
             if (string.IsNullOrWhiteSpace(nombrePerfil))
             {
-                throw new ArgumentException("ERROR: El nombre del perfil no puede estar vacío.");
+                throw new ArgumentException("El nombre del perfil no puede estar vacío.");
+            }
+
+            if (_perfilDAL.ExistePerfilPorNombre(nombrePerfil))
+            {
+                throw new ArgumentException($"Ya existe un perfil registrado con el nombre '{nombrePerfil}'. Por favor, elija un nombre diferente.");
             }
 
             _perfilDAL.InsertarPerfilNuevo(nombrePerfil);
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Creacion Perfil";
+            string descripcion = $"Creación de nuevo Perfil: '{nombrePerfil}'";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
 

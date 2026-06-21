@@ -232,6 +232,26 @@ namespace DAL.Perfiles
 
             return perfilArmado;
         }
+
+        public bool ExistePerfilPorNombre(string nombrePerfil)
+        {
+            // Buscamos coincidencias en la tabla Perfil
+            string query = "SELECT COUNT(1) FROM Perfil WHERE Nombre = @nombre";
+
+            SqlParameter[] param = {
+                new SqlParameter("@nombre", nombrePerfil)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            // Validación defensiva
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+
+            return false;
+        }
         #endregion
     }
 }

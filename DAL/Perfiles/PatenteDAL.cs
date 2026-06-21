@@ -55,7 +55,25 @@ namespace DAL.Perfiles
             };
             _conexion.ExecuteNonQuery(query, parametros);
         }
+        public bool ExistePermisoPorNombre(string nombrePermiso)
+        {
+            // Buscamos si ya hay un permiso con exactamente ese mismo nombre
+            string query = "SELECT COUNT(1) FROM Permiso WHERE Nombre = @nombre";
 
+            SqlParameter[] param = {
+                        new  SqlParameter("@nombre", nombrePermiso)
+                        };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            // Validamos que no venga vacío (nuestra clásica programación defensiva)
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+
+            return false;
+        }
         public List<Perfil> ObtenerFamiliasPerfil()
         {
             List<Perfil> lista = new();
@@ -105,6 +123,7 @@ namespace DAL.Perfiles
             };
             _conexion.ExecuteNonQuery(query, parametros);
         }
+
         public void EliminarPermisoDefinitivo(int idPermiso)
         {
             // 1. Lo quitamos de todos los Perfiles que lo estén usando

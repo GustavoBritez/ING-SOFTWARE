@@ -113,6 +113,26 @@ namespace DAL.Perfiles
             return Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
 
+        public bool ExisteFamiliaPorNombre(string nombreFamilia)
+        {
+            // Buscamos si hay coincidencias exactas en la tabla Familia
+            string query = "SELECT COUNT(1) FROM Familia WHERE Nombre = @nombre";
+
+            SqlParameter[] param = {
+                new SqlParameter("@nombre", nombreFamilia)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            // Validación defensiva para evitar el error de posición 0
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+
+            return false;
+        }
+
         public void InsertarPermisoFamilia(int idFamilia, int idPermiso)
         {
             string query = "INSERT INTO Permiso_Familia (ID_Familia, ID_Permiso) VALUES (@idFam, @idPerm)";
@@ -135,21 +155,19 @@ namespace DAL.Perfiles
 
             _conexion.ExecuteNonQuery(query, param);
         }
+
         public void EliminarFamilia(int idFamilia)
         {
-            // 1. La desvinculamos de todos los Perfiles que la estén usando
             string queryPerfiles = "DELETE FROM Familia_Perfil WHERE ID_Familia = @id";
-            Microsoft.Data.SqlClient.SqlParameter[] paramPerfiles = { new Microsoft.Data.SqlClient.SqlParameter("@id", idFamilia) };
+            SqlParameter[] paramPerfiles = { new SqlParameter("@id", idFamilia) };
             _conexion.ExecuteNonQuery(queryPerfiles, paramPerfiles);
 
-            // 2. La vaciamos (borramos sus relaciones con los Permisos internos)
             string queryPermisos = "DELETE FROM Permiso_Familia WHERE ID_Familia = @id";
-            Microsoft.Data.SqlClient.SqlParameter[] paramPermisos = { new Microsoft.Data.SqlClient.SqlParameter("@id", idFamilia) };
+            SqlParameter[] paramPermisos = { new SqlParameter("@id", idFamilia) };
             _conexion.ExecuteNonQuery(queryPermisos, paramPermisos);
 
-            // 3. Ahora que está "huérfana" y vacía, la eliminamos por completo del sistema
             string queryFamilia = "DELETE FROM Familia WHERE ID_Familia = @id";
-            Microsoft.Data.SqlClient.SqlParameter[] paramFamilia = { new Microsoft.Data.SqlClient.SqlParameter("@id", idFamilia) };
+            SqlParameter[] paramFamilia = { new SqlParameter("@id", idFamilia) };
             _conexion.ExecuteNonQuery(queryFamilia, paramFamilia);
         }
     }

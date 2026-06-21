@@ -22,19 +22,25 @@ namespace BLL.Perfiles
         {
             _patenteDAL.EliminarPermisoPerfil(idPerfil, idPermiso);
         }
+        //uso este, es el bueno
         public void CrearNuevoPermiso(string nombrePermiso)
         {
             if (string.IsNullOrWhiteSpace(nombrePermiso))
             {
-                throw new ArgumentException("ERROR: El nombre del permiso no puede estar vacío.");
+                throw new ArgumentException("El nombre del permiso no puede estar vacío.");
+            }
+
+            if (_patenteDAL.ExistePermisoPorNombre(nombrePermiso))
+            {
+                throw new ArgumentException($"Ya existe un permiso registrado con el nombre '{nombrePermiso}'. Por favor, elija un nombre diferente.");
             }
 
             _patenteDAL.InsertarPatenteNueva(nombrePermiso);
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Crear Permiso";
-            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
+            string descripcion = $"Creación de nuevo Permiso: '{nombrePermiso}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
         public List<Perfil> ObtenerComponentesTotales() => _patenteDAL.ObtenerComponentesTotales();
         public List<Perfil> ObtenerPermisosPerfil() => _patenteDAL.ObtenerPermisosPerfil();
@@ -51,5 +57,7 @@ namespace BLL.Perfiles
             string descripcion = $"Eliminacion Permiso";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
+
+        
     }
 }
