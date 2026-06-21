@@ -21,7 +21,7 @@ namespace UI
         private EventoBLL bitacoraBLL = new EventoBLL();
         private string _modoActual = "";
         private UsuarioBE _usuarioEnModificacion = null;
-        private PerfilBLL perfil = new();
+        private PerfilBLL perfilBLL = new();
         private IdiomaBLL idiomaBLL = new IdiomaBLL();
 
         public GestionUsuario()
@@ -31,20 +31,11 @@ namespace UI
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
 
-
-            List<string> perfilesCargados = new();
-            foreach ( Perfil pe in perfil.ObtenerPerfiles())
+            foreach ( Perfil pe in perfilBLL.ObtenerPerfiles())
             {
                 cmbRol.Items.Add(pe.Nombre);
             }
 
-            /*cmbRol.Items.Add("Usuario");
-            cmbRol.Items.Add("Administrador");
-            cmbRol.Items.Add("Recepcionista");
-            cmbRol.Items.Add("Medico");
-            cmbRol.Items.Add("Nutricionista");
-            cmbRol.SelectedIndex = 0;
-            */
             GestionUsuarios_Load(null, null);
             dgvUsuarios.SelectionChanged += DgvUsuarios_SelectionChanged;
 

@@ -122,5 +122,35 @@ namespace DAL.Perfiles
             };
             _conexion.ExecuteNonQuery(query, param);
         }
+
+        public void EliminarPermisoFamilia(int idFamilia, int idPermiso)
+        {
+            // Borramos de la tabla puente específica de las Familias
+            string query = "DELETE FROM Permiso_Familia WHERE ID_Familia = @idFam AND ID_Permiso = @idPerm";
+
+            SqlParameter[] param = {
+                new SqlParameter("@idFam", idFamilia),
+                new SqlParameter("@idPerm", idPermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, param);
+        }
+        public void EliminarFamilia(int idFamilia)
+        {
+            // 1. La desvinculamos de todos los Perfiles que la estén usando
+            string queryPerfiles = "DELETE FROM Familia_Perfil WHERE ID_Familia = @id";
+            Microsoft.Data.SqlClient.SqlParameter[] paramPerfiles = { new Microsoft.Data.SqlClient.SqlParameter("@id", idFamilia) };
+            _conexion.ExecuteNonQuery(queryPerfiles, paramPerfiles);
+
+            // 2. La vaciamos (borramos sus relaciones con los Permisos internos)
+            string queryPermisos = "DELETE FROM Permiso_Familia WHERE ID_Familia = @id";
+            Microsoft.Data.SqlClient.SqlParameter[] paramPermisos = { new Microsoft.Data.SqlClient.SqlParameter("@id", idFamilia) };
+            _conexion.ExecuteNonQuery(queryPermisos, paramPermisos);
+
+            // 3. Ahora que está "huérfana" y vacía, la eliminamos por completo del sistema
+            string queryFamilia = "DELETE FROM Familia WHERE ID_Familia = @id";
+            Microsoft.Data.SqlClient.SqlParameter[] paramFamilia = { new Microsoft.Data.SqlClient.SqlParameter("@id", idFamilia) };
+            _conexion.ExecuteNonQuery(queryFamilia, paramFamilia);
+        }
     }
 }

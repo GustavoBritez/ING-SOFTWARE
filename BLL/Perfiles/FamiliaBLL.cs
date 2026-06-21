@@ -16,23 +16,6 @@ namespace BLL.Perfiles
 
         public FamiliaBLL( ) { }
 
-        public void AgregarFamiliaAPerfil(int idPerfil, int idFamilia)
-        {
-            _patenteDAL.InsertarFamiliaPerfil(idPerfil, idFamilia);
-        }
-
-        public void EliminarFamiliaPerfil(int idPerfil, int idFamilia)
-        {
-            _patenteDAL.EliminarFamiliaPerfil(idPerfil, idFamilia);
-        }
-
-        public FamiliaServices ObtenerArbolFamiliar(int idFamiliaRaiz)
-        {
-            return _familiaDAL.ObtenerArbolFamiliar(idFamiliaRaiz);
-        }
-
-        public List<Perfil> ObtenerFamiliasPerfil() => _patenteDAL.ObtenerFamiliasPerfil();
-
         public void CrearNuevaFamilia(string nombreFamilia)
         {
             if (string.IsNullOrWhiteSpace(nombreFamilia))
@@ -48,9 +31,27 @@ namespace BLL.Perfiles
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
         }
 
-        public List<string> ObtenerPerfilesDeFamilia(int idFamilia)
+        public void AgregarFamiliaAPerfil(int idPerfil, int idFamilia)
         {
-            return _familiaDAL.ObtenerPerfilesDeFamilia(idFamilia);
+            _patenteDAL.InsertarFamiliaPerfil(idPerfil, idFamilia);
+        }
+
+        public void EliminarPermisoFamilia(int idFamilia, int idPermiso, string nombreFamilia, string nombrePermiso)
+        {
+            // 1. Validamos que exista la relación usando el método ExisteRelacionPermisoFamilia que armamos en el paso anterior
+            if (!_familiaDAL.ExisteRelacionPermisoFamilia(idFamilia, idPermiso))
+            {
+                throw new ArgumentException($"El permiso '{nombrePermiso}' no se encuentra asignado a la familia '{nombreFamilia}'.");
+            }
+
+            // 2. Si existe, lo borramos
+            _familiaDAL.EliminarPermisoFamilia(idFamilia, idPermiso);
+
+            // 3. Bitácora
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Desvincular Permiso '{nombrePermiso}' de Familia '{nombreFamilia}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
         }
 
         public void AgregarPermisoAFamilia(int idFamilia, int idPermiso, string nombrePermiso, string nombreFamilia)
@@ -65,6 +66,25 @@ namespace BLL.Perfiles
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Asignar Permiso '{nombrePermiso}' a Familia '{nombreFamilia}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
+        }
+
+        public FamiliaServices ObtenerArbolFamiliar(int idFamiliaRaiz)
+        {
+            return _familiaDAL.ObtenerArbolFamiliar(idFamiliaRaiz);
+        }
+
+        public List<Perfil> ObtenerFamiliasPerfil() => _patenteDAL.ObtenerFamiliasPerfil();
+       
+        public void EliminarFamilia(int idFamilia, string nombreFamilia)
+        {
+            // Ejecutamos el borrado en cascada
+            _familiaDAL.EliminarFamilia(idFamilia);
+
+            // Dejamos registro en la bitácora
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Eliminación en cascada de la Familia: '{nombreFamilia}'";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
         }
     }
