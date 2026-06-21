@@ -41,6 +41,31 @@ namespace BLL.Perfiles
             _patenteDAL.InsertarFamiliaPerfil(idPerfil, idFamilia);
         }
 
+        public void AgregarFamiliaAFamilia(int idFamiliaPadre, int idFamiliaHija, string nombrePadre, string nombreHija)
+        {
+            if (idFamiliaPadre == idFamiliaHija)
+            {
+                throw new ArgumentException("Error de recursividad: Una familia no puede contenerse a sí misma.");
+            }
+
+            if (_familiaDAL.ExisteRelacionFamiliaFamilia(idFamiliaPadre, idFamiliaHija))
+            {
+                throw new ArgumentException($"La familia '{nombreHija}' ya se encuentra dentro de la familia '{nombrePadre}'.");
+            }
+
+            if (_familiaDAL.ExisteRelacionFamiliaFamilia(idFamiliaHija, idFamiliaPadre))
+            {
+                throw new ArgumentException($"Bucle detectado: No puede agregar '{nombreHija}' dentro de '{nombrePadre}' porque '{nombrePadre}' ya está adentro de '{nombreHija}'.");
+            }
+
+            _familiaDAL.InsertarFamiliaAFamilia(idFamiliaPadre, idFamiliaHija);
+
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Familia '{nombreHija}' asignada como hija de Familia '{nombrePadre}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
+        }
+
         public void EliminarPermisoFamilia(int idFamilia, int idPermiso, string nombreFamilia, string nombrePermiso)
         {
             // 1. Validamos que exista la relación usando el método ExisteRelacionPermisoFamilia que armamos en el paso anterior
@@ -56,6 +81,36 @@ namespace BLL.Perfiles
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Desvincular Permiso '{nombrePermiso}' de Familia '{nombreFamilia}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
+        }
+
+        public void EliminarFamiliaDeFamilia(int idFamiliaPadre, int idFamiliaHija, string nombrePadre, string nombreHija)
+        {
+            // 1. Validamos defensivamente que exista el vínculo antes de intentar borrarlo
+            if (!_familiaDAL.ExisteRelacionFamiliaFamilia(idFamiliaPadre, idFamiliaHija))
+            {
+                throw new ArgumentException($"No se puede desvincular: La familia '{nombreHija}' no se encuentra asignada dentro de '{nombrePadre}'.");
+            }
+
+            // 2. Si la relación existe, procedemos al borrado
+            _familiaDAL.EliminarFamiliaDeFamilia(idFamiliaPadre, idFamiliaHija);
+
+            // 3. Registramos la acción en la Bitácora
+            EventoBLL bitacoraBLL = new EventoBLL();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Desvincular Familia '{nombreHija}' de la Familia Padre '{nombrePadre}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
+        }
+
+        public void EliminarFamilia(int idFamilia, string nombreFamilia)
+        {
+            // Ejecutamos el borrado en cascada
+            _familiaDAL.EliminarFamilia(idFamilia);
+
+            // Dejamos registro en la bitácora
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Eliminación en cascada de la Familia: '{nombreFamilia}'";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
         }
 
@@ -80,18 +135,19 @@ namespace BLL.Perfiles
         }
 
         public List<Perfil> ObtenerFamiliasPerfil() => _patenteDAL.ObtenerFamiliasPerfil();
-       
-        public void EliminarFamilia(int idFamilia, string nombreFamilia)
-        {
-            // Ejecutamos el borrado en cascada
-            _familiaDAL.EliminarFamilia(idFamilia);
 
-            // Dejamos registro en la bitácora
-            EventoBLL bitacoraBLL = new();
-            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Eliminación en cascada de la Familia: '{nombreFamilia}'";
-            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Familia");
+        public List<FamiliaServices> ObtenerTodasLasFamilias()
+        {
+            try
+            {
+                return _familiaDAL.ObtenerTodasLasFamilias();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de familias: " + ex.Message);
+            }
         }
+
     }
     
 }

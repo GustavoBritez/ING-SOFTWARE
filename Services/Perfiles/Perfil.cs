@@ -16,6 +16,10 @@ namespace Services.Perfiles
             this.Nombre = nombre;
         }
 
+        protected Perfil()
+        {
+        }
+
         public abstract bool EsCompuesto();
     }
 }

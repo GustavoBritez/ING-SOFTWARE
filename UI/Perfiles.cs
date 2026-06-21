@@ -204,7 +204,7 @@ namespace UI
         #endregion
 
         #region Eliminar
-        
+
 
         private void Eliminar_Permiso_A_Familia_Click(object sender, EventArgs e)
         {
@@ -588,12 +588,6 @@ namespace UI
             #endregion
 
         }
-
-
-
-
-
-
         #region Idioma
         private void TraducirToolStrip(ToolStripItemCollection items)
         {
@@ -639,6 +633,123 @@ namespace UI
         }
         #endregion
 
+        private void familiaAFamiliaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void Eliminar_Familia_A_Perfil_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Validamos que haya selecciones en Izquierda (Perfil) y Centro (Familia)
+                if (dgvPerfiles.CurrentRow == null || dgvFamilias.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione el Perfil de la izquierda y la Familia central que desea desvincular.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. Extraemos los IDs
+                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
+                int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
+
+                // 3. Extraemos los nombres para el cartel de confirmación
+                string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
+                string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                // 4. Pedimos confirmación
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Está seguro que desea quitar la familia '{nombreFamilia}' del perfil '{nombrePerfil}'?",
+                    "Confirmar desvinculación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // 5. Llamamos a la BLL
+                    _perfilBLL.EliminarFamiliaDePerfil(idPerfil, idFamilia, nombrePerfil, nombreFamilia);
+
+                    MessageBox.Show("Familia desvinculada del perfil con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarGrillas();
+                }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al desvincular la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RelacionFamilia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FrmSeleccionarFamilia frmPopup = new FrmSeleccionarFamilia())
+                {
+                    if (frmPopup.ShowDialog() == DialogResult.OK)
+                    {
+                        int idFamiliaHija = frmPopup.IdFamiliaOrigen;
+                        int idFamiliaPadre = frmPopup.IdFamiliaDestino;
+
+                        string nombreHija = frmPopup.NombreFamiliaOrigen;
+                        string nombrePadre = frmPopup.NombreFamiliaDestino;
+
+                        // Evaluamos qué botón presionó el usuario en el popup
+                        if (frmPopup.EsVinculacion)
+                        {
+                            // Si EsVinculacion es TRUE, apretó "Vincular"
+                            _familiaBLL.AgregarFamiliaAFamilia(idFamiliaPadre, idFamiliaHija, nombrePadre, nombreHija);
+                            MessageBox.Show($"¡La familia '{nombreHija}' ahora forma parte de '{nombrePadre}' con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            // Si EsVinculacion es FALSE, apretó "Desvincular"
+                            _familiaBLL.EliminarFamiliaDeFamilia(idFamiliaPadre, idFamiliaHija, nombrePadre, nombreHija);
+                            MessageBox.Show($"Se desvinculó '{nombreHija}' de la familia '{nombrePadre}'.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                        CargarGrillas();
+                    }
+                }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al gestionar la relación de familias: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private void RelacionFamilia_MouseMove(object sender, MouseEventArgs e)
+        {
+            RelacionFamilia.BackColor = Color.FromArgb(200, 220, 205);
+        }
+
+        private void RelacionFamilia_MouseEnter(object sender, EventArgs e)
+        {
+            RelacionFamilia.BackColor = Color.FromArgb(200, 220, 205);
+
+            // (Opcional) Si tu texto es blanco, quizás sobre el verde claro no se lea bien. 
+            // Podés forzar que la letra se ponga negra al pasar el mouse:
+            // RelacionFamilia.ForeColor = Color.Black; 
+        }
+
+        // 2. Cuando el mouse sale, lo devolvemos a la normalidad
+        private void RelacionFamilia_MouseLeave(object sender, EventArgs e)
+        {
+            RelacionFamilia.Font = new Font(RelacionFamilia.Font, FontStyle.Bold);
+        }
+
+        private void RelacionFamilia_MouseHover(object sender, EventArgs e)
+        {
+            RelacionFamilia.Font = new Font(RelacionFamilia.Font, FontStyle.Regular);
+        }
     }
 }

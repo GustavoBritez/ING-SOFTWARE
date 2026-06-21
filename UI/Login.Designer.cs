@@ -198,6 +198,7 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sistema NutriEvolve";
+            Load += Login_Load;
             panelIzquierdo.ResumeLayout(false);
             panelIzquierdo.PerformLayout();
             panelLogin.ResumeLayout(false);

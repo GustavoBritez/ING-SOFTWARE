@@ -41,6 +41,7 @@
             permisoToolStripMenuItem1 = new ToolStripMenuItem();
             perfilToolStripMenuItem1 = new ToolStripMenuItem();
             familiaToolStripMenuItem1 = new ToolStripMenuItem();
+            RelacionFamilia = new ToolStripLabel();
             dgvPerfiles = new DataGridView();
             panel1 = new Panel();
             labelPerfil = new Label();
@@ -52,8 +53,6 @@
             dgvPermisos = new DataGridView();
             panel3 = new Panel();
             labelPermiso = new Label();
-            familiaAFamiliaToolStripMenuItem = new ToolStripMenuItem();
-            familiaAFamiliaToolStripMenuItem1 = new ToolStripMenuItem();
             TS_Gestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPerfiles).BeginInit();
             panel1.SuspendLayout();
@@ -65,7 +64,7 @@
             // 
             // TS_Gestion
             // 
-            TS_Gestion.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel2 });
+            TS_Gestion.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripLabel2, RelacionFamilia });
             TS_Gestion.Location = new Point(0, 0);
             TS_Gestion.Name = "TS_Gestion";
             TS_Gestion.Size = new Size(1074, 25);
@@ -75,7 +74,7 @@
             // toolStripLabel1
             // 
             toolStripLabel1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_Familia_A_Perfil, familiaAFamiliaToolStripMenuItem, MenuItem_Permiso_A_Familia, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
+            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_Familia_A_Perfil, MenuItem_Permiso_A_Familia, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
             toolStripLabel1.Name = "toolStripLabel1";
             toolStripLabel1.Size = new Size(62, 22);
             toolStripLabel1.Text = "Agregar";
@@ -117,7 +116,7 @@
             // 
             // toolStripLabel2
             // 
-            toolStripLabel2.DropDownItems.AddRange(new ToolStripItem[] { E_MenuItem_Familia_A_Perfil, familiaAFamiliaToolStripMenuItem1, E_MenuItem_Permiso_A_Familia, permisoToolStripMenuItem1, perfilToolStripMenuItem1, familiaToolStripMenuItem1 });
+            toolStripLabel2.DropDownItems.AddRange(new ToolStripItem[] { E_MenuItem_Familia_A_Perfil, E_MenuItem_Permiso_A_Familia, permisoToolStripMenuItem1, perfilToolStripMenuItem1, familiaToolStripMenuItem1 });
             toolStripLabel2.Name = "toolStripLabel2";
             toolStripLabel2.Size = new Size(63, 22);
             toolStripLabel2.Text = "Eliminar";
@@ -127,7 +126,7 @@
             E_MenuItem_Familia_A_Perfil.Name = "E_MenuItem_Familia_A_Perfil";
             E_MenuItem_Familia_A_Perfil.Size = new Size(167, 22);
             E_MenuItem_Familia_A_Perfil.Text = "Familia a Perfil";
-            E_MenuItem_Familia_A_Perfil.Click += Eliminar_Permiso_A_Familia_Click;
+            E_MenuItem_Familia_A_Perfil.Click += Eliminar_Familia_A_Perfil_Click;
             // 
             // E_MenuItem_Permiso_A_Familia
             // 
@@ -156,6 +155,16 @@
             familiaToolStripMenuItem1.Size = new Size(167, 22);
             familiaToolStripMenuItem1.Text = "Familia";
             familiaToolStripMenuItem1.Click += Eliminar_Familia_Click;
+            // 
+            // RelacionFamilia
+            // 
+            RelacionFamilia.BackColor = Color.Lime;
+            RelacionFamilia.Name = "RelacionFamilia";
+            RelacionFamilia.Size = new Size(93, 22);
+            RelacionFamilia.Text = "Relacion Familia";
+            RelacionFamilia.Click += RelacionFamilia_Click;
+            RelacionFamilia.MouseLeave += RelacionFamilia_MouseLeave;
+            RelacionFamilia.MouseHover += RelacionFamilia_MouseHover;
             // 
             // dgvPerfiles
             // 
@@ -266,18 +275,6 @@
             labelPermiso.TabIndex = 14;
             labelPermiso.Text = "Permiso";
             // 
-            // familiaAFamiliaToolStripMenuItem
-            // 
-            familiaAFamiliaToolStripMenuItem.Name = "familiaAFamiliaToolStripMenuItem";
-            familiaAFamiliaToolStripMenuItem.Size = new Size(167, 22);
-            familiaAFamiliaToolStripMenuItem.Text = "Familia a Familia";
-            // 
-            // familiaAFamiliaToolStripMenuItem1
-            // 
-            familiaAFamiliaToolStripMenuItem1.Name = "familiaAFamiliaToolStripMenuItem1";
-            familiaAFamiliaToolStripMenuItem1.Size = new Size(167, 22);
-            familiaAFamiliaToolStripMenuItem1.Text = "Familia a Familia";
-            // 
             // Perfiles
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -337,7 +334,6 @@
         private ToolStripMenuItem permisoToolStripMenuItem1;
         private ToolStripMenuItem perfilToolStripMenuItem1;
         private ToolStripMenuItem familiaToolStripMenuItem1;
-        private ToolStripMenuItem familiaAFamiliaToolStripMenuItem;
-        private ToolStripMenuItem familiaAFamiliaToolStripMenuItem1;
+        private ToolStripLabel RelacionFamilia;
     }
 }

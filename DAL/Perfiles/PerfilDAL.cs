@@ -7,10 +7,8 @@ namespace DAL.Perfiles
     public class PerfilDAL
     {
         private readonly Conexion _conexion;
-        private readonly string TABLA_PERFIL = "Perfil";
         private readonly string PERFIL_PERMISO = "Perfil_Permiso";
         private readonly string FAMILIA_PERFIL = "Familia_Perfil";
-        private readonly string FAMILIA_FAMILIA = "Familia_Familia";
 
         public PerfilDAL()
         {
@@ -127,17 +125,19 @@ namespace DAL.Perfiles
 
             return false;
         }
-        public void EliminarPerfilAFamilia(int idPerfil, int idFamilia)
-        {
-            string query = $"DELETE FROM {FAMILIA_PERFIL} WHERE ID_Perfil = @idPerfil AND ID_Familia = @idFamilia";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@idPerfil", idPerfil),
-                new SqlParameter("@idFamilia", idFamilia)
-            };
-            _conexion.ExecuteNonQuery(query, parametros);
-        }
 
+        public void EliminarFamiliaDePerfil(int idPerfil, int idFamilia)
+        {
+            // Borramos la fila exacta que une este Perfil con esta Familia
+            string query = "DELETE FROM Familia_Perfil WHERE ID_Perfil = @idPerf AND ID_Familia = @idFam";
+
+            SqlParameter[] param = {
+                new SqlParameter("@idPerf", idPerfil),
+                new SqlParameter("@idFam", idFamilia)
+            };
+
+            _conexion.ExecuteNonQuery(query, param);
+        }
 
 
         #endregion

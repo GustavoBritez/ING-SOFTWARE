@@ -126,5 +126,19 @@ namespace UI
                     Traducir(control.Controls);
             }
         }
+
+        private void panelLogin_Paint(object sender, PaintEventArgs e)
+        {
+            txtUsuario.Text = "admin";
+            txtPassword.Text = "1234";
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            txtUsuario.Text = "admin";
+            txtPassword.Text = "1234";
+
+
+        }
     }
 }

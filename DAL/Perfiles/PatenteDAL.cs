@@ -55,6 +55,7 @@ namespace DAL.Perfiles
             };
             _conexion.ExecuteNonQuery(query, parametros);
         }
+
         public bool ExistePermisoPorNombre(string nombrePermiso)
         {
             // Buscamos si ya hay un permiso con exactamente ese mismo nombre
@@ -74,6 +75,7 @@ namespace DAL.Perfiles
 
             return false;
         }
+
         public List<Perfil> ObtenerFamiliasPerfil()
         {
             List<Perfil> lista = new();
@@ -126,19 +128,16 @@ namespace DAL.Perfiles
 
         public void EliminarPermisoDefinitivo(int idPermiso)
         {
-            // 1. Lo quitamos de todos los Perfiles que lo estén usando
             string queryPerfil = "DELETE FROM Perfil_Permiso WHERE ID_Permiso = @id";
-            Microsoft.Data.SqlClient.SqlParameter[] paramPerfil = { new Microsoft.Data.SqlClient.SqlParameter("@id", idPermiso) };
+            SqlParameter[] paramPerfil = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryPerfil, paramPerfil);
 
-            // 2. Lo quitamos de todas las Familias que lo estén usando
             string queryFamilia = "DELETE FROM Permiso_Familia WHERE ID_Permiso = @id";
-            Microsoft.Data.SqlClient.SqlParameter[] paramFamilia = { new Microsoft.Data.SqlClient.SqlParameter("@id", idPermiso) };
+            SqlParameter[] paramFamilia = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryFamilia, paramFamilia);
 
-            // 3. Ahora que está "limpio" y sin dependencias, lo borramos del sistema principal
             string queryPermiso = "DELETE FROM Permiso WHERE ID_Permiso = @id";
-            Microsoft.Data.SqlClient.SqlParameter[] paramPermiso = { new Microsoft.Data.SqlClient.SqlParameter("@id", idPermiso) };
+            SqlParameter[] paramPermiso = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryPermiso, paramPermiso);
         }
     }

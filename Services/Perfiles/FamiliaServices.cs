@@ -15,6 +15,11 @@ namespace Services.Perfiles
         {
 
         }
+
+        public FamiliaServices() 
+        {
+
+        }
         public void Agregar(Perfil c) => _hijos.Add(c);
 
         public override bool EsCompuesto() => true;

@@ -9,9 +9,6 @@ namespace DAL.Perfiles
     {
         private readonly Conexion _conexion = new();
 
-        private readonly string TABLA_COMPONENTES = "Componentes";
-        private readonly string TABLA_PERFIL = "Perfil";
-
         public FamiliaServices ObtenerArbolFamiliar(int idFamiliaRaiz)
         {
             // 1. Buscar el nombre de la Familia Padre
@@ -133,6 +130,35 @@ namespace DAL.Perfiles
             return false;
         }
 
+        public bool ExisteRelacionFamiliaFamilia(int idFamiliaPadre, int idFamiliaHija)
+        {
+            string query = "SELECT COUNT(1) FROM Familia_Familia WHERE ID_FamiliaPadre = @idPadre AND ID_FamiliaHija = @idHija";
+
+            Microsoft.Data.SqlClient.SqlParameter[] param = {
+        new Microsoft.Data.SqlClient.SqlParameter("@idPadre", idFamiliaPadre),
+        new Microsoft.Data.SqlClient.SqlParameter("@idHija", idFamiliaHija)
+    };
+
+            System.Data.DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+            return false;
+        }
+
+        public bool ExisteRelacionFamiliaPerfil(int idPerfil, int idFamilia)
+        {
+            string query = "SELECT COUNT(1) FROM Familia_Perfil WHERE ID_Perfil = @idPerf AND ID_Familia = @idFam";
+            Microsoft.Data.SqlClient.SqlParameter[] param = {
+        new Microsoft.Data.SqlClient.SqlParameter("@idPerf", idPerfil),
+        new Microsoft.Data.SqlClient.SqlParameter("@idFam", idFamilia)
+    };
+            System.Data.DataTable dt = _conexion.ExecuteReader(query, param);
+            return Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
+
         public void InsertarPermisoFamilia(int idFamilia, int idPermiso)
         {
             string query = "INSERT INTO Permiso_Familia (ID_Familia, ID_Permiso) VALUES (@idFam, @idPerm)";
@@ -169,6 +195,55 @@ namespace DAL.Perfiles
             string queryFamilia = "DELETE FROM Familia WHERE ID_Familia = @id";
             SqlParameter[] paramFamilia = { new SqlParameter("@id", idFamilia) };
             _conexion.ExecuteNonQuery(queryFamilia, paramFamilia);
+        }
+
+        public void EliminarFamiliaDeFamilia(int idFamiliaPadre, int idFamiliaHija)
+        {
+            // Borramos la relación donde el padre contiene a la hija
+            string query = "DELETE FROM Familia_Familia WHERE ID_FamiliaPadre = @idPadre AND ID_FamiliaHija = @idHija";
+
+            Microsoft.Data.SqlClient.SqlParameter[] param = {
+        new Microsoft.Data.SqlClient.SqlParameter("@idPadre", idFamiliaPadre),
+        new Microsoft.Data.SqlClient.SqlParameter("@idHija", idFamiliaHija)
+    };
+
+            _conexion.ExecuteNonQuery(query, param);
+        }
+
+        public void InsertarFamiliaAFamilia(int idFamiliaPadre, int idFamiliaHija)
+        {
+            string query = "INSERT INTO Familia_Familia (ID_FamiliaPadre, ID_FamiliaHija) VALUES (@idPadre, @idHija)";
+
+            Microsoft.Data.SqlClient.SqlParameter[] param = {
+        new Microsoft.Data.SqlClient.SqlParameter("@idPadre", idFamiliaPadre),
+        new Microsoft.Data.SqlClient.SqlParameter("@idHija", idFamiliaHija)
+    };
+
+            _conexion.ExecuteNonQuery(query, param);
+        }
+
+        public List<FamiliaServices> ObtenerTodasLasFamilias()
+        {
+            List<FamiliaServices> listaFamilias = new List<FamiliaServices>();
+
+            string query = "SELECT ID_Familia, Nombre FROM Familia";
+
+            DataTable dt = _conexion.ExecuteReader(query, null);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow fila in dt.Rows)
+                {
+                    FamiliaServices familia = new ();
+
+                    familia.Id = Convert.ToInt32(fila["ID_Familia"]);
+                    familia.Nombre = fila["Nombre"].ToString();
+
+                    listaFamilias.Add(familia);
+                }
+            }
+
+            return listaFamilias;
         }
     }
 }
