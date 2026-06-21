@@ -14,8 +14,8 @@ namespace DAL
         {
             try
             {
-                string query = $@"INSERT INTO {TABLA_USUARIOS} (DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado) 
-                                  VALUES (@dni, @nombreDeUsuario, @nombre, @apellido, @contraseña, @rol, @bloqueado, @estado)";
+                string query = $@"INSERT INTO {TABLA_USUARIOS} (DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado, Idioma) 
+                                  VALUES (@dni, @nombreDeUsuario, @nombre, @apellido, @contraseña, @rol, @bloqueado, @estado, @idioma)";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
@@ -26,9 +26,8 @@ namespace DAL
                     new SqlParameter("@contraseña", usuario._Contraseña),
                     new SqlParameter("@rol", usuario._Rol),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
-                    new SqlParameter("@estado", usuario._Estado)
-
-
+                    new SqlParameter("@estado", usuario._Estado),
+                    new SqlParameter("@idioma",usuario._Idioma)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -48,7 +47,7 @@ namespace DAL
             {
                 string query = $@"UPDATE {TABLA_USUARIOS} 
                           SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
+                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado, Idioma=@idioma
                           WHERE DNI = @dni";
 
                 SqlParameter[] parametros = new SqlParameter[]
@@ -60,7 +59,8 @@ namespace DAL
                     new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
                     new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@estado", usuario._Estado)
+                    new SqlParameter("@estado", usuario._Estado),
+                    new SqlParameter("@idioma",usuario._Idioma)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -104,7 +104,7 @@ namespace DAL
             try
             {
                 //Seleccionamos todos estas columnas de la fila donde el NombreDeUsuario sea igual al que pasamos
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado, Idioma
                                   FROM {TABLA_USUARIOS} 
                                   WHERE NombreDeUsuario = @nombreDeUsuario";
 
@@ -130,7 +130,8 @@ namespace DAL
                     dt.Rows[0]["Contraseña"].ToString(),
                     dt.Rows[0]["Rol"].ToString(),
                     Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
-                    Convert.ToBoolean(dt.Rows[0]["Estado"])
+                    Convert.ToBoolean(dt.Rows[0]["Estado"]),
+                    dt.Rows[0]["Idioma"].ToString()
                 );
 
                 return usuarioEncontrado;
@@ -146,7 +147,7 @@ namespace DAL
         {
             try
             {
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado 
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado, Idioma
                                   FROM {TABLA_USUARIOS} 
                                   WHERE DNI = @dni";
 
@@ -170,7 +171,8 @@ namespace DAL
                     dt.Rows[0]["Contraseña"].ToString(),
                     dt.Rows[0]["Rol"].ToString(),
                     Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
-                    Convert.ToBoolean(dt.Rows[0]["Estado"])
+                    Convert.ToBoolean(dt.Rows[0]["Estado"]),
+                    dt.Rows[0]["Idioma"].ToString()
                 );
 
                 return usuario;
@@ -188,7 +190,7 @@ namespace DAL
             {
                 string query = $@"UPDATE {TABLA_USUARIOS} 
                           SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
+                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado, Idioma=@idioma
                           WHERE DNI = @dni";
 
                 SqlParameter[] parametros = new SqlParameter[]
@@ -200,7 +202,8 @@ namespace DAL
                     new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
                     new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@estado", usuario._Estado)
+                    new SqlParameter("@estado", usuario._Estado),
+                    new SqlParameter("@idioma", usuario._Idioma)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -270,7 +273,7 @@ namespace DAL
 
             try
             {
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado, Idioma
                                   FROM {TABLA_USUARIOS} 
                                   ORDER BY NombreDeUsuario";
 
@@ -286,7 +289,8 @@ namespace DAL
                         row["Contraseña"].ToString(),
                         row["Rol"].ToString(),
                         Convert.ToBoolean(row["Bloqueado"]),
-                        Convert.ToBoolean(row["Estado"])
+                        Convert.ToBoolean(row["Estado"]),
+                        row["Idioma"].ToString()
                     );
 
                     usuarios.Add(usuario);
@@ -306,7 +310,7 @@ namespace DAL
         {
             string query = $@"UPDATE {TABLA_USUARIOS} 
                           SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
+                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado, Idioma = @idioma
                           WHERE DNI = @dni";
 
             SqlParameter[] parametros = new SqlParameter[]
@@ -318,10 +322,37 @@ namespace DAL
                     new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
                     new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@estado", usuario._Estado)
+                    new SqlParameter("@estado", usuario._Estado),
+                    new SqlParameter("@idioma", usuario._Idioma)
             };
 
             conexion.ExecuteNonQuery(query, parametros);
         }
+        public void CambiarIdiomaUsuario(UsuarioBE usuario)
+        {
+            try
+            {
+                string query = $@"UPDATE {TABLA_USUARIOS}
+                          SET Idioma = @idioma
+                          WHERE DNI = @dni";
+
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+            new SqlParameter("@idioma", usuario._Idioma),
+            new SqlParameter("@dni", usuario._Dni)
+                };
+
+                conexion.ExecuteNonQuery(query, parametros);
+
+                Console.WriteLine($"Idioma del usuario {usuario._NombreDeUsuario} actualizado exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al cambiar idioma del usuario: {ex.Message}");
+                throw;
+            }
+        }
     }
+
+
 }

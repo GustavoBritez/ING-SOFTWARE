@@ -253,7 +253,8 @@ namespace UI
                     contraseña: contraseña,
                     rol: rol,
                     bloqueado: true,
-                    estado: true
+                    estado: true,
+                    idioma: "Español"
                 );
                 usuarioBLL.CrearUsuario(nuevoUsuario);
 

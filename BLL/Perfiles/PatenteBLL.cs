@@ -39,7 +39,7 @@ namespace BLL.Perfiles
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Creación de nuevo Permiso: '{nombrePermiso}'";
+            string descripcion = $"Creacion de Patente";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
         public List<Perfil> ObtenerComponentesTotales() => _patenteDAL.ObtenerComponentesTotales();
@@ -54,7 +54,7 @@ namespace BLL.Perfiles
             // Registramos la acción fuerte en la bitácora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Eliminacion Permiso";
+            string descripcion = $"Eliminacion de Patente";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
 

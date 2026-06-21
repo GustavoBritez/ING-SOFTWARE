@@ -12,8 +12,9 @@ namespace BE
         private string NombreDeUsuario;
         private string Rol;
         private bool Estado;
+        private string Idioma;
 
-        public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, string rol, bool bloqueado, bool estado)
+        public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, string rol, bool bloqueado, bool estado, string idioma)
         {
             Nombre = nombre;
             Apellido = apellido;
@@ -23,6 +24,7 @@ namespace BE
             Rol = rol;
             Bloqueado = bloqueado;
             Estado = estado;
+            Idioma = idioma;
         }
 
         public string _Apellido { get => Apellido; set => Apellido = value; }
@@ -33,5 +35,6 @@ namespace BE
         public string _NombreDeUsuario { get => NombreDeUsuario; set => NombreDeUsuario = value; }
         public string _Rol { get => Rol; set => Rol = value; }
         public bool _Estado { get => Estado; set => Estado = value; }
+        public string _Idioma { get => Idioma; set => Idioma = value; }
     }
 }

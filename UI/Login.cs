@@ -79,6 +79,10 @@ namespace UI
                     // Navegar al formulario principal
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
 
+                    List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+                    Idioma idioma = idiomas.Find(i => i.Nombre == usuario._Idioma.ToString());
+                    ServicesSessionManager.Instancia.CambiarIdioma(idioma);
+
                 }
                 else
                 {
