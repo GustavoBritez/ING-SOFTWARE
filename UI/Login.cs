@@ -102,7 +102,7 @@ namespace UI
             }
         }
 
-        //OBSERVER
+        #region
         public void ActualizarIdioma()
         {
             if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
@@ -126,19 +126,13 @@ namespace UI
                     Traducir(control.Controls);
             }
         }
+        #endregion
 
-        private void panelLogin_Paint(object sender, PaintEventArgs e)
-        {
-            txtUsuario.Text = "admin";
-            txtPassword.Text = "1234";
-        }
-
+        // Solo para logearme ma rapido
         private void Login_Load(object sender, EventArgs e)
         {
             txtUsuario.Text = "admin";
             txtPassword.Text = "1234";
-
-
         }
     }
 }

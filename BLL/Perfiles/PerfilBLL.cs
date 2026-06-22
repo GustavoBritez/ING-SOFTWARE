@@ -12,6 +12,7 @@ namespace BLL
     {
         private readonly PerfilDAL _perfilDAL = new();
         private readonly PatenteDAL _patenteDAL = new();
+
         #region Agregar
         public void AgregarFamiliaAlPerfil(int idPerfil, int idFamilia, string nombrePerfil)
         {
@@ -117,6 +118,18 @@ namespace BLL
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Creación de nuevo Perfil: '{nombrePerfil}'";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfil");
+        }
+
+        public int ObtenerIdPerfilPorNombre(string nombreRol)
+        {
+            // Si el texto viene vacío por algún motivo, devolvemos 0 o tiramos error
+            if (string.IsNullOrWhiteSpace(nombreRol))
+            {
+                throw new ArgumentException("El nombre del rol no puede estar vacío.");
+            }
+
+            // Llamamos a la DAL para que haga el trabajo sucio
+            return _perfilDAL.ObtenerIdPerfilPorNombre(nombreRol);
         }
 
         public List<Perfil> ObtenerPerfiles()

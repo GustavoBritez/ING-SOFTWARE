@@ -18,11 +18,12 @@ namespace UI
     public partial class GestionUsuario : Form, IIdiomaObserver
     {
         private UsuarioBLL usuarioBLL = new UsuarioBLL();
-        private EventoBLL bitacoraBLL = new EventoBLL();
         private string _modoActual = "";
         private UsuarioBE _usuarioEnModificacion = null;
         private PerfilBLL perfilBLL = new();
         private IdiomaBLL idiomaBLL = new IdiomaBLL();
+        /// Atributo nuevo 
+        private List<Perfil> _listaTodosLosPerfiles = new List<Perfil>();
 
         public GestionUsuario()
         {
@@ -31,19 +32,19 @@ namespace UI
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
 
-            foreach ( Perfil pe in perfilBLL.ObtenerPerfiles())
+            foreach (Perfil pe in perfilBLL.ObtenerPerfiles())
             {
                 cmbRol.Items.Add(pe.Nombre);
+                _listaTodosLosPerfiles.Add(pe);
             }
 
             GestionUsuarios_Load(null, null);
-            dgvUsuarios.SelectionChanged += DgvUsuarios_SelectionChanged;
-
-            // Agregar event handlers para los RadioButtons de filtro
             rbMostrarActivos.CheckedChanged += RbMostrar_CheckedChanged;
             rbMostrarInactivos.CheckedChanged += RbMostrar_CheckedChanged;
-        }
 
+
+            dgvUsuarios.CellFormatting += dgvUsuarios_CellFormatting;
+        } // <-- Fin de tu constructor
         private void RbMostrar_CheckedChanged(object sender, EventArgs e)
         {
             AplicarFiltroEstado();
@@ -103,10 +104,20 @@ namespace UI
             txtDni.Text = usuario._Dni.ToString();
             txtNombre.Text = usuario._Nombre;
             txtApellido.Text = usuario._Apellido;
-            cmbRol.SelectedItem = usuario._Rol;
             txtNombreUsuario.Text = usuario._NombreDeUsuario;
             CKB_Desactivar.Checked = !usuario._Estado;
             CKB_Activar.Checked = usuario._Estado;
+
+            var perfilEncontrado = _listaTodosLosPerfiles.FirstOrDefault(p => p.Id == usuario._IdPerfil);
+
+            if (perfilEncontrado != null)
+            {
+                cmbRol.SelectedItem = perfilEncontrado.Nombre;
+            }
+            else
+            {
+                cmbRol.SelectedIndex = -1;
+            }
         }
 
         private void CambiarContrasenaDelUsuario(UsuarioBE usuario)
@@ -141,11 +152,6 @@ namespace UI
             }
             catch (Exception ex)
             {
-                // Registrar error en bitácora
-                //int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-                //string descripcion = $"Error al cambiar contraseña del usuario '{usuario._NombreDeUsuario}': {ex.Message}";
-                //bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
-
                 MessageBox.Show($"Error al cambiar contraseña: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 RestablecerModoCambiarContrasena();
             }
@@ -162,12 +168,6 @@ namespace UI
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
             btnActDesact.Enabled = true;
-        }
-
-        private void btnCrear_Click(object sender, EventArgs e)
-        {
-            _modoActual = "Crear";
-            HabilitarModoCrear();
         }
 
         private void HabilitarModoCrear()
@@ -204,18 +204,6 @@ namespace UI
             txtDni.Focus();
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            if (_modoActual == "Crear")
-            {
-                CrearUsuario();
-            }
-            else if (_modoActual == "Modificar")
-            {
-                ModificarUsuario();
-            }
-        }
-
         private void CrearUsuario()
         {
             try
@@ -243,18 +231,26 @@ namespace UI
                 }
 
                 string contraseña = $"{nombre}{_dni}";
-                string rol = cmbRol.SelectedItem?.ToString() ?? "Usuario";
 
+                // 1. Agarramos la palabra que eligió en el combo
+                string nombreRolSeleccionado = cmbRol.SelectedItem?.ToString() ?? "Usuario";
+
+                // 2. TRADUCCIÓN: Le pedimos a la BLL que nos diga qué número de ID tiene esa palabra
+                // (Asegurate de tener instanciada _perfilBLL arriba en tu formulario)
+                int idPerfilReal = perfilBLL.ObtenerIdPerfilPorNombre(nombreRolSeleccionado);
+
+                // 3. Ahora sí, le pasamos el número limpio a tu clase
                 UsuarioBE nuevoUsuario = new UsuarioBE(
                     nombre: nombre,
                     apellido: apellido,
                     dni: dni,
                     nombreDeUsuario: nombreDeUsuario,
                     contraseña: contraseña,
-                    rol: rol,
+                    idPerfil: idPerfilReal, // <--- ACÁ PASAMOS EL ENTERO PERFECTAMENTE
                     bloqueado: true,
                     estado: true
                 );
+
                 usuarioBLL.CrearUsuario(nuevoUsuario);
 
                 MessageBox.Show(
@@ -313,11 +309,6 @@ namespace UI
             return true;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            CancelarOperacion();
-        }
-
         private void CancelarOperacion()
         {
             _modoActual = "";
@@ -358,12 +349,6 @@ namespace UI
             CKB_Activar.Checked = false;
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-
-            FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
-        }
-
         private void GestionUsuario_Load(object sender, EventArgs e)
         {
 
@@ -401,6 +386,11 @@ namespace UI
                 dgvUsuarios.Columns["_Contraseña"].Visible = false;
             }
 
+            if (dgvUsuarios.Columns.Contains("NombrePerfil"))
+            {
+                dgvUsuarios.Columns["NombrePerfil"].Visible = false;
+            }
+
             if (dgvUsuarios.Columns.Contains("_Dni"))
             {
                 dgvUsuarios.Columns["_Dni"].HeaderText = "DNI";
@@ -421,9 +411,9 @@ namespace UI
                 dgvUsuarios.Columns["_NombreDeUsuario"].HeaderText = "Nombre de Usuario";
             }
 
-            if (dgvUsuarios.Columns.Contains("_Rol"))
+            if (dgvUsuarios.Columns.Contains("_IdPerfil"))
             {
-                dgvUsuarios.Columns["_Rol"].HeaderText = "Rol";
+                dgvUsuarios.Columns["_IdPerfil"].HeaderText = "Perfil"; // Podés ponerle "Rol" si preferís
             }
 
             if (dgvUsuarios.Columns.Contains("_Bloqueado"))
@@ -434,34 +424,6 @@ namespace UI
             if (dgvUsuarios.Columns.Contains("_Estado"))
             {
                 dgvUsuarios.Columns["_Estado"].HeaderText = "Estado";
-            }
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvUsuarios.SelectedRows.Count != 1)
-                {
-                    MessageBox.Show("Error: Seleccione una fila para Modificar", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                UsuarioBE usuarioSeleccionado = dgvUsuarios.SelectedRows[0].DataBoundItem as UsuarioBE;
-
-                if (usuarioSeleccionado is null)
-                {
-                    MessageBox.Show("Error: No se pudo seleccionar un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                _modoActual = "Modificar";
-                _usuarioEnModificacion = usuarioSeleccionado;
-                HabilitarModoModificar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -500,6 +462,7 @@ namespace UI
                 }
 
                 string cambios = "";
+
                 if (!string.IsNullOrWhiteSpace(txtNombre.Text) && _usuarioEnModificacion._Nombre != txtNombre.Text.Trim())
                 {
                     cambios += $"Nombre: {_usuarioEnModificacion._Nombre} -> {txtNombre.Text.Trim()}; ";
@@ -512,31 +475,111 @@ namespace UI
                     _usuarioEnModificacion._Apellido = txtApellido.Text.Trim();
                 }
 
+                // Validación de Nombre de Usuario corregida
                 if (!string.IsNullOrWhiteSpace(txtNombreUsuario.Text) && _usuarioEnModificacion._NombreDeUsuario != txtNombreUsuario.Text.Trim())
                 {
+                    // Agregamos la condición para que busque si el nombre existe en OTRO usuario (distinto DNI)
+                    var u = usuarioBLL.ListarUsuarios().Find(x => x._NombreDeUsuario == txtNombreUsuario.Text.Trim() && x._Dni != _usuarioEnModificacion._Dni);
+                    if (u != null)
+                    {
+                        throw new Exception($"Ya existe otro usuario ocupando el nombre de Usuario: {txtNombreUsuario.Text.Trim()}");
+                    }
+
                     cambios += $"NombreUsuario: {_usuarioEnModificacion._NombreDeUsuario} -> {txtNombreUsuario.Text.Trim()}; ";
                     _usuarioEnModificacion._NombreDeUsuario = txtNombreUsuario.Text.Trim();
                 }
 
-                if (cmbRol.SelectedItem != null && _usuarioEnModificacion._Rol != cmbRol.SelectedItem.ToString())
+                // CORRECCIÓN DEL ROL (De string a int)
+                if (cmbRol.SelectedItem != null)
                 {
-                    cambios += $"Rol: {_usuarioEnModificacion._Rol} -> {cmbRol.SelectedItem.ToString()}; ";
-                    _usuarioEnModificacion._Rol = cmbRol.SelectedItem.ToString();
+                    // 1. Agarramos el texto (Ej: "Administrador")
+                    string nombreRolSeleccionado = cmbRol.SelectedItem.ToString();
+
+                    // 2. Lo traducimos a número
+                    int idPerfilSeleccionado = perfilBLL.ObtenerIdPerfilPorNombre(nombreRolSeleccionado);
+
+                    // 3. Comparamos los números enteros
+                    if (_usuarioEnModificacion._IdPerfil != idPerfilSeleccionado)
+                    {
+                        cambios += $"IdPerfil: {_usuarioEnModificacion._IdPerfil} -> {idPerfilSeleccionado}; ";
+                        _usuarioEnModificacion._IdPerfil = idPerfilSeleccionado;
+                    }
                 }
 
-                var u = usuarioBLL.ListarUsuarios().Find(x => x._NombreDeUsuario == txtNombreUsuario.Text.ToString());
-                if (u != null)
-                {
-                    throw new Exception($"Ya existe un usuario con el nombre de Usuario: {txtNombreUsuario.Text.ToString()}");
-                }
                 usuarioBLL.ModificarUsuario(_usuarioEnModificacion);
+
                 MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 CancelarOperacion();
                 GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: Modificaciones no aplicadas. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: Modificaciones no aplicadas. \n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #region Botones
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+
+            FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            CancelarOperacion();
+        }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            _modoActual = "Crear";
+            HabilitarModoCrear();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (_modoActual == "Crear")
+            {
+                CrearUsuario();
+            }
+            else if (_modoActual == "Modificar")
+            {
+                ModificarUsuario();
+            }
+        }
+
+        private void btnGestionarPerfiles_Click(object sender, EventArgs e)
+        {
+            FormManager.Navegar(this, new Perfiles());
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvUsuarios.SelectedRows.Count != 1)
+                {
+                    MessageBox.Show("Error: Seleccione una fila para Modificar", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                UsuarioBE usuarioSeleccionado = dgvUsuarios.SelectedRows[0].DataBoundItem as UsuarioBE;
+
+                if (usuarioSeleccionado is null)
+                {
+                    MessageBox.Show("Error: No se pudo seleccionar un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _modoActual = "Modificar";
+                _usuarioEnModificacion = usuarioSeleccionado;
+                HabilitarModoModificar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -609,11 +652,14 @@ namespace UI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonActualizar_Click(object sender, EventArgs e)
         {
             AplicarFiltroEstado();
         }
 
+        #endregion
+
+        #region
         public void ActualizarIdioma()
         {
             if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
@@ -621,6 +667,7 @@ namespace UI
                 Traducir(this.Controls);
             }
         }
+
         private void Traducir(Control.ControlCollection controles)
         {
             foreach (Control control in controles)
@@ -637,10 +684,25 @@ namespace UI
                     Traducir(control.Controls);
             }
         }
+        #endregion
 
-        private void btnGestionarPerfiles_Click(object sender, EventArgs e)
+
+
+        private void dgvUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            FormManager.Navegar(this, new Perfiles());
+            if (dgvUsuarios.Columns[e.ColumnIndex].Name == "_IdPerfil" && e.Value != null)
+            {
+                if (int.TryParse(e.Value.ToString(), out int idPerfilBuscado))
+                {
+                    var perfilEncontrado = _listaTodosLosPerfiles.FirstOrDefault(p => p.Id == idPerfilBuscado);
+
+                    if (perfilEncontrado != null)
+                    {
+                        e.Value = perfilEncontrado.Nombre;
+                        e.FormattingApplied = true;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,5 +1,3 @@
-using Services;
-
 namespace BE
 {
     public class UsuarioBE
@@ -10,17 +8,21 @@ namespace BE
         private int Dni;
         private string Nombre;
         private string NombreDeUsuario;
-        private string Rol;
         private bool Estado;
 
-        public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, string rol, bool bloqueado, bool estado)
+        // ¡Cambiamos string Rol por int IdPerfil!
+        private int IdPerfil;
+
+        public string NombrePerfil { get; set; }
+
+        public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, int idPerfil, bool bloqueado, bool estado)
         {
             Nombre = nombre;
             Apellido = apellido;
             Dni = dni;
             NombreDeUsuario = nombreDeUsuario;
             Contraseña = contraseña;
-            Rol = rol;
+            IdPerfil = idPerfil; 
             Bloqueado = bloqueado;
             Estado = estado;
         }
@@ -31,7 +33,7 @@ namespace BE
         public int _Dni { get => Dni; set => Dni = value; }
         public string _Nombre { get => Nombre; set => Nombre = value; }
         public string _NombreDeUsuario { get => NombreDeUsuario; set => NombreDeUsuario = value; }
-        public string _Rol { get => Rol; set => Rol = value; }
+        public int _IdPerfil { get => IdPerfil; set => IdPerfil = value; }
         public bool _Estado { get => Estado; set => Estado = value; }
     }
 }

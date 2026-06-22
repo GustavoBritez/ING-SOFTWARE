@@ -453,19 +453,33 @@ namespace UI
         {
             try
             {
-                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso())
+                // CORRECCIÓN: Le pasamos explícitamente el ModoFormulario.Permiso
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Permiso))
                 {
-                    DialogResult resultado = frmPopup.ShowDialog();
-
-                    if (resultado == DialogResult.OK)
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        string nombreNuevoPermiso = frmPopup.NombrePermiso;
+                        try
+                        {
+                            string nuevoPermiso = frm.NombrePermiso;
 
-                        _patenteBLL.CrearNuevoPermiso(nombreNuevoPermiso);
+                            // Creamos el permiso en la base de datos
+                            _patenteBLL.CrearNuevoPermiso(nuevoPermiso);
 
-                        MessageBox.Show("Permiso creado en el sistema con éxito", "Éxito");
+                            // Si también seleccionó un botón en los combos, lo vinculamos
+                            if (frm.TieneBotonAsignado)
+                            {
+                                _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
+                            }
 
-                        CargarGrillas();
+                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Actualizamos la vista para que el nuevo permiso aparezca al instante
+                            CargarGrillas();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
@@ -483,18 +497,14 @@ namespace UI
         {
             try
             {
-                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso())
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Perfil))
                 {
-                    frmPopup.Text = "Crear Nuevo Perfil";
-                    DialogResult resultado = frmPopup.ShowDialog();
-                    if (resultado == DialogResult.OK)
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        string nombreNuevoPerfil = frmPopup.NombrePermiso;
+                        string nombreNuevoPerfil = frm.NombrePermiso;
 
                         _perfilBLL.CrearNuevoPerfil(nombreNuevoPerfil);
-
                         MessageBox.Show("¡Perfil creado en el sistema con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         CargarGrillas();
                     }
                 }
@@ -513,18 +523,14 @@ namespace UI
         {
             try
             {
-                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso())
+                // ACÁ: Le pasamos el modo Familia
+                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Familia))
                 {
-                    DialogResult resultado = frmPopup.ShowDialog();
-
-                    if (resultado == DialogResult.OK)
+                    if (frmPopup.ShowDialog() == DialogResult.OK)
                     {
                         string nombreNuevaFamilia = frmPopup.NombrePermiso;
-
                         _familiaBLL.CrearNuevaFamilia(nombreNuevaFamilia);
-
                         MessageBox.Show("Familia creada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         CargarGrillas();
                     }
                 }

@@ -143,6 +143,34 @@ namespace DAL.Perfiles
         #endregion
 
         #region Obtener
+        public int ObtenerIdPerfilPorNombre(string nombreRol)
+        {
+            int idPerfil = 0;
+
+            try
+            {
+                string query = "SELECT ID_Perfil FROM Perfil WHERE Nombre = @nombre";
+
+                Microsoft.Data.SqlClient.SqlParameter[] param = {
+            new Microsoft.Data.SqlClient.SqlParameter("@nombre", nombreRol)
+        };
+
+                // Asumo que tu objeto de conexión se llama "conexion" igual que en UsuarioDAL
+                System.Data.DataTable dt = _conexion.ExecuteReader(query, param);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    idPerfil = Convert.ToInt32(dt.Rows[0]["ID_Perfil"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al buscar el ID del Perfil: {ex.Message}");
+            }
+
+            return idPerfil;
+        }
+
         public List<Perfil> ObtenerComponentesTotales()
         {
             List<Perfil> _perfil = new();
@@ -169,6 +197,7 @@ namespace DAL.Perfiles
 
             return _perfil;
         }
+
         public List<Perfil> ObtenerPerfiles()
         {
             List<Perfil> lista = new List<Perfil>();

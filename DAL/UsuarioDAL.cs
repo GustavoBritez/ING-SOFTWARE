@@ -24,7 +24,7 @@ namespace DAL
                     new SqlParameter("@nombre", usuario._Nombre),
                     new SqlParameter("@apellido", usuario._Apellido),
                     new SqlParameter("@contraseña", usuario._Contraseña),
-                    new SqlParameter("@rol", usuario._Rol),
+                    new SqlParameter("@rol", usuario.NombrePerfil),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
                     new SqlParameter("@estado", usuario._Estado)
 
@@ -56,7 +56,7 @@ namespace DAL
                     new SqlParameter("@nombre", usuario._Nombre),
                     new SqlParameter("@apellido", usuario._Apellido),
                     new SqlParameter("@contraseña", usuario._Contraseña),
-                    new SqlParameter("@rol", usuario._Rol),
+                    new SqlParameter("@rol", usuario.NombrePerfil),
                     new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
                     new SqlParameter("@bloqueado", usuario._Bloqueado),
                     new SqlParameter("@dni", usuario._Dni),
@@ -96,41 +96,39 @@ namespace DAL
                 bitacoraDAL.GuardarBitacora(bit);
                 Console.WriteLine("ERROR:  No se cambio la contraseña ");
             }
-            
+
         }
 
         public UsuarioBE ObtenerUsuario(string nombreDeUsuario)
         {
             try
             {
-                //Seleccionamos todos estas columnas de la fila donde el NombreDeUsuario sea igual al que pasamos
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado
-                                  FROM {TABLA_USUARIOS} 
-                                  WHERE NombreDeUsuario = @nombreDeUsuario";
+                // Consulta limpia y directa. Pedimos directamente ID_Perfil de la tabla de usuarios.
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, ID_Perfil, Bloqueado, Estado
+                          FROM {TABLA_USUARIOS}
+                          WHERE NombreDeUsuario = @nombreDeUsuario";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                    new SqlParameter("@nombreDeUsuario", nombreDeUsuario)
+            new SqlParameter("@nombreDeUsuario", nombreDeUsuario)
                 };
 
-                // Aqui obtenemos los datos del usuario
                 DataTable dt = conexion.ExecuteReader(query, parametros);
 
-                // Si no se encuentra el usuario , devolvemos null
                 if (dt.Rows.Count == 0)
                 {
                     return null;
                 }
 
                 UsuarioBE usuarioEncontrado = new UsuarioBE(
-                    dt.Rows[0]["Nombre"].ToString(),
-                    dt.Rows[0]["Apellido"].ToString(),
-                    Convert.ToInt32(dt.Rows[0]["DNI"]),
-                    dt.Rows[0]["NombreDeUsuario"].ToString(),
-                    dt.Rows[0]["Contraseña"].ToString(),
-                    dt.Rows[0]["Rol"].ToString(),
-                    Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
-                    Convert.ToBoolean(dt.Rows[0]["Estado"])
+                    nombre: dt.Rows[0]["Nombre"].ToString(),
+                    apellido: dt.Rows[0]["Apellido"].ToString(),
+                    dni: Convert.ToInt32(dt.Rows[0]["DNI"]),
+                    nombreDeUsuario: dt.Rows[0]["NombreDeUsuario"].ToString(),
+                    contraseña: dt.Rows[0]["Contraseña"].ToString(),
+                    idPerfil: Convert.ToInt32(dt.Rows[0]["ID_Perfil"]), // Leemos directo la columna numérica
+                    bloqueado: Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
+                    estado: Convert.ToBoolean(dt.Rows[0]["Estado"])
                 );
 
                 return usuarioEncontrado;
@@ -168,7 +166,7 @@ namespace DAL
                     Convert.ToInt32(dt.Rows[0]["DNI"]),
                     dt.Rows[0]["NombreDeUsuario"].ToString(),
                     dt.Rows[0]["Contraseña"].ToString(),
-                    dt.Rows[0]["Rol"].ToString(),
+                    Convert.ToInt32(dt.Rows[0]["Rol"]),
                     Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
                     Convert.ToBoolean(dt.Rows[0]["Estado"])
                 );
@@ -186,21 +184,28 @@ namespace DAL
         {
             try
             {
+                // 1. Cambiamos 'Rol = @rol' por 'ID_Perfil = @idPerfil' en la consulta SQL
                 string query = $@"UPDATE {TABLA_USUARIOS} 
-                          SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
+                          SET Nombre = @nombre, 
+                              Apellido = @apellido, 
+                              NombreDeUsuario = @nombredeusuario, 
+                              Contraseña = @contraseña, 
+                              ID_Perfil = @idPerfil, 
+                              Bloqueado = @bloqueado, 
+                              Estado = @estado
                           WHERE DNI = @dni";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                    new SqlParameter("@nombre", usuario._Nombre),
-                    new SqlParameter("@apellido", usuario._Apellido),
-                    new SqlParameter("@contraseña", usuario._Contraseña),
-                    new SqlParameter("@rol", usuario._Rol),
-                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
-                    new SqlParameter("@bloqueado", usuario._Bloqueado),
-                    new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@estado", usuario._Estado)
+            new SqlParameter("@nombre", usuario._Nombre),
+            new SqlParameter("@apellido", usuario._Apellido),
+            new SqlParameter("@contraseña", usuario._Contraseña),
+            // 2. Apuntamos al nuevo atributo numérico de tu clase
+            new SqlParameter("@idPerfil", usuario._IdPerfil),
+            new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
+            new SqlParameter("@bloqueado", usuario._Bloqueado),
+            new SqlParameter("@dni", usuario._Dni),
+            new SqlParameter("@estado", usuario._Estado)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -218,7 +223,6 @@ namespace DAL
                 else
                 {
                     dniParaBitacora = usuario._Dni;
-
 
                     if (usuario._Bloqueado)
                     {
@@ -270,23 +274,24 @@ namespace DAL
 
             try
             {
-                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado
-                                  FROM {TABLA_USUARIOS} 
-                                  ORDER BY NombreDeUsuario";
+                // 1. Agregamos los alias (U y P) y el INNER JOIN igual que en ObtenerUsuario
+                string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, ID_Perfil, Bloqueado, Estado
+                  FROM {TABLA_USUARIOS} 
+                  ORDER BY NombreDeUsuario";
 
                 DataTable dt = conexion.ExecuteReader(query);
 
                 foreach (DataRow row in dt.Rows)
                 {
                     UsuarioBE usuario = new UsuarioBE(
-                        row["Nombre"].ToString(),
-                        row["Apellido"].ToString(),
-                        Convert.ToInt32(row["DNI"]),
-                        row["NombreDeUsuario"].ToString(),
-                        row["Contraseña"].ToString(),
-                        row["Rol"].ToString(),
-                        Convert.ToBoolean(row["Bloqueado"]),
-                        Convert.ToBoolean(row["Estado"])
+                        nombre: row["Nombre"].ToString(),
+                        apellido: row["Apellido"].ToString(),
+                        dni: Convert.ToInt32(row["DNI"]),
+                        nombreDeUsuario: row["NombreDeUsuario"].ToString(),
+                        contraseña: row["Contraseña"].ToString(),
+                        idPerfil: Convert.ToInt32(row["ID_Perfil"]), // 2. <--- Convertimos el ID a número entero
+                        bloqueado: Convert.ToBoolean(row["Bloqueado"]),
+                        estado: Convert.ToBoolean(row["Estado"])
                     );
 
                     usuarios.Add(usuario);
@@ -304,21 +309,23 @@ namespace DAL
 
         public void Desbloquear(UsuarioBE usuario)
         {
+            // Reemplazamos Rol por ID_Perfil en la sintaxis SQL
             string query = $@"UPDATE {TABLA_USUARIOS} 
-                          SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado
-                          WHERE DNI = @dni";
+                      SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
+                          ID_Perfil = @idPerfil, Bloqueado = @bloqueado , Estado = @estado
+                      WHERE DNI = @dni";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                    new SqlParameter("@nombre", usuario._Nombre),
-                    new SqlParameter("@apellido", usuario._Apellido),
-                    new SqlParameter("@contraseña", usuario._Contraseña),
-                    new SqlParameter("@rol", usuario._Rol),
-                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
-                    new SqlParameter("@bloqueado", usuario._Bloqueado),
-                    new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@estado", usuario._Estado)
+        new SqlParameter("@nombre", usuario._Nombre),
+        new SqlParameter("@apellido", usuario._Apellido),
+        new SqlParameter("@contraseña", usuario._Contraseña),
+        // Apuntamos a tu propiedad entera _IdPerfil
+        new SqlParameter("@idPerfil", usuario._IdPerfil),
+        new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
+        new SqlParameter("@bloqueado", usuario._Bloqueado),
+        new SqlParameter("@dni", usuario._Dni),
+        new SqlParameter("@estado", usuario._Estado)
             };
 
             conexion.ExecuteNonQuery(query, parametros);

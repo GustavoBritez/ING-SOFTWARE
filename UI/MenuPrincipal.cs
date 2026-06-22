@@ -9,10 +9,10 @@ namespace UI
     public partial class MenuPrincipal : Form, IIdiomaObserver
     {
         private readonly UsuarioBLL usuarioBLL = new UsuarioBLL();
-        private readonly EventoBLL bitacoraBLL = new EventoBLL();
         private readonly ServicioBcrypt servicioB = new();
 
         private IdiomaBLL idiomaBLL = new IdiomaBLL();
+
         public MenuPrincipal()
         {
             InitializeComponent();
@@ -21,12 +21,13 @@ namespace UI
             //this.Shown += (s, e) => Form1_Shown();
             this.VisibleChanged += (s, e) => Form1_VisibleChanged();
 
-            comboBox1.SelectedIndex = 0;
-            comboBox1.DropDownStyle= ComboBoxStyle.DropDownList;
+            cmbIdioma.SelectedIndex = 0;
+            cmbIdioma.DropDownStyle = ComboBoxStyle.DropDownList;
 
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
         }
+
         private void ActualizarDisponibilidadBotones()
         {
             try
@@ -39,8 +40,10 @@ namespace UI
                 btnLogout.Enabled = tieneSession;
                 btnChangePass.Enabled = tieneSession;
                 btnChangePass.Visible = tieneSession;
-                btnReportes.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
-                btnUsuarios.Enabled = tieneSession && usuarioActivo?._Rol == "Administrador";
+
+                // CORRECCIÓN: Comparamos con el ID 1 que corresponde a Administrador en la BD
+                btnReportes.Enabled = tieneSession && usuarioActivo?._IdPerfil == 1;
+                btnUsuarios.Enabled = tieneSession && usuarioActivo?._IdPerfil == 1;
             }
             catch
             {
@@ -52,11 +55,9 @@ namespace UI
                 btnChangePass.Visible = false;
                 btnReportes.Enabled = false;
                 btnUsuarios.Enabled = false;
-
             }
 
             btnLogin.Enabled = true;
-
         }
 
         private void Form1_VisibleChanged()
@@ -67,29 +68,35 @@ namespace UI
 
         private void ActualizarUsuario()
         {
-            if (ServicesSessionManager.Instancia.ObtenerUsuarioActivo() != null)
+            // Guardamos el usuario en una variable para no llamar a la Instancia tantas veces
+            var usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+
+            if (usuarioActivo != null)
             {
-                this.label6.Text = $"{ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._NombreDeUsuario} || {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Rol}";
+                // Traducimos el ID numérico a un texto legible para la interfaz
+                string nombrePerfil = "";
+                switch (usuarioActivo._IdPerfil)
+                {
+                    case 1:
+                        nombrePerfil = "Administrador";
+                        break;
+                    case 2:
+                        nombrePerfil = "Usuario";
+                        break;
+                    case 3:
+                        nombrePerfil = "Médico";
+                        break;
+                    default:
+                        nombrePerfil = $"Perfil {usuarioActivo._IdPerfil}";
+                        break;
+                }
+
+                this.label6.Text = $"{usuarioActivo._NombreDeUsuario} || {nombrePerfil}";
             }
             else
             {
-                this.label6.Text = $"";
+                this.label6.Text = ""; // O string.Empty
             }
-        }
-        private void btnTurnos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -126,19 +133,21 @@ namespace UI
 
         private void btnBitacora_Click(object sender, EventArgs e)
         {
-
-            UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-            if ( usuarioActivo._Rol == "Administrador")
+            try
             {
-                /// Aqui hay que meter una validacion para ver si administrador tiene el permiso de entrar a bitacora
-                FormManager.Navegar(this, FormManager.ObtenerBitacora());
+                if (ServicesSessionManager.Instancia.TienePermiso("Acceso_Bitacora"))
+                {
+                    FormManager.Navegar(this, FormManager.ObtenerBitacora());
+                }
+                else
+                {
+                    MessageBox.Show("Su perfil no cuenta con los permisos necesarios para acceder a la Bitácora del sistema.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usted no es administrador");
+                MessageBox.Show($"Error al intentar abrir la pantalla: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -227,6 +236,8 @@ namespace UI
             txtRepPass.Text = "";
             ChangePassPanel.Visible = false;
         }
+
+        #region Idioma No tocar
         public void ActualizarIdioma()
         {
             if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
@@ -250,32 +261,28 @@ namespace UI
                     Traducir(control.Controls);
             }
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmdIdioma_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
 
-            if (comboBox1.SelectedItem.ToString() == "Español")
+            if (cmbIdioma.SelectedItem.ToString() == "Español")
             {
                 Idioma español = idiomas.First(i => i.Codigo == "es");
                 ServicesSessionManager.Instancia.CambiarIdioma(español);
             }
-            else if (comboBox1.SelectedItem.ToString() == "Ingles")
+            else if (cmbIdioma.SelectedItem.ToString() == "Ingles")
             {
                 Idioma ingles = idiomas.First(i => i.Codigo == "en");
                 ServicesSessionManager.Instancia.CambiarIdioma(ingles);
             }
-            else if (comboBox1.SelectedItem.ToString() == "Portugues")
+            else if (cmbIdioma.SelectedItem.ToString() == "Portugues")
             {
-                Idioma portugues= idiomas.First(i => i.Codigo == "po");
+                Idioma portugues = idiomas.First(i => i.Codigo == "po");
                 ServicesSessionManager.Instancia.CambiarIdioma(portugues);
             }
         }
+        #endregion
 
-        private void MenuPrincipal_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 
 }

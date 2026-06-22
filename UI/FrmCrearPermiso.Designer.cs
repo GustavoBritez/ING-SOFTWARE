@@ -2,15 +2,8 @@
 {
     partial class FrmCrearPermiso
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,14 +15,14 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             lblTitulo = new Label();
             panelCentral = new Panel();
+            cmbBotones = new ComboBox();
+            lblBoton = new Label();
+            cmbFormularios = new ComboBox();
+            lblFormulario = new Label();
             txtNombrePermiso = new TextBox();
             lblNombrePermiso = new Label();
             btnAceptar = new Button();
@@ -41,9 +34,9 @@
             // 
             lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.FromArgb(46, 94, 67);
-            lblTitulo.Location = new Point(12, 18);
+            lblTitulo.Location = new Point(-92, 30);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(410, 40);
+            lblTitulo.Size = new Size(491, 40);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "🛡️ Crear Nuevo Permiso";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
@@ -52,12 +45,57 @@
             // 
             panelCentral.BackColor = Color.FromArgb(180, 180, 180);
             panelCentral.BorderStyle = BorderStyle.FixedSingle;
+            panelCentral.Controls.Add(cmbBotones);
+            panelCentral.Controls.Add(lblBoton);
+            panelCentral.Controls.Add(cmbFormularios);
+            panelCentral.Controls.Add(lblFormulario);
             panelCentral.Controls.Add(txtNombrePermiso);
             panelCentral.Controls.Add(lblNombrePermiso);
             panelCentral.Location = new Point(34, 73);
             panelCentral.Name = "panelCentral";
-            panelCentral.Size = new Size(365, 87);
+            panelCentral.Size = new Size(365, 200);
             panelCentral.TabIndex = 1;
+            // 
+            // cmbBotones
+            // 
+            cmbBotones.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBotones.Font = new Font("Segoe UI", 10F);
+            cmbBotones.Location = new Point(23, 158);
+            cmbBotones.Name = "cmbBotones";
+            cmbBotones.Size = new Size(317, 25);
+            cmbBotones.TabIndex = 0;
+            // 
+            // lblBoton
+            // 
+            lblBoton.AutoSize = true;
+            lblBoton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblBoton.ForeColor = Color.Black;
+            lblBoton.Location = new Point(19, 135);
+            lblBoton.Name = "lblBoton";
+            lblBoton.Size = new Size(120, 19);
+            lblBoton.TabIndex = 1;
+            lblBoton.Text = "Asignar a Botón:";
+            // 
+            // cmbFormularios
+            // 
+            cmbFormularios.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFormularios.Font = new Font("Segoe UI", 10F);
+            cmbFormularios.Location = new Point(23, 98);
+            cmbFormularios.Name = "cmbFormularios";
+            cmbFormularios.Size = new Size(317, 25);
+            cmbFormularios.TabIndex = 2;
+            cmbFormularios.SelectedIndexChanged += cmbFormularios_SelectedIndexChanged;
+            // 
+            // lblFormulario
+            // 
+            lblFormulario.AutoSize = true;
+            lblFormulario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblFormulario.ForeColor = Color.Black;
+            lblFormulario.Location = new Point(19, 75);
+            lblFormulario.Name = "lblFormulario";
+            lblFormulario.Size = new Size(208, 19);
+            lblFormulario.TabIndex = 3;
+            lblFormulario.Text = "Asignar a Pantalla (Opcional):";
             // 
             // txtNombrePermiso
             // 
@@ -74,15 +112,15 @@
             lblNombrePermiso.ForeColor = Color.Black;
             lblNombrePermiso.Location = new Point(19, 15);
             lblNombrePermiso.Name = "lblNombrePermiso";
-            lblNombrePermiso.Size = new Size(155, 19);
+            lblNombrePermiso.Size = new Size(212, 19);
             lblNombrePermiso.TabIndex = 0;
-            lblNombrePermiso.Text = "Nombre de la Acción:";
+            lblNombrePermiso.Text = "Nombre del Permiso (Acción):";
             // 
             // btnAceptar
             // 
             btnAceptar.BackColor = Color.FromArgb(225, 225, 225);
             btnAceptar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnAceptar.Location = new Point(271, 178);
+            btnAceptar.Location = new Point(271, 290);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(128, 40);
             btnAceptar.TabIndex = 2;
@@ -94,7 +132,7 @@
             // 
             btnCancelar.BackColor = Color.FromArgb(255, 120, 120);
             btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnCancelar.Location = new Point(34, 178);
+            btnCancelar.Location = new Point(34, 290);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(128, 40);
             btnCancelar.TabIndex = 3;
@@ -107,7 +145,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(434, 241);
+            ClientSize = new Size(434, 350);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(panelCentral);
@@ -133,5 +171,11 @@
         private System.Windows.Forms.Label lblNombrePermiso;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+
+        // Declaraciones de los nuevos controles agregados
+        private System.Windows.Forms.Label lblFormulario;
+        private System.Windows.Forms.ComboBox cmbFormularios;
+        private System.Windows.Forms.Label lblBoton;
+        private System.Windows.Forms.ComboBox cmbBotones;
     }
 }

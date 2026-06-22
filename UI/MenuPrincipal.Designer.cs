@@ -39,7 +39,7 @@
             btnTurnos = new Button();
             lblModulo = new Label();
             panelTop = new Panel();
-            comboBox1 = new ComboBox();
+            cmbIdioma = new ComboBox();
             label6 = new Label();
             label4 = new Label();
             lblTitulo = new Label();
@@ -116,7 +116,7 @@
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Segoe UI", 10F);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(24, 643);
+            btnLogout.Location = new Point(24, 649);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(215, 45);
             btnLogout.TabIndex = 6;
@@ -201,7 +201,6 @@
             btnTurnos.Text = "📅 Gestión de Turnos";
             btnTurnos.TextAlign = ContentAlignment.MiddleLeft;
             btnTurnos.UseVisualStyleBackColor = false;
-            btnTurnos.Click += btnTurnos_Click;
             // 
             // lblModulo
             // 
@@ -217,7 +216,7 @@
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(92, 145, 104);
-            panelTop.Controls.Add(comboBox1);
+            panelTop.Controls.Add(cmbIdioma);
             panelTop.Controls.Add(label6);
             panelTop.Controls.Add(label4);
             panelTop.Controls.Add(lblTitulo);
@@ -227,17 +226,17 @@
             panelTop.Size = new Size(951, 60);
             panelTop.TabIndex = 1;
             // 
-            // comboBox1
+            // cmbIdioma
             // 
-            comboBox1.BackColor = Color.DarkSeaGreen;
-            comboBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Español", "Ingles", "Portugues" });
-            comboBox1.Location = new Point(784, 16);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(164, 29);
-            comboBox1.TabIndex = 2;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cmbIdioma.BackColor = Color.DarkSeaGreen;
+            cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbIdioma.FormattingEnabled = true;
+            cmbIdioma.Items.AddRange(new object[] { "Español", "Ingles", "Portugues" });
+            cmbIdioma.Location = new Point(784, 16);
+            cmbIdioma.Name = "cmbIdioma";
+            cmbIdioma.Size = new Size(164, 29);
+            cmbIdioma.TabIndex = 2;
+            cmbIdioma.SelectedIndexChanged += cmdIdioma_SelectedIndexChanged;
             // 
             // label6
             // 
@@ -406,7 +405,6 @@
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sistema NutriEvolve";
-            Load += MenuPrincipal_Load;
             panelMenu.ResumeLayout(false);
             panelMenu.PerformLayout();
             panelTop.ResumeLayout(false);
@@ -454,6 +452,6 @@
         private Label label5;
         private Label label6;
         private Label label4;
-        private ComboBox comboBox1;
+        private ComboBox cmbIdioma;
     }
 }

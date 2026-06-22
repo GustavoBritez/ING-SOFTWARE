@@ -116,6 +116,57 @@ namespace DAL.Perfiles
             return lista;
         }
 
+        public void VincularPermisoABoton(string nombreFormulario, string nombreBoton, string nombrePatente)
+        {
+            try
+            {
+                string query = @"INSERT INTO Permiso_Boton (NombreFormulario, NombreControl, NombrePatente) 
+                         VALUES (@nombreFormulario, @nombreBoton, @nombrePatente)";
+
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+            new SqlParameter("@nombreFormulario", nombreFormulario),
+            new SqlParameter("@nombreBoton", nombreBoton),
+            new SqlParameter("@nombrePatente", nombrePatente)
+                };
+
+                // Uso "_conexion" o "conexion", ajustalo al nombre de tu objeto en la DAL
+                _conexion.ExecuteNonQuery(query, parametros);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la DAL al vincular el permiso con el botón: " + ex.Message);
+            }
+        }
+
+        public Dictionary<string, string> ObtenerControlesRestringidos(string nombreFormulario)
+        {
+            Dictionary<string, string> controles = new Dictionary<string, string>();
+
+            string query = "SELECT NombreControl, NombrePatente FROM Permiso_Boton WHERE NombreFormulario = @formulario";
+
+            SqlParameter[] param = {
+                new SqlParameter("@formulario", nombreFormulario)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow fila in dt.Rows)
+                {
+                    string boton = fila["NombreControl"].ToString();
+                    string patente = fila["NombrePatente"].ToString();
+
+                    if (!controles.ContainsKey(boton))
+                    {
+                        controles.Add(boton, patente);
+                    }
+                }
+            }
+            return controles;
+        }
+
         public void InsertarPatenteNueva(string nombrePermiso)
         {
             string query = "INSERT INTO Permiso (Nombre) VALUES (@nombre)";
