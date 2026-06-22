@@ -1,4 +1,5 @@
 using BE;
+using Services.Perfiles;
 
 namespace Services
 {
@@ -13,6 +14,7 @@ namespace Services
         private List<IIdiomaObserver> observadores;
         //Atributo nuevo
         private List<string> permisosDelUsuarioActivo = new List<string>();
+        private List<PatenteServices> _permisosUsuario;
 
         private ServicesSessionManager()
         {

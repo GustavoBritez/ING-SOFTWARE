@@ -141,6 +141,22 @@ namespace BLL
         {
             return _perfilDAL.ObtenerArbolPerfil(idPerfil);
         }
+        public void AgregarPermisoAPerfil(int idPerfil, int idPermiso, string nombrePermiso, string nombrePerfil)
+        {
+            // Validación
+            if (_perfilDAL.ExistePermisoEnPerfil(idPerfil, idPermiso))
+            {
+                throw new ArgumentException($"El permiso '{nombrePermiso}' ya está asignado al perfil '{nombrePerfil}'.");
+            }
 
+            // Acción
+            _perfilDAL.AgregarPermisoAPerfil(idPerfil, idPermiso);
+
+            // Bitácora
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Asignación de Permiso: '{nombrePermiso}' al Perfil '{nombrePerfil}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfiles");
+        }
     }
 }

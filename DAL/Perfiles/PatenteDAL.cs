@@ -107,7 +107,25 @@ namespace DAL.Perfiles
             }
             return lista;
         }
+        public List<PatenteServices> ObtenerPermisosDePerfil(int idPerfil)
+        {
+            string query = @"SELECT P.ID_Permiso, P.Nombre 
+                     FROM Permiso P
+                     INNER JOIN Perfil_Permiso PP ON P.ID_Permiso = PP.ID_Permiso
+                     WHERE PP.ID_Perfil = @idPerfil";
 
+            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@idPerfil", idPerfil) };
+
+            // Aquí sí usás _conexion porque estás en la DAL
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            List<PatenteServices> lista = new();
+            foreach (DataRow fila in dt.Rows)
+            {
+                lista.Add(new PatenteServices(fila["Nombre"].ToString()) { Id = Convert.ToInt32(fila["ID_Permiso"]) });
+            }
+            return lista;
+        }
         public List<Perfil> ObtenerComponentesTotales()
         {
             List<Perfil> lista = new();

@@ -28,6 +28,7 @@ namespace UI
             ActualizarIdioma();
         }
 
+        // Ver
         private void ActualizarDisponibilidadBotones()
         {
             try
@@ -35,29 +36,37 @@ namespace UI
                 UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
                 bool tieneSession = usuarioActivo != null;
 
-                // Deshabilitar todos los botones excepto btnLogin si no hay sesión
-                btnTurnos.Enabled = tieneSession;
-                btnLogout.Enabled = tieneSession;
-                btnChangePass.Enabled = tieneSession;
-                btnChangePass.Visible = tieneSession;
+                if (tieneSession)
+                {
 
-                // CORRECCIÓN: Comparamos con el ID 1 que corresponde a Administrador en la BD
-                btnReportes.Enabled = tieneSession && usuarioActivo?._IdPerfil == 1;
-                btnUsuarios.Enabled = tieneSession && usuarioActivo?._IdPerfil == 1;
+                    btnLogout.Visible = true;
+                }
+                else
+                {
+                    // Si no hay sesión, apagamos todo por las dudas
+                    btnTurnos.Visible = false;
+                    btnCambiarContrasena.Visible = false;
+                    btnReportes.Visible = false;
+                    btnUsuarios.Visible = false;
+                    btnLogout.Visible = false;
+                }
+
+                // ¡ACÁ ESTÁ TU BOTÓN! Siempre visible y habilitado, pase lo que pase.
+                btnLogin.Visible = true;
+                btnLogin.Enabled = true;
             }
             catch
             {
-                // Si hay error, asumir que no hay sesión y fue
+                // En caso de error, cerramos todo menos el Login
+                btnTurnos.Visible = false;
+                btnCambiarContrasena.Visible = false;
+                btnReportes.Visible = false;
+                btnUsuarios.Visible = false;
+                btnLogout.Visible = false;
 
-                btnTurnos.Enabled = false;
-                btnLogout.Enabled = false;
-                btnChangePass.Enabled = false;
-                btnChangePass.Visible = false;
-                btnReportes.Enabled = false;
-                btnUsuarios.Enabled = false;
+                btnLogin.Visible = true;
+                btnLogin.Enabled = true;
             }
-
-            btnLogin.Enabled = true;
         }
 
         private void Form1_VisibleChanged()
@@ -155,12 +164,6 @@ namespace UI
             FormManager.Navegar(this, FormManager.ObtenerLogin());
         }
 
-        private void btnChangePass_Click(object sender, EventArgs e)
-        {
-            ChangePassPanel.Visible = !ChangePassPanel.Visible;
-
-        }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
@@ -229,7 +232,10 @@ namespace UI
                 ChangePassPanel.Visible = false;
             }
         }
-
+        private void btnCambiarContrasena_Click(object sender, EventArgs e)
+        {
+            ChangePassPanel.Visible = !ChangePassPanel.Visible;
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             txtNewPass.Text = "";
@@ -282,6 +288,7 @@ namespace UI
             }
         }
         #endregion
+
 
     }
 

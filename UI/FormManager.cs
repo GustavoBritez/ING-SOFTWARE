@@ -103,22 +103,37 @@ namespace UI
             _gestionUsuario = null;
         }
 
+        // 1. El método principal que llama tu pantalla
         public static void AplicarSeguridad(Form formulario)
         {
             PatenteBLL patenteBLL = new PatenteBLL();
-
             Dictionary<string, string> controlesRestringidos = patenteBLL.ObtenerControlesRestringidos(formulario.Name);
 
-            foreach (Control control in formulario.Controls)
+            // Llamamos al escáner profundo
+            AplicarSeguridadRecursiva(formulario.Controls, controlesRestringidos);
+        }
+
+        // 2. El escáner profundo que revisa adentro de los paneles
+        private static void AplicarSeguridadRecursiva(Control.ControlCollection controles, Dictionary<string, string> controlesRestringidos)
+        {
+            foreach (Control control in controles)
             {
+                // Si el control actual está en la lista de prohibidos...
                 if (controlesRestringidos.ContainsKey(control.Name))
                 {
                     string permisoRequerido = controlesRestringidos[control.Name];
 
+                    // Preguntamos si el usuario activo tiene esa patente
                     if (!ServicesSessionManager.Instancia.TienePermiso(permisoRequerido))
                     {
-                        control.Visible = false;
+                        control.Visible = false; // ¡Le apagamos la luz!
                     }
+                }
+
+                // ¡LA MAGIA!: Si este control tiene otros controles adentro (Ej: un Panel), nos metemos a revisar
+                if (control.HasChildren)
+                {
+                    AplicarSeguridadRecursiva(control.Controls, controlesRestringidos);
                 }
             }
         }

@@ -1,6 +1,8 @@
 ﻿using BE;
 using BLL;
+using BLL.Perfiles;
 using Services;
+using Services.Perfiles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,20 +71,23 @@ namespace UI
                     return;
                 }
 
-                // Intentar login
                 bool loginOK = usuarioBLL.Login(nombre, contraseña);
-
                 if (loginOK)
                 {
+                    PatenteBLL patenteBLL = new PatenteBLL();
+                    List<PatenteServices> listaPatentes = patenteBLL.ObtenerPermisosDePerfil(usuario._IdPerfil);
+
+                    List<string> nombresPermisos = listaPatentes.Select(p => p.Nombre).ToList();
+
+                    ServicesSessionManager.Instancia.CargarPermisosDelUsuario(nombresPermisos);
+
+                    ServicesSessionManager.Instancia.Login(usuario);
+
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Navegar al formulario principal
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
-
                 }
                 else
                 {
-                    // Si el login falló, comprobar si la cuenta fue bloqueada después del intento
                     UsuarioBE usuarioDespues = usuarioBLL.BuscarUsuario(nombre);
                     if (usuarioDespues != null && usuarioDespues._Bloqueado)
                     {

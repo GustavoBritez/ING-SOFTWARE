@@ -171,6 +171,18 @@ namespace DAL.Perfiles
             return idPerfil;
         }
 
+        public void AgregarPermisoAPerfil(int idPerfil, int idPermiso)
+        {
+            string query = "INSERT INTO [ING].[dbo].[Perfil_Permiso] (ID_Perfil, ID_Permiso) VALUES (@idPerfil, @idPermiso)";
+
+            SqlParameter[] param = {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, param);
+        }
+
         public List<Perfil> ObtenerComponentesTotales()
         {
             List<Perfil> _perfil = new();
@@ -212,6 +224,24 @@ namespace DAL.Perfiles
                 lista.Add(new FamiliaServices(nombre) { Id = id });
             }
             return lista;
+        }
+
+        public bool ExistePermisoEnPerfil(int idPerfil, int idPermiso)
+        {
+            string query = "SELECT COUNT(1) FROM [ING].[dbo].[Perfil_Permiso] WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+
+            SqlParameter[] param = {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+            return false;
         }
 
         public FamiliaServices ObtenerArbolPerfil(int idPerfil)
@@ -264,7 +294,6 @@ namespace DAL.Perfiles
 
         public bool ExistePerfilPorNombre(string nombrePerfil)
         {
-            // Buscamos coincidencias en la tabla Perfil
             string query = "SELECT COUNT(1) FROM Perfil WHERE Nombre = @nombre";
 
             SqlParameter[] param = {

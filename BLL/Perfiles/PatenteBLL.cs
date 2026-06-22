@@ -17,6 +17,11 @@ namespace BLL.Perfiles
         {
             _patenteDAL.InsertarPermisoPerfil(idPerfil, idPermiso);
         }
+        public List<PatenteServices> ObtenerPermisosDePerfil(int idPerfil)
+        {
+            // Aquí podés agregar validaciones si lo necesitás, y delegás la llamada
+            return _patenteDAL.ObtenerPermisosDePerfil(idPerfil);
+        }
         public void VincularPermisoABoton(string nombreFormulario, string nombreBoton, string nombrePermiso)
         {
             if (string.IsNullOrWhiteSpace(nombreFormulario) || string.IsNullOrWhiteSpace(nombreBoton) || string.IsNullOrWhiteSpace(nombrePermiso))

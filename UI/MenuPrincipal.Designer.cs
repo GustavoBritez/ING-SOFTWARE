@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
-            btnChangePass = new Button();
+            btnCambiarContrasena = new Button();
             btnLogin = new Button();
             btnLogout = new Button();
             btnAyuda = new Button();
@@ -64,7 +64,7 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(76, 124, 89);
-            panelMenu.Controls.Add(btnChangePass);
+            panelMenu.Controls.Add(btnCambiarContrasena);
             panelMenu.Controls.Add(btnLogin);
             panelMenu.Controls.Add(btnLogout);
             panelMenu.Controls.Add(btnAyuda);
@@ -79,20 +79,20 @@
             panelMenu.Size = new Size(259, 700);
             panelMenu.TabIndex = 0;
             // 
-            // btnChangePass
+            // btnCambiarContrasena
             // 
-            btnChangePass.BackColor = Color.FromArgb(78, 122, 84);
-            btnChangePass.FlatStyle = FlatStyle.Flat;
-            btnChangePass.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnChangePass.ForeColor = Color.Transparent;
-            btnChangePass.Location = new Point(11, 564);
-            btnChangePass.Margin = new Padding(2);
-            btnChangePass.Name = "btnChangePass";
-            btnChangePass.Size = new Size(240, 38);
-            btnChangePass.TabIndex = 8;
-            btnChangePass.Text = "Cambiar Contraseña";
-            btnChangePass.UseVisualStyleBackColor = false;
-            btnChangePass.Click += btnChangePass_Click;
+            btnCambiarContrasena.BackColor = Color.FromArgb(78, 122, 84);
+            btnCambiarContrasena.FlatStyle = FlatStyle.Flat;
+            btnCambiarContrasena.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCambiarContrasena.ForeColor = Color.Transparent;
+            btnCambiarContrasena.Location = new Point(11, 564);
+            btnCambiarContrasena.Margin = new Padding(2);
+            btnCambiarContrasena.Name = "btnCambiarContrasena";
+            btnCambiarContrasena.Size = new Size(240, 38);
+            btnCambiarContrasena.TabIndex = 8;
+            btnCambiarContrasena.Text = "Cambiar Contraseña";
+            btnCambiarContrasena.UseVisualStyleBackColor = false;
+            btnCambiarContrasena.Click += btnCambiarContrasena_Click;
             // 
             // btnLogin
             // 
@@ -437,7 +437,7 @@
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnAyuda;
         private System.Windows.Forms.Button btnLogout;
-        private Button btnChangePass;
+        private Button btnCambiarContrasena;
         private Button btnLogin;
         private Panel ChangePassPanel;
         private Button btnCancelarMP;
