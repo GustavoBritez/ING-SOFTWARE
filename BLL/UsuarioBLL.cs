@@ -246,7 +246,6 @@ namespace BLL
                 EventoBLL bitacoraBLL = new();
 
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-
                 string descripcion = $"Cierre de Sesion";
 
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Login");
@@ -327,6 +326,15 @@ namespace BLL
                 string descripcion = $"ERROR: Desbloqueo de Usuario";
                 bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
             }
+        }
+
+        public void CambioDeIdiomaUser(UsuarioBE user)
+        {
+            usuarioDAL.CambiarIdiomaUsuario(user);
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Cambio de Idioma";
+            bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
         }
     }
 }

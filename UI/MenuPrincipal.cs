@@ -113,6 +113,12 @@ namespace UI
             try
             {
                 UsuarioBE usuarioActual = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+
+                Idioma id = ServicesSessionManager.Instancia.ObtenerIdioma();
+                usuarioActual._Idioma = id.Nombre;
+                usuarioBLL.CambioDeIdiomaUser(usuarioActual);
+ 
+
                 usuarioBLL.LogOut(usuarioActual);
                 MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarDisponibilidadBotones();

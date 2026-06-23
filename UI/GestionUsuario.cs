@@ -232,23 +232,20 @@ namespace UI
 
                 string contraseña = $"{nombre}{_dni}";
 
-                // 1. Agarramos la palabra que eligió en el combo
                 string nombreRolSeleccionado = cmbRol.SelectedItem?.ToString() ?? "Usuario";
 
-                // 2. TRADUCCIÓN: Le pedimos a la BLL que nos diga qué número de ID tiene esa palabra
-                // (Asegurate de tener instanciada _perfilBLL arriba en tu formulario)
                 int idPerfilReal = perfilBLL.ObtenerIdPerfilPorNombre(nombreRolSeleccionado);
 
-                // 3. Ahora sí, le pasamos el número limpio a tu clase
                 UsuarioBE nuevoUsuario = new UsuarioBE(
                     nombre: nombre,
                     apellido: apellido,
                     dni: dni,
                     nombreDeUsuario: nombreDeUsuario,
                     contraseña: contraseña,
-                    idPerfil: idPerfilReal, // <--- ACÁ PASAMOS EL ENTERO PERFECTAMENTE
+                    idPerfil: idPerfilReal, 
                     bloqueado: true,
-                    estado: true
+                    estado: true,
+                    idioma: "Español"
                 );
 
                 usuarioBLL.CrearUsuario(nuevoUsuario);

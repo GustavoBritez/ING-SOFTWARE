@@ -59,7 +59,7 @@ namespace BLL.Perfiles
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Creación de nuevo Permiso: '{nombrePermiso}'";
+            string descripcion = $"Creacion de Patente";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
 
@@ -78,7 +78,7 @@ namespace BLL.Perfiles
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Eliminacion Permiso";
+            string descripcion = $"Eliminacion de Patente";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
 

@@ -85,6 +85,7 @@ namespace UI
 
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
+
                 }
                 else
                 {
