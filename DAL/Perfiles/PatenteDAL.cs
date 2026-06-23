@@ -72,10 +72,10 @@ namespace DAL.Perfiles
         {
             Dictionary<string, string> restricciones = new Dictionary<string, string>();
 
-            string query = @"SELECT C.NombreControl, P.Nombre 
-                     FROM Permiso_Control C
-                     INNER JOIN Permiso P ON C.ID_Permiso = P.ID_Permiso
-                     WHERE C.NombreFormulario = @nombreForm";
+            // 1. Apuntamos a Permiso_Boton y seleccionamos directamente sus columnas
+            string query = @"SELECT NombreControl, NombrePatente 
+                     FROM Permiso_Boton 
+                     WHERE NombreFormulario = @nombreForm";
 
             SqlParameter[] param = {
                 new SqlParameter("@nombreForm", nombreFormulario)
@@ -87,8 +87,9 @@ namespace DAL.Perfiles
             {
                 foreach (DataRow fila in dt.Rows)
                 {
+                    // 2. Extraemos los valores usando los nombres reales de las columnas
                     string nombreControl = fila["NombreControl"].ToString();
-                    string nombrePermiso = fila["Nombre"].ToString();
+                    string nombrePermiso = fila["NombrePatente"].ToString(); // Antes buscaba "Nombre"
 
                     if (!restricciones.ContainsKey(nombreControl))
                     {
