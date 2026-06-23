@@ -14,19 +14,21 @@ namespace DAL
         {
             try
             {
-                string query = $@"INSERT INTO {TABLA_USUARIOS} (DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, Rol, Bloqueado, Estado, Idioma) 
-                                  VALUES (@dni, @nombreDeUsuario, @nombre, @apellido, @contraseña, @rol, @bloqueado, @estado, @idioma)";
+                // 1. Cambiamos 'Rol' por 'ID_Perfil' en las columnas y en los valores
+                string query = $@"INSERT INTO {TABLA_USUARIOS} (DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, ID_Perfil, Bloqueado, Estado, Idioma) 
+                          VALUES (@dni, @nombreDeUsuario, @nombre, @apellido, @contraseña, @idPerfil, @bloqueado, @estado, @idioma)";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                    new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@nombreDeUsuario", usuario._NombreDeUsuario),
-                    new SqlParameter("@nombre", usuario._Nombre),
-                    new SqlParameter("@apellido", usuario._Apellido),
-                    new SqlParameter("@contraseña", usuario._Contraseña),
-                    new SqlParameter("@bloqueado", usuario._Bloqueado),
-                    new SqlParameter("@estado", usuario._Estado),
-                    new SqlParameter("@idioma",usuario._Idioma)
+            new SqlParameter("@dni", usuario._Dni),
+            new SqlParameter("@nombreDeUsuario", usuario._NombreDeUsuario),
+            new SqlParameter("@nombre", usuario._Nombre),
+            new SqlParameter("@apellido", usuario._Apellido),
+            new SqlParameter("@contraseña", usuario._Contraseña),
+            new SqlParameter("@idPerfil", usuario._IdPerfil), // 2. ¡Agregamos el parámetro que faltaba!
+            new SqlParameter("@bloqueado", usuario._Bloqueado),
+            new SqlParameter("@estado", usuario._Estado),
+            new SqlParameter("@idioma", usuario._Idioma)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -36,29 +38,32 @@ namespace DAL
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al registrar usuario: {ex.Message}");
+                // Es buena práctica relanzar la excepción si querés que la interfaz gráfica (UI) se entere del error
+                throw;
             }
         }
 
         public void CambiarContraseña(UsuarioBE usuario)
         {
-
             try
             {
+                // 1. Cambiamos 'Rol = @rol' por 'ID_Perfil = @idPerfil'
                 string query = $@"UPDATE {TABLA_USUARIOS} 
                           SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado, Idioma=@idioma
+                              ID_Perfil = @idPerfil, Bloqueado = @bloqueado , Estado = @estado, Idioma=@idioma
                           WHERE DNI = @dni";
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-                    new SqlParameter("@nombre", usuario._Nombre),
-                    new SqlParameter("@apellido", usuario._Apellido),
-                    new SqlParameter("@contraseña", usuario._Contraseña),
-                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
-                    new SqlParameter("@bloqueado", usuario._Bloqueado),
-                    new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@estado", usuario._Estado),
-                    new SqlParameter("@idioma",usuario._Idioma)
+            new SqlParameter("@nombre", usuario._Nombre),
+            new SqlParameter("@apellido", usuario._Apellido),
+            new SqlParameter("@contraseña", usuario._Contraseña),
+            new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
+            new SqlParameter("@idPerfil", usuario._IdPerfil), // 2. ¡Acá agregamos el parámetro faltante!
+            new SqlParameter("@bloqueado", usuario._Bloqueado),
+            new SqlParameter("@dni", usuario._Dni),
+            new SqlParameter("@estado", usuario._Estado),
+            new SqlParameter("@idioma", usuario._Idioma)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -73,28 +78,28 @@ namespace DAL
                 };
 
                 EventoDAL bitacoraDAL = new();
-
                 bitacoraDAL.GuardarBitacora(bit);
             }
             catch (Exception ex)
             {
-
-
                 EventoBE bit = new EventoBE()
                 {
                     _Criticidad = 2,
                     _Dni = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(),
-                    _Descripcion = $"No cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}",
+                    _Descripcion = $"No cambió contraseña de {ServicesSessionManager.Instancia.ObtenerUsuarioActivo()._Dni}. Error: {ex.Message}",
                     _Modulo = "MenuPrincipal",
                     _Fecha = DateTime.Now
                 };
 
                 EventoDAL bitacoraDAL = new();
-
                 bitacoraDAL.GuardarBitacora(bit);
-                Console.WriteLine("ERROR:  No se cambio la contraseña ");
-            }
 
+                Console.WriteLine("ERROR: No se cambio la contraseña ");
+
+                // Es muy importante relanzar la excepción para que el formulario (UI) sepa que falló 
+                // y no le muestre un cartel de "Éxito" al usuario.
+                throw;
+            }
         }
 
         public UsuarioBE ObtenerUsuario(string nombreDeUsuario)
@@ -143,7 +148,6 @@ namespace DAL
         {
             try
             {
-                // Cambiamos Rol por ID_Perfil
                 string query = $@"SELECT DNI, NombreDeUsuario, Nombre, Apellido, Contraseña, ID_Perfil, Bloqueado, Estado, Idioma
                           FROM {TABLA_USUARIOS} 
                           WHERE DNI = @dni";
@@ -153,7 +157,6 @@ namespace DAL
 
                 if (dt.Rows.Count == 0) return null;
 
-                // Le pasamos los 9 parámetros en orden correcto
                 UsuarioBE usuario = new UsuarioBE(
                     dt.Rows[0]["Nombre"].ToString(),
                     dt.Rows[0]["Apellido"].ToString(),
@@ -188,15 +191,15 @@ namespace DAL
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
-            new SqlParameter("@nombre", usuario._Nombre),
-            new SqlParameter("@apellido", usuario._Apellido),
-            new SqlParameter("@contraseña", usuario._Contraseña),
-            new SqlParameter("@idPerfil", usuario._IdPerfil), // Ahora sí existe
-            new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
-            new SqlParameter("@bloqueado", usuario._Bloqueado),
-            new SqlParameter("@dni", usuario._Dni),
-            new SqlParameter("@estado", usuario._Estado),
-            new SqlParameter("@idioma", usuario._Idioma)
+                    new SqlParameter("@nombre", usuario._Nombre),
+                    new SqlParameter("@apellido", usuario._Apellido),
+                    new SqlParameter("@contraseña", usuario._Contraseña),
+                    new SqlParameter("@idPerfil", usuario._IdPerfil), // Ahora sí existe
+                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
+                    new SqlParameter("@bloqueado", usuario._Bloqueado),
+                    new SqlParameter("@dni", usuario._Dni),
+                    new SqlParameter("@estado", usuario._Estado),
+                    new SqlParameter("@idioma", usuario._Idioma)
                 };
 
                 conexion.ExecuteNonQuery(query, parametros);
@@ -278,23 +281,22 @@ namespace DAL
 
         public void Desbloquear(UsuarioBE usuario)
         {
-            // Reemplazamos Rol por ID_Perfil en la sintaxis SQL
             string query = $@"UPDATE {TABLA_USUARIOS} 
-                          SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
-                              Rol = @rol, Bloqueado = @bloqueado , Estado = @estado, Idioma = @idioma
-                          WHERE DNI = @dni";
+                      SET Nombre = @nombre, Apellido = @apellido, NombreDeUsuario = @nombredeusuario, Contraseña = @contraseña, 
+                          ID_Perfil = @idPerfil, Bloqueado = @bloqueado , Estado = @estado, Idioma = @idioma
+                      WHERE DNI = @dni";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                    new SqlParameter("@nombre", usuario._Nombre),
-                    new SqlParameter("@apellido", usuario._Apellido),
-                    new SqlParameter("@contraseña", usuario._Contraseña),
-                    new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
-                    new SqlParameter("@bloqueado", usuario._Bloqueado),
-                    new SqlParameter("@dni", usuario._Dni),
-                    new SqlParameter("@estado", usuario._Estado),
-                    new SqlParameter("@idioma", usuario._Idioma)
-
+                new SqlParameter("@nombre", usuario._Nombre),
+                new SqlParameter("@apellido", usuario._Apellido),
+                new SqlParameter("@contraseña", usuario._Contraseña),
+                new SqlParameter("@nombredeusuario", usuario._NombreDeUsuario),
+                new SqlParameter("@idPerfil", usuario._IdPerfil), 
+                new SqlParameter("@bloqueado", usuario._Bloqueado),
+                new SqlParameter("@dni", usuario._Dni),
+                new SqlParameter("@estado", usuario._Estado),
+                new SqlParameter("@idioma", usuario._Idioma)
             };
 
             conexion.ExecuteNonQuery(query, parametros);
@@ -324,6 +326,4 @@ namespace DAL
             }
         }
     }
-
-
 }
