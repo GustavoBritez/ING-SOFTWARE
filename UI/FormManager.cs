@@ -113,31 +113,24 @@ namespace UI
             AplicarSeguridadRecursiva(formulario.Controls, controlesRestringidos);
         }
 
-        // 2. El escáner profundo que revisa adentro de los paneles
         private static void AplicarSeguridadRecursiva(Control.ControlCollection controles, Dictionary<string, string> controlesRestringidos)
         {
             foreach (Control control in controles)
             {
-                // Si el control actual está en la lista de prohibidos...
                 if (controlesRestringidos.ContainsKey(control.Name))
                 {
                     string permisoRequerido = controlesRestringidos[control.Name];
-
-                    // Preguntamos si el usuario activo tiene esa patente
                     if (!ServicesSessionManager.Instancia.TienePermiso(permisoRequerido))
                     {
-                        control.Visible = false; // ¡Le apagamos la luz!
+                        control.Visible = false;
                     }
                 }
-
-                // ¡LA MAGIA!: Si este control tiene otros controles adentro (Ej: un Panel), nos metemos a revisar
                 if (control.HasChildren)
                 {
                     AplicarSeguridadRecursiva(control.Controls, controlesRestringidos);
                 }
             }
         }
-
         #region "Gestión de Permisos Dinámicos (Reflection)"
 
         public static List<string> ObtenerFormulariosDelSistema()

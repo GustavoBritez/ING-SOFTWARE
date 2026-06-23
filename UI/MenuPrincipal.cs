@@ -135,28 +135,12 @@ namespace UI
                 return;
             }
 
-
-
             FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
         }
 
         private void btnBitacora_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (ServicesSessionManager.Instancia.TienePermiso("Acceso_Bitacora"))
-                {
-                    FormManager.Navegar(this, FormManager.ObtenerBitacora());
-                }
-                else
-                {
-                    MessageBox.Show("Su perfil no cuenta con los permisos necesarios para acceder a la Bitácora del sistema.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al intentar abrir la pantalla: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            FormManager.Navegar(this, FormManager.ObtenerBitacora());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

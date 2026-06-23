@@ -85,17 +85,19 @@ namespace DAL.Perfiles
         #endregion
 
         #region Eliminar
-
-        public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
+        // Método para eliminar la relación
+        public void EliminarPermisoAPerfil(int idPerfil, int idPermiso)
         {
-            string query = $"DELETE FROM {PERFIL_PERMISO} WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
+            string query = "DELETE FROM [ING].[dbo].[Perfil_Permiso] WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+
+            SqlParameter[] param = {
                 new SqlParameter("@idPerfil", idPerfil),
-                new SqlParameter("@IdPermiso", idPermiso)
+                new SqlParameter("@idPermiso", idPermiso)
             };
-            _conexion.ExecuteNonQuery(query, parametros);
+
+            _conexion.ExecuteNonQuery(query, param);
         }
+        
         public void EliminarPerfilDefinitivo(int idPerfil)
         {
 

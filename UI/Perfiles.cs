@@ -762,35 +762,28 @@ namespace UI
         {
             try
             {
-                // 1. Grilla de PERFILES (Centro - asumiendo que tu grilla se llama dgvPerfiles)
                 if (dgvPerfiles.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un Perfil de la grilla central.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // 2. Grilla de PERMISOS (Derecha)
                 if (dgvPermisos.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // 3. Extraemos los IDs y nombres
-                // Asegurate de que el nombre de la columna sea exactamente "Id" o "_Id" según tu objeto BE
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
 
                 string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
                 string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
 
-                // 4. Llamamos a la BLL correspondiente (asegurate de tener una instancia de PerfilBLL)
-                // Si no tenés este método, deberás crearlo en PerfilBLL usando la DAL
                 _perfilBLL.AgregarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso, nombrePerfil);
 
                 MessageBox.Show("¡Permiso asignado al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Refrescamos las grillas para ver el cambio
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
@@ -807,26 +800,27 @@ namespace UI
         {
             try
             {
-
                 if (dgvPerfiles.CurrentRow == null || dgvPermisos.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione tanto un Perfil como un Permiso.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
-
                 string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
                 string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
 
-                _perfilBLL.AgregarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso, nombrePerfil);
+                DialogResult confirmacion = MessageBox.Show($"¿Está seguro de quitar el permiso '{nombrePermiso}' del perfil '{nombrePerfil}'?",
+                                                            "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmacion == DialogResult.Yes)
+                {
+                    _perfilBLL.EliminarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso, nombrePerfil);
 
-                MessageBox.Show("¡Permiso asignado al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("¡Permiso eliminado del perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                CargarGrillas();
+                    CargarGrillas();
+                }
             }
             catch (ArgumentException argEx)
             {
@@ -834,7 +828,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al asignar el permiso al perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al eliminar el permiso del perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

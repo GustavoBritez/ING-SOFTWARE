@@ -46,7 +46,23 @@ namespace BLL
         #endregion 
 
         #region Eliminar
-        
+        public void EliminarPermisoAPerfil(int idPerfil, int idPermiso, string nombrePermiso, string nombrePerfil)
+        {
+            // 1. Validación: ¿El permiso está realmente asignado?
+            if (!_perfilDAL.ExistePermisoEnPerfil(idPerfil, idPermiso))
+            {
+                throw new ArgumentException($"El permiso '{nombrePermiso}' no está asignado al perfil '{nombrePerfil}', por lo tanto no se puede eliminar.");
+            }
+
+            // 2. Ejecución
+            _perfilDAL.EliminarPermisoAPerfil(idPerfil, idPermiso);
+
+            // 3. Bitácora
+            EventoBLL bitacoraBLL = new();
+            int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
+            string descripcion = $"Eliminación de Permiso: '{nombrePermiso}' del Perfil '{nombrePerfil}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfiles");
+        }
         public void EliminarPerfil(int idPerfil, string nombrePerfil)
         {
             // Frenamos si hay gente usándolo
@@ -122,13 +138,10 @@ namespace BLL
 
         public int ObtenerIdPerfilPorNombre(string nombreRol)
         {
-            // Si el texto viene vacío por algún motivo, devolvemos 0 o tiramos error
             if (string.IsNullOrWhiteSpace(nombreRol))
             {
                 throw new ArgumentException("El nombre del rol no puede estar vacío.");
             }
-
-            // Llamamos a la DAL para que haga el trabajo sucio
             return _perfilDAL.ObtenerIdPerfilPorNombre(nombreRol);
         }
 
@@ -143,16 +156,13 @@ namespace BLL
         }
         public void AgregarPermisoAPerfil(int idPerfil, int idPermiso, string nombrePermiso, string nombrePerfil)
         {
-            // Validación
             if (_perfilDAL.ExistePermisoEnPerfil(idPerfil, idPermiso))
             {
                 throw new ArgumentException($"El permiso '{nombrePermiso}' ya está asignado al perfil '{nombrePerfil}'.");
             }
 
-            // Acción
             _perfilDAL.AgregarPermisoAPerfil(idPerfil, idPermiso);
 
-            // Bitácora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Asignación de Permiso: '{nombrePermiso}' al Perfil '{nombrePerfil}'";
