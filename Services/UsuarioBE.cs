@@ -1,5 +1,3 @@
-using Services;
-
 namespace BE
 {
     public class UsuarioBE
@@ -10,18 +8,19 @@ namespace BE
         private int Dni;
         private string Nombre;
         private string NombreDeUsuario;
-        private string Rol;
         private bool Estado;
         private string Idioma;
+        private int IdPerfil; // ¡ESTO SE HABÍA BORRADO!
 
-        public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, string rol, bool bloqueado, bool estado, string idioma)
+        // Actualizamos string rol por int idPerfil
+        public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, int idPerfil, bool bloqueado, bool estado, string idioma)
         {
             Nombre = nombre;
             Apellido = apellido;
             Dni = dni;
             NombreDeUsuario = nombreDeUsuario;
             Contraseña = contraseña;
-            Rol = rol;
+            IdPerfil = idPerfil; // Asignamos el perfil
             Bloqueado = bloqueado;
             Estado = estado;
             Idioma = idioma;
@@ -33,8 +32,8 @@ namespace BE
         public int _Dni { get => Dni; set => Dni = value; }
         public string _Nombre { get => Nombre; set => Nombre = value; }
         public string _NombreDeUsuario { get => NombreDeUsuario; set => NombreDeUsuario = value; }
-        public string _Rol { get => Rol; set => Rol = value; }
         public bool _Estado { get => Estado; set => Estado = value; }
         public string _Idioma { get => Idioma; set => Idioma = value; }
+        public int _IdPerfil { get => IdPerfil; set => IdPerfil = value; } // ¡PROPIEDAD RECUPERADA!
     }
 }

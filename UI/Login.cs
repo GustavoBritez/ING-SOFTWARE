@@ -1,6 +1,8 @@
 ﻿using BE;
 using BLL;
+using BLL.Perfiles;
 using Services;
+using Services.Perfiles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,24 +71,24 @@ namespace UI
                     return;
                 }
 
-                // Intentar login
                 bool loginOK = usuarioBLL.Login(nombre, contraseña);
-
                 if (loginOK)
                 {
+                    PatenteBLL patenteBLL = new PatenteBLL();
+                    List<PatenteServices> listaPatentes = patenteBLL.ObtenerPermisosDePerfil(usuario._IdPerfil);
+
+                    List<string> nombresPermisos = listaPatentes.Select(p => p.Nombre).ToList();
+
+                    ServicesSessionManager.Instancia.CargarPermisosDelUsuario(nombresPermisos);
+
+                    ServicesSessionManager.Instancia.Login(usuario);
+
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Navegar al formulario principal
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
-
-                    List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
-                    Idioma idioma = idiomas.Find(i => i.Nombre == usuario._Idioma.ToString());
-                    ServicesSessionManager.Instancia.CambiarIdioma(idioma);
 
                 }
                 else
                 {
-                    // Si el login falló, comprobar si la cuenta fue bloqueada después del intento
                     UsuarioBE usuarioDespues = usuarioBLL.BuscarUsuario(nombre);
                     if (usuarioDespues != null && usuarioDespues._Bloqueado)
                     {
@@ -106,7 +108,7 @@ namespace UI
             }
         }
 
-        //OBSERVER
+        #region
         public void ActualizarIdioma()
         {
             if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
@@ -130,19 +132,13 @@ namespace UI
                     Traducir(control.Controls);
             }
         }
+        #endregion
 
-        private void panelLogin_Paint(object sender, PaintEventArgs e)
-        {
-            txtUsuario.Text = "admin";
-            txtPassword.Text = "1234";
-        }
-
+        // Solo para logearme ma rapido
         private void Login_Load(object sender, EventArgs e)
         {
             txtUsuario.Text = "admin";
             txtPassword.Text = "1234";
-
-
         }
     }
 }

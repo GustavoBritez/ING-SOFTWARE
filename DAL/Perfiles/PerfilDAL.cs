@@ -85,17 +85,19 @@ namespace DAL.Perfiles
         #endregion
 
         #region Eliminar
-
-        public void EliminarPermisoPerfil(int idPerfil, int idPermiso)
+        // Método para eliminar la relación
+        public void EliminarPermisoAPerfil(int idPerfil, int idPermiso)
         {
-            string query = $"DELETE FROM {PERFIL_PERMISO} WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
+            string query = "DELETE FROM [ING].[dbo].[Perfil_Permiso] WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+
+            SqlParameter[] param = {
                 new SqlParameter("@idPerfil", idPerfil),
-                new SqlParameter("@IdPermiso", idPermiso)
+                new SqlParameter("@idPermiso", idPermiso)
             };
-            _conexion.ExecuteNonQuery(query, parametros);
+
+            _conexion.ExecuteNonQuery(query, param);
         }
+        
         public void EliminarPerfilDefinitivo(int idPerfil)
         {
 
@@ -143,6 +145,46 @@ namespace DAL.Perfiles
         #endregion
 
         #region Obtener
+        public int ObtenerIdPerfilPorNombre(string nombreRol)
+        {
+            int idPerfil = 0;
+
+            try
+            {
+                string query = "SELECT ID_Perfil FROM Perfil WHERE Nombre = @nombre";
+
+                Microsoft.Data.SqlClient.SqlParameter[] param = {
+            new Microsoft.Data.SqlClient.SqlParameter("@nombre", nombreRol)
+        };
+
+                // Asumo que tu objeto de conexión se llama "conexion" igual que en UsuarioDAL
+                System.Data.DataTable dt = _conexion.ExecuteReader(query, param);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    idPerfil = Convert.ToInt32(dt.Rows[0]["ID_Perfil"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al buscar el ID del Perfil: {ex.Message}");
+            }
+
+            return idPerfil;
+        }
+
+        public void AgregarPermisoAPerfil(int idPerfil, int idPermiso)
+        {
+            string query = "INSERT INTO [ING].[dbo].[Perfil_Permiso] (ID_Perfil, ID_Permiso) VALUES (@idPerfil, @idPermiso)";
+
+            SqlParameter[] param = {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, param);
+        }
+
         public List<Perfil> ObtenerComponentesTotales()
         {
             List<Perfil> _perfil = new();
@@ -169,6 +211,7 @@ namespace DAL.Perfiles
 
             return _perfil;
         }
+
         public List<Perfil> ObtenerPerfiles()
         {
             List<Perfil> lista = new List<Perfil>();
@@ -183,6 +226,24 @@ namespace DAL.Perfiles
                 lista.Add(new FamiliaServices(nombre) { Id = id });
             }
             return lista;
+        }
+
+        public bool ExistePermisoEnPerfil(int idPerfil, int idPermiso)
+        {
+            string query = "SELECT COUNT(1) FROM [ING].[dbo].[Perfil_Permiso] WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+
+            SqlParameter[] param = {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+            return false;
         }
 
         public FamiliaServices ObtenerArbolPerfil(int idPerfil)
@@ -235,7 +296,6 @@ namespace DAL.Perfiles
 
         public bool ExistePerfilPorNombre(string nombrePerfil)
         {
-            // Buscamos coincidencias en la tabla Perfil
             string query = "SELECT COUNT(1) FROM Perfil WHERE Nombre = @nombre";
 
             SqlParameter[] param = {

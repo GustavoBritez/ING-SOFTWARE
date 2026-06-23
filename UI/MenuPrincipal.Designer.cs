@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
-            btnChangePass = new Button();
+            btnCambiarContrasena = new Button();
             btnLogin = new Button();
             btnLogout = new Button();
             btnAyuda = new Button();
@@ -39,7 +39,7 @@
             btnTurnos = new Button();
             lblModulo = new Label();
             panelTop = new Panel();
-            comboBox1 = new ComboBox();
+            cmbIdioma = new ComboBox();
             label6 = new Label();
             label4 = new Label();
             lblTitulo = new Label();
@@ -64,7 +64,7 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(76, 124, 89);
-            panelMenu.Controls.Add(btnChangePass);
+            panelMenu.Controls.Add(btnCambiarContrasena);
             panelMenu.Controls.Add(btnLogin);
             panelMenu.Controls.Add(btnLogout);
             panelMenu.Controls.Add(btnAyuda);
@@ -79,20 +79,20 @@
             panelMenu.Size = new Size(259, 700);
             panelMenu.TabIndex = 0;
             // 
-            // btnChangePass
+            // btnCambiarContrasena
             // 
-            btnChangePass.BackColor = Color.FromArgb(78, 122, 84);
-            btnChangePass.FlatStyle = FlatStyle.Flat;
-            btnChangePass.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnChangePass.ForeColor = Color.Transparent;
-            btnChangePass.Location = new Point(11, 564);
-            btnChangePass.Margin = new Padding(2);
-            btnChangePass.Name = "btnChangePass";
-            btnChangePass.Size = new Size(240, 38);
-            btnChangePass.TabIndex = 8;
-            btnChangePass.Text = "Cambiar Contraseña";
-            btnChangePass.UseVisualStyleBackColor = false;
-            btnChangePass.Click += btnChangePass_Click;
+            btnCambiarContrasena.BackColor = Color.FromArgb(78, 122, 84);
+            btnCambiarContrasena.FlatStyle = FlatStyle.Flat;
+            btnCambiarContrasena.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCambiarContrasena.ForeColor = Color.Transparent;
+            btnCambiarContrasena.Location = new Point(11, 564);
+            btnCambiarContrasena.Margin = new Padding(2);
+            btnCambiarContrasena.Name = "btnCambiarContrasena";
+            btnCambiarContrasena.Size = new Size(240, 38);
+            btnCambiarContrasena.TabIndex = 8;
+            btnCambiarContrasena.Text = "Cambiar Contraseña";
+            btnCambiarContrasena.UseVisualStyleBackColor = false;
+            btnCambiarContrasena.Click += btnCambiarContrasena_Click;
             // 
             // btnLogin
             // 
@@ -116,7 +116,7 @@
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Segoe UI", 10F);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(24, 643);
+            btnLogout.Location = new Point(24, 649);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(215, 45);
             btnLogout.TabIndex = 6;
@@ -201,7 +201,6 @@
             btnTurnos.Text = "📅 Gestión de Turnos";
             btnTurnos.TextAlign = ContentAlignment.MiddleLeft;
             btnTurnos.UseVisualStyleBackColor = false;
-            btnTurnos.Click += btnTurnos_Click;
             // 
             // lblModulo
             // 
@@ -217,7 +216,7 @@
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(92, 145, 104);
-            panelTop.Controls.Add(comboBox1);
+            panelTop.Controls.Add(cmbIdioma);
             panelTop.Controls.Add(label6);
             panelTop.Controls.Add(label4);
             panelTop.Controls.Add(lblTitulo);
@@ -227,17 +226,17 @@
             panelTop.Size = new Size(951, 60);
             panelTop.TabIndex = 1;
             // 
-            // comboBox1
+            // cmbIdioma
             // 
-            comboBox1.BackColor = Color.DarkSeaGreen;
-            comboBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Español", "Ingles", "Portugues" });
-            comboBox1.Location = new Point(784, 16);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(164, 29);
-            comboBox1.TabIndex = 2;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cmbIdioma.BackColor = Color.DarkSeaGreen;
+            cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbIdioma.FormattingEnabled = true;
+            cmbIdioma.Items.AddRange(new object[] { "Español", "Ingles", "Portugues" });
+            cmbIdioma.Location = new Point(784, 16);
+            cmbIdioma.Name = "cmbIdioma";
+            cmbIdioma.Size = new Size(164, 29);
+            cmbIdioma.TabIndex = 2;
+            cmbIdioma.SelectedIndexChanged += cmdIdioma_SelectedIndexChanged;
             // 
             // label6
             // 
@@ -406,7 +405,6 @@
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sistema NutriEvolve";
-            Load += MenuPrincipal_Load;
             panelMenu.ResumeLayout(false);
             panelMenu.PerformLayout();
             panelTop.ResumeLayout(false);
@@ -439,7 +437,7 @@
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnAyuda;
         private System.Windows.Forms.Button btnLogout;
-        private Button btnChangePass;
+        private Button btnCambiarContrasena;
         private Button btnLogin;
         private Panel ChangePassPanel;
         private Button btnCancelarMP;
@@ -454,6 +452,6 @@
         private Label label5;
         private Label label6;
         private Label label4;
-        private ComboBox comboBox1;
+        private ComboBox cmbIdioma;
     }
 }

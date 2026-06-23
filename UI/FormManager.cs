@@ -1,6 +1,7 @@
-using System;
+using BLL.Perfiles;
+using Services;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
+using System.Reflection; 
 
 namespace UI
 {
@@ -27,6 +28,7 @@ namespace UI
             if (_perfiles == null || _perfiles.IsDisposed)
             {
                 _perfiles = new Perfiles();
+                AplicarSeguridad(_perfiles);
             }
             return _perfiles;
         }
@@ -36,19 +38,17 @@ namespace UI
             if (_MenuPrincipal == null || _MenuPrincipal.IsDisposed)
             {
                 _MenuPrincipal = new MenuPrincipal();
+                AplicarSeguridad(_MenuPrincipal);
             }
-
             return _MenuPrincipal;
         }
-
-        // Para el composite son dos casos de uso, gestionar roles y gestionar familias
-        // Un loop para los permisos tmb ? no entendi que dijo o que pidio si alguno lo entiende que me explique y lo hacemo
 
         public static GestionUsuario ObtenerGestionUsuario()
         {
             if (_gestionUsuario == null || _gestionUsuario.IsDisposed)
             {
                 _gestionUsuario = new GestionUsuario();
+                AplicarSeguridad(_gestionUsuario);
             }
             return _gestionUsuario;
         }
@@ -58,6 +58,7 @@ namespace UI
             if (_bitacora == null || _bitacora.IsDisposed)
             {
                 _bitacora = new Bitacora();
+                AplicarSeguridad(_bitacora);
             }
             return _bitacora;
         }
@@ -73,9 +74,7 @@ namespace UI
 
                 if (formularioDestino != null && !formularioDestino.IsDisposed)
                 {
-
                     formularioDestino.Show();
-
                 }
             }
             catch (Exception ex)
@@ -104,6 +103,97 @@ namespace UI
             _gestionUsuario = null;
         }
 
+        // 1. El método principal que llama tu pantalla
+        public static void AplicarSeguridad(Form formulario)
+        {
+            PatenteBLL patenteBLL = new PatenteBLL();
+            Dictionary<string, string> controlesRestringidos = patenteBLL.ObtenerControlesRestringidos(formulario.Name);
+
+            // Llamamos al escáner profundo
+            AplicarSeguridadRecursiva(formulario.Controls, controlesRestringidos);
+        }
+
+        private static void AplicarSeguridadRecursiva(Control.ControlCollection controles, Dictionary<string, string> controlesRestringidos)
+        {
+            foreach (Control control in controles)
+            {
+                if (controlesRestringidos.ContainsKey(control.Name))
+                {
+                    string permisoRequerido = controlesRestringidos[control.Name];
+                    if (!ServicesSessionManager.Instancia.TienePermiso(permisoRequerido))
+                    {
+                        control.Visible = false;
+                    }
+                }
+                if (control.HasChildren)
+                {
+                    AplicarSeguridadRecursiva(control.Controls, controlesRestringidos);
+                }
+            }
+        }
+        #region "Gestión de Permisos Dinámicos (Reflection)"
+
+        public static List<string> ObtenerFormulariosDelSistema()
+        {
+            List<string> nombresFormularios = new List<string>();
+
+            PropertyInfo[] propiedades = typeof(FormManager).GetProperties(BindingFlags.Public | BindingFlags.Static);
+
+            foreach (PropertyInfo prop in propiedades)
+            {
+                if (typeof(Form).IsAssignableFrom(prop.PropertyType))
+                {
+                    nombresFormularios.Add(prop.PropertyType.Name);
+                }
+            }
+
+            MethodInfo[] metodos = typeof(FormManager).GetMethods(BindingFlags.Public | BindingFlags.Static);
+            foreach (MethodInfo metodo in metodos)
+            {
+                if (metodo.Name.StartsWith("Obtener") && typeof(Form).IsAssignableFrom(metodo.ReturnType))
+                {
+                    string nombreForm = metodo.ReturnType.Name;
+                    if (!nombresFormularios.Contains(nombreForm))
+                    {
+                        nombresFormularios.Add(nombreForm);
+                    }
+                }
+            }
+
+            return nombresFormularios;
+        }
+
+        public static List<string> ObtenerBotonesDeFormulario(string nombreFormulario)
+        {
+            List<string> nombresBotones = new List<string>();
+
+            try
+            {
+                Type tipoFormulario = Type.GetType($"UI.{nombreFormulario}");
+                if (tipoFormulario == null) return nombresBotones;
+
+                FieldInfo[] campos = tipoFormulario.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+
+                foreach (FieldInfo campo in campos)
+                {
+                    if (typeof(Button).IsAssignableFrom(campo.FieldType) ||
+                        campo.FieldType.Name == "ButtonActive" ||
+                        typeof(ToolStripItem).IsAssignableFrom(campo.FieldType))
+                    {
+                        nombresBotones.Add(campo.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al escanear botones: " + ex.Message);
+            }
+
+            return nombresBotones;
+        }
+
+        #endregion
+
         #region "Graficos Botones"
 
         public class ButtonActive : Button
@@ -118,7 +208,7 @@ namespace UI
                 this.Size = new Size(150, 45);
                 this.BackColor = _colorFondo;
                 this.ForeColor = _colorTexto;
-                this.Cursor = Cursors.Hand; // Cambia el cursor a la manito al pasar por encima
+                this.Cursor = Cursors.Hand; 
                 this.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             }
 
@@ -128,13 +218,9 @@ namespace UI
                 float diameter = radius * 2;
 
                 path.StartFigure();
-                // Arco superior izquierdo
                 path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
-                // Arco superior derecho
                 path.AddArc(rect.Width - diameter + rect.X, rect.Y, diameter, diameter, 270, 90);
-                // Arco inferior derecho
                 path.AddArc(rect.Width - diameter + rect.X, rect.Height - diameter + rect.Y, diameter, diameter, 0, 90);
-                // Arco inferior izquierdo
                 path.AddArc(rect.X, rect.Height - diameter + rect.Y, diameter, diameter, 90, 90);
                 path.CloseFigure();
 
@@ -176,7 +262,5 @@ namespace UI
             }
         }
         #endregion
-
-
     }
 }

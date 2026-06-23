@@ -56,9 +56,51 @@ namespace DAL.Perfiles
             _conexion.ExecuteNonQuery(query, parametros);
         }
 
+        // Método para eliminar la relación
+        public void EliminarPermisoAPerfil(int idPerfil, int idPermiso)
+        {
+            string query = "DELETE FROM [ING].[dbo].[Perfil_Permiso] WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
+
+            SqlParameter[] param = {
+                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idPermiso", idPermiso)
+            };
+
+            _conexion.ExecuteNonQuery(query, param);
+        }
+        public Dictionary<string, string> ObtenerControlesRestringidos(string nombreFormulario)
+        {
+            Dictionary<string, string> restricciones = new Dictionary<string, string>();
+
+            string query = @"SELECT C.NombreControl, P.Nombre 
+                     FROM Permiso_Control C
+                     INNER JOIN Permiso P ON C.ID_Permiso = P.ID_Permiso
+                     WHERE C.NombreFormulario = @nombreForm";
+
+            SqlParameter[] param = {
+                new SqlParameter("@nombreForm", nombreFormulario)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null)
+            {
+                foreach (DataRow fila in dt.Rows)
+                {
+                    string nombreControl = fila["NombreControl"].ToString();
+                    string nombrePermiso = fila["Nombre"].ToString();
+
+                    if (!restricciones.ContainsKey(nombreControl))
+                    {
+                        restricciones.Add(nombreControl, nombrePermiso);
+                    }
+                }
+            }
+
+            return restricciones;
+        }
         public bool ExistePermisoPorNombre(string nombrePermiso)
         {
-            // Buscamos si ya hay un permiso con exactamente ese mismo nombre
             string query = "SELECT COUNT(1) FROM Permiso WHERE Nombre = @nombre";
 
             SqlParameter[] param = {
@@ -67,7 +109,6 @@ namespace DAL.Perfiles
 
             DataTable dt = _conexion.ExecuteReader(query, param);
 
-            // Validamos que no venga vacío (nuestra clásica programación defensiva)
             if (dt != null && dt.Rows.Count > 0)
             {
                 return Convert.ToInt32(dt.Rows[0][0]) > 0;
@@ -107,13 +148,53 @@ namespace DAL.Perfiles
             }
             return lista;
         }
+        public List<PatenteServices> ObtenerPermisosDePerfil(int idPerfil)
+        {
+            string query = @"SELECT P.ID_Permiso, P.Nombre 
+                     FROM Permiso P
+                     INNER JOIN Perfil_Permiso PP ON P.ID_Permiso = PP.ID_Permiso
+                     WHERE PP.ID_Perfil = @idPerfil";
 
+            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@idPerfil", idPerfil) };
+
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            List<PatenteServices> lista = new();
+            foreach (DataRow fila in dt.Rows)
+            {
+                lista.Add(new PatenteServices(fila["Nombre"].ToString()) { Id = Convert.ToInt32(fila["ID_Permiso"]) });
+            }
+            return lista;
+        }
         public List<Perfil> ObtenerComponentesTotales()
         {
             List<Perfil> lista = new();
             lista.AddRange(ObtenerFamiliasPerfil());
             lista.AddRange(ObtenerPermisosPerfil());
             return lista;
+        }
+
+        public void VincularPermisoABoton(string nombreFormulario, string nombreBoton, string nombrePatente)
+        {
+            try
+            {
+                string query = @"INSERT INTO Permiso_Boton (NombreFormulario, NombreControl, NombrePatente) 
+                         VALUES (@nombreFormulario, @nombreBoton, @nombrePatente)";
+
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+            new SqlParameter("@nombreFormulario", nombreFormulario),
+            new SqlParameter("@nombreBoton", nombreBoton),
+            new SqlParameter("@nombrePatente", nombrePatente)
+                };
+
+                // Uso "_conexion" o "conexion", ajustalo al nombre de tu objeto en la DAL
+                _conexion.ExecuteNonQuery(query, parametros);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la DAL al vincular el permiso con el botón: " + ex.Message);
+            }
         }
 
         public void InsertarPatenteNueva(string nombrePermiso)

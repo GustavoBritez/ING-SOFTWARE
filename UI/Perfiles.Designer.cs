@@ -31,6 +31,7 @@
             TS_Gestion = new ToolStrip();
             toolStripLabel1 = new ToolStripDropDownButton();
             MenuItem_Familia_A_Perfil = new ToolStripMenuItem();
+            Agregar_Permiso_A_Perfil = new ToolStripMenuItem();
             MenuItem_Permiso_A_Familia = new ToolStripMenuItem();
             permisoToolStripMenuItem = new ToolStripMenuItem();
             perfilToolStripMenuItem = new ToolStripMenuItem();
@@ -53,6 +54,7 @@
             dgvPermisos = new DataGridView();
             panel3 = new Panel();
             labelPermiso = new Label();
+            E_MenuItem_Permiso_A_Perfil = new ToolStripMenuItem();
             TS_Gestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPerfiles).BeginInit();
             panel1.SuspendLayout();
@@ -74,7 +76,7 @@
             // toolStripLabel1
             // 
             toolStripLabel1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_Familia_A_Perfil, MenuItem_Permiso_A_Familia, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
+            toolStripLabel1.DropDownItems.AddRange(new ToolStripItem[] { MenuItem_Familia_A_Perfil, Agregar_Permiso_A_Perfil, MenuItem_Permiso_A_Familia, permisoToolStripMenuItem, perfilToolStripMenuItem, familiaToolStripMenuItem });
             toolStripLabel1.Name = "toolStripLabel1";
             toolStripLabel1.Size = new Size(62, 22);
             toolStripLabel1.Text = "Agregar";
@@ -82,41 +84,48 @@
             // MenuItem_Familia_A_Perfil
             // 
             MenuItem_Familia_A_Perfil.Name = "MenuItem_Familia_A_Perfil";
-            MenuItem_Familia_A_Perfil.Size = new Size(167, 22);
+            MenuItem_Familia_A_Perfil.Size = new Size(180, 22);
             MenuItem_Familia_A_Perfil.Text = "Familia a Perfil";
             MenuItem_Familia_A_Perfil.Click += Agregar_Familia_A_Perfil;
+            // 
+            // Agregar_Permiso_A_Perfil
+            // 
+            Agregar_Permiso_A_Perfil.Name = "Agregar_Permiso_A_Perfil";
+            Agregar_Permiso_A_Perfil.Size = new Size(180, 22);
+            Agregar_Permiso_A_Perfil.Text = "Permiso a Perfil";
+            Agregar_Permiso_A_Perfil.Click += Agregar_Permiso_A_Perfil_Click;
             // 
             // MenuItem_Permiso_A_Familia
             // 
             MenuItem_Permiso_A_Familia.Name = "MenuItem_Permiso_A_Familia";
-            MenuItem_Permiso_A_Familia.Size = new Size(167, 22);
+            MenuItem_Permiso_A_Familia.Size = new Size(180, 22);
             MenuItem_Permiso_A_Familia.Text = "Permiso a Familia";
             MenuItem_Permiso_A_Familia.Click += Agregar_Permiso_A_Familia;
             // 
             // permisoToolStripMenuItem
             // 
             permisoToolStripMenuItem.Name = "permisoToolStripMenuItem";
-            permisoToolStripMenuItem.Size = new Size(167, 22);
+            permisoToolStripMenuItem.Size = new Size(180, 22);
             permisoToolStripMenuItem.Text = "Permiso";
             permisoToolStripMenuItem.Click += Agregar_Permiso;
             // 
             // perfilToolStripMenuItem
             // 
             perfilToolStripMenuItem.Name = "perfilToolStripMenuItem";
-            perfilToolStripMenuItem.Size = new Size(167, 22);
+            perfilToolStripMenuItem.Size = new Size(180, 22);
             perfilToolStripMenuItem.Text = "Perfil";
             perfilToolStripMenuItem.Click += Agregar_Perfil;
             // 
             // familiaToolStripMenuItem
             // 
             familiaToolStripMenuItem.Name = "familiaToolStripMenuItem";
-            familiaToolStripMenuItem.Size = new Size(167, 22);
+            familiaToolStripMenuItem.Size = new Size(180, 22);
             familiaToolStripMenuItem.Text = "Familia";
             familiaToolStripMenuItem.Click += Agregar_Familia;
             // 
             // toolStripLabel2
             // 
-            toolStripLabel2.DropDownItems.AddRange(new ToolStripItem[] { E_MenuItem_Familia_A_Perfil, E_MenuItem_Permiso_A_Familia, permisoToolStripMenuItem1, perfilToolStripMenuItem1, familiaToolStripMenuItem1 });
+            toolStripLabel2.DropDownItems.AddRange(new ToolStripItem[] { E_MenuItem_Familia_A_Perfil, E_MenuItem_Permiso_A_Perfil, E_MenuItem_Permiso_A_Familia, permisoToolStripMenuItem1, perfilToolStripMenuItem1, familiaToolStripMenuItem1 });
             toolStripLabel2.Name = "toolStripLabel2";
             toolStripLabel2.Size = new Size(63, 22);
             toolStripLabel2.Text = "Eliminar";
@@ -124,35 +133,35 @@
             // E_MenuItem_Familia_A_Perfil
             // 
             E_MenuItem_Familia_A_Perfil.Name = "E_MenuItem_Familia_A_Perfil";
-            E_MenuItem_Familia_A_Perfil.Size = new Size(167, 22);
+            E_MenuItem_Familia_A_Perfil.Size = new Size(180, 22);
             E_MenuItem_Familia_A_Perfil.Text = "Familia a Perfil";
             E_MenuItem_Familia_A_Perfil.Click += Eliminar_Familia_A_Perfil_Click;
             // 
             // E_MenuItem_Permiso_A_Familia
             // 
             E_MenuItem_Permiso_A_Familia.Name = "E_MenuItem_Permiso_A_Familia";
-            E_MenuItem_Permiso_A_Familia.Size = new Size(167, 22);
+            E_MenuItem_Permiso_A_Familia.Size = new Size(180, 22);
             E_MenuItem_Permiso_A_Familia.Text = "Permiso a Familia";
             E_MenuItem_Permiso_A_Familia.Click += Eliminar_Permiso_A_Familia_Click;
             // 
             // permisoToolStripMenuItem1
             // 
             permisoToolStripMenuItem1.Name = "permisoToolStripMenuItem1";
-            permisoToolStripMenuItem1.Size = new Size(167, 22);
+            permisoToolStripMenuItem1.Size = new Size(180, 22);
             permisoToolStripMenuItem1.Text = "Permiso";
             permisoToolStripMenuItem1.Click += Eliminar_Permiso_Click;
             // 
             // perfilToolStripMenuItem1
             // 
             perfilToolStripMenuItem1.Name = "perfilToolStripMenuItem1";
-            perfilToolStripMenuItem1.Size = new Size(167, 22);
+            perfilToolStripMenuItem1.Size = new Size(180, 22);
             perfilToolStripMenuItem1.Text = "Perfil";
             perfilToolStripMenuItem1.Click += Eliminar_Perfil_Click;
             // 
             // familiaToolStripMenuItem1
             // 
             familiaToolStripMenuItem1.Name = "familiaToolStripMenuItem1";
-            familiaToolStripMenuItem1.Size = new Size(167, 22);
+            familiaToolStripMenuItem1.Size = new Size(180, 22);
             familiaToolStripMenuItem1.Text = "Familia";
             familiaToolStripMenuItem1.Click += Eliminar_Familia_Click;
             // 
@@ -275,6 +284,13 @@
             labelPermiso.TabIndex = 14;
             labelPermiso.Text = "Permiso";
             // 
+            // E_MenuItem_Permiso_A_Perfil
+            // 
+            E_MenuItem_Permiso_A_Perfil.Name = "E_MenuItem_Permiso_A_Perfil";
+            E_MenuItem_Permiso_A_Perfil.Size = new Size(180, 22);
+            E_MenuItem_Permiso_A_Perfil.Text = "Permiso a Perfil";
+            E_MenuItem_Permiso_A_Perfil.Click += E_MenuItem_Permiso_A_Perfil_Click;
+            // 
             // Perfiles
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -335,5 +351,7 @@
         private ToolStripMenuItem perfilToolStripMenuItem1;
         private ToolStripMenuItem familiaToolStripMenuItem1;
         private ToolStripLabel RelacionFamilia;
+        private ToolStripMenuItem Agregar_Permiso_A_Perfil;
+        private ToolStripMenuItem E_MenuItem_Permiso_A_Perfil;
     }
 }

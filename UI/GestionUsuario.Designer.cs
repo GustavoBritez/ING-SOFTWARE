@@ -135,6 +135,7 @@ namespace UI
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.Size = new Size(924, 335);
             dgvUsuarios.TabIndex = 3;
+            dgvUsuarios.CellFormatting += dgvUsuarios_CellFormatting;
             // 
             // lblTitulo
             // 
@@ -366,7 +367,7 @@ namespace UI
             buttonActualizar.TabIndex = 4;
             buttonActualizar.Text = "Actualizar";
             buttonActualizar.UseVisualStyleBackColor = false;
-            buttonActualizar.Click += button1_Click;
+            buttonActualizar.Click += buttonActualizar_Click;
             // 
             // btnGestionarPerfiles
             // 

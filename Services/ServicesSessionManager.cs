@@ -1,4 +1,5 @@
 using BE;
+using Services.Perfiles;
 
 namespace Services
 {
@@ -11,6 +12,9 @@ namespace Services
 
         private Idioma idiomaActual;
         private List<IIdiomaObserver> observadores;
+        //Atributo nuevo
+        private List<string> permisosDelUsuarioActivo = new List<string>();
+        private List<PatenteServices> _permisosUsuario;
 
         private ServicesSessionManager()
         {
@@ -34,7 +38,18 @@ namespace Services
                 return _instancia;
             }
         }
+        // Metodo nuevo
+        public void CargarPermisosDelUsuario(List<string> listaPermisos)
+        {
+            permisosDelUsuarioActivo = listaPermisos;
+        }
+        // Metodo nuevo
+        public bool TienePermiso(string nombrePermiso)
+        {
+            if (string.IsNullOrEmpty(nombrePermiso)) return true;
 
+            return permisosDelUsuarioActivo.Contains(nombrePermiso);
+        }
         public UsuarioBE ObtenerUsuarioActivo()
         {
             return usuarioActivo;

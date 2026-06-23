@@ -453,19 +453,33 @@ namespace UI
         {
             try
             {
-                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso())
+                // CORRECCIÓN: Le pasamos explícitamente el ModoFormulario.Permiso
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Permiso))
                 {
-                    DialogResult resultado = frmPopup.ShowDialog();
-
-                    if (resultado == DialogResult.OK)
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        string nombreNuevoPermiso = frmPopup.NombrePermiso;
+                        try
+                        {
+                            string nuevoPermiso = frm.NombrePermiso;
 
-                        _patenteBLL.CrearNuevoPermiso(nombreNuevoPermiso);
+                            // Creamos el permiso en la base de datos
+                            _patenteBLL.CrearNuevoPermiso(nuevoPermiso);
 
-                        MessageBox.Show("Permiso creado en el sistema con éxito", "Éxito");
+                            // Si también seleccionó un botón en los combos, lo vinculamos
+                            if (frm.TieneBotonAsignado)
+                            {
+                                _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
+                            }
 
-                        CargarGrillas();
+                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Actualizamos la vista para que el nuevo permiso aparezca al instante
+                            CargarGrillas();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
@@ -483,18 +497,14 @@ namespace UI
         {
             try
             {
-                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso())
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Perfil))
                 {
-                    frmPopup.Text = "Crear Nuevo Perfil";
-                    DialogResult resultado = frmPopup.ShowDialog();
-                    if (resultado == DialogResult.OK)
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        string nombreNuevoPerfil = frmPopup.NombrePermiso;
+                        string nombreNuevoPerfil = frm.NombrePermiso;
 
                         _perfilBLL.CrearNuevoPerfil(nombreNuevoPerfil);
-
                         MessageBox.Show("¡Perfil creado en el sistema con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         CargarGrillas();
                     }
                 }
@@ -513,18 +523,14 @@ namespace UI
         {
             try
             {
-                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso())
+                // ACÁ: Le pasamos el modo Familia
+                using (FrmCrearPermiso frmPopup = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Familia))
                 {
-                    DialogResult resultado = frmPopup.ShowDialog();
-
-                    if (resultado == DialogResult.OK)
+                    if (frmPopup.ShowDialog() == DialogResult.OK)
                     {
                         string nombreNuevaFamilia = frmPopup.NombrePermiso;
-
                         _familiaBLL.CrearNuevaFamilia(nombreNuevaFamilia);
-
                         MessageBox.Show("Familia creada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         CargarGrillas();
                     }
                 }
@@ -750,6 +756,80 @@ namespace UI
         private void RelacionFamilia_MouseHover(object sender, EventArgs e)
         {
             RelacionFamilia.Font = new Font(RelacionFamilia.Font, FontStyle.Regular);
+        }
+
+        private void Agregar_Permiso_A_Perfil_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvPerfiles.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un Perfil de la grilla central.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (dgvPermisos.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
+                int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
+
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+                string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                _perfilBLL.AgregarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso, nombrePerfil);
+
+                MessageBox.Show("¡Permiso asignado al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarGrillas();
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al asignar el permiso al perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void E_MenuItem_Permiso_A_Perfil_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvPerfiles.CurrentRow == null || dgvPermisos.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione tanto un Perfil como un Permiso.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
+                int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+                string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                DialogResult confirmacion = MessageBox.Show($"¿Está seguro de quitar el permiso '{nombrePermiso}' del perfil '{nombrePerfil}'?",
+                                                            "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmacion == DialogResult.Yes)
+                {
+                    _perfilBLL.EliminarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso, nombrePerfil);
+
+                    MessageBox.Show("¡Permiso eliminado del perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    CargarGrillas();
+                }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el permiso del perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
