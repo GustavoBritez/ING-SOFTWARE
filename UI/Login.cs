@@ -83,9 +83,14 @@ namespace UI
 
                     ServicesSessionManager.Instancia.Login(usuario);
 
+                    List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+                    Idioma idioma = idiomas.Find(i => i.Nombre == usuario._Idioma.ToString());
+                    ServicesSessionManager.Instancia.CambiarIdioma(idioma);
+
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
 
+               
                 }
                 else
                 {

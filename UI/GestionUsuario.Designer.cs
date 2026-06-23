@@ -209,7 +209,7 @@ namespace UI
             gbDetalles.FlatStyle = FlatStyle.Flat;
             gbDetalles.Location = new Point(391, 410);
             gbDetalles.Name = "gbDetalles";
-            gbDetalles.Size = new Size(547, 135);
+            gbDetalles.Size = new Size(584, 135);
             gbDetalles.TabIndex = 1;
             gbDetalles.TabStop = false;
             // 
@@ -265,7 +265,7 @@ namespace UI
             // 
             txtNombreUsuario.Location = new Point(333, 41);
             txtNombreUsuario.Name = "txtNombreUsuario";
-            txtNombreUsuario.Size = new Size(115, 23);
+            txtNombreUsuario.Size = new Size(132, 23);
             txtNombreUsuario.TabIndex = 1;
             // 
             // lblNombreUsuario
@@ -273,7 +273,7 @@ namespace UI
             lblNombreUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblNombreUsuario.Location = new Point(210, 45);
             lblNombreUsuario.Name = "lblNombreUsuario";
-            lblNombreUsuario.Size = new Size(100, 20);
+            lblNombreUsuario.Size = new Size(115, 20);
             lblNombreUsuario.TabIndex = 2;
             lblNombreUsuario.Text = "NombreUsuario";
             lblNombreUsuario.TextAlign = ContentAlignment.TopRight;
@@ -291,7 +291,7 @@ namespace UI
             lblRol.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblRol.Location = new Point(220, 15);
             lblRol.Name = "lblRol";
-            lblRol.Size = new Size(90, 20);
+            lblRol.Size = new Size(105, 20);
             lblRol.TabIndex = 4;
             lblRol.Text = "Rol";
             lblRol.TextAlign = ContentAlignment.TopRight;

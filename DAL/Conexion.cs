@@ -11,7 +11,7 @@ namespace DAL
     internal class Conexion
     {
 
-        private const string _cadenaConexion = "Data Source=.;Initial Catalog=ING;Integrated Security=True;Trust Server Certificate=True";
+        private const string _cadenaConexion = "Data Source=.\\DESARROLLO;Initial Catalog=ING;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
         private const int time= 30;
         private SqlConnection conexion;
 

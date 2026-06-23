@@ -231,7 +231,7 @@
             cmbIdioma.BackColor = Color.DarkSeaGreen;
             cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cmbIdioma.FormattingEnabled = true;
-            cmbIdioma.Items.AddRange(new object[] { "Español", "Ingles", "Portugues" });
+            cmbIdioma.Items.AddRange(new object[] { "Español", "English", "Portugues" });
             cmbIdioma.Location = new Point(784, 16);
             cmbIdioma.Name = "cmbIdioma";
             cmbIdioma.Size = new Size(164, 29);

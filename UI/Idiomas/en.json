@@ -56,6 +56,7 @@
   "btnAceptarG": "Accept",
   "btnCancelarG": "Cancel",
   "btnSalirG": "Exit",
+  "btnGestionarPerfiles": "Profiles",
 
   "toolStripLabel1": "Add",
   "Perfil_A_Familia": "Profile to Family",
@@ -79,6 +80,4 @@
   "btnAceptarPermiso": "Accept",
   "btnCancelarPermiso": "Cancel",
   "formCrearPermiso": "Permission Management"
-
-
 }
