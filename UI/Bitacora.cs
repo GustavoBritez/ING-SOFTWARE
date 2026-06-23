@@ -43,7 +43,7 @@ namespace UI
 
         private List<EventoBE> BitacoraInicial()
         {
-           List<EventoBE>? _bitacoraCompleta2 =  _bitacoraBLL.VerEventos();
+            List<EventoBE>? _bitacoraCompleta2 = _bitacoraBLL.VerEventos();
 
             DateTime desde = DateTime.Today.AddDays(-3);
             DateTime hasta = DateTime.Now;
@@ -65,13 +65,13 @@ namespace UI
         {
             GestionBitacora_Load(sender, e);
             CargarBitacora(BitacoraInicial());
-
         }
 
         private void GestionBitacora_Load(object? sender, EventArgs e)
         {
             _bitacoraCompleta = _bitacoraBLL.VerEventos();
 
+            ApuntarComboBox();
             InicializarDateTimePickers();
             InicializarComboBoxCriticidad();
             InicializarComboBoxC();
@@ -290,7 +290,7 @@ namespace UI
                 DateTime hoy = DateTime.Today;
                 dtpHasta.Value = hoy;
                 dtpDesde.Value = hoy;
-               
+
                 cmbModulo.SelectedIndex = 0;
                 _bitacoraCompleta = _bitacoraBLL.VerEventos();
                 CargarBitacora(_bitacoraCompleta);
@@ -637,6 +637,44 @@ namespace UI
         {
             List<EventoBE> listaE = _bitacoraBLL.BuscarEventos(dtpDesde.Value, dtpHasta.Value.AddDays(1));
             CargarBitacora(listaE);
+        }
+
+        private void cmbIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+
+            if (cmbIdioma.SelectedItem.ToString() == "Español")
+            {
+                Idioma español = idiomas.First(i => i.Codigo == "es");
+                ServicesSessionManager.Instancia.CambiarIdioma(español);
+            }
+            else if (cmbIdioma.SelectedItem.ToString() == "English")
+            {
+                Idioma ingles = idiomas.First(i => i.Codigo == "en");
+                ServicesSessionManager.Instancia.CambiarIdioma(ingles);
+            }
+            else if (cmbIdioma.SelectedItem.ToString() == "Portugues")
+            {
+                Idioma portugues = idiomas.First(i => i.Codigo == "po");
+                ServicesSessionManager.Instancia.CambiarIdioma(portugues);
+            }
+        }
+        private void ApuntarComboBox()
+        {
+            string idioma = ServicesSessionManager.Instancia.ObtenerIdioma().Nombre;
+
+            if (idioma == "Español")
+            {
+                cmbIdioma.SelectedIndex = 0;
+            }
+            else if (idioma == "English")
+            {
+                cmbIdioma.SelectedIndex = 1;
+            }
+            else if (idioma == "Portugues")
+            {
+                cmbIdioma.SelectedIndex = 2;
+            }
         }
     }
 }
