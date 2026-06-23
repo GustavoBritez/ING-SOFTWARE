@@ -133,7 +133,7 @@ namespace UI
             dgvUsuarios.BorderStyle = BorderStyle.None;
             dgvUsuarios.Location = new Point(185, 60);
             dgvUsuarios.Name = "dgvUsuarios";
-            dgvUsuarios.Size = new Size(769, 335);
+            dgvUsuarios.Size = new Size(924, 335);
             dgvUsuarios.TabIndex = 3;
             // 
             // lblTitulo
@@ -208,7 +208,7 @@ namespace UI
             gbDetalles.FlatStyle = FlatStyle.Flat;
             gbDetalles.Location = new Point(391, 410);
             gbDetalles.Name = "gbDetalles";
-            gbDetalles.Size = new Size(443, 135);
+            gbDetalles.Size = new Size(547, 135);
             gbDetalles.TabIndex = 1;
             gbDetalles.TabStop = false;
             // 
@@ -262,7 +262,7 @@ namespace UI
             // 
             // txtNombreUsuario
             // 
-            txtNombreUsuario.Location = new Point(315, 42);
+            txtNombreUsuario.Location = new Point(333, 41);
             txtNombreUsuario.Name = "txtNombreUsuario";
             txtNombreUsuario.Size = new Size(115, 23);
             txtNombreUsuario.TabIndex = 1;
@@ -280,7 +280,7 @@ namespace UI
             // cmbRol
             // 
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbRol.Location = new Point(315, 12);
+            cmbRol.Location = new Point(333, 12);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(115, 23);
             cmbRol.TabIndex = 3;
@@ -372,7 +372,7 @@ namespace UI
             // 
             btnGestionarPerfiles.BackColor = Color.FromArgb(225, 225, 225);
             btnGestionarPerfiles.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnGestionarPerfiles.Location = new Point(843, 505);
+            btnGestionarPerfiles.Location = new Point(981, 512);
             btnGestionarPerfiles.Name = "btnGestionarPerfiles";
             btnGestionarPerfiles.Size = new Size(128, 40);
             btnGestionarPerfiles.TabIndex = 5;
@@ -383,7 +383,7 @@ namespace UI
             // GestionUsuario
             // 
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(983, 560);
+            ClientSize = new Size(1121, 560);
             Controls.Add(btnGestionarPerfiles);
             Controls.Add(buttonActualizar);
             Controls.Add(btnSalirG);
