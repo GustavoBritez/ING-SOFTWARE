@@ -379,12 +379,10 @@ namespace UI
         #endregion Eliminar
 
         #region Agregar
-        /// Cambiar
         private void Agregar_Familia_A_Perfil(object sender, EventArgs e)
         {
             try
             {
-                // 1. Validamos que haya selecciones en ambas grillas
                 if (dgvPerfiles.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un Perfil de la grilla izquierda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -397,31 +395,26 @@ namespace UI
                     return;
                 }
 
-                // 2. Extraemos los IDs de las celdas seleccionadas
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
 
-                // Extraemos el nombre del perfil para pasarlo a la validación de la BLL que ya tenés armada
                 string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
+                string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString(); // LÍNEA AGREGADA
 
-                // 3. Llamamos al método de la capa de negocio (reutilizamos el que ya existe)
-                _perfilBLL.AgregarFamiliaAlPerfil(idPerfil, idFamilia, nombrePerfil);
-                // 4. Avisamos al usuario y refrescamos la vista
+                _perfilBLL.AgregarFamiliaAlPerfil(idPerfil, idFamilia, nombrePerfil, nombreFamilia); // LLAMADA MODIFICADA
+
                 MessageBox.Show("¡Familia asignada al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
-                // Atrapa tu validación personalizada si la relación ya existe
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(argEx.Message, "Validación de Permisos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                // Atrapa cualquier otro error inesperado (como caídas de red o base de datos)
                 MessageBox.Show("Error al asignar la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Agregar_Permiso_A_Familia(object sender, EventArgs e)
         {
             try

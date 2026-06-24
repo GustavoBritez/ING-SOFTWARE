@@ -14,19 +14,37 @@ namespace BLL
         private readonly PatenteDAL _patenteDAL = new();
 
         #region Agregar
-        public void AgregarFamiliaAlPerfil(int idPerfil, int idFamilia, string nombrePerfil)
+        public void AgregarFamiliaAlPerfil(int idPerfil, int idFamilia, string nombrePerfil, string nombreFamilia)
         {
-
+            // CORRECCIÓN 1: El método en DAL se llama ExisteRelacionFamiliaPerfil
             if (_perfilDAL.ExisteRelacionFamiliaPerfil(idPerfil, idFamilia))
             {
-                throw new ArgumentException($"La familia'{nombrePerfil}' ya existe en este Perfil");
+                throw new ArgumentException($"La familia '{nombreFamilia}' ya se encuentra asignada directamente al perfil '{nombrePerfil}'.");
             }
-            _perfilDAL.InsertarFamiliaAlPerfi(idPerfil, idFamilia);
+
+            // (Asumo que este método sí lo tenés en tu clase PatenteDAL)
+            List<PatenteServices> permisosActualesPerfil = _patenteDAL.ObtenerPermisosDePerfil(idPerfil);
+
+            // CORRECCIÓN 2: El método lo creaste adentro de PerfilDAL, no en PatenteDAL
+            List<PatenteServices> permisosNuevaFamilia = _perfilDAL.ObtenerPermisosDeFamilia(idFamilia);
+
+            List<PatenteServices> permisosDuplicados = permisosActualesPerfil
+                .Where(pActual => permisosNuevaFamilia.Any(pNueva => pNueva.Id == pActual.Id))
+                .ToList();
+
+            if (permisosDuplicados.Any())
+            {
+                string detallesPermisos = string.Join(", ", permisosDuplicados.Select(p => $"'{p.Nombre}'"));
+                throw new ArgumentException($"No se puede agregar la familia '{nombreFamilia}' al perfil '{nombrePerfil}' porque generaría permisos duplicados: {detallesPermisos}.");
+            }
+
+            // CORRECCIÓN 3: Llamamos al método de guardar (te dejo el código de este método más abajo)
+            _perfilDAL.AgregarFamiliaAlPerfil(idPerfil, idFamilia);
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
-            string descripcion = $"Asignar Perfil a Familia";
-            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
+            string descripcion = $"Asignación exitosa de Familia: '{nombreFamilia}' al Perfil '{nombrePerfil}'";
+            bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Perfiles");
         }
 
         public void AgregarPermisoAFamilia(int idPerfil, int idPermiso, string nombrePermiso)
@@ -156,13 +174,24 @@ namespace BLL
         }
         public void AgregarPermisoAPerfil(int idPerfil, int idPermiso, string nombrePermiso, string nombrePerfil)
         {
-            if (_perfilDAL.ExistePermisoEnPerfil(idPerfil, idPermiso))
+            // 1. Obtenemos TODOS los permisos del perfil (Directos + Heredados por Familias)
+            // Asegurate de tener instanciada _patenteDAL en tu BLL
+            List<PatenteServices> permisosTotalesDelPerfil = _patenteDAL.ObtenerPermisosDePerfil(idPerfil);
+
+            // 2. Buscamos si el ID del permiso que intentan agregar ya existe en esa lista completa
+            bool yaTieneElPermiso = permisosTotalesDelPerfil.Any(p => p.Id == idPermiso);
+
+            if (yaTieneElPermiso)
             {
-                throw new ArgumentException($"El permiso '{nombrePermiso}' ya está asignado al perfil '{nombrePerfil}'.");
+                // 3. Frenamos todo si ya lo tiene, avisando al usuario en la UI
+                throw new ArgumentException($"El permiso '{nombrePermiso}' ya está asignado al perfil '{nombrePerfil}' (de forma directa o heredado a través de una Familia).");
             }
 
+            // 4. Si pasó la validación, insertamos en la tabla Perfil_Permiso
+            // (Asegurate de que este método en tu DAL haga el INSERT INTO Perfil_Permiso)
             _perfilDAL.AgregarPermisoAPerfil(idPerfil, idPermiso);
 
+            // 5. Dejamos el registro en la Bitácora
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Asignación de Permiso: '{nombrePermiso}' al Perfil '{nombrePerfil}'";

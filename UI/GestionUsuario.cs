@@ -32,19 +32,31 @@ namespace UI
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
 
-            foreach (Perfil pe in perfilBLL.ObtenerPerfiles())
+            this.VisibleChanged += (s, e) =>
             {
-                cmbRol.Items.Add(pe.Nombre);
-                _listaTodosLosPerfiles.Add(pe);
-            }
+                if (this.Visible)
+                {
+                    CargarPerfiles();
+                }
+            };
 
             GestionUsuarios_Load(null, null);
             rbMostrarActivos.CheckedChanged += RbMostrar_CheckedChanged;
             rbMostrarInactivos.CheckedChanged += RbMostrar_CheckedChanged;
 
-
             dgvUsuarios.CellFormatting += dgvUsuarios_CellFormatting;
-        } // <-- Fin de tu constructor
+        }
+        private void CargarPerfiles()
+        {
+            cmbRol.Items.Clear();
+            _listaTodosLosPerfiles.Clear();
+
+            foreach (Perfil pe in perfilBLL.ObtenerPerfiles())
+            {
+                cmbRol.Items.Add(pe.Nombre);
+                _listaTodosLosPerfiles.Add(pe);
+            }
+        }
         private void RbMostrar_CheckedChanged(object sender, EventArgs e)
         {
             AplicarFiltroEstado();
@@ -364,6 +376,7 @@ namespace UI
             btnCancelarG.Enabled = false;
 
             GestionUsuarios_Load(sender, e);
+
         }
 
         public void GestionUsuarios_Load(object sender, EventArgs e)
