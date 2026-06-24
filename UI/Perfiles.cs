@@ -449,7 +449,7 @@ namespace UI
         }
 
 
-        private void Agregar_Permiso(object sender, EventArgs e)
+        /*private void Agregar_Permiso(object sender, EventArgs e)
         {
             try
             {
@@ -491,7 +491,7 @@ namespace UI
             {
                 MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
 
         private void Agregar_Perfil(object sender, EventArgs e)
         {
@@ -829,6 +829,50 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show("Error al eliminar el permiso del perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Agregar_Permiso(object sender, EventArgs e)
+        {
+            try
+            {
+                // CORRECCIÓN: Le pasamos explícitamente el ModoFormulario.Permiso
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Permiso))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            string nuevoPermiso = frm.NombrePermiso;
+
+                            // Creamos el permiso en la base de datos
+                            _patenteBLL.CrearNuevoPermiso(nuevoPermiso);
+
+                            // Si también seleccionó un botón en los combos, lo vinculamos
+                            if (frm.TieneBotonAsignado)
+                            {
+                                _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
+                            }
+
+                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Actualizamos la vista para que el nuevo permiso aparezca al instante
+                            CargarGrillas();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
