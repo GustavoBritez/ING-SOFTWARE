@@ -11,7 +11,6 @@ namespace DAL.Perfiles
 
         public FamiliaServices ObtenerArbolFamiliar(int idFamiliaRaiz)
         {
-            // 1. Buscar el nombre de la Familia Padre
             string queryPadre = "SELECT Nombre FROM Familia WHERE ID_Familia = @id";
             SqlParameter[] paramPadre = new SqlParameter[] { new SqlParameter("@id", idFamiliaRaiz) };
 
@@ -21,7 +20,6 @@ namespace DAL.Perfiles
             string nombreFamilia = dtPadre.Rows[0]["Nombre"].ToString();
             FamiliaServices familiaArmada = new FamiliaServices(nombreFamilia) { Id = idFamiliaRaiz };
 
-            // 2. Buscar Familias Hijas (Recursividad cruzando con Familia_Familia)
             string queryFamHijas = @"
         SELECT f.ID_Familia, f.Nombre 
         FROM Familia_Familia ff
@@ -35,14 +33,12 @@ namespace DAL.Perfiles
             {
                 int idHijo = Convert.ToInt32(fila["ID_Familia"]);
 
-                // ¡Magia recursiva! Llamamos al mismo método para que arme las ramas de adentro
                 FamiliaServices subFamilia = ObtenerArbolFamiliar(idHijo);
 
                 if (subFamilia is not null)
                     familiaArmada.Agregar(subFamilia);
             }
 
-            // 3. Buscar Permisos Hijos (Hojas cruzando con Permiso_Familia)
             string queryPermisos = @"
         SELECT p.ID_Permiso, p.Nombre 
         FROM Permiso_Familia pf
@@ -112,7 +108,6 @@ namespace DAL.Perfiles
 
         public bool ExisteFamiliaPorNombre(string nombreFamilia)
         {
-            // Buscamos si hay coincidencias exactas en la tabla Familia
             string query = "SELECT COUNT(1) FROM Familia WHERE Nombre = @nombre";
 
             SqlParameter[] param = {
@@ -121,7 +116,6 @@ namespace DAL.Perfiles
 
             DataTable dt = _conexion.ExecuteReader(query, param);
 
-            // Validación defensiva para evitar el error de posición 0
             if (dt != null && dt.Rows.Count > 0)
             {
                 return Convert.ToInt32(dt.Rows[0][0]) > 0;
@@ -214,9 +208,9 @@ namespace DAL.Perfiles
         {
             string query = "INSERT INTO Familia_Familia (ID_FamiliaPadre, ID_FamiliaHija) VALUES (@idPadre, @idHija)";
 
-            Microsoft.Data.SqlClient.SqlParameter[] param = {
-        new Microsoft.Data.SqlClient.SqlParameter("@idPadre", idFamiliaPadre),
-        new Microsoft.Data.SqlClient.SqlParameter("@idHija", idFamiliaHija)
+            SqlParameter[] param = {
+        new SqlParameter("@idPadre", idFamiliaPadre),
+        new SqlParameter("@idHija", idFamiliaHija)
     };
 
             _conexion.ExecuteNonQuery(query, param);

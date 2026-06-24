@@ -1,6 +1,8 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using BLL.Perfiles;
 using DAL;
+using DAL.Perfiles;
 using Microsoft.VisualBasic;
 using Services;
 using Services.Perfiles;
@@ -100,8 +102,21 @@ namespace UI
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
-        }
+                UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+
+                if (usuarioActivo != null)
+                {
+                    PatenteBLL patenteBLL = new PatenteBLL();
+
+                    List<PatenteServices> listaPatentesActualizada = patenteBLL.ObtenerPermisosDePerfil(usuarioActivo._IdPerfil);
+
+                    List<string> nombresPermisosActualizados = listaPatentesActualizada.Select(p => p.Nombre).ToList();
+
+                    ServicesSessionManager.Instancia.CargarPermisosDelUsuario(nombresPermisosActualizados);
+                }
+                FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
+         }
+            
 
         #region Arbol visual
         private void MostrarArbolEnTreeView_Perfil(int idPerfilSeleccionado)
@@ -550,7 +565,6 @@ namespace UI
         #region GUI
         private void ConfigurarEstiloGrillas()
         {
-            // Definimos los colores institucionales que venimos usando
             Color verdeOscuro = Color.FromArgb(46, 94, 67);
             Color verdeSeleccion = Color.FromArgb(180, 210, 190);
             Color fondoGrilla = Color.White;
@@ -560,10 +574,8 @@ namespace UI
 
             foreach (DataGridView dgv in grillas)
             {
-                // Hay que apagar esto para que Windows Forms nos deje pintar el encabezado
                 dgv.EnableHeadersVisualStyles = false;
 
-                // --- Estilo del Encabezado (Header) ---
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = verdeOscuro;
                 dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -571,7 +583,6 @@ namespace UI
                 dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
                 dgv.ColumnHeadersHeight = 35;
 
-                // --- Estilo del Fondo y Filas ---
                 dgv.BackgroundColor = fondoGrilla;
                 dgv.BorderStyle = BorderStyle.None;
                 dgv.GridColor = colorLineas;
