@@ -21,7 +21,6 @@ namespace UI
             //this.Shown += (s, e) => Form1_Shown();
             this.VisibleChanged += (s, e) => Form1_VisibleChanged();
 
-            cmbIdioma.SelectedIndex = 0;
             cmbIdioma.DropDownStyle = ComboBoxStyle.DropDownList;
 
             ServicesSessionManager.Instancia.Suscribir(this);
@@ -29,50 +28,67 @@ namespace UI
         }
 
         // Ver
-        private void ActualizarDisponibilidadBotones()
-        {
-            try
-            {
-                UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-                bool tieneSession = usuarioActivo != null;
+        //private void ActualizarDisponibilidadBotones()
+        //{
+        //    try
+        //    {
+        //        UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+        //        bool tieneSession = usuarioActivo != null;
 
-                if (tieneSession)
-                {
+        //        if (tieneSession)
+        //        {
 
-                    btnLogout.Visible = true;
-                }
-                else
-                {
-                    // Si no hay sesión, apagamos todo por las dudas
-                    btnTurnos.Visible = false;
-                    btnCambiarContrasena.Visible = false;
-                    btnReportes.Visible = false;
-                    btnUsuarios.Visible = false;
-                    btnLogout.Visible = false;
-                }
+        //            btnLogout.Visible = true;
+        //        }
+        //        else
+        //        {
+        //            // Si no hay sesión, apagamos todo por las dudas
+        //            btnTurnos.Visible = false;
+        //            btnCambiarContrasena.Visible = false;
+        //            btnReportes.Visible = false;
+        //            btnUsuarios.Visible = false;
+        //            btnLogout.Visible = false;
+        //        }
 
-                // ¡ACÁ ESTÁ TU BOTÓN! Siempre visible y habilitado, pase lo que pase.
-                btnLogin.Visible = true;
-                btnLogin.Enabled = true;
-            }
-            catch
-            {
-                // En caso de error, cerramos todo menos el Login
-                btnTurnos.Visible = false;
-                btnCambiarContrasena.Visible = false;
-                btnReportes.Visible = false;
-                btnUsuarios.Visible = false;
-                btnLogout.Visible = false;
+        //        btnLogin.Visible = true;
+        //        btnLogin.Enabled = true;
+        //    }
+        //    catch
+        //    {
+        //        // En caso de error, cerramos todo menos el Login
+        //        btnTurnos.Visible = false;
+        //        btnCambiarContrasena.Visible = false;
+        //        btnReportes.Visible = false;
+        //        btnUsuarios.Visible = false;
+        //        btnLogout.Visible = false;
 
-                btnLogin.Visible = true;
-                btnLogin.Enabled = true;
-            }
-        }
+        //        btnLogin.Visible = true;
+        //        btnLogin.Enabled = true;
+        //    }
+        //}
 
         private void Form1_VisibleChanged()
         {
-            ActualizarDisponibilidadBotones();
+            ApuntarComboBox();
+            //ActualizarDisponibilidadBotones();
             ActualizarUsuario();
+        }
+        private void ApuntarComboBox()
+        {
+            string idioma = ServicesSessionManager.Instancia.ObtenerIdioma().Nombre;
+
+            if(idioma=="Español")
+            {
+                cmbIdioma.SelectedIndex = 0;
+            }
+            else if(idioma=="English")
+            {
+                cmbIdioma.SelectedIndex = 1;
+            }
+            else if(idioma=="Portugues")
+            {
+                cmbIdioma.SelectedIndex = 2;
+            }
         }
 
         private void ActualizarUsuario()
@@ -121,8 +137,13 @@ namespace UI
 
                 usuarioBLL.LogOut(usuarioActual);
                 MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ActualizarDisponibilidadBotones();
+                //ActualizarDisponibilidadBotones();
                 ActualizarUsuario();
+
+                List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+                Idioma español = idiomas.First(i => i.Codigo == "es");
+                ServicesSessionManager.Instancia.CambiarIdioma(español);
+
                 FormManager.Navegar(this, FormManager.ObtenerLogin());
             }
             catch (Exception ex)
@@ -240,6 +261,7 @@ namespace UI
             {
                 Traducir(this.Controls);
             }
+    
         }
         private void Traducir(Control.ControlCollection controles)
         {
@@ -266,7 +288,7 @@ namespace UI
                 Idioma español = idiomas.First(i => i.Codigo == "es");
                 ServicesSessionManager.Instancia.CambiarIdioma(español);
             }
-            else if (cmbIdioma.SelectedItem.ToString() == "Ingles")
+            else if (cmbIdioma.SelectedItem.ToString() == "English")
             {
                 Idioma ingles = idiomas.First(i => i.Codigo == "en");
                 ServicesSessionManager.Instancia.CambiarIdioma(ingles);

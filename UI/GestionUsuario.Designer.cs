@@ -60,6 +60,7 @@ namespace UI
             btnSalirG = new Button();
             buttonActualizar = new Button();
             btnGestionarPerfiles = new Button();
+            cmbIdioma = new ComboBox();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             gbFiltrar.SuspendLayout();
@@ -74,9 +75,9 @@ namespace UI
             panelLateral.Controls.Add(btnEliminar);
             panelLateral.Controls.Add(btnModificar);
             panelLateral.Controls.Add(btnCrear);
-            panelLateral.Location = new Point(12, 60);
+            panelLateral.Location = new Point(12, 52);
             panelLateral.Name = "panelLateral";
-            panelLateral.Size = new Size(160, 289);
+            panelLateral.Size = new Size(160, 297);
             panelLateral.TabIndex = 4;
             // 
             // btnActDesact
@@ -131,9 +132,9 @@ namespace UI
             // 
             dgvUsuarios.BackgroundColor = Color.White;
             dgvUsuarios.BorderStyle = BorderStyle.None;
-            dgvUsuarios.Location = new Point(185, 60);
+            dgvUsuarios.Location = new Point(185, 52);
             dgvUsuarios.Name = "dgvUsuarios";
-            dgvUsuarios.Size = new Size(769, 335);
+            dgvUsuarios.Size = new Size(1047, 343);
             dgvUsuarios.TabIndex = 3;
             dgvUsuarios.CellFormatting += dgvUsuarios_CellFormatting;
             // 
@@ -209,7 +210,7 @@ namespace UI
             gbDetalles.FlatStyle = FlatStyle.Flat;
             gbDetalles.Location = new Point(391, 410);
             gbDetalles.Name = "gbDetalles";
-            gbDetalles.Size = new Size(443, 135);
+            gbDetalles.Size = new Size(707, 135);
             gbDetalles.TabIndex = 1;
             gbDetalles.TabStop = false;
             // 
@@ -263,17 +264,17 @@ namespace UI
             // 
             // txtNombreUsuario
             // 
-            txtNombreUsuario.Location = new Point(315, 42);
+            txtNombreUsuario.Location = new Point(370, 46);
             txtNombreUsuario.Name = "txtNombreUsuario";
-            txtNombreUsuario.Size = new Size(115, 23);
+            txtNombreUsuario.Size = new Size(165, 23);
             txtNombreUsuario.TabIndex = 1;
             // 
             // lblNombreUsuario
             // 
             lblNombreUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNombreUsuario.Location = new Point(210, 45);
+            lblNombreUsuario.Location = new Point(220, 46);
             lblNombreUsuario.Name = "lblNombreUsuario";
-            lblNombreUsuario.Size = new Size(100, 20);
+            lblNombreUsuario.Size = new Size(115, 20);
             lblNombreUsuario.TabIndex = 2;
             lblNombreUsuario.Text = "NombreUsuario";
             lblNombreUsuario.TextAlign = ContentAlignment.TopRight;
@@ -281,7 +282,7 @@ namespace UI
             // cmbRol
             // 
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbRol.Location = new Point(315, 12);
+            cmbRol.Location = new Point(370, 15);
             cmbRol.Name = "cmbRol";
             cmbRol.Size = new Size(115, 23);
             cmbRol.TabIndex = 3;
@@ -289,9 +290,9 @@ namespace UI
             // lblRol
             // 
             lblRol.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRol.Location = new Point(220, 15);
+            lblRol.Location = new Point(230, 15);
             lblRol.Name = "lblRol";
-            lblRol.Size = new Size(90, 20);
+            lblRol.Size = new Size(105, 20);
             lblRol.TabIndex = 4;
             lblRol.Text = "Rol";
             lblRol.TextAlign = ContentAlignment.TopRight;
@@ -373,7 +374,7 @@ namespace UI
             // 
             btnGestionarPerfiles.BackColor = Color.FromArgb(225, 225, 225);
             btnGestionarPerfiles.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnGestionarPerfiles.Location = new Point(843, 505);
+            btnGestionarPerfiles.Location = new Point(1104, 508);
             btnGestionarPerfiles.Name = "btnGestionarPerfiles";
             btnGestionarPerfiles.Size = new Size(128, 40);
             btnGestionarPerfiles.TabIndex = 5;
@@ -381,10 +382,23 @@ namespace UI
             btnGestionarPerfiles.UseVisualStyleBackColor = false;
             btnGestionarPerfiles.Click += btnGestionarPerfiles_Click;
             // 
+            // cmbIdioma
+            // 
+            cmbIdioma.BackColor = Color.DarkSeaGreen;
+            cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbIdioma.FormattingEnabled = true;
+            cmbIdioma.Items.AddRange(new object[] { "Español", "English", "Portugues" });
+            cmbIdioma.Location = new Point(1068, 9);
+            cmbIdioma.Name = "cmbIdioma";
+            cmbIdioma.Size = new Size(164, 29);
+            cmbIdioma.TabIndex = 6;
+            cmbIdioma.SelectedIndexChanged += cmbIdioma_SelectedIndexChanged;
+            // 
             // GestionUsuario
             // 
             BackColor = Color.FromArgb(218, 237, 223);
-            ClientSize = new Size(983, 560);
+            ClientSize = new Size(1244, 560);
+            Controls.Add(cmbIdioma);
             Controls.Add(btnGestionarPerfiles);
             Controls.Add(buttonActualizar);
             Controls.Add(btnSalirG);
@@ -437,5 +451,6 @@ namespace UI
         private RadioButton rbMostrarTodos;
         private Button buttonActualizar;
         private Button btnGestionarPerfiles;
+        private ComboBox cmbIdioma;
     }
 }

@@ -15,6 +15,7 @@ namespace UI
         public Login()
         {
             InitializeComponent();
+            cmbIdioma.DropDownStyle = ComboBoxStyle.DropDownList;
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
 
@@ -74,8 +75,13 @@ namespace UI
 
                     ServicesSessionManager.Instancia.Login(usuario);
 
+                    List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+                    Idioma idioma = idiomas.Find(i => i.Nombre == usuario._Idioma.ToString());
+                    ServicesSessionManager.Instancia.CambiarIdioma(idioma);
+
                     MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
+
 
                 }
                 else
@@ -128,8 +134,28 @@ namespace UI
         // Solo para logearme ma rapido
         private void Login_Load(object sender, EventArgs e)
         {
-            txtUsuario.Text = "admin";
-            txtPassword.Text = "1234";
+
+        }
+
+        private void cmbIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+
+            if (cmbIdioma.SelectedItem.ToString() == "Español")
+            {
+                Idioma español = idiomas.First(i => i.Codigo == "es");
+                ServicesSessionManager.Instancia.CambiarIdioma(español);
+            }
+            else if (cmbIdioma.SelectedItem.ToString() == "English")
+            {
+                Idioma ingles = idiomas.First(i => i.Codigo == "en");
+                ServicesSessionManager.Instancia.CambiarIdioma(ingles);
+            }
+            else if (cmbIdioma.SelectedItem.ToString() == "Portugues")
+            {
+                Idioma portugues = idiomas.First(i => i.Codigo == "po");
+                ServicesSessionManager.Instancia.CambiarIdioma(portugues);
+            }
         }
     }
 }

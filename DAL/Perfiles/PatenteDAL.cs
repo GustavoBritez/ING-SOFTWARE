@@ -248,6 +248,11 @@ namespace DAL.Perfiles
             string queryPermiso = "DELETE FROM Permiso WHERE ID_Permiso = @id";
             SqlParameter[] paramPermiso = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryPermiso, paramPermiso);
+
+            string queryBoton = @"DELETE FROM Permiso_Boton 
+                  WHERE NombrePatente = (SELECT Nombre FROM Permiso WHERE ID_Permiso = @id)";
+            SqlParameter[] paramBoton = { new SqlParameter("@id", idPermiso) };
+            _conexion.ExecuteNonQuery(queryBoton, paramBoton);
         }
     }
 }

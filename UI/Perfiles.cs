@@ -102,21 +102,21 @@ namespace UI
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-                UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+            UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
 
-                if (usuarioActivo != null)
-                {
-                    PatenteBLL patenteBLL = new PatenteBLL();
+            if (usuarioActivo != null)
+            {
+                PatenteBLL patenteBLL = new PatenteBLL();
 
-                    List<PatenteServices> listaPatentesActualizada = patenteBLL.ObtenerPermisosDePerfil(usuarioActivo._IdPerfil);
+                List<PatenteServices> listaPatentesActualizada = patenteBLL.ObtenerPermisosDePerfil(usuarioActivo._IdPerfil);
 
-                    List<string> nombresPermisosActualizados = listaPatentesActualizada.Select(p => p.Nombre).ToList();
+                List<string> nombresPermisosActualizados = listaPatentesActualizada.Select(p => p.Nombre).ToList();
 
-                    ServicesSessionManager.Instancia.CargarPermisosDelUsuario(nombresPermisosActualizados);
-                }
-                FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
-         }
-            
+                ServicesSessionManager.Instancia.CargarPermisosDelUsuario(nombresPermisosActualizados);
+            }
+            FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
+        }
+
 
         #region Arbol visual
         private void MostrarArbolEnTreeView_Perfil(int idPerfilSeleccionado)
@@ -623,6 +623,8 @@ namespace UI
                 TraducirToolStrip(toolStripLabel2.DropDownItems);
                 toolStripLabel1.Text = idiomaBLL.Traducir("toolStripLabel1");
                 toolStripLabel2.Text = idiomaBLL.Traducir("toolStripLabel2");
+                RelacionFamilia.Text = idiomaBLL.Traducir("RelacionFamilia");
+
             }
         }
         private void Traducir(Control.ControlCollection controles)
@@ -879,5 +881,84 @@ namespace UI
                 MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /*private void permisoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // CORRECCIÓN: Le pasamos explícitamente el ModoFormulario.Permiso
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Permiso))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            string nuevoPermiso = frm.NombrePermiso;
+
+                            // Creamos el permiso en la base de datos
+                            _patenteBLL.CrearNuevoPermiso(nuevoPermiso);
+
+                            // Si también seleccionó un botón en los combos, lo vinculamos
+                            if (frm.TieneBotonAsignado)
+                            {
+                                _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
+                            }
+
+                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Actualizamos la vista para que el nuevo permiso aparezca al instante
+                            CargarGrillas();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void permisoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvPermisos.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                // Actualizamos el mensaje para reflejar el borrado en cascada
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Está seguro que desea ELIMINAR el permiso '{nombrePermiso}'?\n\nAl hacerlo, también se desvinculará automáticamente de todos los Perfiles y Familias que lo estén utilizando actualmente.",
+                    "Confirmar Borrado en Cascada",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // Ejecutamos la BLL
+                    _patenteBLL.EliminarPermiso(idPermiso, nombrePermiso);
+
+                    MessageBox.Show("¡Permiso eliminado del sistema y desvinculado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarGrillas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }*/
     }
 }

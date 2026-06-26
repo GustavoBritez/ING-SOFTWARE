@@ -1,4 +1,10 @@
-﻿using System;
+﻿using BE;
+using BLL;
+using BLL.Perfiles;
+using Microsoft.VisualBasic;
+using Services;
+using Services.Perfiles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +13,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BE;
-using BLL;
-using Microsoft.VisualBasic;
-using Services;
-using Services.Perfiles;
 
 namespace UI
 {
@@ -29,6 +30,7 @@ namespace UI
         {
             InitializeComponent();
 
+            cmbIdioma.DropDownStyle = ComboBoxStyle.DropDownList;
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
 
@@ -37,6 +39,7 @@ namespace UI
                 if (this.Visible)
                 {
                     CargarPerfiles();
+                    ApuntarComboBox();
                 }
             };
 
@@ -254,7 +257,7 @@ namespace UI
                     dni: dni,
                     nombreDeUsuario: nombreDeUsuario,
                     contraseña: contraseña,
-                    idPerfil: idPerfilReal, 
+                    idPerfil: idPerfilReal,
                     bloqueado: true,
                     estado: true,
                     idioma: "Español"
@@ -360,7 +363,6 @@ namespace UI
 
         private void GestionUsuario_Load(object sender, EventArgs e)
         {
-
             txtDni.Enabled = false;
             txtNombre.Enabled = false;
             txtApellido.Enabled = false;
@@ -382,6 +384,7 @@ namespace UI
         public void GestionUsuarios_Load(object sender, EventArgs e)
         {
             AplicarFiltroEstado();
+            
         }
 
         private void ConfigurarColumnasDataGridView()
@@ -533,7 +536,20 @@ namespace UI
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
 
+            usuarioActivo = usuarioBLL.BuscarUsuario(usuarioActivo._NombreDeUsuario);
+
+            if (usuarioActivo != null)
+            {
+                PatenteBLL patenteBLL = new PatenteBLL();
+
+                List<PatenteServices> listaPatentesActualizada = patenteBLL.ObtenerPermisosDePerfil(usuarioActivo._IdPerfil);
+
+                List<string> nombresPermisosActualizados = listaPatentesActualizada.Select(p => p.Nombre).ToList();
+
+                ServicesSessionManager.Instancia.CargarPermisosDelUsuario(nombresPermisosActualizados);
+            }
             FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
         }
 
@@ -712,6 +728,45 @@ namespace UI
                         e.FormattingApplied = true;
                     }
                 }
+            }
+        }
+
+        private void cmbIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+
+            if (cmbIdioma.SelectedItem.ToString() == "Español")
+            {
+                Idioma español = idiomas.First(i => i.Codigo == "es");
+                ServicesSessionManager.Instancia.CambiarIdioma(español);
+            }
+            else if (cmbIdioma.SelectedItem.ToString() == "English")
+            {
+                Idioma ingles = idiomas.First(i => i.Codigo == "en");
+                ServicesSessionManager.Instancia.CambiarIdioma(ingles);
+            }
+            else if (cmbIdioma.SelectedItem.ToString() == "Portugues")
+            {
+                Idioma portugues = idiomas.First(i => i.Codigo == "po");
+                ServicesSessionManager.Instancia.CambiarIdioma(portugues);
+            }
+        }
+
+        private void ApuntarComboBox()
+        {
+            string idioma = ServicesSessionManager.Instancia.ObtenerIdioma().Nombre;
+
+            if (idioma == "Español")
+            {
+                cmbIdioma.SelectedIndex = 0;
+            }
+            else if (idioma == "English")
+            {
+                cmbIdioma.SelectedIndex = 1;
+            }
+            else if (idioma == "Portugues")
+            {
+                cmbIdioma.SelectedIndex = 2;
             }
         }
     }

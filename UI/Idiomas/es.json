@@ -62,28 +62,48 @@
   "btnAceptarG": "Aceptar",
   "btnCancelarG": "Cancelar",
   "btnSalirG": "Salir",
+  "btnGestionarPerfiles": "Perfiles",
 
 
   "toolStripLabel1": "Agregar",
-  "Perfil_A_Familia": "Perfil a Familia",
-  "permisoAlPerfilToolStripMenuItem": "Permiso al Perfil",
-  "permisoToolStripMenuItem": "Permiso",
-  "perfilToolStripMenuItem": "Perfil",
+  "MenuItem_Familia_A_Perfil": "Familia a Perfil",
+  "Agregar_Permiso_A_Perfil": "Permiso a Perfil",
+  "MenuItem_Permiso_A_Familia": "Permiso a Familia",
   "familiaToolStripMenuItem": "Familia",
+  "perfilToolStripMenuItem": "Perfil",
   "toolStripLabel2": "Eliminar",
-  "familiaAlPerfilToolStripMenuItem1": "Perfil a Familia",
-  "permisoAlPerfilToolStripMenuItem1": "Permiso al Perfil",
-  "permisoToolStripMenuItem1": "Permiso",
+  "E_MenuItem_Familia_A_Perfil": "Familia a Perfil",
+  "E_MenuItem_Permiso_A_Perfil": "Permiso a Perfil",
+  "E_MenuItem_Permiso_A_Familia": "Permiso a Familia",
   "perfilToolStripMenuItem1": "Perfil",
   "familiaToolStripMenuItem1": "Familia",
+  "RelacionFamilia": "Relacion Familia",
   "labelPerfil": "Perfiles Existentes",
   "labelFamilia": "Familias Existentes",
-  "labelPermiso": "Permisos",
+  "labelPermiso": "Permiso",
   "btnSalirPerfiles": "Salir",
 
   "lblTituloCrearPermiso": "🛡️ Crear Nuevo Permiso",
   "lblNombrePermiso": "Nombre de la Acción:",
   "btnAceptarPermiso": "Aceptar",
   "btnCancelarPermiso": "Cancelar",
-  "formCrearPermiso": "Gestión de Permisos"
+  "formCrearPermiso": "Gestión de Permisos",
+
+  "FrmSeleccionarFamilia": "Insertar Familia a Familia",
+  "lblTituloFamiliaFamilia": "Relacion Familia a Familia",
+  "labelOrigen": "Origen",
+  "labelDestino": "Destino",
+  "btnCancelarF": "Cancelar",
+  "btnVincular": "Vincular",
+  "btnDesvincular": "Desvincular",
+
+  "lblTituloPermiso": "🛡️ Crear Nuevo Permiso",
+  "lblTituloPerfil": "👥 Crear Nuevo Perfil",
+  "lblTituloFamilia": "📁 Crear Nueva Familia",
+
+  "lblNombrePermisoPermiso": "Nombre del Permiso (Acción):",
+  "lblNombrePermisoPerfil": "Nombre del Perfil:",
+  "lblNombrePermisoFamilia": "Nombre de la Familia:",
+
+  "lblFormularioPermiso": "Asignar a Pantalla:"
 }

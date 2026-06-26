@@ -231,7 +231,7 @@
             cmbIdioma.BackColor = Color.DarkSeaGreen;
             cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cmbIdioma.FormattingEnabled = true;
-            cmbIdioma.Items.AddRange(new object[] { "Español", "Ingles", "Portugues" });
+            cmbIdioma.Items.AddRange(new object[] { "Español", "English", "Portugues" });
             cmbIdioma.Location = new Point(784, 16);
             cmbIdioma.Name = "cmbIdioma";
             cmbIdioma.Size = new Size(164, 29);
@@ -301,7 +301,7 @@
             ChangePassPanel.Controls.Add(label3);
             ChangePassPanel.Controls.Add(label2);
             ChangePassPanel.Controls.Add(txtNewPass);
-            ChangePassPanel.Location = new Point(316, 185);
+            ChangePassPanel.Location = new Point(25, 412);
             ChangePassPanel.Name = "ChangePassPanel";
             ChangePassPanel.Size = new Size(388, 216);
             ChangePassPanel.TabIndex = 0;

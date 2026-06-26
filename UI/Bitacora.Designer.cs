@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelLateral = new Panel();
             btnExportar = new Button();
             btnLimpiarFiltros = new Button();
@@ -52,6 +52,7 @@
             lbNombre = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
+            cmbIdioma = new ComboBox();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBitacora).BeginInit();
             gbFiltrosFecha.SuspendLayout();
@@ -99,24 +100,24 @@
             dgvBitacora.BackgroundColor = Color.White;
             dgvBitacora.BorderStyle = BorderStyle.None;
             dgvBitacora.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(46, 94, 67);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(46, 94, 67);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvBitacora.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvBitacora.ColumnHeadersHeight = 30;
             dgvBitacora.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(180, 210, 190);
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(180, 210, 190);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvBitacora.DefaultCellStyle = dataGridViewCellStyle2;
             dgvBitacora.EnableHeadersVisualStyles = false;
             dgvBitacora.GridColor = Color.FromArgb(200, 220, 205);
             dgvBitacora.Location = new Point(185, 60);
@@ -167,7 +168,7 @@
             // 
             // lblHasta
             // 
-            lblHasta.Location = new Point(227, 27);
+            lblHasta.Location = new Point(227, 22);
             lblHasta.Name = "lblHasta";
             lblHasta.Size = new Size(64, 20);
             lblHasta.TabIndex = 2;
@@ -187,7 +188,7 @@
             // 
             // lblDesde
             // 
-            lblDesde.Location = new Point(4, 25);
+            lblDesde.Location = new Point(6, 25);
             lblDesde.Name = "lblDesde";
             lblDesde.Size = new Size(64, 20);
             lblDesde.TabIndex = 4;
@@ -312,10 +313,23 @@
             textBox2.Size = new Size(145, 23);
             textBox2.TabIndex = 14;
             // 
+            // cmbIdioma
+            // 
+            cmbIdioma.BackColor = Color.DarkSeaGreen;
+            cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbIdioma.FormattingEnabled = true;
+            cmbIdioma.Items.AddRange(new object[] { "Español", "English", "Portugues" });
+            cmbIdioma.Location = new Point(1064, 9);
+            cmbIdioma.Name = "cmbIdioma";
+            cmbIdioma.Size = new Size(164, 29);
+            cmbIdioma.TabIndex = 15;
+            cmbIdioma.SelectedIndexChanged += cmbIdioma_SelectedIndexChanged;
+            // 
             // Bitacora
             // 
             BackColor = Color.FromArgb(218, 237, 223);
             ClientSize = new Size(1240, 614);
+            Controls.Add(cmbIdioma);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(groupBox1);
@@ -364,5 +378,6 @@
         private ComboBox cmbEvento;
         private TextBox textBox1;
         private TextBox textBox2;
+        private ComboBox cmbIdioma;
     }
 }

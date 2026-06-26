@@ -44,27 +44,33 @@ namespace UI
 
         private void ConfigurarVisualmente()
         {
-            if (_modoActual == ModoFormulario.Permiso)
+            switch (_modoActual)
             {
-                lblTitulo.Text = "🛡️ Crear Nuevo Permiso";
-                lblNombrePermiso.Text = "Nombre del Permiso (Acción):";
-                lblFormulario.Text = "Asignar a Pantalla:"; // Quitamos la palabra (Opcional)
-                this.Text = "Gestión de Permisos";
-                // Los combos quedan visibles por defecto
-            }
-            else if (_modoActual == ModoFormulario.Perfil)
-            {
-                lblTitulo.Text = "👥 Crear Nuevo Perfil";
-                lblNombrePermiso.Text = "Nombre del Perfil:";
-                this.Text = "Gestión de Perfiles";
-                OcultarCombosParaPerfilesYFamilias();
-            }
-            else if (_modoActual == ModoFormulario.Familia)
-            {
-                lblTitulo.Text = "📁 Crear Nueva Familia";
-                lblNombrePermiso.Text = "Nombre de la Familia:";
-                this.Text = "Gestión de Familias";
-                OcultarCombosParaPerfilesYFamilias();
+                case ModoFormulario.Permiso:
+
+                    lblTitulo.Text = idiomaBLL.Traducir("lblTituloPermiso");
+                    lblNombrePermiso.Text = idiomaBLL.Traducir("lblNombrePermisoPermiso");
+                    lblFormulario.Text = idiomaBLL.Traducir("lblFormularioPermiso");
+
+                    break;
+
+                case ModoFormulario.Perfil:
+
+                    lblTitulo.Text = idiomaBLL.Traducir("lblTituloPerfil");
+                    lblNombrePermiso.Text = idiomaBLL.Traducir("lblNombrePermisoPerfil");
+
+                    OcultarCombosParaPerfilesYFamilias();
+
+                    break;
+
+                case ModoFormulario.Familia:
+
+                    lblTitulo.Text = idiomaBLL.Traducir("lblTituloFamilia");
+                    lblNombrePermiso.Text = idiomaBLL.Traducir("lblNombrePermisoFamilia");
+
+                    OcultarCombosParaPerfilesYFamilias();
+
+                    break;
             }
         }
 
@@ -75,10 +81,6 @@ namespace UI
             cmbFormularios.Visible = false;
             lblBoton.Visible = false;
             cmbBotones.Visible = false;
-
-            // Opcional y elegante: Achicamos el formulario para que no quede un espacio gris vacío
-            panelCentral.Height = 90;
-            this.Height = 250;
 
             // Subimos los botones de Aceptar y Cancelar para que queden prolijos
             btnCancelar.Location = new Point(btnCancelar.Location.X, 185);
@@ -168,6 +170,7 @@ namespace UI
             if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
             {
                 Traducir(this.Controls);
+                ConfigurarVisualmente();
             }
         }
 
