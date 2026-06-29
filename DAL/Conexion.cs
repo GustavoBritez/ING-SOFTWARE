@@ -11,7 +11,7 @@ namespace DAL
     internal class Conexion
     {
 
-        private const string _cadenaConexion = "Data Source=.;Initial Catalog=ING;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+        private const string _cadenaConexion = "Data Source=.;Initial Catalog=ING;Integrated Security=True;Trust Server Certificate=True";
         private const int time= 30;
         private SqlConnection conexion;
 
@@ -120,6 +120,37 @@ namespace DAL
             finally
             {
                 CerrarConexion();
+            }
+        }
+        public void ExecuteNonQueryMaster(string stringQuery, params SqlParameter[] parametros)
+        {
+            const string conexionMaster =
+                "Data Source=.\\DESARROLLO;Initial Catalog=master;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(conexionMaster))
+                {
+                    cn.Open();
+
+                    using (SqlCommand comando = new SqlCommand(stringQuery, cn))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.CommandTimeout = time;
+
+                        if (parametros != null && parametros.Length > 0)
+                        {
+                            comando.Parameters.AddRange(parametros);
+                        }
+
+                        comando.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error al ejecutar el comando sobre master: {ex.Message}");
+                throw;
             }
         }
     }

@@ -77,15 +77,15 @@ namespace UI
         {
             string idioma = ServicesSessionManager.Instancia.ObtenerIdioma().Nombre;
 
-            if(idioma=="Español")
+            if (idioma == "Español")
             {
                 cmbIdioma.SelectedIndex = 0;
             }
-            else if(idioma=="English")
+            else if (idioma == "English")
             {
                 cmbIdioma.SelectedIndex = 1;
             }
-            else if(idioma=="Portugues")
+            else if (idioma == "Portugues")
             {
                 cmbIdioma.SelectedIndex = 2;
             }
@@ -133,7 +133,7 @@ namespace UI
                 Idioma id = ServicesSessionManager.Instancia.ObtenerIdioma();
                 usuarioActual._Idioma = id.Nombre;
                 usuarioBLL.CambioDeIdiomaUser(usuarioActual);
- 
+
 
                 usuarioBLL.LogOut(usuarioActual);
                 MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -261,7 +261,7 @@ namespace UI
             {
                 Traducir(this.Controls);
             }
-    
+
         }
         private void Traducir(Control.ControlCollection controles)
         {
@@ -301,7 +301,15 @@ namespace UI
         }
         #endregion
 
+        private void btnRespaldo_Click(object sender, EventArgs e)
+        {
+            FormManager.Navegar(this, FormManager.ObtenerRespaldo());
+        }
 
+        private void btnGestionarPerfiles_Click(object sender, EventArgs e)
+        {
+            FormManager.Navegar(this, new Perfiles());
+        }
     }
 
 }

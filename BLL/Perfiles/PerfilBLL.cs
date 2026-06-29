@@ -83,10 +83,10 @@ namespace BLL
         }
         public void EliminarPerfil(int idPerfil, string nombrePerfil)
         {
-            // Frenamos si hay gente usándolo
+            // Frenamos si hay gente usándolo y lanzamos tu mensaje personalizado
             if (_perfilDAL.PerfilTieneUsuarios(idPerfil))
             {
-                throw new ArgumentException($"No se puede eliminar el perfil '{nombrePerfil}' porque hay usuarios en el sistema que lo tienen asignado. Quíteles este perfil primero.");
+                throw new ArgumentException("No pudimos eliminar el perfil por que los usuarios no pueden quedar sin rol");
             }
 
             _perfilDAL.EliminarPerfilDefinitivo(idPerfil);

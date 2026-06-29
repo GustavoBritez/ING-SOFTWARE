@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
+            btnGestionarPerfiles = new Button();
+            btnRespaldo = new Button();
             btnCambiarContrasena = new Button();
             btnLogin = new Button();
             btnLogout = new Button();
@@ -64,6 +66,8 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(76, 124, 89);
+            panelMenu.Controls.Add(btnGestionarPerfiles);
+            panelMenu.Controls.Add(btnRespaldo);
             panelMenu.Controls.Add(btnCambiarContrasena);
             panelMenu.Controls.Add(btnLogin);
             panelMenu.Controls.Add(btnLogout);
@@ -78,6 +82,38 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(259, 700);
             panelMenu.TabIndex = 0;
+            // 
+            // btnGestionarPerfiles
+            // 
+            btnGestionarPerfiles.BackColor = Color.FromArgb(76, 124, 89);
+            btnGestionarPerfiles.FlatAppearance.BorderSize = 0;
+            btnGestionarPerfiles.FlatStyle = FlatStyle.Flat;
+            btnGestionarPerfiles.Font = new Font("Segoe UI", 10F);
+            btnGestionarPerfiles.ForeColor = Color.White;
+            btnGestionarPerfiles.Location = new Point(10, 285);
+            btnGestionarPerfiles.Name = "btnGestionarPerfiles";
+            btnGestionarPerfiles.Size = new Size(239, 45);
+            btnGestionarPerfiles.TabIndex = 10;
+            btnGestionarPerfiles.Text = "🔑 Perfiles";
+            btnGestionarPerfiles.TextAlign = ContentAlignment.MiddleLeft;
+            btnGestionarPerfiles.UseVisualStyleBackColor = false;
+            btnGestionarPerfiles.Click += btnGestionarPerfiles_Click;
+            // 
+            // btnRespaldo
+            // 
+            btnRespaldo.BackColor = Color.FromArgb(76, 124, 89);
+            btnRespaldo.FlatAppearance.BorderSize = 0;
+            btnRespaldo.FlatStyle = FlatStyle.Flat;
+            btnRespaldo.Font = new Font("Segoe UI", 10F);
+            btnRespaldo.ForeColor = Color.White;
+            btnRespaldo.Location = new Point(10, 413);
+            btnRespaldo.Name = "btnRespaldo";
+            btnRespaldo.Size = new Size(239, 45);
+            btnRespaldo.TabIndex = 9;
+            btnRespaldo.Text = "🔒 Respaldo";
+            btnRespaldo.TextAlign = ContentAlignment.MiddleLeft;
+            btnRespaldo.UseVisualStyleBackColor = false;
+            btnRespaldo.Click += btnRespaldo_Click;
             // 
             // btnCambiarContrasena
             // 
@@ -132,7 +168,7 @@
             btnAyuda.FlatStyle = FlatStyle.Flat;
             btnAyuda.Font = new Font("Segoe UI", 10F);
             btnAyuda.ForeColor = Color.White;
-            btnAyuda.Location = new Point(12, 300);
+            btnAyuda.Location = new Point(9, 464);
             btnAyuda.Name = "btnAyuda";
             btnAyuda.Size = new Size(239, 45);
             btnAyuda.TabIndex = 5;
@@ -147,7 +183,7 @@
             btnUsuarios.FlatStyle = FlatStyle.Flat;
             btnUsuarios.Font = new Font("Segoe UI", 10F);
             btnUsuarios.ForeColor = Color.White;
-            btnUsuarios.Location = new Point(12, 245);
+            btnUsuarios.Location = new Point(10, 225);
             btnUsuarios.Name = "btnUsuarios";
             btnUsuarios.Size = new Size(239, 45);
             btnUsuarios.TabIndex = 4;
@@ -163,11 +199,11 @@
             btnReportes.FlatStyle = FlatStyle.Flat;
             btnReportes.Font = new Font("Segoe UI", 10F);
             btnReportes.ForeColor = Color.White;
-            btnReportes.Location = new Point(12, 190);
+            btnReportes.Location = new Point(10, 170);
             btnReportes.Name = "btnReportes";
             btnReportes.Size = new Size(239, 45);
             btnReportes.TabIndex = 3;
-            btnReportes.Text = "📊 Bitacora";
+            btnReportes.Text = "📒 Bitacora";
             btnReportes.TextAlign = ContentAlignment.MiddleLeft;
             btnReportes.UseVisualStyleBackColor = false;
             btnReportes.Click += btnBitacora_Click;
@@ -179,7 +215,7 @@
             btnSeguimiento.FlatStyle = FlatStyle.Flat;
             btnSeguimiento.Font = new Font("Segoe UI", 10F);
             btnSeguimiento.ForeColor = Color.White;
-            btnSeguimiento.Location = new Point(12, 131);
+            btnSeguimiento.Location = new Point(10, 111);
             btnSeguimiento.Name = "btnSeguimiento";
             btnSeguimiento.Size = new Size(241, 45);
             btnSeguimiento.TabIndex = 2;
@@ -194,7 +230,7 @@
             btnTurnos.FlatStyle = FlatStyle.Flat;
             btnTurnos.Font = new Font("Segoe UI", 10F);
             btnTurnos.ForeColor = Color.White;
-            btnTurnos.Location = new Point(12, 80);
+            btnTurnos.Location = new Point(10, 60);
             btnTurnos.Name = "btnTurnos";
             btnTurnos.Size = new Size(239, 45);
             btnTurnos.TabIndex = 1;
@@ -453,5 +489,7 @@
         private Label label6;
         private Label label4;
         private ComboBox cmbIdioma;
+        private Button btnRespaldo;
+        private Button btnGestionarPerfiles;
     }
 }

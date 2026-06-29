@@ -59,7 +59,6 @@ namespace UI
             lblDni = new Label();
             btnSalirG = new Button();
             buttonActualizar = new Button();
-            btnGestionarPerfiles = new Button();
             cmbIdioma = new ComboBox();
             panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
@@ -210,7 +209,7 @@ namespace UI
             gbDetalles.FlatStyle = FlatStyle.Flat;
             gbDetalles.Location = new Point(391, 410);
             gbDetalles.Name = "gbDetalles";
-            gbDetalles.Size = new Size(707, 135);
+            gbDetalles.Size = new Size(841, 135);
             gbDetalles.TabIndex = 1;
             gbDetalles.TabStop = false;
             // 
@@ -370,18 +369,6 @@ namespace UI
             buttonActualizar.UseVisualStyleBackColor = false;
             buttonActualizar.Click += buttonActualizar_Click;
             // 
-            // btnGestionarPerfiles
-            // 
-            btnGestionarPerfiles.BackColor = Color.FromArgb(225, 225, 225);
-            btnGestionarPerfiles.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnGestionarPerfiles.Location = new Point(1104, 508);
-            btnGestionarPerfiles.Name = "btnGestionarPerfiles";
-            btnGestionarPerfiles.Size = new Size(128, 40);
-            btnGestionarPerfiles.TabIndex = 5;
-            btnGestionarPerfiles.Text = "Perfiles";
-            btnGestionarPerfiles.UseVisualStyleBackColor = false;
-            btnGestionarPerfiles.Click += btnGestionarPerfiles_Click;
-            // 
             // cmbIdioma
             // 
             cmbIdioma.BackColor = Color.DarkSeaGreen;
@@ -399,7 +386,6 @@ namespace UI
             BackColor = Color.FromArgb(218, 237, 223);
             ClientSize = new Size(1244, 560);
             Controls.Add(cmbIdioma);
-            Controls.Add(btnGestionarPerfiles);
             Controls.Add(buttonActualizar);
             Controls.Add(btnSalirG);
             Controls.Add(gbDetalles);
@@ -450,7 +436,6 @@ namespace UI
         private System.Windows.Forms.Button btnCancelarG;
         private RadioButton rbMostrarTodos;
         private Button buttonActualizar;
-        private Button btnGestionarPerfiles;
         private ComboBox cmbIdioma;
     }
 }

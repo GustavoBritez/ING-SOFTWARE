@@ -12,6 +12,7 @@ namespace UI
         private static GestionUsuario _gestionUsuario;
         private static Bitacora _bitacora;
         private static Perfiles _perfiles;
+        private static Respaldo _respaldo;
 
 
         public static Login ObtenerLogin()
@@ -64,6 +65,16 @@ namespace UI
             }
             AplicarSeguridad(_bitacora);
             return _bitacora;
+        }
+
+        public static Respaldo ObtenerRespaldo()
+        {
+            if(_respaldo == null || _respaldo.IsDisposed)
+            {
+                _respaldo = new Respaldo();
+            }
+            AplicarSeguridad(_respaldo);
+            return _respaldo;
         }
 
         public static void Navegar(Form formularioActual, Form formularioDestino)

@@ -147,16 +147,15 @@ namespace DAL.Perfiles
 
         public bool PerfilTieneUsuarios(int idPerfil)
         {
+            string query = "SELECT COUNT(1) FROM Usuarios WHERE ID_Perfil = @idPerfil";
+            SqlParameter[] parametros = { new SqlParameter("@idPerfil", idPerfil) };
 
-            string query = "SELECT COUNT(1) FROM Usuario WHERE ID_Perfil = @id";
-            SqlParameter[] param = { new SqlParameter("@id", idPerfil) };
-
-            DataTable dt = _conexion.ExecuteReader(query, param);
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
 
             if (dt != null && dt.Rows.Count > 0)
             {
-
-                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+                int cantidad = Convert.ToInt32(dt.Rows[0][0]);
+                return cantidad > 0;
             }
 
             return false;

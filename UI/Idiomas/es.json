@@ -18,13 +18,14 @@
   "btnAyuda": "❓ Ayuda",
   "btnLogout": "🚪 Cerrar Sesión",
   "btnLogin": "Iniciar Sesión",
-  "btnChangePass": "Cambiar Contraseña",
+  "btnCambiarContrasena": "Cambiar Contraseña",
   "label4": "Usuario:",
   "label5": "Contraseña Actual",
   "label2": "Nueva Contraseña",
   "label3": "Repetir Contraseña",
   "btnAceptar": "Aceptar",
   "btnCancelarMP": "Cancelar",
+  "btnRespaldo": "🔒 Respaldo",
 
 
   "lblTituloBitacora": "📋 Auditoría y Bitácora del Sistema",
@@ -62,7 +63,7 @@
   "btnAceptarG": "Aceptar",
   "btnCancelarG": "Cancelar",
   "btnSalirG": "Salir",
-  "btnGestionarPerfiles": "Perfiles",
+  "btnGestionarPerfiles": "🔑 Perfiles",
 
 
   "toolStripLabel1": "Agregar",
@@ -105,5 +106,15 @@
   "lblNombrePermisoPerfil": "Nombre del Perfil:",
   "lblNombrePermisoFamilia": "Nombre de la Familia:",
 
-  "lblFormularioPermiso": "Asignar a Pantalla:"
+  "lblFormularioPermiso": "Asignar a Pantalla:",
+
+  "lblTituloR": "Gestión de Backup y Restore",
+  "lblDescripcionR": "Administración de copias de seguridad de la base de datos.",
+  "gbBackup": "BackUp",
+  "lblRutaBackup": "Ruta",
+  "btnRealizarBackup": "Realizar Backup",
+  "gbRestore": "Restore",
+  "lblRutaRestore": "Archivo",
+  "btnRealizarRestore": "Realizar Restore",
+  "btnSalirR": "Salir"
 }

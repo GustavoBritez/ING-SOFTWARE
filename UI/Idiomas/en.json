@@ -14,13 +14,14 @@
   "btnAyuda": "❓ Help",
   "btnLogout": "🚪 Log Out",
   "btnLogin": "Log In",
-  "btnChangePass": "Change Password",
+  "btnCambiarContrasena": "Change Password",
   "label4": "User: ",
   "label5": "Current Password",
   "label2": "New Password",
   "label3": "Repeat Password",
   "btnAceptar": "Accept",
   "btnCancelarMP": "Cancel",
+  "btnRespaldo": "🔒 BackUp",
 
   "lblTituloBitacora": "📋 System Audit Log",
   "btnExportar": "Export",
@@ -56,7 +57,7 @@
   "btnAceptarG": "Accept",
   "btnCancelarG": "Cancel",
   "btnSalirG": "Exit",
-  "btnGestionarPerfiles": "Profiles",
+  "btnGestionarPerfiles": "🔑 Profiles",
 
   "toolStripLabel1": "Add",
   "MenuItem_Familia_A_Perfil": "Family to Profile",
@@ -98,5 +99,15 @@
   "lblNombrePermisoPerfil": "Profile Name:",
   "lblNombrePermisoFamilia": "Family Name:",
 
-  "lblFormularioPermiso": "Assign to Form:"
+  "lblFormularioPermiso": "Assign to Form:",
+
+  "lblTituloR": "Backup and Restore Management",
+  "lblDescripcionR": "Database backup management.",
+  "gbBackup": "Backup",
+  "lblRutaBackup": "Path",
+  "btnRealizarBackup": "Perform Backup",
+  "gbRestore": "Restore",
+  "lblRutaRestore": "File",
+  "btnRealizarRestore": "Perform Restore",
+  "btnSalirR": "Exit"
 }

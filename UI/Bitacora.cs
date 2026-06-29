@@ -109,6 +109,7 @@ namespace UI
             cmbModulo.Items.Add("Login");
             cmbModulo.Items.Add("GestionUsuario");
             cmbModulo.Items.Add("Permisos");
+            cmbModulo.Items.Add("Respaldo");
             cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto
         }
         private void InicializarComboBoxC()
@@ -145,8 +146,8 @@ namespace UI
             cmbEvento.Items.Add("Creacion de Patente");
             cmbEvento.Items.Add("Eliminacion de Familia");
             cmbEvento.Items.Add("Creacion de Familia");
-            /// Nuevos Eventos colocar, lo de los perfiles 
-            /// Nuevos Eventos colocar, lo de los idiomas 
+            cmbEvento.Items.Add("BackUp");
+            cmbEvento.Items.Add("Restore");
 
             cmbEvento.SelectedIndex = 0;
         }
