@@ -18,7 +18,6 @@ namespace UI
             cmbIdioma.DropDownStyle = ComboBoxStyle.DropDownList;
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
