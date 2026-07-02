@@ -132,12 +132,21 @@ namespace UI
 
                 Idioma id = ServicesSessionManager.Instancia.ObtenerIdioma();
                 usuarioActual._Idioma = id.Nombre;
+
+                // 1. Modificaciones en la base de datos
                 usuarioBLL.CambioDeIdiomaUser(usuarioActual);
-
-
                 usuarioBLL.LogOut(usuarioActual);
+
+                // =========================================================
+                // 2. ACTUALIZACIÓN DEL DÍGITO VERIFICADOR (El parche clave)
+                // =========================================================
+                DigitoVerificadorBLL dvBll = new DigitoVerificadorBLL();
+                dvBll.ActualizarDVIndividualesUsuarios(); // Actualiza la fila del usuario modificado
+                dvBll.RecalcularYPersistir();             // Actualiza las firmas globales
+                                                          // =========================================================
+
                 MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //ActualizarDisponibilidadBotones();
+
                 ActualizarUsuario();
 
                 List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
@@ -150,7 +159,6 @@ namespace UI
             {
                 MessageBox.Show($"Error al cerrar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
@@ -310,6 +318,7 @@ namespace UI
         {
             FormManager.Navegar(this, new Perfiles());
         }
+
     }
 
 }

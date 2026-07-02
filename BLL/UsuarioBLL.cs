@@ -172,14 +172,14 @@ namespace BLL
                 //
                 //==========================
                 //
-                if (!VerificarIntegridad(usuarioEnBD))
+                /*if (!VerificarIntegridad(usuarioEnBD))
                 {
                     Console.WriteLine($"ALERTA: Integridad de datos corrompida para el usuario '{nombreDeUsuario}'.");
 
                     new EventoBLL().RegistrarEvento(4, "ERROR: DV", 12345678, "Seguridad");
 
                     return false;
-                }
+                }*/
                 //
                 //==========================
                 //

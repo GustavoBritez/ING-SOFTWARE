@@ -53,7 +53,44 @@ namespace BLL
 
             return true;
         }
+        public List<string> ObtenerUsuariosCorruptos()
+        {
+            List<string> usuariosCorruptos = new();
 
+            DataTable dtUsuarios = digitoVerificadorDAL.ObtenerDatosTabla("dbo", "Usuarios");
+
+            if (!dtUsuarios.Columns.Contains("DV"))
+            {
+                return usuariosCorruptos;
+            }
+            string columnaIdentificadora = dtUsuarios.Columns.Contains("Nombre") ? "Nombre" : dtUsuarios.Columns[0].ColumnName;
+
+            foreach (DataRow fila in dtUsuarios.Rows)
+            {
+                BigInteger totalFila = BigInteger.Zero;
+
+                foreach (DataColumn columna in dtUsuarios.Columns)
+                {
+                    if (string.Equals(columna.ColumnName, "DV", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    totalFila += ObtenerValorHexadecimal(fila[columna]);
+                }
+
+                string dvCalculado = FormatearHexadecimal(totalFila);
+                string dvGuardado = fila["DV"]?.ToString() ?? string.Empty;
+
+                if (!string.Equals(dvCalculado, dvGuardado, StringComparison.OrdinalIgnoreCase))
+                {
+                    string usuarioAfectado = fila[columnaIdentificadora]?.ToString() ?? "ID Desconocido";
+                    usuariosCorruptos.Add(usuarioAfectado);
+                }
+            }
+
+            return usuariosCorruptos;
+        }
         private List<ResumenDigitoVerificador> CalcularResumenActual()
         {
             List<ResumenDigitoVerificador> resumen = new();
@@ -167,6 +204,46 @@ namespace BLL
         private static string FormatearHexadecimal(BigInteger valor)
         {
             return valor.ToString("X");
+        }
+
+        public void ActualizarDVIndividualesUsuarios()
+        {
+            // 1. Traemos todos los usuarios actuales
+            DataTable dtUsuarios = digitoVerificadorDAL.ObtenerDatosTabla("dbo", "Usuarios");
+
+            // Si por algún motivo la tabla no tiene la columna DV, cancelamos para evitar errores
+            if (!dtUsuarios.Columns.Contains("DV"))
+            {
+                return;
+            }
+
+            // 2. Identificamos cuál es la columna clave (Primary Key). 
+            // Por lo general, en 'SELECT *', el ID suele ser la primera columna (índice 0).
+            string columnaId = dtUsuarios.Columns[0].ColumnName;
+
+            // 3. Recorremos fila por fila
+            foreach (DataRow fila in dtUsuarios.Rows)
+            {
+                BigInteger totalFila = BigInteger.Zero;
+
+                // Sumamos todas las columnas de este usuario
+                foreach (DataColumn columna in dtUsuarios.Columns)
+                {
+                    if (string.Equals(columna.ColumnName, "DV", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue; // No sumamos la columna DV para evitar que el hash se modifique a sí mismo
+                    }
+
+                    totalFila += ObtenerValorHexadecimal(fila[columna]);
+                }
+
+                // Formateamos el resultado final
+                string dvCalculado = FormatearHexadecimal(totalFila);
+                object valorId = fila[columnaId];
+
+                // 4. Mandamos a la base de datos a guardar el código en la fila de este usuario
+                digitoVerificadorDAL.ActualizarDVRegistro("dbo", "Usuarios", columnaId, valorId, dvCalculado);
+            }
         }
     }
 }
