@@ -3,7 +3,6 @@ using DAL;
 using Microsoft.Data.SqlClient;
 using Services;
 using System.Net;
-using Services;
 
 namespace BLL
 {
@@ -11,6 +10,7 @@ namespace BLL
     {
         private UsuarioDAL usuarioDAL;
         private ServicioBcrypt Bcryp;
+        private readonly DigitoVerificadorBLL digitoVerificadorBLL = new();
         // Diccionario estático para guardar intentos fallidos en memoria
         public Dictionary<string, int> intentosFallidos = new Dictionary<string, int>();
 
@@ -19,7 +19,7 @@ namespace BLL
             usuarioDAL = new UsuarioDAL();
             Bcryp = new ServicioBcrypt();
         }
-        
+
         public void CambiarEstado(UsuarioBE usuario)
         {
             try
@@ -34,6 +34,7 @@ namespace BLL
                 //==========================
                 //
                 usuarioDAL.CambioEstado(usuario);
+                digitoVerificadorBLL.RecalcularYPersistir();
 
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -60,6 +61,7 @@ namespace BLL
                 //==========================
                 //
                 usuarioDAL.CambiarContraseña(usuario);
+                digitoVerificadorBLL.RecalcularYPersistir();
 
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -103,6 +105,7 @@ namespace BLL
                 //==========================
                 //
                 usuarioDAL.CrearUsuario(usuario);
+                digitoVerificadorBLL.RecalcularYPersistir();
 
                 int dniActual;
                 try
@@ -304,6 +307,7 @@ namespace BLL
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
 
                 usuarioDAL.ModificarUsuario(usuario);
+                digitoVerificadorBLL.RecalcularYPersistir();
             }
             catch (Exception ex)
             {
@@ -336,6 +340,7 @@ namespace BLL
                 user.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(user));
 
                 usuarioDAL.Desbloquear(user);
+                digitoVerificadorBLL.RecalcularYPersistir();
 
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -354,6 +359,7 @@ namespace BLL
         public void CambioDeIdiomaUser(UsuarioBE user)
         {
             usuarioDAL.CambiarIdiomaUsuario(user);
+            digitoVerificadorBLL.RecalcularYPersistir();
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Cambio de Idioma";
@@ -366,7 +372,7 @@ namespace BLL
         private string GenerarCadenaParaDV(UsuarioBE usuario)
         {
 
-            return $"{usuario._Dni}{usuario._Nombre}{usuario._Apellido}{usuario._NombreDeUsuario}{usuario._Contraseña}{usuario._IdPerfil}{usuario._Bloqueado}{usuario._Estado}";
+            return $"{usuario._Dni}{usuario._Nombre}{usuario._Apellido}{usuario._NombreDeUsuario}{usuario._Contraseña}{usuario._IdPerfil}{usuario._Bloqueado}{usuario._Estado}{usuario._Idioma}";
         }
 
         private bool VerificarIntegridad(UsuarioBE usuario)

@@ -9,7 +9,6 @@ namespace Services
 {
     public class ServicioBcrypt
     {
-        //DV
         private const int WorkFactor = 10;
 
         public string HashearContraseña(string contraseña)
@@ -21,18 +20,36 @@ namespace Services
             return BCrypt.Net.BCrypt.Verify(contraseñaPlana, hashGuardado);
         }
 
-        //DV
         public static string CalcularDV(string datos)
         {
-            // BCrypt.HashPassword genera un hash único cada vez
-            return BCrypt.Net.BCrypt.HashPassword(datos, WorkFactor);
+            if (datos is null)
+            {
+                datos = string.Empty;
+            }
+
+            ulong total = 0;
+
+            foreach (byte valor in System.Text.Encoding.UTF8.GetBytes(datos))
+            {
+                total += valor;
+            }
+
+            return total.ToString("X");
         }
 
-        //DV
         public static bool ValidarDV(string datos, string dvGuardado)
         {
-            // BCrypt.Verify compara los datos con el hash guardado
-            return BCrypt.Net.BCrypt.Verify(datos, dvGuardado);
+            if (string.IsNullOrWhiteSpace(dvGuardado))
+            {
+                return false;
+            }
+
+            if (dvGuardado.StartsWith("$2", StringComparison.Ordinal))
+            {
+                return BCrypt.Net.BCrypt.Verify(datos, dvGuardado);
+            }
+
+            return string.Equals(CalcularDV(datos), dvGuardado, StringComparison.OrdinalIgnoreCase);
         }
 
 

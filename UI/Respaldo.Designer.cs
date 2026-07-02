@@ -44,6 +44,11 @@
         private Button btnBuscarRestore;
         private Button btnRealizarRestore;
 
+        private GroupBox gbDV;
+        private Label lblDVEtiqueta;
+        private Button btnVerificarDV;
+        private Button btnRecalcularDV;
+
         private SaveFileDialog saveFileDialog1;
         private OpenFileDialog openFileDialog1;
 
@@ -62,12 +67,17 @@
             txtRutaRestore = new TextBox();
             btnBuscarRestore = new Button();
             btnRealizarRestore = new Button();
+            gbDV = new GroupBox();
+            lblDVEtiqueta = new Label();
+            btnVerificarDV = new Button();
+            btnRecalcularDV = new Button();
             saveFileDialog1 = new SaveFileDialog();
             openFileDialog1 = new OpenFileDialog();
             btnSalirR = new Button();
             pnlTitulo.SuspendLayout();
             gbBackup.SuspendLayout();
             gbRestore.SuspendLayout();
+            gbDV.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTitulo
@@ -205,12 +215,61 @@
             btnRealizarRestore.UseVisualStyleBackColor = false;
             btnRealizarRestore.Click += btnRealizarRestore_Click;
             // 
+            // gbDV
+            // 
+            gbDV.Controls.Add(lblDVEtiqueta);
+            gbDV.Controls.Add(btnVerificarDV);
+            gbDV.Controls.Add(btnRecalcularDV);
+            gbDV.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            gbDV.Location = new Point(15, 510);
+            gbDV.Name = "gbDV";
+            gbDV.Size = new Size(860, 120);
+            gbDV.TabIndex = 3;
+            gbDV.TabStop = false;
+            gbDV.Text = "Digito Verificador";
+            // 
+            // lblDVEtiqueta
+            // 
+            lblDVEtiqueta.AutoSize = true;
+            lblDVEtiqueta.Font = new Font("Segoe UI", 10F);
+            lblDVEtiqueta.Location = new Point(25, 33);
+            lblDVEtiqueta.Name = "lblDVEtiqueta";
+            lblDVEtiqueta.Size = new Size(396, 19);
+            lblDVEtiqueta.TabIndex = 0;
+            lblDVEtiqueta.Text = "Verifique la consistencia o fuerce el recálculo de todos los DV.";
+            // 
+            // btnVerificarDV
+            // 
+            btnVerificarDV.BackColor = Color.FromArgb(40, 120, 60);
+            btnVerificarDV.FlatStyle = FlatStyle.Flat;
+            btnVerificarDV.ForeColor = Color.White;
+            btnVerificarDV.Location = new Point(25, 65);
+            btnVerificarDV.Name = "btnVerificarDV";
+            btnVerificarDV.Size = new Size(170, 38);
+            btnVerificarDV.TabIndex = 1;
+            btnVerificarDV.Text = "Verificar DV";
+            btnVerificarDV.UseVisualStyleBackColor = false;
+            btnVerificarDV.Click += btnVerificarDV_Click;
+            // 
+            // btnRecalcularDV
+            // 
+            btnRecalcularDV.BackColor = Color.FromArgb(46, 94, 67);
+            btnRecalcularDV.FlatStyle = FlatStyle.Flat;
+            btnRecalcularDV.ForeColor = Color.White;
+            btnRecalcularDV.Location = new Point(210, 65);
+            btnRecalcularDV.Name = "btnRecalcularDV";
+            btnRecalcularDV.Size = new Size(190, 38);
+            btnRecalcularDV.TabIndex = 2;
+            btnRecalcularDV.Text = "Recalcular DV";
+            btnRecalcularDV.UseVisualStyleBackColor = false;
+            btnRecalcularDV.Click += btnRecalcularDV_Click;
+            // 
             // btnSalirR
             // 
             btnSalirR.BackColor = Color.FromArgb(255, 120, 120);
             btnSalirR.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSalirR.ForeColor = Color.Black;
-            btnSalirR.Location = new Point(12, 499);
+            btnSalirR.Location = new Point(12, 646);
             btnSalirR.Name = "btnSalirR";
             btnSalirR.Size = new Size(115, 40);
             btnSalirR.TabIndex = 3;
@@ -221,11 +280,12 @@
             // Respaldo
             // 
             BackColor = Color.FloralWhite;
-            ClientSize = new Size(885, 551);
+            ClientSize = new Size(885, 706);
             Controls.Add(btnSalirR);
             Controls.Add(pnlTitulo);
             Controls.Add(gbBackup);
             Controls.Add(gbRestore);
+            Controls.Add(gbDV);
             Name = "Respaldo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestión de Backup y Restore";
@@ -235,6 +295,8 @@
             gbBackup.PerformLayout();
             gbRestore.ResumeLayout(false);
             gbRestore.PerformLayout();
+            gbDV.ResumeLayout(false);
+            gbDV.PerformLayout();
             ResumeLayout(false);
         }
         private Button btnSalirR;

@@ -15,11 +15,13 @@ namespace UI
     public partial class Respaldo : Form, IIdiomaObserver
     {
         private IdiomaBLL idiomaBLL = new IdiomaBLL();
+        private readonly DigitoVerificadorBLL digitoVerificadorBLL = new DigitoVerificadorBLL();
         public Respaldo()
         {
             InitializeComponent();
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
+            ActualizarVisibilidadDV();
         }
 
         private void btnRealizarBackup_Click(object sender, EventArgs e)
@@ -118,6 +120,62 @@ namespace UI
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }
+        }
+
+        private void btnVerificarDV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool consistente = digitoVerificadorBLL.VerificarBaseDatos();
+
+                MessageBox.Show(
+                    consistente ? "Los DV de la base de datos son consistentes." : "Se detectaron inconsistencias en la base de datos.",
+                    "Verificación DV",
+                    MessageBoxButtons.OK,
+                    consistente ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRecalcularDV_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                "Se recalcularán y persistirán todos los DV de la base de datos. ¿Desea continuar?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (resultado != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                digitoVerificadorBLL.RecalcularYPersistir();
+
+                MessageBox.Show(
+                    "Los DV fueron recalculados correctamente.",
+                    "Recalcular DV",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                ServicesSessionManager.Instancia.Logout();
+                FormManager.Navegar(this, FormManager.ObtenerLogin());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActualizarVisibilidadDV()
+        {
+            var usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+            gbDV.Visible = usuarioActivo != null && usuarioActivo._IdPerfil == 1;
         }
         public void ActualizarIdioma()
         {
