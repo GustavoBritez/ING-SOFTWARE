@@ -39,7 +39,15 @@ namespace UI
             {
                 BackupBLL backup = new BackupBLL();
 
+                // 1. Esto hace el backup físico y registra el evento en la Bitácora
                 backup.RealizarBackup(txtRutaBackup.Text);
+
+                // =========================================================
+                // 2. ACTUALIZACIÓN DEL DÍGITO VERIFICADOR (Absorbe el evento)
+                // =========================================================
+                DigitoVerificadorBLL dvBll = new DigitoVerificadorBLL();
+                dvBll.RecalcularYPersistir();
+                // =========================================================
 
                 MessageBox.Show("Backup realizado correctamente.",
                                 "Éxito",
