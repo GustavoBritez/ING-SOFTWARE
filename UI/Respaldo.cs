@@ -126,25 +126,49 @@ namespace UI
         {
             try
             {
+                Cursor = Cursors.WaitCursor;
+                DigitoVerificadorBLL digitoVerificadorBLL = new DigitoVerificadorBLL();
+
                 bool consistente = digitoVerificadorBLL.VerificarBaseDatos();
 
-                MessageBox.Show(
-                    consistente ? "Los DV de la base de datos son consistentes." : "Se detectaron inconsistencias en la base de datos.",
-                    "Verificación DV",
-                    MessageBoxButtons.OK,
-                    consistente ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+                if (consistente)
+                {
+                    MessageBox.Show(
+                        "Los DV de la base de datos son consistentes. El sistema se encuentra íntegro.",
+                        "Verificación DV",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    // Traemos el detalle de los usuarios hackeados
+                    List<string> corruptos = digitoVerificadorBLL.ObtenerUsuariosCorruptos();
+                    string detalleCorruptos = corruptos.Count > 0
+                        ? $"\n\nRegistros alterados detectados en la tabla Usuarios:\n- {string.Join("\n- ", corruptos)}"
+                        : "\n\nSe detectaron alteraciones en otras tablas del sistema.";
+
+                    MessageBox.Show(
+                        $"Se detectaron inconsistencias en la base de datos.{detalleCorruptos}\n\nPor favor, utilice la opción 'Recalcular DV' para restaurar el sistema.",
+                        "Alerta de Seguridad",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
         }
 
         private void btnRecalcularDV_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-                "Se recalcularán y persistirán todos los DV de la base de datos. ¿Desea continuar?",
-                "Confirmación",
+                "ATENCIÓN: Se recalcularán y persistirán todos los DV (Individuales y Globales) de la base de datos. ¿Desea continuar?",
+                "Confirmación de Recálculo",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
@@ -155,20 +179,32 @@ namespace UI
 
             try
             {
+                Cursor = Cursors.WaitCursor;
+                DigitoVerificadorBLL digitoVerificadorBLL = new DigitoVerificadorBLL();
+
+                // 1. Recalculamos el DV individual de cada usuario
+                digitoVerificadorBLL.ActualizarDVIndividualesUsuarios();
+
+                // 2. Recalculamos los totales globales en la tabla DV
                 digitoVerificadorBLL.RecalcularYPersistir();
 
                 MessageBox.Show(
-                    "Los DV fueron recalculados correctamente.",
+                    "Los DV fueron recalculados correctamente. La integridad ha sido restaurada.",
                     "Recalcular DV",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
+                // Al finalizar, cerramos la sesión y volvemos al login por seguridad
                 ServicesSessionManager.Instancia.Logout();
                 FormManager.Navegar(this, FormManager.ObtenerLogin());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
         }
 

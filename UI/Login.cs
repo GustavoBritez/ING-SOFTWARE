@@ -49,7 +49,7 @@ namespace UI
                     return;
                 }
 
-                // 2. BUSCAMOS AL USUARIO PRIMERO (Solo lectura, no altera la BD)
+                // 2. BUSCAMOS AL USUARIO
                 UsuarioBE usuario = usuarioBLL.BuscarUsuario(nombre);
 
                 if (usuario == null)
@@ -64,43 +64,25 @@ namespace UI
                     return;
                 }
 
-                // 3. ESCUDO DE INTEGRIDAD ANTES DE INTENTAR CUALQUIER ESCRITURA
+                // 3. ESCUDO DE INTEGRIDAD 
                 DigitoVerificadorBLL digitoVerificadorBLL = new DigitoVerificadorBLL();
                 bool baseDatosIntegra = digitoVerificadorBLL.VerificarBaseDatos();
 
                 if (!baseDatosIntegra)
                 {
-                    // MODO RESCATE: Validamos la clave en memoria para NO ejecutar el Login que escribe en Bitácora
                     Services.ServicioBcrypt servicioB = new Services.ServicioBcrypt();
                     bool contraseñaCorrecta = servicioB.ValidarContraseña(contraseña, usuario._Contraseña);
 
-                    // Evaluamos si es el Admin (1) y si escribió bien su contraseña
                     if (usuario._IdPerfil == 1 && contraseñaCorrecta)
                     {
-                        List<string> corruptos = digitoVerificadorBLL.ObtenerUsuariosCorruptos();
-                        string detalleCorruptos = corruptos.Count > 0
-                            ? $"\n\nRegistros alterados detectados:\n- {string.Join("\n- ", corruptos)}"
-                            : "";
-
-                        DialogResult respuesta = MessageBox.Show(
-                            $"¡ALERTA! La base de datos está corrupta, pero tienes permisos de Administrador.{detalleCorruptos}\n\n" +
-                            "¿Deseas recalcular los dígitos verificadores y restaurar el sistema?",
-                            "Modo Rescate - Auditoría Forense", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                        if (respuesta == DialogResult.Yes)
-                        {
-                            // Reparación total
-                            digitoVerificadorBLL.ActualizarDVIndividualesUsuarios();
-                            digitoVerificadorBLL.RecalcularYPersistir();
-                            MessageBox.Show("Integridad restaurada. Por favor, vuelve a presionar el botón Ingresar.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-
-                        // CORTAMOS AQUÍ. El usuario debe volver a darle click a Ingresar con el sistema limpio.
-                        return;
+                        MessageBox.Show(
+                            "¡ALERTA! La base de datos está corrupta, pero tienes permisos de Administrador.\n\n" +
+                            "Se te permitirá el ingreso. Por favor, dirígete al panel de seguridad para verificar y recalcular los dígitos verificadores.",
+                            "Modo Rescate - Acceso Autorizado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        // NO PONEMOS RETURN. Dejamos que el flujo continúe hacia el login.
                     }
                     else
                     {
-                        // Si es un usuario normal o puso mal la clave, bajamos la persiana.
                         MessageBox.Show("¡ALERTA CRÍTICA! Se ha detectado una alteración externa en la base de datos.\n" +
                                         "Por razones de seguridad, el sistema ha sido bloqueado.",
                                         "Error de Integridad", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -108,21 +90,18 @@ namespace UI
                     }
                 }
 
-                // 4. SI LLEGAMOS AQUÍ, LA BD ESTÁ PERFECTA. HACEMOS EL LOGIN OFICIAL.
+                // 4. LOGIN OFICIAL
                 bool loginOK = usuarioBLL.Login(nombre, contraseña);
-
-                // =========================================================================
-                // REGLA DE ORO DE SEGURIDAD:
-                // Como tu método Login guarda eventos en la Bitácora o suma intentos,
-                // ACABA de modificar la BD. Por ende, debemos recalcular el DV global
-                // INMEDIATAMENTE para absorber esos cambios legales.
-                // =========================================================================
-                digitoVerificadorBLL.RecalcularYPersistir();
 
                 if (loginOK)
                 {
-                    // NOTA: Eliminé la línea ServicesSessionManager.Instancia.Login(usuario) de aquí, 
-                    // porque tu método usuarioBLL.Login YA lo está haciendo internamente. (Evitamos duplicados)
+                    // REGLA DE ORO: Solo recalculamos automáticamente por el ingreso a la bitácora 
+                    // SI la base de datos estaba sana. Si estaba corrupta, no tocamos nada para que 
+                    // el Admin pueda ver el error en el panel.
+                    if (baseDatosIntegra)
+                    {
+                        digitoVerificadorBLL.RecalcularYPersistir();
+                    }
 
                     PatenteBLL patenteBLL = new PatenteBLL();
                     List<PatenteServices> listaPatentes = patenteBLL.ObtenerPermisosDePerfil(usuario._IdPerfil);
@@ -138,6 +117,7 @@ namespace UI
                 }
                 else
                 {
+                    // (Tu lógica de intentos fallidos igual que siempre)
                     UsuarioBE usuarioDespues = usuarioBLL.BuscarUsuario(nombre);
                     if (usuarioDespues != null && usuarioDespues._Bloqueado)
                     {
