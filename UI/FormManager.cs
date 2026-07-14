@@ -39,7 +39,6 @@ namespace UI
             if (_MenuPrincipal == null || _MenuPrincipal.IsDisposed)
             {
                 _MenuPrincipal = new MenuPrincipal();
-
             }
             AplicarSeguridad(_MenuPrincipal);
             return _MenuPrincipal;
@@ -61,7 +60,6 @@ namespace UI
             if (_bitacora == null || _bitacora.IsDisposed)
             {
                 _bitacora = new Bitacora();
-
             }
             AplicarSeguridad(_bitacora);
             return _bitacora;
@@ -70,6 +68,7 @@ namespace UI
         public static Respaldo ObtenerRespaldo()
         {
             if (_respaldo == null || _respaldo.IsDisposed)
+
             {
                 _respaldo = new Respaldo();
             }
@@ -149,6 +148,7 @@ namespace UI
         {
             foreach (Control control in controles)
             {
+
                 if (EsControlGestionadoPorPermisos(control.Name))
                 {
                     // Excepción de Seguridad (Modo Rescate): El administrador siempre tiene acceso al botón de respaldo,
@@ -176,6 +176,7 @@ namespace UI
                             control.Visible = false;
                         }
                     }
+
                 }
 
                 if (control.HasChildren)

@@ -92,7 +92,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al filtrar usuarios: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_mostrar", "titulo_error_mostrar", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -146,28 +146,28 @@ namespace UI
 
                 if (string.IsNullOrWhiteSpace(nuevaContraseña))
                 {
-                    MessageBox.Show("Operación cancelada.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    idiomaBLL.MostrarMensaje("msg_op_cancelada", "titulo_op_cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RestablecerModoCambiarContrasena();
                     return;
                 }
 
                 if (nuevaContraseña.Length < 3)
                 {
-                    MessageBox.Show("La contraseña debe tener al menos 3 caracteres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_faltan_caract", "titulo_error_mostrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RestablecerModoCambiarContrasena();
                     return;
                 }
 
                 usuario._Contraseña = nuevaContraseña;
                 usuarioBLL.ModificarUsuario(usuario);
-
-                MessageBox.Show($"Contraseña del usuario '{usuario._NombreDeUsuario}' cambiada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_contra_cambiada", "titulo_contra_cambiada", MessageBoxButtons.OK, MessageBoxIcon.Information, usuario._NombreDeUsuario);
                 RestablecerModoCambiarContrasena();
                 GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cambiar contraseña: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_mostrar", "titulo_error_mostrar", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
                 RestablecerModoCambiarContrasena();
             }
         }
@@ -235,13 +235,15 @@ namespace UI
 
                 if (!int.TryParse(_dni, out int dni))
                 {
-                    MessageBox.Show("Error, el DNI debe ser entero y con 8 dígitos");
+         
+                    idiomaBLL.MostrarMensaje("msg_error_dni", "titulo_error_dni", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
                 if (dni < 10000000)
                 {
-                    MessageBox.Show("Error, el DNI debe tener 8 dígitos");
+                    
+                    idiomaBLL.MostrarMensaje("msg_error_dni_dg", "titulo_error_dni", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -265,24 +267,15 @@ namespace UI
 
                 usuarioBLL.CrearUsuario(nuevoUsuario);
 
-                MessageBox.Show(
-                    $"Usuario '{nombreDeUsuario}' creado exitosamente.\nContraseña: {contraseña}",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
+               
+                idiomaBLL.MostrarMensaje("msg_usuario_creado", "titulo_usuario_creado", MessageBoxButtons.OK, MessageBoxIcon.Information,nombreDeUsuario,contraseña);
                 CancelarOperacion();
                 GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al crear usuario: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+               
+                idiomaBLL.MostrarMensaje("msg_error_mostrar", "titulo_error_mostrar", MessageBoxButtons.OK, MessageBoxIcon.Information, ex.Message);
             }
         }
 
@@ -290,31 +283,35 @@ namespace UI
         {
             if (string.IsNullOrWhiteSpace(txtDni.Text))
             {
-                MessageBox.Show("El DNI es requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+                idiomaBLL.MostrarMensaje("msg_pido_dni", "titulo_pido_dni", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("El Nombre es requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+                idiomaBLL.MostrarMensaje("msg_pido_nombre", "titulo_pido_nombre", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtApellido.Text))
             {
-                MessageBox.Show("El Apellido es requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_pido_apellido", "titulo_pido_apellido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
             {
-                MessageBox.Show("El Nombre de Usuario es requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_pido_nomuser", "titulo_pido_nomuser", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 return false;
             }
 
             if (cmbRol.SelectedItem == null)
             {
-                MessageBox.Show("Debe seleccionar un Rol.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_pido_rol", "titulo_pido_rol", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 return false;
             }
 
@@ -470,7 +467,7 @@ namespace UI
             {
                 if (_usuarioEnModificacion is null)
                 {
-                    MessageBox.Show("Error: No hay usuario en modificación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    idiomaBLL.MostrarMensaje("msg_error_usermod", "titulo_error_mostrar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -521,14 +518,14 @@ namespace UI
 
                 usuarioBLL.ModificarUsuario(_usuarioEnModificacion);
 
-                MessageBox.Show("Usuario modificado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                idiomaBLL.MostrarMensaje("msg_usuario_mod", "titulo_usuario_mod", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CancelarOperacion();
                 GestionUsuarios_Load(null, null);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: Modificaciones no aplicadas. \n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              
+                idiomaBLL.MostrarMensaje("msg_error_mostrar", "titulo_error_mostrar", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 

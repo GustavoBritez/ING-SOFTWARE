@@ -27,6 +27,14 @@ namespace DAL
         {
             Idioma idioma = ServicesSessionManager.Instancia.ObtenerIdioma();
 
+            return Traducir(clave, idioma);
+        }
+
+        public string Traducir(string clave, Idioma idioma)
+        {
+            if (idioma == null)
+                return clave;
+
             string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Idiomas", idioma.ArchivoJson);
 
             string json = File.ReadAllText(ruta);

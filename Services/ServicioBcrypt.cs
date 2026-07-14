@@ -9,6 +9,9 @@ namespace Services
 {
     public class ServicioBcrypt
     {
+
+        //DV
+
         private const int WorkFactor = 10;
 
         public string HashearContraseña(string contraseña)
@@ -19,6 +22,7 @@ namespace Services
         {
             return BCrypt.Net.BCrypt.Verify(contraseñaPlana, hashGuardado);
         }
+
 
         public static string CalcularDV(string datos)
         {
@@ -50,6 +54,7 @@ namespace Services
             }
 
             return string.Equals(CalcularDV(datos), dvGuardado, StringComparison.OrdinalIgnoreCase);
+
         }
 
 

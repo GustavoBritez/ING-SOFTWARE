@@ -86,7 +86,9 @@ namespace DAL.Perfiles
                 foreach (DataRow fila in dt.Rows)
                 {
                     string nombreControl = fila["NombreControl"].ToString();
+
                     string nombrePermiso = fila["NombrePatente"].ToString();
+
 
                     if (!restricciones.ContainsKey(nombreControl))
                     {
@@ -196,7 +198,9 @@ namespace DAL.Perfiles
                     WHERE ID_Familia IN (SELECT ID_Familia FROM FamiliasRecursivas)
                 ) PermisosUnicos ON P.ID_Permiso = PermisosUnicos.ID_Permiso";
 
+
             SqlParameter[] parametros = new SqlParameter[] {
+
                 new SqlParameter("@idPerfil", idPerfil)
             };
 
@@ -274,6 +278,8 @@ namespace DAL.Perfiles
             string queryPermiso = "DELETE FROM Permiso WHERE ID_Permiso = @id";
             SqlParameter[] paramPermiso = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryPermiso, paramPermiso);
+
+            
         }
     }
 }

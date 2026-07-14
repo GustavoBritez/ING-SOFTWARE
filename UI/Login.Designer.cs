@@ -42,6 +42,7 @@
             lblPassword = new Label();
             lblUsuario = new Label();
             lblLogin = new Label();
+            cmbIdioma = new ComboBox();
             panelIzquierdo.SuspendLayout();
             panelLogin.SuspendLayout();
             SuspendLayout();
@@ -199,6 +200,18 @@
             lblLogin.TabIndex = 0;
             lblLogin.Text = "LOGIN";
             // 
+            // cmbIdioma
+            // 
+            cmbIdioma.BackColor = Color.DarkSeaGreen;
+            cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbIdioma.FormattingEnabled = true;
+            cmbIdioma.Items.AddRange(new object[] { "Español", "English", "Portugues" });
+            cmbIdioma.Location = new Point(12, 12);
+            cmbIdioma.Name = "cmbIdioma";
+            cmbIdioma.Size = new Size(164, 29);
+            cmbIdioma.TabIndex = 3;
+            cmbIdioma.SelectedIndexChanged += cmbIdioma_SelectedIndexChanged;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -234,7 +247,9 @@
         private System.Windows.Forms.Button btnIngresar;
         private Button btnCancelar;
         private ComboBox cmbIdioma;
+
         private Button btnRecalcular;
+
     }
 }
 #endregion

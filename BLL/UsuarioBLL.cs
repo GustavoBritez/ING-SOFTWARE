@@ -34,7 +34,9 @@ namespace BLL
                 //==========================
                 //
                 usuarioDAL.CambioEstado(usuario);
+
                 digitoVerificadorBLL.RecalcularYPersistir();
+
 
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -53,15 +55,13 @@ namespace BLL
         {
             try
             {
-                //
-                //==========================
-                //
+              
                 usuario.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(usuario));
-                //
-                //==========================
-                //
+              
                 usuarioDAL.CambiarContraseña(usuario);
+
                 digitoVerificadorBLL.RecalcularYPersistir();
+
 
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
@@ -105,7 +105,9 @@ namespace BLL
                 //==========================
                 //
                 usuarioDAL.CrearUsuario(usuario);
+
                 digitoVerificadorBLL.RecalcularYPersistir();
+
 
                 int dniActual;
                 try
@@ -169,20 +171,19 @@ namespace BLL
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' no existe");
                     return false;
                 }
-                //
-                //==========================
-                //
+               
+
                 /*if (!VerificarIntegridad(usuarioEnBD))
+
                 {
                     Console.WriteLine($"ALERTA: Integridad de datos corrompida para el usuario '{nombreDeUsuario}'.");
 
                     new EventoBLL().RegistrarEvento(4, "ERROR: DV", 12345678, "Seguridad");
 
                     return false;
+
                 }*/
-                //
-                //==========================
-                //
+
                 if (usuarioEnBD._Bloqueado)
                 {
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' está bloqueado.");
@@ -339,9 +340,9 @@ namespace BLL
             {
                 user.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(user));
 
+
                 usuarioDAL.Desbloquear(user);
                 digitoVerificadorBLL.RecalcularYPersistir();
-
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Desbloqueo de Usuario";
@@ -372,16 +373,11 @@ namespace BLL
         private string GenerarCadenaParaDV(UsuarioBE usuario)
         {
 
+
             return $"{usuario._Dni}{usuario._Nombre}{usuario._Apellido}{usuario._NombreDeUsuario}{usuario._Contraseña}{usuario._IdPerfil}{usuario._Bloqueado}{usuario._Estado}{usuario._Idioma}";
+
         }
 
-        private bool VerificarIntegridad(UsuarioBE usuario)
-        {
-
-            if (string.IsNullOrEmpty(usuario.DV)) return false;
-
-            string cadena = GenerarCadenaParaDV(usuario);
-            return ServicioBcrypt.ValidarDV(cadena, usuario.DV);
-        }
+        
     }
 }

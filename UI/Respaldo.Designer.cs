@@ -211,6 +211,7 @@
             btnSalirR.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSalirR.ForeColor = Color.Black;
             btnSalirR.Location = new Point(12, 646);
+
             btnSalirR.Name = "btnSalirR";
             btnSalirR.Size = new Size(115, 40);
             btnSalirR.TabIndex = 3;
@@ -222,6 +223,7 @@
             // 
             BackColor = Color.FloralWhite;
             ClientSize = new Size(885, 706);
+
             Controls.Add(btnSalirR);
             Controls.Add(pnlTitulo);
             Controls.Add(gbBackup);

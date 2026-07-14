@@ -37,6 +37,7 @@ namespace UI
             {
                 BackupBLL backup = new BackupBLL();
 
+
                 // 1. Esto hace el backup físico y registra el evento en la Bitácora
                 backup.RealizarBackup(txtRutaBackup.Text);
 
@@ -46,6 +47,7 @@ namespace UI
                 DigitoVerificadorBLL dvBll = new DigitoVerificadorBLL();
                 dvBll.RecalcularYPersistir();
                 // =========================================================
+
 
                 MessageBox.Show("Backup realizado correctamente.",
                                 "Éxito",
@@ -127,6 +129,8 @@ namespace UI
                                 MessageBoxIcon.Error);
             }
         }
+
+
 
         public void ActualizarIdioma()
         {

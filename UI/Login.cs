@@ -35,7 +35,9 @@ namespace UI
                 // 1. VALIDACIONES BÁSICAS Y DE SESIÓN
                 if (ServicesSessionManager.Instancia.ObtenerUsuarioActivo() != null)
                 {
-                    MessageBox.Show("Ya hay una sesión iniciada.", "Sesión activa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    idiomaBLL.MostrarMensaje("msg_sesion_activa", "titulo_sesion_activa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
                     return;
                 }
@@ -44,8 +46,8 @@ namespace UI
                 string contraseña = txtPassword.Text ?? string.Empty;
 
                 if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(contraseña))
-                {
-                    MessageBox.Show("Debe ingresar usuario y contraseña.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {  
+                    idiomaBLL.MostrarMensaje("msg_falta_uscon", "titulo_falta_uscon", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -54,13 +56,13 @@ namespace UI
 
                 if (usuario == null)
                 {
-                    MessageBox.Show("Usuario no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    idiomaBLL.MostrarMensaje("msg_inexistente_usuario", "titulo_no_usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (usuario._Bloqueado)
                 {
-                    MessageBox.Show("Cuenta bloqueada. Contacte al administrador.", "Cuenta bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    idiomaBLL.MostrarMensaje("msg_cuentabloqueada", "titulo_cuentabloqueada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -114,8 +116,12 @@ namespace UI
                     Idioma idioma = idiomas.Find(i => i.Nombre == usuario._Idioma.ToString());
                     ServicesSessionManager.Instancia.CambiarIdioma(idioma);
 
-                    MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   
+
+                    //MessageBox.Show("Inicio de sesión exitoso.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_inicio_sesion","titulo_inicio_sesion",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
+
                 }
                 else
                 {
@@ -123,19 +129,22 @@ namespace UI
                     UsuarioBE usuarioDespues = usuarioBLL.BuscarUsuario(nombre);
                     if (usuarioDespues != null && usuarioDespues._Bloqueado)
                     {
-                        MessageBox.Show("Cuenta bloqueada por 3 intentos fallidos.", "Cuenta bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        idiomaBLL.MostrarMensaje("msg_bloquear_cuenta", "titulo_bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
                     else
                     {
                         int intentos = usuarioBLL.ObtenerIntentosFallidos(nombre);
                         int intentosRestantes = Math.Max(0, 3 - intentos);
-                        MessageBox.Show($"Contraseña inválida. Intentos restantes: {intentosRestantes}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        idiomaBLL.MostrarMensaje("msg_intentos_incorrectos","titulo_intento_fallido",MessageBoxButtons.OK, MessageBoxIcon.Warning, intentos, intentosRestantes);
+                        
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error en el proceso de login: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_login_error", "titulo_login_error", MessageBoxButtons.OK, MessageBoxIcon.Error, ex);
+             
             }
         }
 
@@ -169,6 +178,8 @@ namespace UI
         private void Login_Load(object sender, EventArgs e)
         {
 
+            cmbIdioma.SelectedIndex = 0;
+
         }
 
         private void cmbIdioma_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,6 +201,7 @@ namespace UI
                 Idioma portugues = idiomas.First(i => i.Codigo == "po");
                 ServicesSessionManager.Instancia.CambiarIdioma(portugues);
             }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -232,6 +244,7 @@ namespace UI
                 Cursor = Cursors.Default;
                 MessageBox.Show($"Ocurrió un error al cargar los dígitos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }

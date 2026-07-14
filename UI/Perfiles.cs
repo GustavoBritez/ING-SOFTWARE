@@ -122,7 +122,9 @@ namespace UI
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+
             RefrescarPermisosUsuarioActivo();
+
             FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
         }
 
@@ -987,42 +989,4 @@ namespace UI
         }
     }
 }
-/*private void permisoToolStripMenuItem_Click(object sender, EventArgs e)
-{
 
-}
-
-private void permisoToolStripMenuItem1_Click(object sender, EventArgs e)
-{
-    try
-    {
-        if (dgvPermisos.CurrentRow == null)
-        {
-            MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-
-        int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
-        string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
-
-        // Actualizamos el mensaje para reflejar el borrado en cascada
-        DialogResult respuesta = MessageBox.Show(
-            $"¿Está seguro que desea ELIMINAR el permiso '{nombrePermiso}'?\n\nAl hacerlo, también se desvinculará automáticamente de todos los Perfiles y Familias que lo estén utilizando actualmente.",
-            "Confirmar Borrado en Cascada",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Warning);
-
-        if (respuesta == DialogResult.Yes)
-        {
-            // Ejecutamos la BLL
-            _patenteBLL.EliminarPermiso(idPermiso, nombrePermiso);
-
-            MessageBox.Show("¡Permiso eliminado del sistema y desvinculado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            CargarGrillas();
-        }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error al eliminar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-}*/
