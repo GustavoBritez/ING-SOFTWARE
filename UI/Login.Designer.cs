@@ -42,7 +42,6 @@
             lblPassword = new Label();
             lblUsuario = new Label();
             lblLogin = new Label();
-            button1 = new Button();
             panelIzquierdo.SuspendLayout();
             panelLogin.SuspendLayout();
             SuspendLayout();
@@ -99,7 +98,6 @@
             // panelLogin
             // 
             panelLogin.BackColor = Color.FromArgb(226, 234, 226);
-            panelLogin.Controls.Add(button1);
             panelLogin.Controls.Add(btnCancelar);
             panelLogin.Controls.Add(btnIngresar);
             panelLogin.Controls.Add(txtPassword);
@@ -201,16 +199,6 @@
             lblLogin.TabIndex = 0;
             lblLogin.Text = "LOGIN";
             // 
-            // button1
-            // 
-            button1.Location = new Point(267, 108);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 7;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
-            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -247,7 +235,6 @@
         private Button btnCancelar;
         private ComboBox cmbIdioma;
         private Button btnRecalcular;
-        private Button button1;
     }
 }
 #endregion

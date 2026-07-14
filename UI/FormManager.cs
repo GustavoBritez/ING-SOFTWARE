@@ -185,8 +185,14 @@ namespace UI
                 || string.Equals(nombreControl, "btnSeguimiento", StringComparison.OrdinalIgnoreCase)
                 || string.Equals(nombreControl, "btnTurnos", StringComparison.OrdinalIgnoreCase)
                 || string.Equals(nombreControl, "btnAyuda", StringComparison.OrdinalIgnoreCase)
-                || string.Equals(nombreControl, "btnCambiarContrasena", StringComparison.OrdinalIgnoreCase);
+                || string.Equals(nombreControl, "btnCambiarContrasena", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnCrear", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnEliminar", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnModificar", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnActDesact", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnExportar", StringComparison.OrdinalIgnoreCase);
         }
+        
         #region "Gesti�n de Permisos Din�micos (Reflection)"
 
         public static List<string> ObtenerFormulariosDelSistema()
