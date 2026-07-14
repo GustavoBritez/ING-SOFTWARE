@@ -1,4 +1,4 @@
-﻿namespace UI
+namespace UI
 {
     partial class Login
     {
@@ -31,7 +31,6 @@
         private void InitializeComponent()
         {
             panelIzquierdo = new Panel();
-            cmbIdioma = new ComboBox();
             lblSubtitulo = new Label();
             lblTitulo = new Label();
             panelLogin = new Panel();
@@ -42,7 +41,6 @@
             lblPassword = new Label();
             lblUsuario = new Label();
             lblLogin = new Label();
-            cmbIdioma = new ComboBox();
             panelIzquierdo.SuspendLayout();
             panelLogin.SuspendLayout();
             SuspendLayout();
@@ -50,7 +48,6 @@
             // panelIzquierdo
             // 
             panelIzquierdo.BackColor = Color.FromArgb(78, 122, 84);
-            panelIzquierdo.Controls.Add(cmbIdioma);
             panelIzquierdo.Controls.Add(lblSubtitulo);
             panelIzquierdo.Controls.Add(lblTitulo);
             panelIzquierdo.Dock = DockStyle.Left;
@@ -59,18 +56,7 @@
             panelIzquierdo.Name = "panelIzquierdo";
             panelIzquierdo.Size = new Size(233, 375);
             panelIzquierdo.TabIndex = 0;
-            // 
-            // cmbIdioma
-            // 
-            cmbIdioma.BackColor = Color.DarkSeaGreen;
-            cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cmbIdioma.FormattingEnabled = true;
-            cmbIdioma.Items.AddRange(new object[] { "Español", "English", "Portugues" });
-            cmbIdioma.Location = new Point(12, 12);
-            cmbIdioma.Name = "cmbIdioma";
-            cmbIdioma.Size = new Size(164, 29);
-            cmbIdioma.TabIndex = 3;
-            cmbIdioma.SelectedIndexChanged += cmbIdioma_SelectedIndexChanged;
+
             // 
             // lblSubtitulo
             // 
@@ -199,18 +185,7 @@
             lblLogin.Size = new Size(99, 37);
             lblLogin.TabIndex = 0;
             lblLogin.Text = "LOGIN";
-            // 
-            // cmbIdioma
-            // 
-            cmbIdioma.BackColor = Color.DarkSeaGreen;
-            cmbIdioma.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cmbIdioma.FormattingEnabled = true;
-            cmbIdioma.Items.AddRange(new object[] { "Español", "English", "Portugues" });
-            cmbIdioma.Location = new Point(12, 12);
-            cmbIdioma.Name = "cmbIdioma";
-            cmbIdioma.Size = new Size(164, 29);
-            cmbIdioma.TabIndex = 3;
-            cmbIdioma.SelectedIndexChanged += cmbIdioma_SelectedIndexChanged;
+
             // 
             // Login
             // 
@@ -246,7 +221,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnIngresar;
         private Button btnCancelar;
-        private ComboBox cmbIdioma;
 
         private Button btnRecalcular;
 

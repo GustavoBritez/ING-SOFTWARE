@@ -1,4 +1,4 @@
-﻿using BLL;
+using BLL;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -20,6 +20,14 @@ namespace UI
             InitializeComponent();
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
+
+            bool baseCorrupta = ServicesSessionManager.Instancia.BaseDatosCorruptaDetectada;
+            if (baseCorrupta)
+            {
+                btnRealizarBackup.Enabled = false;
+                btnBuscarBackup.Enabled = false;
+                txtRutaBackup.Enabled = false;
+            }
         }
 
         private void btnRealizarBackup_Click(object sender, EventArgs e)

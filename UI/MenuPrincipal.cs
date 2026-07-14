@@ -32,50 +32,73 @@ namespace UI
             ActualizarPanelDV();
         }
 
-        // Ver
-        //private void ActualizarDisponibilidadBotones()
-        //{
-        //    try
-        //    {
-        //        UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
-        //        bool tieneSession = usuarioActivo != null;
+        private void ActualizarDisponibilidadBotones()
+        {
+            try
+            {
+                UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+                bool tieneSession = usuarioActivo != null;
+                bool baseCorrupta = ServicesSessionManager.Instancia.BaseDatosCorruptaDetectada;
 
-        //        if (tieneSession)
-        //        {
+                if (baseCorrupta)
+                {
+                    btnTurnos.Enabled = false;
+                    btnSeguimiento.Enabled = false;
+                    btnReportes.Enabled = false;
+                    btnUsuarios.Enabled = false;
+                    btnAyuda.Enabled = false;
+                    btnCambiarContrasena.Enabled = false;
+                    btnGestionarPerfiles.Enabled = false;
 
-        //            btnLogout.Visible = true;
-        //        }
-        //        else
-        //        {
-        //            // Si no hay sesión, apagamos todo por las dudas
-        //            btnTurnos.Visible = false;
-        //            btnCambiarContrasena.Visible = false;
-        //            btnReportes.Visible = false;
-        //            btnUsuarios.Visible = false;
-        //            btnLogout.Visible = false;
-        //        }
+                    btnRespaldo.Enabled = true;
 
-        //        btnLogin.Visible = true;
-        //        btnLogin.Enabled = true;
-        //    }
-        //    catch
-        //    {
-        //        // En caso de error, cerramos todo menos el Login
-        //        btnTurnos.Visible = false;
-        //        btnCambiarContrasena.Visible = false;
-        //        btnReportes.Visible = false;
-        //        btnUsuarios.Visible = false;
-        //        btnLogout.Visible = false;
+                    btnLogin.Enabled = true;
+                    btnLogout.Enabled = true;
+                }
+                else
+                {
+                    if (tieneSession)
+                    {
+                        btnTurnos.Enabled = true;
+                        btnSeguimiento.Enabled = true;
+                        btnReportes.Enabled = true;
+                        btnUsuarios.Enabled = true;
+                        btnAyuda.Enabled = true;
+                        btnCambiarContrasena.Enabled = true;
+                        btnRespaldo.Enabled = true;
+                        btnGestionarPerfiles.Enabled = true;
 
-        //        btnLogin.Visible = true;
-        //        btnLogin.Enabled = true;
-        //    }
-        //}
+                        btnLogout.Visible = true;
+                        btnLogout.Enabled = true;
+                    }
+                    else
+                    {
+                        btnTurnos.Enabled = false;
+                        btnSeguimiento.Enabled = false;
+                        btnReportes.Enabled = false;
+                        btnUsuarios.Enabled = false;
+                        btnAyuda.Enabled = false;
+                        btnCambiarContrasena.Enabled = false;
+                        btnRespaldo.Enabled = false;
+                        btnGestionarPerfiles.Enabled = false;
+
+                        btnLogout.Visible = false;
+                    }
+
+                    btnLogin.Visible = true;
+                    btnLogin.Enabled = true;
+                }
+            }
+            catch
+            {
+                // Manejo de error si es necesario
+            }
+        }
 
         private void Form1_VisibleChanged()
         {
             ApuntarComboBox();
-            //ActualizarDisponibilidadBotones();
+            ActualizarDisponibilidadBotones();
             ActualizarUsuario();
             ActualizarPanelDV();
         }
