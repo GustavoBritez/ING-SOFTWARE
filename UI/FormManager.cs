@@ -151,21 +151,30 @@ namespace UI
             {
                 if (EsControlGestionadoPorPermisos(control.Name))
                 {
-                    if (controlesRestringidos.ContainsKey(control.Name))
+                    // Excepción de Seguridad (Modo Rescate): El administrador siempre tiene acceso al botón de respaldo,
+                    // incluso si la base de datos fue comprometida o eliminada. Para el resto de controles, se aplican permisos.
+                    if (ServicesSessionManager.Instancia.EsAdministrador() && string.Equals(control.Name, "btnRespaldo", StringComparison.OrdinalIgnoreCase))
                     {
-                        string permisoRequerido = controlesRestringidos[control.Name];
-
-                        // Evaluamos si tiene permiso (devuelve true o false)
-                        bool tienePermiso = ServicesSessionManager.Instancia.TienePermiso(permisoRequerido);
-
-                        // Si tiene permiso, lo muestra. Si no, lo oculta.
-                        control.Visible = tienePermiso;
+                        control.Visible = true;
                     }
                     else
                     {
-                        // Si el control debería estar gestionado por permisos pero no tiene mapeo,
-                        // se oculta para no dejar accesos huérfanos cuando la tabla fue alterada.
-                        control.Visible = false;
+                        if (controlesRestringidos.ContainsKey(control.Name))
+                        {
+                            string permisoRequerido = controlesRestringidos[control.Name];
+
+                            // Evaluamos si tiene permiso (devuelve true o false)
+                            bool tienePermiso = ServicesSessionManager.Instancia.TienePermiso(permisoRequerido);
+
+                            // Si tiene permiso, lo muestra. Si no, lo oculta.
+                            control.Visible = tienePermiso;
+                        }
+                        else
+                        {
+                            // Si el control debería estar gestionado por permisos pero no tiene mapeo,
+                            // se oculta para no dejar accesos huérfanos cuando la tabla fue alterada.
+                            control.Visible = false;
+                        }
                     }
                 }
 
