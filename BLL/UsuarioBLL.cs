@@ -19,15 +19,22 @@ namespace BLL
             usuarioDAL = new UsuarioDAL();
             Bcryp = new ServicioBcrypt();
         }
-        /// <summary>
-        /// Este metodo lo usaremos para cambiar el estado de un usuario si esta Activo o Inactivo
-        /// </summary>
+        
         public void CambiarEstado(UsuarioBE usuario)
         {
             try
             {
                 usuario._Estado = !usuario._Estado;
+
+                //
+                //==========================
+                //
+                usuario.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(usuario));
+                //
+                //==========================
+                //
                 usuarioDAL.CambioEstado(usuario);
+
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Cambio de Estado";
@@ -45,13 +52,21 @@ namespace BLL
         {
             try
             {
+                //
+                //==========================
+                //
+                usuario.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(usuario));
+                //
+                //==========================
+                //
                 usuarioDAL.CambiarContraseña(usuario);
+
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Cambio de Clave";
                 bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "GestionUsuario");
             }
-            catch( Exception ex)
+            catch (Exception ex)
             {
                 string descripcion = $"ERROR: Cambio de Clave";
                 new EventoBLL().RegistrarEvento(4, descripcion, ServicesSessionManager.Instancia.ObtenerDniUsuarioActual(), "GestionUsuario");
@@ -59,19 +74,17 @@ namespace BLL
             }
         }
 
-        /// <param name="usuario"></param>
-        /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
         public void CrearUsuario(UsuarioBE usuario)
         {
             try
             {
-                // 1. Validaciones básicas de nulidad
                 if (string.IsNullOrWhiteSpace(usuario._NombreDeUsuario) || string.IsNullOrWhiteSpace(usuario._Contraseña))
                 {
                     throw new ArgumentException("El usuario o contraseña no pueden estar vacíos.");
                 }
+
                 List<UsuarioBE> todosLosUsuarios = usuarioDAL.ListaUsuarios() ?? new List<UsuarioBE>();
+
                 if (todosLosUsuarios.Any(u => string.Equals(u._NombreDeUsuario, usuario._NombreDeUsuario, StringComparison.OrdinalIgnoreCase)))
                 {
                     throw new InvalidOperationException($"El nombre de usuario '{usuario._NombreDeUsuario}' ya existe.");
@@ -80,8 +93,17 @@ namespace BLL
                 {
                     throw new InvalidOperationException($"El DNI '{usuario._Dni}' ya está registrado con otro usuario.");
                 }
+
                 usuario._Contraseña = Bcryp.HashearContraseña(usuario._Contraseña);
+                //
+                //==========================
+                //
+                usuario.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(usuario));
+                //
+                //==========================
+                //
                 usuarioDAL.CrearUsuario(usuario);
+
                 int dniActual;
                 try
                 {
@@ -131,35 +153,39 @@ namespace BLL
         {
             try
             {
-
-                ///Entramos y validamos nulos, no mandamos mensaje de error simplemente no hacemos nada
                 if (string.IsNullOrWhiteSpace(nombreDeUsuario) || string.IsNullOrWhiteSpace(contraseñaPlana))
                 {
                     return false;
                 }
-                /// Normalizamos el nombre, da igual que metan una minuscula o mayuscula
-                string nombreNormalizado = nombreDeUsuario.ToLower();
 
-                /// Esto en realidad es aldope porq ue la BD normaliza los datos siempre usando SQL
-                /// Podriamos sacarlo es indiferente.
+                string nombreNormalizado = nombreDeUsuario.ToLower();
                 UsuarioBE usuarioEnBD = usuarioDAL.ObtenerUsuario(nombreNormalizado);
 
-                // validacion de user null
                 if (usuarioEnBD == null)
                 {
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' no existe");
-                    // Consideramos que no tiene sentido guardar el intento fallido en bitacora
                     return false;
                 }
+                //
+                //==========================
+                //
+                if (!VerificarIntegridad(usuarioEnBD))
+                {
+                    Console.WriteLine($"ALERTA: Integridad de datos corrompida para el usuario '{nombreDeUsuario}'.");
 
+                    new EventoBLL().RegistrarEvento(4, "ERROR: DV", 12345678, "Seguridad");
+
+                    return false;
+                }
+                //
+                //==========================
+                //
                 if (usuarioEnBD._Bloqueado)
                 {
                     Console.WriteLine($"Error: Usuario '{nombreDeUsuario}' está bloqueado.");
-
                     return false;
                 }
 
-                
                 bool contraseñaValida = Bcryp.ValidarContraseña(contraseñaPlana, usuarioEnBD._Contraseña);
 
                 if (contraseñaValida)
@@ -174,7 +200,6 @@ namespace BLL
                     int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
 
                     EventoBLL bitacoraBLL = new();
-                    
                     string descripcion = $"Inicio de Sesion";
                     bitacoraBLL.RegistrarEvento(4, descripcion, dniActual, "Login");
                     return true;
@@ -191,14 +216,13 @@ namespace BLL
 
                     Console.WriteLine($"Error: Contraseña incorrecta para usuario '{nombreDeUsuario}'. Intentos: {intentosActuales}/3");
 
-                   
                     if (intentosActuales >= 3)
                     {
                         usuarioEnBD._Bloqueado = true;
-                        
+
                         ModificarUsuario(usuarioEnBD);
                         Console.WriteLine($"Cuenta de usuario '{nombreDeUsuario}' bloqueada por 3 intentos fallidos.");
-                        
+
                         EventoBLL bitacoraBLL = new();
                         int dniActual = this.BuscarUsuario(nombreDeUsuario)._Dni;
                         string descripcion = $"Bloqueo de Cuenta";
@@ -217,9 +241,7 @@ namespace BLL
 
         public int ObtenerIntentosFallidos(string nombreDeUsuario)
         {
-            // Normalizar el nombre a minúsculas para consistencia
             string nombreNormalizado = nombreDeUsuario.ToLower();
-
             if (intentosFallidos.ContainsKey(nombreNormalizado))
             {
                 return intentosFallidos[nombreNormalizado];
@@ -227,11 +249,6 @@ namespace BLL
             return 0;
         }
 
-        /// <summary>
-        ///  Falta testear
-        ///  Lo que hice fue un Logout del Session Mannager al finalizar ya sea por Exito o Fallo 
-        /// </summary>
-        /// <param name="usuario"></param>
         public void LogOut(UsuarioBE usuario)
         {
             try
@@ -244,16 +261,14 @@ namespace BLL
                 intentosFallidos.Clear();
 
                 EventoBLL bitacoraBLL = new();
-
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Cierre de Sesion";
-
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Login");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error en LogOut: {ex.Message}");
-                    EventoBLL bitacoraBLL = new();
+                EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $" Error: Cierre de Sesion";
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "Login");
@@ -269,16 +284,23 @@ namespace BLL
         {
             try
             {
-                // Evitar hashear nuevamente si la contraseña ya está hasheada en la BD (las hashes de BCrypt empiezan por "$2")
                 if (!string.IsNullOrWhiteSpace(usuario._Contraseña) && !usuario._Contraseña.StartsWith("$2"))
                 {
                     usuario._Contraseña = Bcryp.HashearContraseña(usuario._Contraseña);
                 }
 
+                // ⚠️ NUEVO (DV): Recalculamos el DV porque sus datos cambiaron
+                //
+                //==========================
+                //
+                usuario.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(usuario));
+                //
+                //==========================
+                //
                 EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Modificar Usuario";
-                
+
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
 
                 usuarioDAL.ModificarUsuario(usuario);
@@ -286,8 +308,7 @@ namespace BLL
             catch (Exception ex)
             {
                 Console.WriteLine($"Error en ModificarUsuario: {ex.Message}");
-
-                EventoBLL    bitacoraBLL = new();
+                EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Error: Modificar Usuario";
                 bitacoraBLL.RegistrarEvento(2, descripcion, dniActual, "GestionUsuario");
@@ -308,13 +329,15 @@ namespace BLL
             }
         }
 
-        public void Desbloquear(UsuarioBE user )
+        public void Desbloquear(UsuarioBE user)
         {
             try
             {
+                user.DV = ServicioBcrypt.CalcularDV(GenerarCadenaParaDV(user));
+
                 usuarioDAL.Desbloquear(user);
 
-                EventoBLL    bitacoraBLL = new();
+                EventoBLL bitacoraBLL = new();
                 int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
                 string descripcion = $"Desbloqueo de Usuario";
                 bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "GestionUsuario");
@@ -335,6 +358,24 @@ namespace BLL
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Cambio de Idioma";
             bitacoraBLL.RegistrarEvento(1, descripcion, dniActual, "GestionUsuario");
+        }
+
+        // metodos nuevos agregar en los diagramas
+        // =========================================================================
+
+        private string GenerarCadenaParaDV(UsuarioBE usuario)
+        {
+
+            return $"{usuario._Dni}{usuario._Nombre}{usuario._Apellido}{usuario._NombreDeUsuario}{usuario._Contraseña}{usuario._IdPerfil}{usuario._Bloqueado}{usuario._Estado}";
+        }
+
+        private bool VerificarIntegridad(UsuarioBE usuario)
+        {
+
+            if (string.IsNullOrEmpty(usuario.DV)) return false;
+
+            string cadena = GenerarCadenaParaDV(usuario);
+            return ServicioBcrypt.ValidarDV(cadena, usuario.DV);
         }
     }
 }

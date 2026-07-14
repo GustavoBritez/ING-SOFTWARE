@@ -28,6 +28,7 @@ namespace UI
         {
             InitializeComponent();
             this.VisibleChanged += (s, e) => Bitacora_VisibleChanged();
+            cmbIdioma.DropDownStyle = ComboBoxStyle.DropDownList;
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
         }
@@ -38,6 +39,7 @@ namespace UI
             if (this.Visible)
             {
                 CargarBitacora(BitacoraInicial());
+                ApuntarComboBox();
             }
         }
 
@@ -71,7 +73,6 @@ namespace UI
         {
             _bitacoraCompleta = _bitacoraBLL.VerEventos();
 
-            ApuntarComboBox();
             InicializarDateTimePickers();
             InicializarComboBoxCriticidad();
             InicializarComboBoxC();
@@ -79,10 +80,8 @@ namespace UI
 
             CargarBitacora(BitacoraInicial());
 
-
             dtpDesde.ValueChanged += DtpFecha_ValueChanged;
             dtpHasta.ValueChanged += DtpFecha_ValueChanged;
-
 
             cmbModulo.SelectedIndexChanged += CmbCriticidad_SelectedIndexChanged;
 
@@ -110,6 +109,7 @@ namespace UI
             cmbModulo.Items.Add("Login");
             cmbModulo.Items.Add("GestionUsuario");
             cmbModulo.Items.Add("Permisos");
+            cmbModulo.Items.Add("Respaldo");
             cmbModulo.SelectedIndex = 0; // Seleccionar "Todas" por defecto
         }
         private void InicializarComboBoxC()
@@ -146,8 +146,8 @@ namespace UI
             cmbEvento.Items.Add("Creacion de Patente");
             cmbEvento.Items.Add("Eliminacion de Familia");
             cmbEvento.Items.Add("Creacion de Familia");
-            /// Nuevos Eventos colocar, lo de los perfiles 
-            /// Nuevos Eventos colocar, lo de los idiomas 
+            cmbEvento.Items.Add("BackUp");
+            cmbEvento.Items.Add("Restore");
 
             cmbEvento.SelectedIndex = 0;
         }

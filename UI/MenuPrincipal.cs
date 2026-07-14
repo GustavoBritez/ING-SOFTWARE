@@ -77,15 +77,15 @@ namespace UI
         {
             string idioma = ServicesSessionManager.Instancia.ObtenerIdioma().Nombre;
 
-            if(idioma=="Español")
+            if (idioma == "Español")
             {
                 cmbIdioma.SelectedIndex = 0;
             }
-            else if(idioma=="English")
+            else if (idioma == "English")
             {
                 cmbIdioma.SelectedIndex = 1;
             }
-            else if(idioma=="Portugues")
+            else if (idioma == "Portugues")
             {
                 cmbIdioma.SelectedIndex = 2;
             }
@@ -133,17 +133,22 @@ namespace UI
                 Idioma id = ServicesSessionManager.Instancia.ObtenerIdioma();
                 usuarioActual._Idioma = id.Nombre;
                 usuarioBLL.CambioDeIdiomaUser(usuarioActual);
- 
+
 
                 usuarioBLL.LogOut(usuarioActual);
-                MessageBox.Show("Cerrar sesión exitoso", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_cerrar_sesion", "titulo_cerrar_sesion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //ActualizarDisponibilidadBotones();
                 ActualizarUsuario();
+
+                List<Idioma> idiomas = idiomaBLL.ObtenerIdiomas();
+                Idioma español = idiomas.First(i => i.Codigo == "es");
+                ServicesSessionManager.Instancia.CambiarIdioma(español);
+
                 FormManager.Navegar(this, FormManager.ObtenerLogin());
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cerrar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_cerrar_sesion", "titulo_error_cerrar_sesion", MessageBoxButtons.OK, MessageBoxIcon.Information, ex.Message);
             }
 
         }
@@ -153,7 +158,7 @@ namespace UI
             UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
             if (usuarioActivo == null)
             {
-                MessageBox.Show("Debe iniciar sesión para acceder a Gestión de Usuarios.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_error_nosesion", "titulo_error_nosesion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -180,19 +185,15 @@ namespace UI
 
                 if (string.IsNullOrEmpty(txtNewPass.Text) || string.IsNullOrEmpty(txtRepPass.Text) || string.IsNullOrEmpty(txtActualPass.Text))
                 {
-                    MessageBox.Show("Los campos estan vacios",
-                    "Cambiar Contraseña",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    
+                    idiomaBLL.MostrarMensaje("msg_campos_vacios", "titulo_campos_vacios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 // Validar que las contraseñas coincidan
                 if (nuevaPass != repPass)
                 {
-                    MessageBox.Show("Las contraseñas no coinciden",
-                       "Cambiar Contraseña",
-                       MessageBoxButtons.OK,
-                       MessageBoxIcon.Error);
+                   
+                    idiomaBLL.MostrarMensaje("msg_contra_distinta", "titulo_contra_distinta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -205,10 +206,8 @@ namespace UI
                 // Validar que no sea igual a la contraseña anterior
                 if (boleano && boleano2)
                 {
-                    MessageBox.Show("Error: Tu contraseña es igual, no se cambio",
-                       "Cambiar Contraseña",
-                       MessageBoxButtons.OK,
-                       MessageBoxIcon.Error);
+                    
+                    idiomaBLL.MostrarMensaje("msg_samecontra", "titulo_samecontra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -217,18 +216,11 @@ namespace UI
                 usuario._Contraseña = hashnuevaPass;
                 usuarioBLL.CambiarContraseña(usuario);
 
-
-                MessageBox.Show("Contraseña cambiada exitosamente",
-                "Cambiar Contraseña",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_contra_cambiada", "titulo_contra_cambiada", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}",
-                   "Cambiar Contraseña",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_cambio", "titulo_error_cambio", MessageBoxButtons.OK, MessageBoxIcon.Information,ex.Message);
             }
             finally
             {
@@ -256,7 +248,7 @@ namespace UI
             {
                 Traducir(this.Controls);
             }
-    
+
         }
         private void Traducir(Control.ControlCollection controles)
         {
@@ -296,7 +288,15 @@ namespace UI
         }
         #endregion
 
+        private void btnRespaldo_Click(object sender, EventArgs e)
+        {
+            FormManager.Navegar(this, FormManager.ObtenerRespaldo());
+        }
 
+        private void btnGestionarPerfiles_Click(object sender, EventArgs e)
+        {
+            FormManager.Navegar(this, new Perfiles());
+        }
     }
 
 }

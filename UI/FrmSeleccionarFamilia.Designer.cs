@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnCancelar = new Button();
+            btnCancelarF = new Button();
             btnVincular = new Button();
             cmbOrigen = new ComboBox();
             cmbDestino = new ComboBox();
-            lblTituloBitacora = new Label();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
+            lblTituloFamiliaFamilia = new Label();
+            labelOrigen = new Label();
+            labelDestino = new Label();
+            labelFlecha = new Label();
             btnDesvincular = new Button();
             SuspendLayout();
             // 
-            // btnCancelar
+            // btnCancelarF
             // 
-            btnCancelar.BackColor = Color.FromArgb(225, 225, 225);
-            btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnCancelar.Location = new Point(12, 127);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(82, 32);
-            btnCancelar.TabIndex = 2;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
+            btnCancelarF.BackColor = Color.FromArgb(225, 225, 225);
+            btnCancelarF.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnCancelarF.Location = new Point(12, 127);
+            btnCancelarF.Name = "btnCancelarF";
+            btnCancelarF.Size = new Size(82, 32);
+            btnCancelarF.TabIndex = 2;
+            btnCancelarF.Text = "Cancelar";
+            btnCancelarF.UseVisualStyleBackColor = false;
+            btnCancelarF.Click += btnCancelar_Click;
             // 
             // btnVincular
             // 
@@ -79,53 +79,53 @@
             cmbDestino.Size = new Size(162, 23);
             cmbDestino.TabIndex = 9;
             // 
-            // lblTituloBitacora
+            // lblTituloFamiliaFamilia
             // 
-            lblTituloBitacora.BackColor = Color.FromArgb(143, 188, 153);
-            lblTituloBitacora.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTituloBitacora.ForeColor = Color.FromArgb(46, 94, 67);
-            lblTituloBitacora.Location = new Point(-23, 2);
-            lblTituloBitacora.Name = "lblTituloBitacora";
-            lblTituloBitacora.Size = new Size(448, 40);
-            lblTituloBitacora.TabIndex = 10;
-            lblTituloBitacora.Text = "Relacion Familia a Familia";
-            lblTituloBitacora.TextAlign = ContentAlignment.TopCenter;
+            lblTituloFamiliaFamilia.BackColor = Color.FromArgb(143, 188, 153);
+            lblTituloFamiliaFamilia.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTituloFamiliaFamilia.ForeColor = Color.FromArgb(46, 94, 67);
+            lblTituloFamiliaFamilia.Location = new Point(-23, 2);
+            lblTituloFamiliaFamilia.Name = "lblTituloFamiliaFamilia";
+            lblTituloFamiliaFamilia.Size = new Size(448, 40);
+            lblTituloFamiliaFamilia.TabIndex = 10;
+            lblTituloFamiliaFamilia.Text = "Relacion Familia a Familia";
+            lblTituloFamiliaFamilia.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label1
+            // labelOrigen
             // 
-            label1.BackColor = Color.FromArgb(218, 237, 223);
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(46, 94, 67);
-            label1.Location = new Point(76, 46);
-            label1.Name = "label1";
-            label1.Size = new Size(55, 24);
-            label1.TabIndex = 11;
-            label1.Text = "Origen";
-            label1.TextAlign = ContentAlignment.TopCenter;
+            labelOrigen.BackColor = Color.FromArgb(218, 237, 223);
+            labelOrigen.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelOrigen.ForeColor = Color.FromArgb(46, 94, 67);
+            labelOrigen.Location = new Point(76, 46);
+            labelOrigen.Name = "labelOrigen";
+            labelOrigen.Size = new Size(55, 24);
+            labelOrigen.TabIndex = 11;
+            labelOrigen.Text = "Origen";
+            labelOrigen.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label2
+            // labelDestino
             // 
-            label2.BackColor = Color.FromArgb(218, 237, 223);
-            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(46, 94, 67);
-            label2.Location = new Point(67, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(64, 24);
-            label2.TabIndex = 12;
-            label2.Text = "Destino";
-            label2.TextAlign = ContentAlignment.TopCenter;
+            labelDestino.BackColor = Color.FromArgb(218, 237, 223);
+            labelDestino.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelDestino.ForeColor = Color.FromArgb(46, 94, 67);
+            labelDestino.Location = new Point(67, 100);
+            labelDestino.Name = "labelDestino";
+            labelDestino.Size = new Size(64, 24);
+            labelDestino.TabIndex = 12;
+            labelDestino.Text = "Destino";
+            labelDestino.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label3
+            // labelFlecha
             // 
-            label3.BackColor = Color.FromArgb(218, 237, 223);
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(46, 94, 67);
-            label3.Location = new Point(178, 71);
-            label3.Name = "label3";
-            label3.Size = new Size(47, 48);
-            label3.TabIndex = 13;
-            label3.Text = "🡫";
-            label3.TextAlign = ContentAlignment.TopCenter;
+            labelFlecha.BackColor = Color.FromArgb(218, 237, 223);
+            labelFlecha.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelFlecha.ForeColor = Color.FromArgb(46, 94, 67);
+            labelFlecha.Location = new Point(178, 71);
+            labelFlecha.Name = "labelFlecha";
+            labelFlecha.Size = new Size(47, 48);
+            labelFlecha.TabIndex = 13;
+            labelFlecha.Text = "🡫";
+            labelFlecha.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnDesvincular
             // 
@@ -146,14 +146,14 @@
             BackColor = Color.FromArgb(218, 237, 223);
             ClientSize = new Size(401, 166);
             Controls.Add(btnDesvincular);
-            Controls.Add(lblTituloBitacora);
+            Controls.Add(lblTituloFamiliaFamilia);
             Controls.Add(cmbDestino);
             Controls.Add(cmbOrigen);
             Controls.Add(btnVincular);
-            Controls.Add(btnCancelar);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(btnCancelarF);
+            Controls.Add(labelFlecha);
+            Controls.Add(labelDestino);
+            Controls.Add(labelOrigen);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmSeleccionarFamilia";
             StartPosition = FormStartPosition.CenterScreen;
@@ -164,14 +164,14 @@
 
         #endregion
 
-        private Button btnCancelar;
+        private Button btnCancelarF;
         private Button btnAceptar;
         private ComboBox cmbOrigen;
         private ComboBox cmbDestino;
-        private Label lblTituloBitacora;
-        private Label label1;
-        private Label label2;
-        private Label label3;
+        private Label lblTituloFamiliaFamilia;
+        private Label labelOrigen;
+        private Label labelDestino;
+        private Label labelFlecha;
         private Button btnVincular;
         private Button btnDesvincular;
     }

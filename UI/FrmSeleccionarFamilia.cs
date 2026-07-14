@@ -1,12 +1,14 @@
-﻿using System;
+﻿using BLL;
+using BLL.Perfiles;
+using Services; // Asegurate de importar tu BLL
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using BLL.Perfiles; // Asegurate de importar tu BLL
 
 namespace UI // Cambiá esto por el namespace de tu proyecto
 {
-    public partial class FrmSeleccionarFamilia : Form
+    public partial class FrmSeleccionarFamilia : Form,IIdiomaObserver
     {
         // 1. Propiedades para que la pantalla principal pueda leer qué eligió el usuario
         public int IdFamiliaOrigen { get; private set; }
@@ -16,11 +18,14 @@ namespace UI // Cambiá esto por el namespace de tu proyecto
         public bool EsVinculacion { get; private set; }
 
         private FamiliaBLL _familiaBLL;
+        private IdiomaBLL idiomaBLL=new IdiomaBLL();
 
         public FrmSeleccionarFamilia()
         {
             InitializeComponent();
             _familiaBLL = new FamiliaBLL();
+            ServicesSessionManager.Instancia.Suscribir(this);
+            ActualizarIdioma();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -109,6 +114,30 @@ namespace UI // Cambiá esto por el namespace de tu proyecto
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        public void ActualizarIdioma()
+        {
+            if (ServicesSessionManager.Instancia.ObtenerIdioma() != null)
+            {
+                Traducir(this.Controls);
+            }
+        }
+        private void Traducir(Control.ControlCollection controles)
+        {
+            foreach (Control control in controles)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string traduccion = idiomaBLL.Traducir(control.Name);
+
+                    if (traduccion != control.Name)
+                        control.Text = traduccion;
+                }
+
+                if (control.HasChildren)
+                    Traducir(control.Controls);
+            }
         }
     }
 }

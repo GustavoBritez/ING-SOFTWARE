@@ -27,10 +27,22 @@ namespace DAL.Perfiles
 
             _conexion.ExecuteNonQuery(query, parametros);
         }
+        public void AgregarFamiliaAlPerfil(int idPerfil, int idFamilia)
+        {
+                string query = $"INSERT INTO {FAMILIA_PERFIL} (ID_Perfil, ID_Familia) VALUES (@idPerfil, @idFamilia)";
+
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@idPerfil", idPerfil),
+                    new SqlParameter("@idFamilia", idFamilia)
+                };
+
+            _conexion.ExecuteNonQuery(query, parametros);
+        }
         public bool ExisteRelacionFamiliaPerfil(int idPerfil, int idFamilia)
         {
             string query = "SELECT COUNT(1) FROM Familia_Perfil WHERE ID_Perfil = @idPerfil AND ID_Familia = @idFamilia";
-
+             
             SqlParameter[] parametros = {
                             new SqlParameter("@idPerfil", idPerfil),
                             new SqlParameter("@idFamilia", idFamilia)
@@ -53,28 +65,50 @@ namespace DAL.Perfiles
 
             return Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
-       
-        public void InsertarFamiliaAlPerfi(int idPerfil , int idFamilia)
-        {
-            string query = $"INSERT INTO {FAMILIA_PERFIL} (ID_Perfil, ID_Familia) " +
-                            "VALUES (@idPerfil, @idFamilia)";
 
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@idPerfil", idPerfil),
+        public List<PatenteServices> ObtenerPermisosDeFamilia(int idFamilia)
+        {
+            // CTE Recursivo para extraer todos los permisos de la familia y sus subfamilias hijas
+            string query = @"
+                WITH FamiliasRecursivas AS (
+                    SELECT ID_Familia = @idFamilia
+                    UNION ALL
+                    SELECT ff.ID_FamiliaHija 
+                    FROM Familia_Familia ff
+                    INNER JOIN FamiliasRecursivas fr ON ff.ID_FamiliaPadre = fr.ID_Familia
+                )
+                SELECT DISTINCT P.ID_Permiso, P.Nombre
+                FROM Permiso P
+                INNER JOIN Permiso_Familia PF ON P.ID_Permiso = PF.ID_Permiso
+                WHERE PF.ID_Familia IN (SELECT ID_Familia FROM FamiliasRecursivas)";
+
+                    SqlParameter[] parametros = new SqlParameter[] {
                 new SqlParameter("@idFamilia", idFamilia)
             };
 
-            _conexion.ExecuteNonQuery(query, parametros);
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+            List<PatenteServices> lista = new();
+
+            if (dt != null)
+            {
+                foreach (DataRow fila in dt.Rows)
+                {
+                    lista.Add(new PatenteServices(fila["Nombre"].ToString())
+                    {
+                        Id = Convert.ToInt32(fila["ID_Permiso"])
+                    });
+                }
+            }
+            return lista;
         }
-        public void InsertarPermisoAFamilia(int idPerfil, int idPermiso)
+        public void InsertarPermisoAFamilia(int idFamilia, int idPermiso)
         {
-            string query = $"INSERT INTO {PERFIL_PERMISO} (ID_Perfil, ID_Permiso) " +
-                            "VALUES (@idPerfil, @idPermiso)";
+            string query = "INSERT INTO Permiso_Familia (ID_Familia, ID_Permiso) " +
+                           "VALUES (@idFamilia, @idPermiso)";
 
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@idPerfil", idPerfil),
+                new SqlParameter("@idFamilia", idFamilia),
                 new SqlParameter("@idPermiso", idPermiso)
             };
 
@@ -113,16 +147,15 @@ namespace DAL.Perfiles
 
         public bool PerfilTieneUsuarios(int idPerfil)
         {
+            string query = "SELECT COUNT(1) FROM Usuarios WHERE ID_Perfil = @idPerfil";
+            SqlParameter[] parametros = { new SqlParameter("@idPerfil", idPerfil) };
 
-            string query = "SELECT COUNT(1) FROM Usuario WHERE ID_Perfil = @id";
-            SqlParameter[] param = { new SqlParameter("@id", idPerfil) };
-
-            DataTable dt = _conexion.ExecuteReader(query, param);
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
 
             if (dt != null && dt.Rows.Count > 0)
             {
-
-                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+                int cantidad = Convert.ToInt32(dt.Rows[0][0]);
+                return cantidad > 0;
             }
 
             return false;
@@ -172,7 +205,7 @@ namespace DAL.Perfiles
 
             return idPerfil;
         }
-
+        //AQUITOY
         public void AgregarPermisoAPerfil(int idPerfil, int idPermiso)
         {
             string query = "INSERT INTO [ING].[dbo].[Perfil_Permiso] (ID_Perfil, ID_Permiso) VALUES (@idPerfil, @idPermiso)";

@@ -18,11 +18,6 @@ namespace Services
         {
         }
 
-        public Idioma(string nombre, string codigo, string archivoJson)
-        {
-            Nombre = nombre;
-            Codigo = codigo;
-            ArchivoJson = archivoJson;
-        }
+
     }
 }

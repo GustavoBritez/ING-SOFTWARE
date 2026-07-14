@@ -10,9 +10,11 @@ namespace BE
         private string NombreDeUsuario;
         private bool Estado;
         private string Idioma;
-        private int IdPerfil; // ¡ESTO SE HABÍA BORRADO!
+        private int IdPerfil;
 
-        // Actualizamos string rol por int idPerfil
+        // Campo privado para el Dígito Verificador
+        private string DigitoVerificador;
+
         public UsuarioBE(string nombre, string apellido, int dni, string nombreDeUsuario, string contraseña, int idPerfil, bool bloqueado, bool estado, string idioma)
         {
             Nombre = nombre;
@@ -20,7 +22,7 @@ namespace BE
             Dni = dni;
             NombreDeUsuario = nombreDeUsuario;
             Contraseña = contraseña;
-            IdPerfil = idPerfil; // Asignamos el perfil
+            IdPerfil = idPerfil;
             Bloqueado = bloqueado;
             Estado = estado;
             Idioma = idioma;
@@ -34,6 +36,7 @@ namespace BE
         public string _NombreDeUsuario { get => NombreDeUsuario; set => NombreDeUsuario = value; }
         public bool _Estado { get => Estado; set => Estado = value; }
         public string _Idioma { get => Idioma; set => Idioma = value; }
-        public int _IdPerfil { get => IdPerfil; set => IdPerfil = value; } // ¡PROPIEDAD RECUPERADA!
+        public int _IdPerfil { get => IdPerfil; set => IdPerfil = value; }
+        public string DV { get => DigitoVerificador; set => DigitoVerificador = value; }
     }
 }

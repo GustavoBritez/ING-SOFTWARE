@@ -1,6 +1,8 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using BLL.Perfiles;
 using DAL;
+using DAL.Perfiles;
 using Microsoft.VisualBasic;
 using Services;
 using Services.Perfiles;
@@ -100,8 +102,21 @@ namespace UI
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            FormManager.Navegar(this, FormManager.ObtenerGestionUsuario());
+            UsuarioBE usuarioActivo = ServicesSessionManager.Instancia.ObtenerUsuarioActivo();
+
+            if (usuarioActivo != null)
+            {
+                PatenteBLL patenteBLL = new PatenteBLL();
+
+                List<PatenteServices> listaPatentesActualizada = patenteBLL.ObtenerPermisosDePerfil(usuarioActivo._IdPerfil);
+
+                List<string> nombresPermisosActualizados = listaPatentesActualizada.Select(p => p.Nombre).ToList();
+
+                ServicesSessionManager.Instancia.CargarPermisosDelUsuario(nombresPermisosActualizados);
+            }
+            FormManager.Navegar(this, FormManager.ObtenerMenuPrincipal());
         }
+
 
         #region Arbol visual
         private void MostrarArbolEnTreeView_Perfil(int idPerfilSeleccionado)
@@ -317,8 +332,14 @@ namespace UI
                     CargarGrillas();
                 }
             }
+            catch (ArgumentException argEx)
+            {
+                // ¡Atrapa tu validación y muestra SOLO tu cartel personalizado con ícono de advertencia!
+                MessageBox.Show(argEx.Message, "No se puede eliminar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
+                // Atrapa cualquier otro error real de base de datos
                 MessageBox.Show("Error al eliminar el perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -364,12 +385,10 @@ namespace UI
         #endregion Eliminar
 
         #region Agregar
-        /// Cambiar
         private void Agregar_Familia_A_Perfil(object sender, EventArgs e)
         {
             try
             {
-                // 1. Validamos que haya selecciones en ambas grillas
                 if (dgvPerfiles.CurrentRow == null)
                 {
                     MessageBox.Show("Por favor, seleccione un Perfil de la grilla izquierda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -382,31 +401,26 @@ namespace UI
                     return;
                 }
 
-                // 2. Extraemos los IDs de las celdas seleccionadas
                 int idPerfil = (int)dgvPerfiles.CurrentRow.Cells["Id"].Value;
                 int idFamilia = (int)dgvFamilias.CurrentRow.Cells["Id"].Value;
 
-                // Extraemos el nombre del perfil para pasarlo a la validación de la BLL que ya tenés armada
                 string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
+                string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString(); // LÍNEA AGREGADA
 
-                // 3. Llamamos al método de la capa de negocio (reutilizamos el que ya existe)
-                _perfilBLL.AgregarFamiliaAlPerfil(idPerfil, idFamilia, nombrePerfil);
-                // 4. Avisamos al usuario y refrescamos la vista
+                _perfilBLL.AgregarFamiliaAlPerfil(idPerfil, idFamilia, nombrePerfil, nombreFamilia); // LLAMADA MODIFICADA
+
                 MessageBox.Show("¡Familia asignada al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
-                // Atrapa tu validación personalizada si la relación ya existe
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(argEx.Message, "Validación de Permisos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                // Atrapa cualquier otro error inesperado (como caídas de red o base de datos)
                 MessageBox.Show("Error al asignar la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Agregar_Permiso_A_Familia(object sender, EventArgs e)
         {
             try
@@ -449,7 +463,7 @@ namespace UI
         }
 
 
-        private void Agregar_Permiso(object sender, EventArgs e)
+        /*private void Agregar_Permiso(object sender, EventArgs e)
         {
             try
             {
@@ -491,7 +505,7 @@ namespace UI
             {
                 MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
 
         private void Agregar_Perfil(object sender, EventArgs e)
         {
@@ -550,7 +564,6 @@ namespace UI
         #region GUI
         private void ConfigurarEstiloGrillas()
         {
-            // Definimos los colores institucionales que venimos usando
             Color verdeOscuro = Color.FromArgb(46, 94, 67);
             Color verdeSeleccion = Color.FromArgb(180, 210, 190);
             Color fondoGrilla = Color.White;
@@ -560,10 +573,8 @@ namespace UI
 
             foreach (DataGridView dgv in grillas)
             {
-                // Hay que apagar esto para que Windows Forms nos deje pintar el encabezado
                 dgv.EnableHeadersVisualStyles = false;
 
-                // --- Estilo del Encabezado (Header) ---
                 dgv.ColumnHeadersDefaultCellStyle.BackColor = verdeOscuro;
                 dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -571,7 +582,6 @@ namespace UI
                 dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
                 dgv.ColumnHeadersHeight = 35;
 
-                // --- Estilo del Fondo y Filas ---
                 dgv.BackgroundColor = fondoGrilla;
                 dgv.BorderStyle = BorderStyle.None;
                 dgv.GridColor = colorLineas;
@@ -619,6 +629,8 @@ namespace UI
                 TraducirToolStrip(toolStripLabel2.DropDownItems);
                 toolStripLabel1.Text = idiomaBLL.Traducir("toolStripLabel1");
                 toolStripLabel2.Text = idiomaBLL.Traducir("toolStripLabel2");
+                RelacionFamilia.Text = idiomaBLL.Traducir("RelacionFamilia");
+
             }
         }
         private void Traducir(Control.ControlCollection controles)
@@ -831,5 +843,168 @@ namespace UI
                 MessageBox.Show("Error al eliminar el permiso del perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Agregar_Permiso(object sender, EventArgs e)
+        {
+            try
+            {
+                // CORRECCIÓN: Le pasamos explícitamente el ModoFormulario.Permiso
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Permiso))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            string nuevoPermiso = frm.NombrePermiso;
+
+                            // Creamos el permiso en la base de datos
+                            _patenteBLL.CrearNuevoPermiso(nuevoPermiso);
+
+                            // Si también seleccionó un botón en los combos, lo vinculamos
+                            if (frm.TieneBotonAsignado)
+                            {
+                                _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
+                            }
+
+                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Actualizamos la vista para que el nuevo permiso aparezca al instante
+                            CargarGrillas();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void permisoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // CORRECCIÓN: Le pasamos explícitamente el ModoFormulario.Permiso
+                using (FrmCrearPermiso frm = new FrmCrearPermiso(FrmCrearPermiso.ModoFormulario.Permiso))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            string nuevoPermiso = frm.NombrePermiso;
+
+                            // Creamos el permiso en la base de datos
+                            _patenteBLL.CrearNuevoPermiso(nuevoPermiso);
+
+                            // Si también seleccionó un botón en los combos, lo vinculamos
+                            if (frm.TieneBotonAsignado)
+                            {
+                                _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
+                            }
+
+                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Actualizamos la vista para que el nuevo permiso aparezca al instante
+                            CargarGrillas();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (ArgumentException argEx)
+            {
+                MessageBox.Show(argEx.Message, "Validación");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void permisoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvPermisos.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                // Actualizamos el mensaje para reflejar el borrado en cascada
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Está seguro que desea ELIMINAR el permiso '{nombrePermiso}'?\n\nAl hacerlo, también se desvinculará automáticamente de todos los Perfiles y Familias que lo estén utilizando actualmente.",
+                    "Confirmar Borrado en Cascada",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // Ejecutamos la BLL
+                    _patenteBLL.EliminarPermiso(idPermiso, nombrePermiso);
+
+                    MessageBox.Show("¡Permiso eliminado del sistema y desvinculado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarGrillas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /*private void permisoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void permisoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvPermisos.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idPermiso = (int)dgvPermisos.CurrentRow.Cells["Id"].Value;
+                string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
+
+                // Actualizamos el mensaje para reflejar el borrado en cascada
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Está seguro que desea ELIMINAR el permiso '{nombrePermiso}'?\n\nAl hacerlo, también se desvinculará automáticamente de todos los Perfiles y Familias que lo estén utilizando actualmente.",
+                    "Confirmar Borrado en Cascada",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // Ejecutamos la BLL
+                    _patenteBLL.EliminarPermiso(idPermiso, nombrePermiso);
+
+                    MessageBox.Show("¡Permiso eliminado del sistema y desvinculado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarGrillas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }*/
     }
 }

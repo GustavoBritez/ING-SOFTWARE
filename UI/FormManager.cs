@@ -12,6 +12,7 @@ namespace UI
         private static GestionUsuario _gestionUsuario;
         private static Bitacora _bitacora;
         private static Perfiles _perfiles;
+        private static Respaldo _respaldo;
 
 
         public static Login ObtenerLogin()
@@ -28,8 +29,8 @@ namespace UI
             if (_perfiles == null || _perfiles.IsDisposed)
             {
                 _perfiles = new Perfiles();
-                AplicarSeguridad(_perfiles);
             }
+            AplicarSeguridad(_perfiles);
             return _perfiles;
         }
 
@@ -38,8 +39,9 @@ namespace UI
             if (_MenuPrincipal == null || _MenuPrincipal.IsDisposed)
             {
                 _MenuPrincipal = new MenuPrincipal();
-                AplicarSeguridad(_MenuPrincipal);
+              
             }
+            AplicarSeguridad(_MenuPrincipal);
             return _MenuPrincipal;
         }
 
@@ -48,8 +50,9 @@ namespace UI
             if (_gestionUsuario == null || _gestionUsuario.IsDisposed)
             {
                 _gestionUsuario = new GestionUsuario();
-                AplicarSeguridad(_gestionUsuario);
+                
             }
+            AplicarSeguridad(_gestionUsuario);
             return _gestionUsuario;
         }
 
@@ -58,9 +61,20 @@ namespace UI
             if (_bitacora == null || _bitacora.IsDisposed)
             {
                 _bitacora = new Bitacora();
-                AplicarSeguridad(_bitacora);
+                
             }
+            AplicarSeguridad(_bitacora);
             return _bitacora;
+        }
+
+        public static Respaldo ObtenerRespaldo()
+        {
+            if(_respaldo == null || _respaldo.IsDisposed)
+            {
+                _respaldo = new Respaldo();
+            }
+            AplicarSeguridad(_respaldo);
+            return _respaldo;
         }
 
         public static void Navegar(Form formularioActual, Form formularioDestino)
@@ -113,7 +127,7 @@ namespace UI
             AplicarSeguridadRecursiva(formulario.Controls, controlesRestringidos);
         }
 
-        private static void AplicarSeguridadRecursiva(Control.ControlCollection controles, Dictionary<string, string> controlesRestringidos)
+        /*private static void AplicarSeguridadRecursiva(Control.ControlCollection controles, Dictionary<string, string> controlesRestringidos)
         {
             foreach (Control control in controles)
             {
@@ -125,6 +139,28 @@ namespace UI
                         control.Visible = false;
                     }
                 }
+                if (control.HasChildren)
+                {
+                    AplicarSeguridadRecursiva(control.Controls, controlesRestringidos);
+                }
+            }
+        }*/
+        private static void AplicarSeguridadRecursiva(Control.ControlCollection controles, Dictionary<string, string> controlesRestringidos)
+        {
+            foreach (Control control in controles)
+            {
+                if (controlesRestringidos.ContainsKey(control.Name))
+                {
+                    string permisoRequerido = controlesRestringidos[control.Name];
+
+                    // Evaluamos si tiene permiso (devuelve true o false)
+                    bool tienePermiso = ServicesSessionManager.Instancia.TienePermiso(permisoRequerido);
+
+                    // Asignamos ese valor directamente. 
+                    // Si tiene permiso, lo pone en true (lo muestra). Si no, en false (lo oculta).
+                    control.Visible = tienePermiso;
+                }
+
                 if (control.HasChildren)
                 {
                     AplicarSeguridadRecursiva(control.Controls, controlesRestringidos);

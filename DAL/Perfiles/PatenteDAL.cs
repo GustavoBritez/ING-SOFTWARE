@@ -56,7 +56,6 @@ namespace DAL.Perfiles
             _conexion.ExecuteNonQuery(query, parametros);
         }
 
-        // Método para eliminar la relación
         public void EliminarPermisoAPerfil(int idPerfil, int idPermiso)
         {
             string query = "DELETE FROM [ING].[dbo].[Perfil_Permiso] WHERE ID_Perfil = @idPerfil AND ID_Permiso = @idPermiso";
@@ -72,10 +71,9 @@ namespace DAL.Perfiles
         {
             Dictionary<string, string> restricciones = new Dictionary<string, string>();
 
-            string query = @"SELECT C.NombreControl, P.Nombre 
-                     FROM Permiso_Control C
-                     INNER JOIN Permiso P ON C.ID_Permiso = P.ID_Permiso
-                     WHERE C.NombreFormulario = @nombreForm";
+            string query = @"SELECT NombreControl, NombrePatente 
+                     FROM Permiso_Boton 
+                     WHERE NombreFormulario = @nombreForm";
 
             SqlParameter[] param = {
                 new SqlParameter("@nombreForm", nombreFormulario)
@@ -88,7 +86,7 @@ namespace DAL.Perfiles
                 foreach (DataRow fila in dt.Rows)
                 {
                     string nombreControl = fila["NombreControl"].ToString();
-                    string nombrePermiso = fila["Nombre"].ToString();
+                    string nombrePermiso = fila["NombrePatente"].ToString(); 
 
                     if (!restricciones.ContainsKey(nombreControl))
                     {
@@ -150,20 +148,51 @@ namespace DAL.Perfiles
         }
         public List<PatenteServices> ObtenerPermisosDePerfil(int idPerfil)
         {
-            string query = @"SELECT P.ID_Permiso, P.Nombre 
-                     FROM Permiso P
-                     INNER JOIN Perfil_Permiso PP ON P.ID_Permiso = PP.ID_Permiso
-                     WHERE PP.ID_Perfil = @idPerfil";
+            string query = @"
+                WITH FamiliasRecursivas AS (
+                    SELECT ID_Familia 
+                    FROM Familia_Perfil 
+                    WHERE ID_Perfil = @idPerfil
 
-            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("@idPerfil", idPerfil) };
+                    UNION ALL
+
+                    SELECT ff.ID_FamiliaHija 
+                    FROM Familia_Familia ff
+                    INNER JOIN FamiliasRecursivas fr ON ff.ID_FamiliaPadre = fr.ID_Familia
+                )
+                SELECT DISTINCT P.ID_Permiso, P.Nombre
+                FROM Permiso P
+                INNER JOIN (
+                    SELECT ID_Permiso 
+                    FROM Perfil_Permiso 
+                    WHERE ID_Perfil = @idPerfil
+            
+                    UNION -- El UNION común (no ALL) ya elimina duplicados automáticamente
+            
+                    SELECT ID_Permiso 
+                    FROM Permiso_Familia 
+                    WHERE ID_Familia IN (SELECT ID_Familia FROM FamiliasRecursivas)
+                ) PermisosUnicos ON P.ID_Permiso = PermisosUnicos.ID_Permiso";
+
+                    SqlParameter[] parametros = new SqlParameter[] {
+                new SqlParameter("@idPerfil", idPerfil)
+            };
 
             DataTable dt = _conexion.ExecuteReader(query, parametros);
 
             List<PatenteServices> lista = new();
-            foreach (DataRow fila in dt.Rows)
+
+            if (dt != null)
             {
-                lista.Add(new PatenteServices(fila["Nombre"].ToString()) { Id = Convert.ToInt32(fila["ID_Permiso"]) });
+                foreach (DataRow fila in dt.Rows)
+                {
+                    lista.Add(new PatenteServices(fila["Nombre"].ToString())
+                    {
+                        Id = Convert.ToInt32(fila["ID_Permiso"])
+                    });
+                }
             }
+
             return lista;
         }
         public List<Perfil> ObtenerComponentesTotales()
@@ -188,7 +217,6 @@ namespace DAL.Perfiles
             new SqlParameter("@nombrePatente", nombrePatente)
                 };
 
-                // Uso "_conexion" o "conexion", ajustalo al nombre de tu objeto en la DAL
                 _conexion.ExecuteNonQuery(query, parametros);
             }
             catch (Exception ex)
@@ -220,6 +248,11 @@ namespace DAL.Perfiles
             string queryPermiso = "DELETE FROM Permiso WHERE ID_Permiso = @id";
             SqlParameter[] paramPermiso = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryPermiso, paramPermiso);
+
+            string queryBoton = @"DELETE FROM Permiso_Boton 
+                  WHERE NombrePatente = (SELECT Nombre FROM Permiso WHERE ID_Permiso = @id)";
+            SqlParameter[] paramBoton = { new SqlParameter("@id", idPermiso) };
+            _conexion.ExecuteNonQuery(queryBoton, paramBoton);
         }
     }
 }
