@@ -60,15 +60,25 @@ namespace DAL.Perfiles
             return familiaArmada;
         }
 
-        public void InsertarFamiliaNueva(string nombreFamilia)
+        public int InsertarFamiliaNueva(string nombreFamilia)
         {
-            string query = "INSERT INTO Familia (Nombre) VALUES (@nombre)";
+            string query = @"
+                INSERT INTO Familia (Nombre)
+                OUTPUT INSERTED.ID_Familia
+                VALUES (@nombre)";
             SqlParameter[] parametros = new SqlParameter[]
             {
                  new SqlParameter("@nombre", nombreFamilia)
             };
 
-            _conexion.ExecuteNonQuery(query, parametros);
+            DataTable dt = _conexion.ExecuteReader(query, parametros);
+
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                throw new Exception("No se pudo obtener el ID de la nueva familia.");
+            }
+
+            return Convert.ToInt32(dt.Rows[0][0]);
         }
 
         public List<string> ObtenerPerfilesDeFamilia(int idFamilia)
@@ -228,7 +238,7 @@ namespace DAL.Perfiles
             {
                 foreach (DataRow fila in dt.Rows)
                 {
-                    FamiliaServices familia = new ();
+                    FamiliaServices familia = new();
 
                     familia.Id = Convert.ToInt32(fila["ID_Familia"]);
                     familia.Nombre = fila["Nombre"].ToString();

@@ -75,6 +75,7 @@ namespace UI
 
                     if (usuario._IdPerfil == 1 && contraseñaCorrecta)
                     {
+                        ServicesSessionManager.Instancia.RegistrarEstadoIntegridad(true);
                         MessageBox.Show(
                             "¡ALERTA! La base de datos está corrupta, pero tienes permisos de Administrador.\n\n" +
                             "Se te permitirá el ingreso. Por favor, dirígete al panel de seguridad para verificar y recalcular los dígitos verificadores.",
@@ -101,6 +102,7 @@ namespace UI
                     if (baseDatosIntegra)
                     {
                         digitoVerificadorBLL.RecalcularYPersistir();
+                        ServicesSessionManager.Instancia.RegistrarEstadoIntegridad(false);
                     }
 
                     PatenteBLL patenteBLL = new PatenteBLL();

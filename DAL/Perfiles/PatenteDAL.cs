@@ -86,7 +86,7 @@ namespace DAL.Perfiles
                 foreach (DataRow fila in dt.Rows)
                 {
                     string nombreControl = fila["NombreControl"].ToString();
-                    string nombrePermiso = fila["NombrePatente"].ToString(); 
+                    string nombrePermiso = fila["NombrePatente"].ToString();
 
                     if (!restricciones.ContainsKey(nombreControl))
                     {
@@ -96,6 +96,28 @@ namespace DAL.Perfiles
             }
 
             return restricciones;
+        }
+
+        public bool ExistePermisoABoton(string nombreFormulario, string nombreBoton)
+        {
+            string query = @"SELECT COUNT(1)
+                             FROM Permiso_Boton
+                             WHERE NombreFormulario = @nombreForm
+                               AND NombreControl = @nombreControl";
+
+            SqlParameter[] param = {
+                new SqlParameter("@nombreForm", nombreFormulario),
+                new SqlParameter("@nombreControl", nombreBoton)
+            };
+
+            DataTable dt = _conexion.ExecuteReader(query, param);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][0]) > 0;
+            }
+
+            return false;
         }
         public bool ExistePermisoPorNombre(string nombrePermiso)
         {
@@ -174,7 +196,7 @@ namespace DAL.Perfiles
                     WHERE ID_Familia IN (SELECT ID_Familia FROM FamiliasRecursivas)
                 ) PermisosUnicos ON P.ID_Permiso = PermisosUnicos.ID_Permiso";
 
-                    SqlParameter[] parametros = new SqlParameter[] {
+            SqlParameter[] parametros = new SqlParameter[] {
                 new SqlParameter("@idPerfil", idPerfil)
             };
 
@@ -237,6 +259,10 @@ namespace DAL.Perfiles
 
         public void EliminarPermisoDefinitivo(int idPermiso)
         {
+            string queryBoton = "DELETE FROM Permiso_Boton WHERE NombrePatente = (SELECT Nombre FROM Permiso WHERE ID_Permiso = @id)";
+            SqlParameter[] paramBoton = { new SqlParameter("@id", idPermiso) };
+            _conexion.ExecuteNonQuery(queryBoton, paramBoton);
+
             string queryPerfil = "DELETE FROM Perfil_Permiso WHERE ID_Permiso = @id";
             SqlParameter[] paramPerfil = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryPerfil, paramPerfil);
@@ -248,11 +274,6 @@ namespace DAL.Perfiles
             string queryPermiso = "DELETE FROM Permiso WHERE ID_Permiso = @id";
             SqlParameter[] paramPermiso = { new SqlParameter("@id", idPermiso) };
             _conexion.ExecuteNonQuery(queryPermiso, paramPermiso);
-
-            string queryBoton = @"DELETE FROM Permiso_Boton 
-                  WHERE NombrePatente = (SELECT Nombre FROM Permiso WHERE ID_Permiso = @id)";
-            SqlParameter[] paramBoton = { new SqlParameter("@id", idPermiso) };
-            _conexion.ExecuteNonQuery(queryBoton, paramBoton);
         }
     }
 }

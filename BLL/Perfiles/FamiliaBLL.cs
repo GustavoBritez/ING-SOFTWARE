@@ -11,16 +11,16 @@ namespace BLL.Perfiles
 {
     public class FamiliaBLL
     {
-        private PatenteDAL _patenteDAL = new(); 
+        private PatenteDAL _patenteDAL = new();
         private FamiliaDAL _familiaDAL = new();
 
-        public FamiliaBLL( ) { }
+        public FamiliaBLL() { }
 
-        public void CrearNuevaFamilia(string nombreFamilia)
+        public int CrearNuevaFamilia(string nombreFamilia)
         {
             if (string.IsNullOrWhiteSpace(nombreFamilia))
             {
-                throw new ArgumentException("El nombre de la familia no puede estar vacío.");
+                throw new ArgumentException("Familia No Puede ser Creada Vacia");
             }
 
             if (_familiaDAL.ExisteFamiliaPorNombre(nombreFamilia))
@@ -28,12 +28,14 @@ namespace BLL.Perfiles
                 throw new ArgumentException($"Ya existe una familia registrada con el nombre '{nombreFamilia}'. Por favor, elija un nombre diferente.");
             }
 
-            _familiaDAL.InsertarFamiliaNueva(nombreFamilia); 
+            int idNuevaFamilia = _familiaDAL.InsertarFamiliaNueva(nombreFamilia);
 
             EventoBLL bitacoraBLL = new();
             int dniActual = ServicesSessionManager.Instancia.ObtenerDniUsuarioActual();
             string descripcion = $"Creacion de Familia";
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
+
+            return idNuevaFamilia;
         }
 
         public void AgregarFamiliaAPerfil(int idPerfil, int idFamilia)
@@ -149,5 +151,5 @@ namespace BLL.Perfiles
         }
 
     }
-    
+
 }

@@ -29,6 +29,11 @@ namespace BLL.Perfiles
                 throw new ArgumentException("Ninguno de los campos para la vinculación puede estar vacío.");
             }
 
+            if (_patenteDAL.ExistePermisoABoton(nombreFormulario, nombreBoton))
+            {
+                throw new ArgumentException($"El control '{nombreBoton}' ya tiene un permiso asignado en el formulario '{nombreFormulario}'.");
+            }
+
             // 1. Guardamos la vinculación en la base de datos
             _patenteDAL.VincularPermisoABoton(nombreFormulario, nombreBoton, nombrePermiso);
 
@@ -82,6 +87,6 @@ namespace BLL.Perfiles
             bitacoraBLL.RegistrarEvento(3, descripcion, dniActual, "Permisos");
         }
 
-        
+
     }
 }

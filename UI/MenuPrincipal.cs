@@ -2,7 +2,6 @@ using BE;
 using BLL;
 using Services;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI
 {
@@ -12,10 +11,15 @@ namespace UI
         private readonly ServicioBcrypt servicioB = new();
 
         private IdiomaBLL idiomaBLL = new IdiomaBLL();
+        private GroupBox gbDV;
+        private Label lblDVEtiquetaMenu;
+        private Button btnVerificarDVMenu;
+        private Button btnRecalcularDVMenu;
 
         public MenuPrincipal()
         {
             InitializeComponent();
+            InicializarPanelDV();
 
             //this.Load += (s, e) => Form1_Load();
             //this.Shown += (s, e) => Form1_Shown();
@@ -25,6 +29,7 @@ namespace UI
 
             ServicesSessionManager.Instancia.Suscribir(this);
             ActualizarIdioma();
+            ActualizarPanelDV();
         }
 
         // Ver
@@ -72,6 +77,150 @@ namespace UI
             ApuntarComboBox();
             //ActualizarDisponibilidadBotones();
             ActualizarUsuario();
+            ActualizarPanelDV();
+        }
+
+        private void InicializarPanelDV()
+        {
+            gbDV = new GroupBox();
+            lblDVEtiquetaMenu = new Label();
+            btnVerificarDVMenu = new Button();
+            btnRecalcularDVMenu = new Button();
+
+            gbDV.Name = "gbDV";
+            gbDV.Text = "Digito Verificador";
+            gbDV.Visible = false;
+            gbDV.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            gbDV.Size = new Size(860, 120);
+            gbDV.Location = new Point(25, 120);
+            gbDV.BackColor = Color.FromArgb(225, 240, 228);
+
+            lblDVEtiquetaMenu.Name = "lblDVEtiquetaMenu";
+            lblDVEtiquetaMenu.AutoSize = true;
+            lblDVEtiquetaMenu.Font = new Font("Segoe UI", 10F);
+            lblDVEtiquetaMenu.Location = new Point(25, 33);
+            lblDVEtiquetaMenu.Text = "Verifique la consistencia o fuerce el recálculo de todos los DV.";
+
+            btnVerificarDVMenu.Name = "btnVerificarDV";
+            btnVerificarDVMenu.BackColor = Color.FromArgb(40, 120, 60);
+            btnVerificarDVMenu.FlatStyle = FlatStyle.Flat;
+            btnVerificarDVMenu.ForeColor = Color.White;
+            btnVerificarDVMenu.Location = new Point(25, 65);
+            btnVerificarDVMenu.Size = new Size(170, 38);
+            btnVerificarDVMenu.Text = "Verificar DV";
+            btnVerificarDVMenu.UseVisualStyleBackColor = false;
+            btnVerificarDVMenu.Click += btnVerificarDVMenu_Click;
+
+            btnRecalcularDVMenu.Name = "btnRecalcularDV";
+            btnRecalcularDVMenu.BackColor = Color.FromArgb(46, 94, 67);
+            btnRecalcularDVMenu.FlatStyle = FlatStyle.Flat;
+            btnRecalcularDVMenu.ForeColor = Color.White;
+            btnRecalcularDVMenu.Location = new Point(210, 65);
+            btnRecalcularDVMenu.Size = new Size(190, 38);
+            btnRecalcularDVMenu.Text = "Recalcular DV";
+            btnRecalcularDVMenu.UseVisualStyleBackColor = false;
+            btnRecalcularDVMenu.Click += btnRecalcularDVMenu_Click;
+
+            gbDV.Controls.Add(lblDVEtiquetaMenu);
+            gbDV.Controls.Add(btnVerificarDVMenu);
+            gbDV.Controls.Add(btnRecalcularDVMenu);
+            panelContenedor.Controls.Add(gbDV);
+            gbDV.BringToFront();
+        }
+
+        private void ActualizarPanelDV()
+        {
+            bool mostrarDV = ServicesSessionManager.Instancia.EsAdministrador()
+                && ServicesSessionManager.Instancia.BaseDatosCorruptaDetectada;
+
+            gbDV.Visible = mostrarDV;
+            if (mostrarDV)
+            {
+                gbDV.BringToFront();
+            }
+        }
+
+        private void btnVerificarDVMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                DigitoVerificadorBLL digitoVerificadorBLL = new DigitoVerificadorBLL();
+
+                bool consistente = digitoVerificadorBLL.VerificarBaseDatos();
+
+                if (consistente)
+                {
+                    MessageBox.Show(
+                        "Los DV de la base de datos son consistentes. El sistema se encuentra íntegro.",
+                        "Verificación DV",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    List<string> corruptos = digitoVerificadorBLL.ObtenerUsuariosCorruptos();
+                    string detalleCorruptos = corruptos.Count > 0
+                        ? $"\n\nRegistros alterados detectados en la tabla Usuarios:\n- {string.Join("\n- ", corruptos)}"
+                        : "\n\nSe detectaron alteraciones en otras tablas del sistema.";
+
+                    MessageBox.Show(
+                        $"Se detectaron inconsistencias en la base de datos.{detalleCorruptos}\n\nPor favor, utilice la opción 'Recalcular DV' para restaurar el sistema.",
+                        "Alerta de Seguridad",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnRecalcularDVMenu_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                "ATENCIÓN: Se recalcularán y persistirán todos los DV (Individuales y Globales) de la base de datos. ¿Desea continuar?",
+                "Confirmación de Recálculo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (resultado != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                DigitoVerificadorBLL digitoVerificadorBLL = new DigitoVerificadorBLL();
+
+                digitoVerificadorBLL.ActualizarDVIndividualesUsuarios();
+                digitoVerificadorBLL.RecalcularYPersistir();
+
+                ServicesSessionManager.Instancia.RegistrarEstadoIntegridad(false);
+
+                MessageBox.Show(
+                    "Los DV fueron recalculados correctamente. La integridad ha sido restaurada.",
+                    "Recalcular DV",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                ServicesSessionManager.Instancia.Logout();
+                FormManager.Navegar(this, FormManager.ObtenerLogin());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
         private void ApuntarComboBox()
         {

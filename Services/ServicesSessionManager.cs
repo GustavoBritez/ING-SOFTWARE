@@ -3,7 +3,7 @@ using Services.Perfiles;
 
 namespace Services
 {
-    public class ServicesSessionManager:IIdiomaObservable
+    public class ServicesSessionManager : IIdiomaObservable
     {
         private static ServicesSessionManager _instancia;
         private static readonly object _lock = new object();
@@ -15,6 +15,7 @@ namespace Services
         //Atributo nuevo
         private List<string> permisosDelUsuarioActivo = new List<string>();
         private List<PatenteServices> _permisosUsuario;
+        public bool BaseDatosCorruptaDetectada { get; private set; }
 
         private ServicesSessionManager()
         {
@@ -42,6 +43,16 @@ namespace Services
         public void CargarPermisosDelUsuario(List<string> listaPermisos)
         {
             permisosDelUsuarioActivo = listaPermisos;
+        }
+
+        public bool EsAdministrador()
+        {
+            return usuarioActivo != null && usuarioActivo._IdPerfil == 1;
+        }
+
+        public void RegistrarEstadoIntegridad(bool baseDatosCorrupta)
+        {
+            BaseDatosCorruptaDetectada = baseDatosCorrupta;
         }
         // Metodo nuevo
         public bool TienePermiso(string nombrePermiso)
@@ -89,6 +100,7 @@ namespace Services
         public void Logout()
         {
             usuarioActivo = null;
+            BaseDatosCorruptaDetectada = false;
         }
 
         public void CambiarIdioma(Idioma idioma)

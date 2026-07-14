@@ -1,7 +1,7 @@
 using BLL.Perfiles;
 using Services;
 using System.Drawing.Drawing2D;
-using System.Reflection; 
+using System.Reflection;
 
 namespace UI
 {
@@ -39,7 +39,7 @@ namespace UI
             if (_MenuPrincipal == null || _MenuPrincipal.IsDisposed)
             {
                 _MenuPrincipal = new MenuPrincipal();
-              
+
             }
             AplicarSeguridad(_MenuPrincipal);
             return _MenuPrincipal;
@@ -50,7 +50,7 @@ namespace UI
             if (_gestionUsuario == null || _gestionUsuario.IsDisposed)
             {
                 _gestionUsuario = new GestionUsuario();
-                
+
             }
             AplicarSeguridad(_gestionUsuario);
             return _gestionUsuario;
@@ -61,7 +61,7 @@ namespace UI
             if (_bitacora == null || _bitacora.IsDisposed)
             {
                 _bitacora = new Bitacora();
-                
+
             }
             AplicarSeguridad(_bitacora);
             return _bitacora;
@@ -69,7 +69,7 @@ namespace UI
 
         public static Respaldo ObtenerRespaldo()
         {
-            if(_respaldo == null || _respaldo.IsDisposed)
+            if (_respaldo == null || _respaldo.IsDisposed)
             {
                 _respaldo = new Respaldo();
             }
@@ -117,13 +117,13 @@ namespace UI
             _gestionUsuario = null;
         }
 
-        // 1. El método principal que llama tu pantalla
+        // 1. El mï¿½todo principal que llama tu pantalla
         public static void AplicarSeguridad(Form formulario)
         {
             PatenteBLL patenteBLL = new PatenteBLL();
             Dictionary<string, string> controlesRestringidos = patenteBLL.ObtenerControlesRestringidos(formulario.Name);
 
-            // Llamamos al escáner profundo
+            // Llamamos al escï¿½ner profundo
             AplicarSeguridadRecursiva(formulario.Controls, controlesRestringidos);
         }
 
@@ -149,16 +149,24 @@ namespace UI
         {
             foreach (Control control in controles)
             {
-                if (controlesRestringidos.ContainsKey(control.Name))
+                if (EsControlGestionadoPorPermisos(control.Name))
                 {
-                    string permisoRequerido = controlesRestringidos[control.Name];
+                    if (controlesRestringidos.ContainsKey(control.Name))
+                    {
+                        string permisoRequerido = controlesRestringidos[control.Name];
 
-                    // Evaluamos si tiene permiso (devuelve true o false)
-                    bool tienePermiso = ServicesSessionManager.Instancia.TienePermiso(permisoRequerido);
+                        // Evaluamos si tiene permiso (devuelve true o false)
+                        bool tienePermiso = ServicesSessionManager.Instancia.TienePermiso(permisoRequerido);
 
-                    // Asignamos ese valor directamente. 
-                    // Si tiene permiso, lo pone en true (lo muestra). Si no, en false (lo oculta).
-                    control.Visible = tienePermiso;
+                        // Si tiene permiso, lo muestra. Si no, lo oculta.
+                        control.Visible = tienePermiso;
+                    }
+                    else
+                    {
+                        // Si el control deberÃ­a estar gestionado por permisos pero no tiene mapeo,
+                        // se oculta para no dejar accesos huÃ©rfanos cuando la tabla fue alterada.
+                        control.Visible = false;
+                    }
                 }
 
                 if (control.HasChildren)
@@ -167,7 +175,19 @@ namespace UI
                 }
             }
         }
-        #region "Gestión de Permisos Dinámicos (Reflection)"
+
+        private static bool EsControlGestionadoPorPermisos(string nombreControl)
+        {
+            return string.Equals(nombreControl, "btnRespaldo", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnGestionarPerfiles", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnUsuarios", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnReportes", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnSeguimiento", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnTurnos", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnAyuda", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(nombreControl, "btnCambiarContrasena", StringComparison.OrdinalIgnoreCase);
+        }
+        #region "Gestiï¿½n de Permisos Dinï¿½micos (Reflection)"
 
         public static List<string> ObtenerFormulariosDelSistema()
         {
@@ -244,7 +264,7 @@ namespace UI
                 this.Size = new Size(150, 45);
                 this.BackColor = _colorFondo;
                 this.ForeColor = _colorTexto;
-                this.Cursor = Cursors.Hand; 
+                this.Cursor = Cursors.Hand;
                 this.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             }
 
