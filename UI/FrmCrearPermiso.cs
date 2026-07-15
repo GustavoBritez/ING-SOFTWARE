@@ -1,4 +1,4 @@
-﻿using BLL;
+using BLL;
 using BLL.Perfiles;
 using Services;
 using System;
@@ -102,7 +102,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar formularios del sistema: {ex.Message}", "Error");
+                idiomaBLL.MostrarMensaje("msg_error_cargar_formularios", "msg_error_cargar_formularios", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -130,7 +130,7 @@ namespace UI
             // 1. Validamos que el nombre no esté vacío sin importar el modo
             if (string.IsNullOrWhiteSpace(txtNombrePermiso.Text))
             {
-                MessageBox.Show("El nombre no puede estar vacío.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_nombre_vacio", "titulo_nombre_vacio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -139,7 +139,7 @@ namespace UI
             {
                 if (cmbFormularios.SelectedIndex == -1 || cmbBotones.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Para crear un permiso de sistema, debe asignar la Pantalla y el Botón obligatoriamente.", "Validación Estricta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_pantalla_boton", "titulo_sel_pantalla_boton", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 

@@ -34,10 +34,7 @@ namespace UI
         {
             if (string.IsNullOrWhiteSpace(txtRutaBackup.Text))
             {
-                MessageBox.Show("Seleccione una ruta para guardar el Backup.",
-                                "Atención",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_falta_ruta_backup", "titulo_falta_ruta_backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -57,17 +54,11 @@ namespace UI
                 // =========================================================
 
 
-                MessageBox.Show("Backup realizado correctamente.",
-                                "Éxito",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_backup_ok", "titulo_backup_ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_backup", "titulo_error_backup", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -100,18 +91,11 @@ namespace UI
         {
             if (string.IsNullOrWhiteSpace(txtRutaRestore.Text))
             {
-                MessageBox.Show("Seleccione un archivo .bak.",
-                                "Atención",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_falta_archivo_restore", "titulo_falta_archivo_restore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show(
-                "La base de datos será restaurada.\n\n¿Desea continuar?",
-                "Confirmación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
+            DialogResult resultado = idiomaBLL.MostrarMensaje("msg_confirmar_restore", "titulo_confirmar_restore", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (resultado != DialogResult.Yes)
                 return;
@@ -122,19 +106,13 @@ namespace UI
 
                 backup.RealizarRestore(txtRutaRestore.Text);
 
-                MessageBox.Show("Restore realizado correctamente.",
-                                "Éxito",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_restore_ok", "titulo_restore_ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Application.Restart();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_restore", "titulo_error_restore", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 

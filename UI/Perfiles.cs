@@ -96,7 +96,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_cargar_datos", "titulo_error_cargar_datos", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
             finally
             {
@@ -153,7 +153,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al graficar el árbol del perfil: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_arbol_perfil", "titulo_error_arbol_perfil", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -180,7 +180,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al graficar el árbol de la familia: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_arbol_familia", "titulo_error_arbol_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -239,7 +239,7 @@ namespace UI
                 // 1. Apuntamos a la grilla de Familias (Centro)
                 if (dgvFamilias.CurrentRow == null || dgvPermisos.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione la Familia de la grilla central y el Permiso de la derecha que desea desvincular.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_familia_permiso", "titulo_sel_familia_permiso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -251,29 +251,27 @@ namespace UI
                 string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString();
                 string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
 
-                DialogResult respuesta = MessageBox.Show(
-                    $"¿Está seguro que desea quitar el permiso '{nombrePermiso}' de la familia '{nombreFamilia}'?",
-                    "Confirmar desvinculación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                DialogResult respuesta = idiomaBLL.MostrarMensaje(
+                    "msg_confirmar_desvincular_permiso_familia", "titulo_confirmar_desvincular_permiso_familia",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, nombrePermiso, nombreFamilia);
 
                 if (respuesta == DialogResult.Yes)
                 {
                     // 4. Llamamos a la BLL de FAMILIAS, no de Perfiles
                     _familiaBLL.EliminarPermisoFamilia(idFamilia, idPermiso, nombreFamilia, nombrePermiso);
 
-                    MessageBox.Show("Permiso desvinculado de la familia con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_permiso_desvinculado_familia", "titulo_permiso_desvinculado_familia", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
             }
             catch (ArgumentException argEx)
             {
                 // Atrapa nuestra validación si el permiso en realidad no estaba en esa familia
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_sel_familia_permiso", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al desvincular el permiso de la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_desvincular_permiso_familia", "titulo_error_desvincular_permiso_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
         private void Eliminar_Permiso_Click(object sender, EventArgs e)
@@ -282,7 +280,7 @@ namespace UI
             {
                 if (dgvPermisos.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_permiso", "titulo_sel_permiso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -290,24 +288,22 @@ namespace UI
                 string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
 
                 // Actualizamos el mensaje para reflejar el borrado en cascada
-                DialogResult respuesta = MessageBox.Show(
-                    $"¿Está seguro que desea ELIMINAR el permiso '{nombrePermiso}'?\n\nAl hacerlo, también se desvinculará automáticamente de todos los Perfiles y Familias que lo estén utilizando actualmente.",
-                    "Confirmar Borrado en Cascada",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
+                DialogResult respuesta = idiomaBLL.MostrarMensaje(
+                    "msg_confirmar_eliminar_permiso", "titulo_confirmar_eliminar_permiso",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, nombrePermiso);
 
                 if (respuesta == DialogResult.Yes)
                 {
                     // Ejecutamos la BLL
                     _patenteBLL.EliminarPermiso(idPermiso, nombrePermiso);
 
-                    MessageBox.Show("¡Permiso eliminado del sistema y desvinculado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_permiso_eliminado", "titulo_permiso_eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_eliminar_permiso", "titulo_error_eliminar_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -318,7 +314,7 @@ namespace UI
                 // 1. Validamos que haya algo seleccionado en la grilla izquierda
                 if (dgvPerfiles.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Perfil de la grilla izquierda que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_perfil", "titulo_sel_perfil", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -327,11 +323,9 @@ namespace UI
                 string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
 
                 // 3. Advertencia de cascada
-                DialogResult respuesta = MessageBox.Show(
-                    $"¿Está seguro que desea ELIMINAR COMPLETAMENTE el perfil '{nombrePerfil}'?\n\nAl hacerlo, se eliminarán todas sus asignaciones de Familias y Permisos. Si hay usuarios utilizando este perfil, podrían perder el acceso al sistema.",
-                    "Confirmar Borrado de Perfil",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
+                DialogResult respuesta = idiomaBLL.MostrarMensaje(
+                    "msg_confirmar_eliminar_perfil", "titulo_confirmar_eliminar_perfil",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, nombrePerfil);
 
                 if (respuesta == DialogResult.Yes)
                 {
@@ -339,19 +333,19 @@ namespace UI
                     _perfilBLL.EliminarPerfil(idPerfil, nombrePerfil);
 
                     // 5. Avisamos y refrescamos
-                    MessageBox.Show("¡Perfil eliminado del sistema con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_perfil_eliminado", "titulo_perfil_eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
             }
             catch (ArgumentException argEx)
             {
                 // ¡Atrapa tu validación y muestra SOLO tu cartel personalizado con ícono de advertencia!
-                MessageBox.Show(argEx.Message, "No se puede eliminar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_sel_perfil", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
                 // Atrapa cualquier otro error real de base de datos
-                MessageBox.Show("Error al eliminar el perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_eliminar_perfil", "titulo_error_eliminar_perfil", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -362,7 +356,7 @@ namespace UI
                 // 1. Validamos apuntando a la grilla CENTRAL
                 if (dgvFamilias.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione una Familia de la grilla central que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_familia", "titulo_sel_familia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -371,11 +365,9 @@ namespace UI
                 string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString();
 
                 // 3. Advertimos al usuario sobre el borrado en cascada
-                DialogResult respuesta = MessageBox.Show(
-                    $"¿Está seguro que desea ELIMINAR COMPLETAMENTE la familia '{nombreFamilia}'?\n\nAl hacerlo, se vaciará su contenido y se desvinculará automáticamente de todos los Perfiles que la estén utilizando.",
-                    "Confirmar Borrado en Cascada",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
+                DialogResult respuesta = idiomaBLL.MostrarMensaje(
+                    "msg_confirmar_eliminar_familia", "titulo_confirmar_eliminar_familia",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, nombreFamilia);
 
                 if (respuesta == DialogResult.Yes)
                 {
@@ -383,13 +375,13 @@ namespace UI
                     _familiaBLL.EliminarFamilia(idFamilia, nombreFamilia);
 
                     // 5. Éxito y recarga visual
-                    MessageBox.Show("¡Familia eliminada del sistema con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_familia_eliminada", "titulo_familia_eliminada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_eliminar_familia", "titulo_error_eliminar_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -402,13 +394,13 @@ namespace UI
             {
                 if (dgvPerfiles.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Perfil de la grilla izquierda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_perfil_izq", "titulo_sel_perfil_izq", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (dgvFamilias.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione una Familia de la grilla central.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_familia_central", "titulo_sel_familia_central", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -420,16 +412,16 @@ namespace UI
 
                 _perfilBLL.AgregarFamiliaAlPerfil(idPerfil, idFamilia, nombrePerfil, nombreFamilia); // LLAMADA MODIFICADA
 
-                MessageBox.Show("¡Familia asignada al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_familia_asignada_perfil", "titulo_familia_asignada_perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación de Permisos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_sel_familia_permiso", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al asignar la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_asignar_familia", "titulo_error_asignar_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
         private void Agregar_Permiso_A_Familia(object sender, EventArgs e)
@@ -439,14 +431,14 @@ namespace UI
                 // 1. Cambiamos a la grilla de FAMILIAS (Centro)
                 if (dgvFamilias.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione una Familia de la grilla central.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_familia_central", "titulo_sel_familia_central", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 // 2. Grilla de PERMISOS (Derecha)
                 if (dgvPermisos.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_permiso_der", "titulo_sel_permiso_der", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -460,16 +452,16 @@ namespace UI
                 // 4. Llamamos al método correcto en la BLL de Familias
                 _familiaBLL.AgregarPermisoAFamilia(idFamilia, idPermiso, nombrePermiso, nombreFamilia);
 
-                MessageBox.Show("¡Permiso asignado a la familia con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_permiso_asignado_familia", "titulo_permiso_asignado_familia", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_sel_familia_permiso", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al asignar el permiso a la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_asignar_permiso_familia", "titulo_error_asignar_permiso_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -496,25 +488,25 @@ namespace UI
                                 _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
                             }
 
-                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            idiomaBLL.MostrarMensaje("msg_permiso_creado", "titulo_permiso_creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Actualizamos la vista para que el nuevo permiso aparezca al instante
                             CargarGrillas();
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            idiomaBLL.MostrarMensaje("msg_error_crear_permiso", "titulo_error_crear_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
                         }
                     }
                 }
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación");
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_crear_permiso", "titulo_error_crear_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }*/
 
@@ -529,18 +521,18 @@ namespace UI
                         string nombreNuevoPerfil = frm.NombrePermiso;
 
                         _perfilBLL.CrearNuevoPerfil(nombreNuevoPerfil);
-                        MessageBox.Show("¡Perfil creado en el sistema con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        idiomaBLL.MostrarMensaje("msg_perfil_creado", "titulo_perfil_creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarGrillas();
                     }
                 }
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_sel_perfil", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear el perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_crear_perfil", "titulo_error_crear_perfil", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -550,7 +542,7 @@ namespace UI
             {
                 if (dgvPermisos.CurrentRow == null)
                 {
-                    MessageBox.Show("Debe seleccionar un permiso antes de crear una familia.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_permiso_antes_familia", "titulo_sel_permiso_antes_familia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -565,18 +557,18 @@ namespace UI
                         string nombreNuevaFamilia = frmPopup.NombrePermiso;
                         int idNuevaFamilia = _familiaBLL.CrearNuevaFamilia(nombreNuevaFamilia);
                         _familiaBLL.AgregarPermisoAFamilia(idNuevaFamilia, idPermisoSeleccionado, nombrePermisoSeleccionado, nombreNuevaFamilia);
-                        MessageBox.Show("Familia creada con éxito y permiso asignado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        idiomaBLL.MostrarMensaje("msg_familia_creada", "titulo_familia_creada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarGrillas();
                     }
                 }
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_sel_familia", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_crear_familia", "titulo_error_crear_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -684,7 +676,7 @@ namespace UI
                 // 1. Validamos que haya selecciones en Izquierda (Perfil) y Centro (Familia)
                 if (dgvPerfiles.CurrentRow == null || dgvFamilias.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione el Perfil de la izquierda y la Familia central que desea desvincular.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_perfil_familia", "titulo_sel_perfil_familia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -697,28 +689,26 @@ namespace UI
                 string nombreFamilia = dgvFamilias.CurrentRow.Cells["Nombre"].Value.ToString();
 
                 // 4. Pedimos confirmación
-                DialogResult respuesta = MessageBox.Show(
-                    $"¿Está seguro que desea quitar la familia '{nombreFamilia}' del perfil '{nombrePerfil}'?",
-                    "Confirmar desvinculación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                DialogResult respuesta = idiomaBLL.MostrarMensaje(
+                    "msg_confirmar_desvincular_familia_perfil", "titulo_confirmar_desvincular_familia_perfil",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, nombreFamilia, nombrePerfil);
 
                 if (respuesta == DialogResult.Yes)
                 {
                     // 5. Llamamos a la BLL
                     _perfilBLL.EliminarFamiliaDePerfil(idPerfil, idFamilia, nombrePerfil, nombreFamilia);
 
-                    MessageBox.Show("Familia desvinculada del perfil con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_familia_desvinculada_perfil", "titulo_familia_desvinculada_perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al desvincular la familia: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_desvincular_familia", "titulo_error_desvincular_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -741,13 +731,13 @@ namespace UI
                         {
                             // Si EsVinculacion es TRUE, apretó "Vincular"
                             _familiaBLL.AgregarFamiliaAFamilia(idFamiliaPadre, idFamiliaHija, nombrePadre, nombreHija);
-                            MessageBox.Show($"¡La familia '{nombreHija}' ahora forma parte de '{nombrePadre}' con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            idiomaBLL.MostrarMensaje("msg_vincular_familia_ok", "titulo_vincular_familia_ok", MessageBoxButtons.OK, MessageBoxIcon.Information, nombreHija, nombrePadre);
                         }
                         else
                         {
                             // Si EsVinculacion es FALSE, apretó "Desvincular"
                             _familiaBLL.EliminarFamiliaDeFamilia(idFamiliaPadre, idFamiliaHija, nombrePadre, nombreHija);
-                            MessageBox.Show($"Se desvinculó '{nombreHija}' de la familia '{nombrePadre}'.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            idiomaBLL.MostrarMensaje("msg_desvincular_familia_ok", "titulo_desvincular_familia_ok", MessageBoxButtons.OK, MessageBoxIcon.Information, nombreHija, nombrePadre);
                         }
 
                         CargarGrillas();
@@ -756,11 +746,11 @@ namespace UI
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al gestionar la relación de familias: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_gestionar_familia", "titulo_error_gestionar_familia", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -797,13 +787,13 @@ namespace UI
             {
                 if (dgvPerfiles.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Perfil de la grilla central.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_perfil_izq", "titulo_sel_perfil_izq", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (dgvPermisos.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_permiso_der", "titulo_sel_permiso_der", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -815,17 +805,17 @@ namespace UI
 
                 _perfilBLL.AgregarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso, nombrePerfil);
 
-                MessageBox.Show("¡Permiso asignado al perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                idiomaBLL.MostrarMensaje("msg_permiso_asignado_perfil", "titulo_permiso_asignado_perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CargarGrillas();
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al asignar el permiso al perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_asignar_permiso_perfil", "titulo_error_asignar_permiso_perfil", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -835,7 +825,7 @@ namespace UI
             {
                 if (dgvPerfiles.CurrentRow == null || dgvPermisos.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione tanto un Perfil como un Permiso.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_perfil_permiso", "titulo_sel_perfil_permiso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -844,24 +834,25 @@ namespace UI
                 string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
                 string nombrePerfil = dgvPerfiles.CurrentRow.Cells["Nombre"].Value.ToString();
 
-                DialogResult confirmacion = MessageBox.Show($"¿Está seguro de quitar el permiso '{nombrePermiso}' del perfil '{nombrePerfil}'?",
-                                                            "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult confirmacion = idiomaBLL.MostrarMensaje(
+                    "msg_confirmar_quitar_permiso_perfil", "titulo_confirmar_quitar_permiso_perfil",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, nombrePermiso, nombrePerfil);
                 if (confirmacion == DialogResult.Yes)
                 {
                     _perfilBLL.EliminarPermisoAPerfil(idPerfil, idPermiso, nombrePermiso, nombrePerfil);
 
-                    MessageBox.Show("¡Permiso eliminado del perfil con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_permiso_eliminado_perfil", "titulo_permiso_eliminado_perfil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     CargarGrillas();
                 }
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el permiso del perfil: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_eliminar_permiso_perfil", "titulo_error_eliminar_permiso_perfil", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -887,25 +878,25 @@ namespace UI
                                 _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
                             }
 
-                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            idiomaBLL.MostrarMensaje("msg_permiso_creado", "titulo_permiso_creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Actualizamos la vista para que el nuevo permiso aparezca al instante
                             CargarGrillas();
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            idiomaBLL.MostrarMensaje("msg_error_crear_permiso", "titulo_error_crear_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
                         }
                     }
                 }
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación");
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_crear_permiso", "titulo_error_crear_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -931,25 +922,25 @@ namespace UI
                                 _patenteBLL.VincularPermisoABoton(frm.NombreFormulario, frm.NombreBoton, nuevoPermiso);
                             }
 
-                            MessageBox.Show("Permiso creado y configurado visualmente con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            idiomaBLL.MostrarMensaje("msg_permiso_creado", "titulo_permiso_creado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Actualizamos la vista para que el nuevo permiso aparezca al instante
                             CargarGrillas();
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            idiomaBLL.MostrarMensaje("msg_error_crear_permiso", "titulo_error_crear_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
                         }
                     }
                 }
             }
             catch (ArgumentException argEx)
             {
-                MessageBox.Show(argEx.Message, "Validación");
+                idiomaBLL.MostrarMensaje("msg_validacion", "titulo_validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning, argEx.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_crear_permiso", "titulo_error_crear_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -959,7 +950,7 @@ namespace UI
             {
                 if (dgvPermisos.CurrentRow == null)
                 {
-                    MessageBox.Show("Por favor, seleccione un Permiso de la grilla derecha que desea eliminar del sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    idiomaBLL.MostrarMensaje("msg_sel_permiso", "titulo_sel_permiso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -967,24 +958,22 @@ namespace UI
                 string nombrePermiso = dgvPermisos.CurrentRow.Cells["Nombre"].Value.ToString();
 
                 // Actualizamos el mensaje para reflejar el borrado en cascada
-                DialogResult respuesta = MessageBox.Show(
-                    $"¿Está seguro que desea ELIMINAR el permiso '{nombrePermiso}'?\n\nAl hacerlo, también se desvinculará automáticamente de todos los Perfiles y Familias que lo estén utilizando actualmente.",
-                    "Confirmar Borrado en Cascada",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
+                DialogResult respuesta = idiomaBLL.MostrarMensaje(
+                    "msg_confirmar_eliminar_permiso", "titulo_confirmar_eliminar_permiso",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, nombrePermiso);
 
                 if (respuesta == DialogResult.Yes)
                 {
                     // Ejecutamos la BLL
                     _patenteBLL.EliminarPermiso(idPermiso, nombrePermiso);
 
-                    MessageBox.Show("¡Permiso eliminado del sistema y desvinculado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idiomaBLL.MostrarMensaje("msg_permiso_eliminado", "titulo_permiso_eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrillas();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el permiso: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_eliminar_permiso", "titulo_error_eliminar_permiso", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
     }

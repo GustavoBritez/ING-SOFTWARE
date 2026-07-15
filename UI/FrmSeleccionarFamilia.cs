@@ -1,4 +1,4 @@
-﻿using BLL;
+using BLL;
 using BLL.Perfiles;
 using Services; // Asegurate de importar tu BLL
 using System;
@@ -54,7 +54,7 @@ namespace UI // Cambiá esto por el namespace de tu proyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las familias: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                idiomaBLL.MostrarMensaje("msg_error_cargar_familias", "titulo_error_cargar_datos", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -62,7 +62,7 @@ namespace UI // Cambiá esto por el namespace de tu proyecto
         {
             if (cmbOrigen.SelectedIndex == -1 || cmbDestino.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione la Familia Origen y la Familia Destino.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_sel_familia_origen_destino", "titulo_sel_familia_origen_destino", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace UI // Cambiá esto por el namespace de tu proyecto
 
             if (idOrigen == idDestino)
             {
-                MessageBox.Show("No puede insertar una familia dentro de sí misma.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_familia_en_si_misma", "titulo_familia_en_si_misma", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -91,7 +91,7 @@ namespace UI // Cambiá esto por el namespace de tu proyecto
         {
             if (cmbOrigen.SelectedIndex == -1 || cmbDestino.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione la Familia Origen y la Familia Destino.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_sel_familia_origen_destino", "titulo_sel_familia_origen_destino", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -100,7 +100,7 @@ namespace UI // Cambiá esto por el namespace de tu proyecto
 
             if (idOrigen == idDestino)
             {
-                MessageBox.Show("No tiene sentido desvincular una familia de sí misma.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                idiomaBLL.MostrarMensaje("msg_desvincular_si_misma", "titulo_desvincular_si_misma", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

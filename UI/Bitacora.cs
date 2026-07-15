@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -157,24 +157,14 @@ namespace UI
 
             if (dtpHasta.Value > hoy)
             {
-                MessageBox.Show(
-                    "No puede seleccionar una fecha futura.",
-                    "Validacion",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                idiomaBLL.MostrarMensaje("msg_fecha_futura", "titulo_fecha_futura", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtpHasta.Value = hoy;
                 return;
             }
 
             if (dtpDesde.Value > dtpHasta.Value)
             {
-                MessageBox.Show(
-                   "No puede seleccionar FechaDesde mayor a FechaHasta.",
-                   "Validacion",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Warning
-               );
+                idiomaBLL.MostrarMensaje("msg_fecha_invalida", "titulo_fecha_invalida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtpDesde.Value = hoy;
                 return;
             }
@@ -219,12 +209,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al filtrar bitacora: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                idiomaBLL.MostrarMensaje("msg_error_filtrar", "titulo_error_filtrar", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -274,12 +259,7 @@ namespace UI
         private void btnLimpiarFiltros_Click(object? sender, EventArgs e)
         {
             LimpiarFiltros();
-            MessageBox.Show(
-                    "Filtros restablecidos correctamente.",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+            idiomaBLL.MostrarMensaje("msg_filtros_ok", "titulo_filtros_ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LimpiarFiltros()
@@ -297,12 +277,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al limpiar filtros: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                idiomaBLL.MostrarMensaje("msg_error_limpiar", "titulo_error_limpiar", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -327,12 +302,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al exportar: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                idiomaBLL.MostrarMensaje("msg_error_exportar", "titulo_error_exportar", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
@@ -484,21 +454,11 @@ namespace UI
                 // Guardar documento
                 document.Save(rutaArchivo);
 
-                MessageBox.Show(
-                    $"Archivo PDF exportado correctamente a: {rutaArchivo}",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                idiomaBLL.MostrarMensaje("msg_exportar_ok", "titulo_exportar_ok", MessageBoxButtons.OK, MessageBoxIcon.Information, rutaArchivo);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al exportar a PDF: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                idiomaBLL.MostrarMensaje("msg_error_exportar_pdf", "titulo_error_exportar_pdf", MessageBoxButtons.OK, MessageBoxIcon.Error, ex.Message);
             }
         }
 
