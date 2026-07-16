@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,18 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer;
+using System.Configuration;
+
 namespace DAL
 {
     internal class Conexion
     {
-
-        private const string _cadenaConexion = "Data Source=.;Initial Catalog=ING;Integrated Security=True;Trust Server Certificate=True";
-        private const int time= 30;
+        private readonly string _cadenaConexion;
+        private const int time = 30;
         private SqlConnection conexion;
-
 
         public Conexion()
         {
+            _cadenaConexion = ConfigurationManager.ConnectionStrings["MiConexionDB"].ConnectionString;
             conexion = new SqlConnection(_cadenaConexion);
         }
 
