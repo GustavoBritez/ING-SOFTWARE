@@ -116,6 +116,11 @@ namespace DAL
             catch (SqlException ex)
             {
                 Console.WriteLine($"Error al ejecutar la consulta: {ex.Message}");
+                try
+                {
+                    System.IO.File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "error_db.txt"), $"Error crítico de base de datos:\n{ex.Message}");
+                }
+                catch { }
                 return dtResultados;
             }
             finally
@@ -126,7 +131,7 @@ namespace DAL
         public void ExecuteNonQueryMaster(string stringQuery, params SqlParameter[] parametros)
         {
             const string conexionMaster =
-                "Data Source=.\\DESARROLLO;Initial Catalog=master;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+                @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30";
 
             try
             {
